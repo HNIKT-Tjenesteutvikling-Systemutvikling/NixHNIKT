@@ -6,20 +6,13 @@ node_modules
 
 # C extensions
 *.so
-.ccls-cache
 
 # VSCode
 .vscode
 
 # Nix
-result
-secrets
-*.qcow2
-.direnv/
-
-# Certs
-certs/*.pem
-*.pem
+result/
+.direnv
 
 # Distribution / packaging
 .Python
@@ -132,7 +125,6 @@ celerybeat.pid
 env/
 venv/
 ENV/
-.branches
 env.bak/
 venv.bak/
 
