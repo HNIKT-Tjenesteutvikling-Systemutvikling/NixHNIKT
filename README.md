@@ -55,7 +55,7 @@ Alternatively, you can install these configurations via the install media from t
 
 - Boot off the install media.
 - Create the partition schedule and mount it to /mnt
-- Run `nixos-install --flake github:gako358/dotfiles#terangreal
+- Run `nixos-install --flake github:HNIKT-Tjenesteutvikling-Systemutvikling/NixHNIKT#hnikt
 
 # Updating
 
