@@ -102,7 +102,8 @@
           {
             # Development tools
             programs = {
-              develop.vscode.enable = true;
+              browser.application = "firefox";
+              develop.vscode.enable = false;
               terminal = {
                 # Gnome has default terminal
                 kitty.enable = false;
