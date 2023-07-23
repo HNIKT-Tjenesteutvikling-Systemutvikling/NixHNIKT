@@ -78,6 +78,8 @@
             programs.discord.enable = true;
             programs.intellij.enable = true;
             programs.virt-manager.enable = true;
+            programs.wps.enable = false; # WPS Office
+            programs.wine.enable = false; # Wine for Windows apps
           }
           {nixpkgs.overlays = builtins.attrValues overlays;}
           ({
