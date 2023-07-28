@@ -1,12 +1,14 @@
 {
   imports = [
-    ./slack.nix
-    ./teams.nix
     ./citrix.nix
+    ./dbeaver.nix
     ./discord.nix
     ./intellij.nix
+    ./mysql-workbench.nix
+    ./slack.nix
+    ./teams.nix
     ./virtmanager.nix
-    ./wps.nix
     ./wine.nix
+    ./wps.nix
   ];
 }

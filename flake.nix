@@ -72,14 +72,16 @@
             # Services enabled
             services.battery.enable = false;
             # Programs to enable
-            programs.slack.enable = true;
-            programs.teams.enable = true;
             programs.citrix.enable = false;
+            programs.dbeaver.enable = false;
             programs.discord.enable = true;
             programs.intellij.enable = true;
+            programs.mysql-workbench.enable = true;
+            programs.slack.enable = true;
+            programs.teams.enable = true;
             programs.virt-manager.enable = true;
-            programs.wps.enable = false; # WPS Office
             programs.wine.enable = false; # Wine for Windows apps
+            programs.wps.enable = false; # WPS Office
           }
           {nixpkgs.overlays = builtins.attrValues overlays;}
           ({
