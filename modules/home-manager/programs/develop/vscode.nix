@@ -206,7 +206,7 @@ in {
   config = lib.mkIf cfg.enable {
     programs.vscode = {
       enable = true;
-      package = code-insiders;
+      package = code;
     };
   };
 }
