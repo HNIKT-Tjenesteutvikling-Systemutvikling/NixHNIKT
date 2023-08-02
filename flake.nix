@@ -71,17 +71,101 @@
             desktop.gnome.enable = true;
             # Services enabled
             services.battery.enable = false;
+          }
+          {nixpkgs.overlays = builtins.attrValues overlays;}
+          ({
+            config,
+            pkgs,
+            ...
+          }: {
+            environment.systemPackages = [
+              neovim-flake.defaultPackage.x86_64-linux
+            ];
+          })
+        ];
+      };
+      grindstein = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./host/grindstein
+          nixosModules
+          {
+            # Set desktop environment
+            desktop.gnome.enable = true;
+            # Services enabled
+            services.battery.enable = false;
             # Programs to enable
-            programs.citrix.enable = false;
-            programs.dbeaver.enable = false;
-            programs.discord.enable = true;
-            programs.intellij.enable = true;
+            programs.citrix.enable = true;
+            programs.dbeaver.enable = true;
+            programs.discord.enable = false;
             programs.mysql-workbench.enable = true;
             programs.slack.enable = true;
             programs.teams.enable = true;
             programs.virt-manager.enable = true;
             programs.wine.enable = false; # Wine for Windows apps
             programs.wps.enable = false; # WPS Office
+          }
+          {nixpkgs.overlays = builtins.attrValues overlays;}
+          ({
+            config,
+            pkgs,
+            ...
+          }: {
+            environment.systemPackages = [
+              neovim-flake.defaultPackage.x86_64-linux
+            ];
+          })
+        ];
+      };
+      sigubrat = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./host/sigubrat
+          nixosModules
+          {
+            # Set desktop environment
+            desktop.gnome.enable = true;
+            # Services enabled
+            services.battery.enable = false;
+            # Programs to enable
+            programs.citrix.enable = true;
+            programs.dbeaver.enable = true;
+            programs.discord.enable = false;
+            programs.mysql-workbench.enable = false;
+            programs.slack.enable = true;
+            programs.teams.enable = true;
+            programs.virt-manager.enable = true;
+          }
+          {nixpkgs.overlays = builtins.attrValues overlays;}
+          ({
+            config,
+            pkgs,
+            ...
+          }: {
+            environment.systemPackages = [
+              neovim-flake.defaultPackage.x86_64-linux
+            ];
+          })
+        ];
+      };
+      turbonaepskrel = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./host/turbonaepskrel
+          nixosModules
+          {
+            # Set desktop environment
+            desktop.gnome.enable = true;
+            # Services enabled
+            services.battery.enable = false;
+            # Programs to enable
+            programs.citrix.enable = true;
+            programs.dbeaver.enable = true;
+            programs.discord.enable = false;
+            programs.mysql-workbench.enable = false;
+            programs.slack.enable = true;
+            programs.teams.enable = true;
+            programs.virt-manager.enable = true;
           }
           {nixpkgs.overlays = builtins.attrValues overlays;}
           ({
@@ -108,6 +192,72 @@
             programs = {
               browser.application = "firefox";
               develop.vscode.enable = false;
+              terminal = {
+                # Gnome has default terminal
+                kitty.enable = false;
+                alacritty.enable = false;
+                gnome-terminal.enable = false;
+              };
+            };
+          }
+        ];
+      };
+      "dev@grindstein" = home-manager.lib.homeManagerConfiguration {
+        pkgs = legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs;};
+        modules = [
+          ./home/grindstein
+          homeManagerModules
+          {
+            # Development tools
+            programs = {
+              browser.application = "firefox";
+              develop.intellij.enable = true;
+              develop.vscode.enable = false;
+              terminal = {
+                # Gnome has default terminal
+                kitty.enable = false;
+                alacritty.enable = false;
+                gnome-terminal.enable = false;
+              };
+            };
+          }
+        ];
+      };
+      "dev@sigubrat" = home-manager.lib.homeManagerConfiguration {
+        pkgs = legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs;};
+        modules = [
+          ./home/sigubrat
+          homeManagerModules
+          {
+            # Development tools
+            programs = {
+              browser.application = "firefox";
+              develop.intellij.enable = true;
+              develop.vscode.enable = true;
+              terminal = {
+                # Gnome has default terminal
+                kitty.enable = false;
+                alacritty.enable = false;
+                gnome-terminal.enable = false;
+              };
+            };
+          }
+        ];
+      };
+      "dev@turbonaepskrel" = home-manager.lib.homeManagerConfiguration {
+        pkgs = legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs;};
+        modules = [
+          ./home/turbonaepskrel
+          homeManagerModules
+          {
+            # Development tools
+            programs = {
+              browser.application = "firefox";
+              develop.intellij.enable = true;
+              develop.vscode.enable = true;
               terminal = {
                 # Gnome has default terminal
                 kitty.enable = false;
