@@ -98,6 +98,7 @@
             programs.citrix.enable = true;
             programs.dbeaver.enable = true;
             programs.discord.enable = false;
+            programs.intellij.enable = true;
             programs.mysql-workbench.enable = true;
             programs.slack.enable = true;
             programs.teams.enable = true;
@@ -131,6 +132,7 @@
             programs.citrix.enable = true;
             programs.dbeaver.enable = true;
             programs.discord.enable = false;
+            programs.intellij.enable = true;
             programs.mysql-workbench.enable = false;
             programs.slack.enable = true;
             programs.teams.enable = true;
@@ -162,6 +164,7 @@
             programs.citrix.enable = true;
             programs.dbeaver.enable = true;
             programs.discord.enable = false;
+            programs.intellij.enable = true;
             programs.mysql-workbench.enable = false;
             programs.slack.enable = true;
             programs.teams.enable = true;
@@ -212,7 +215,6 @@
             # Development tools
             programs = {
               browser.application = "firefox";
-              develop.intellij.enable = true;
               develop.vscode.enable = false;
               terminal = {
                 # Gnome has default terminal
@@ -234,7 +236,6 @@
             # Development tools
             programs = {
               browser.application = "firefox";
-              develop.intellij.enable = true;
               develop.vscode.enable = true;
               terminal = {
                 # Gnome has default terminal
@@ -256,7 +257,6 @@
             # Development tools
             programs = {
               browser.application = "firefox";
-              develop.intellij.enable = true;
               develop.vscode.enable = true;
               terminal = {
                 # Gnome has default terminal
