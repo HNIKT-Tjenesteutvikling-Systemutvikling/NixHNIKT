@@ -118,6 +118,38 @@
           })
         ];
       };
+      solheim = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./host/solheim
+          nixosModules
+          {
+            # Set desktop environment
+            desktop.gnome.enable = true;
+            # Services enabled
+            services.battery.enable = false;
+            # Programs to enable
+            programs.citrix.enable = true;
+            programs.dbeaver.enable = true;
+            programs.discord.enable = false;
+            programs.intellij.enable = true;
+            programs.mysql-workbench.enable = false;
+            programs.slack.enable = true;
+            programs.teams.enable = true;
+            programs.virt-manager.enable = true;
+          }
+          {nixpkgs.overlays = builtins.attrValues overlays;}
+          ({
+            config,
+            pkgs,
+            ...
+          }: {
+            environment.systemPackages = [
+              neovim-flake.defaultPackage.x86_64-linux
+            ];
+          })
+        ];
+      };
       sigubrat = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
@@ -216,6 +248,27 @@
             programs = {
               browser.application = "firefox";
               develop.vscode.enable = false;
+              terminal = {
+                # Gnome has default terminal
+                kitty.enable = false;
+                alacritty.enable = false;
+                gnome-terminal.enable = false;
+              };
+            };
+          }
+        ];
+      };
+      "dev@solheim" = home-manager.lib.homeManagerConfiguration {
+        pkgs = legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs;};
+        modules = [
+          ./home/solheim
+          homeManagerModules
+          {
+            # Development tools
+            programs = {
+              browser.application = "firefox";
+              develop.vscode.enable = true;
               terminal = {
                 # Gnome has default terminal
                 kitty.enable = false;
