@@ -18,12 +18,10 @@ fi
 
 git pull
 clear
-echo "set flake..."
-echo "1. hnikt, 2. grindstein, 3. sigubrat, 4. turbonaepskrel"
-echo "Enter the number of the flake you want to use: "
+echo "Please enter the flake:"
+echo "1. hnikt, 2. grindstein, 3. solheim, 4. sigubrat, 5. turbonaepskrel"
 
 read flake
-
 # Set the flake
 if [[ "$flake" == "1" ]]
 then
@@ -33,19 +31,23 @@ then
     flake="grindstein"
 elif [[ "$flake" == "3" ]]
 then
-    flake="sigubrat"
+    flake="solheim"
 elif [[ "$flake" == "4" ]]
+then
+    flake="sigubrat"
+elif [[ "$flake" == "5" ]]
 then
     flake="turbonaepskrel"
 else
     echo "Invalid input!"
-    echo "Use 1, 2, 3 or 4"
+    echo "Use 1, 2, 3, 4 or 5"
     exit 1
 fi
 
 # Check if the user wants to test the flake
 clear
 echo "For testing flake choose <<test>>"
+echo "or press enter to continue"
 read test
 if [[ "$test" == "test" ]]
 then
