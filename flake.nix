@@ -163,7 +163,7 @@
             # Programs to enable
             programs.citrix.enable = true;
             programs.dbeaver.enable = true;
-            programs.discord.enable = false;
+            programs.discord.enable = true;
             programs.intellij.enable = true;
             programs.mysql-workbench.enable = false;
             programs.slack.enable = true;
