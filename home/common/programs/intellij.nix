@@ -9,7 +9,19 @@
     node = nodejs;
     yarn = yarn;
   };
-  intellij = pkgs.jetbrains.idea-ultimate;
+  extraPath = lib.makeBinPath (builtins.attrValues devSDKs);
+  idea-with-copilot = pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.idea-ultimate [
+    "github-copilot"
+  ];
+  intellij =
+    pkgs.runCommand "intellij"
+    {nativeBuildInputs = [pkgs.makeWrapper];}
+    ''
+      mkdir -p $out/bin
+      makeWrapper ${idea-with-copilot}/bin/idea-ultimate \
+        $out/bin/intellij \
+        --prefix PATH : ${extraPath}
+    '';
   mkEntry = name: value: {
     inherit name;
     path = value;
