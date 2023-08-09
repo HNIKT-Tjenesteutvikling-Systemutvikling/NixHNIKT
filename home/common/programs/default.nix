@@ -1,4 +1,5 @@
 {
   imports = [
+    ./intellij.nix
   ];
 }
