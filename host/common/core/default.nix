@@ -21,6 +21,7 @@ with lib; {
     acpi
     btop
     fd
+    keepass
 
     # Archive tools
     xarchiver
