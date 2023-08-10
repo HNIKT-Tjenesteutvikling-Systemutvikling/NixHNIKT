@@ -12,20 +12,15 @@ with lib; let
     gc = "nix-collect-garbage";
     gcd = "sudo nix-collect-garbage -d";
 
-    # Git
-    ga = "git add -A && git commit";
-    gp = "git push -u origin main";
-    gs = "git status";
-    gt = "git status -uno";
-    gf = "git fetch --dry-run";
-    gd = "git diff";
-
     update = "nix flake update";
     supdate = "sudo nix flake update";
     upgrade = "sudo nixos-rebuild switch --flake";
 
     homeflake = "home-manager switch --flake";
     homeflake_install = "nix run github:nix-community/home-manager#home-manager -- switch --flake";
+
+    work = "/home/dev/Projects/workspace";
+    dot = "/home/dev/Sources/NixHNIKT";
 
     rzsh = "source ~/.zshrc";
   };
