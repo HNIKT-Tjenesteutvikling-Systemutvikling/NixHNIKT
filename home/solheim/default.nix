@@ -3,6 +3,7 @@
     ../common
     ./desktop
     ./services
+    ./git.nix
   ];
 
   # Set desktop environment
@@ -19,11 +20,6 @@
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.git = {
-    enable = true;
-    userName = "5olheim";
-    userEmail = "jan-magnus.solheim@hnikt.no";
-  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
