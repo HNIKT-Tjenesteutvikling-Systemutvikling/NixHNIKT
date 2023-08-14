@@ -11,16 +11,16 @@ fi
 # Get flake input from the user
 clear
 echo "Please enter the flake:"
-echo "1. hnikt, 2. grindstein, 3. solheim, 4. sigubrat, 5. turbonaepskrel"
+echo "1. grindstein, 2. jca, 3. solheim, 4. sigubrat, 5. turbonaepskrel"
 
 read flake
 # Set the flake
 if [[ "$flake" == "1" ]]
 then
-    flake="hnikt"
+    flake="grindstein"
 elif [[ "$flake" == "2" ]]
 then
-    flake="grindstein"
+    flake="jca"
 elif [[ "$flake" == "3" ]]
 then
     flake="solheim"
@@ -32,7 +32,7 @@ then
     flake="turbonaepskrel"
 else
     echo "Invalid input!"
-    echo "Use 1, 2, 3 or 4"
+    echo "Use 1, 2, 3 or 4 or 5"
     exit 1
 fi
 home_name="dev@$flake"
