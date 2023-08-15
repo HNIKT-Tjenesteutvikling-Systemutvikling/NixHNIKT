@@ -89,5 +89,9 @@
     };
   };
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "python-2.7.18.6"
+  ];
+
   system.stateVersion = "23.11";
 }

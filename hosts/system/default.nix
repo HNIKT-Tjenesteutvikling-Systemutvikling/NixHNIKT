@@ -18,6 +18,7 @@ with lib; {
     ./daemons
     ./desktop
     ./fonts.nix
+    ./neard.nix
     ./zsh.nix
   ];
 }
