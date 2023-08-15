@@ -19,6 +19,7 @@ with lib; {
     ./desktop
     ./fonts.nix
     ./neard.nix
+    ./mysql.nix
     ./zsh.nix
   ];
 }
