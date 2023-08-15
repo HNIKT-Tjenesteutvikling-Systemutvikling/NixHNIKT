@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DEVICE_NAME="$1"
+DEVICE_NAME="/dev/nvme0n1"
 EFI_SIZE="512MiB"
 SWAP_SIZE="9.1GiB"
 LABEL_NAME="NIXOS"
@@ -22,14 +22,14 @@ function create_partitions {
 
 function mount_partitions {
   # Format Partitions
-  mkfs.fat -F32 -n EFI "${DEVICE_NAME}1"
-  mkswap -L SWAP "${DEVICE_NAME}2"
-  mkfs.btrfs -L "${LABEL_NAME}" -f "${DEVICE_NAME}3"
+  mkfs.fat -F32 -n EFI "${DEVICE_NAME}p1"
+  mkswap -L SWAP "${DEVICE_NAME}p2"
+  mkfs.btrfs -L "${LABEL_NAME}" -f "${DEVICE_NAME}p3"
 
   echo "Partitions formatted"
 
   # Mount partitions
-  mount "${DEVICE_NAME}3" /mnt
+  mount "${DEVICE_NAME}p3" /mnt
 
   btrfs subvolume create /mnt/root
   btrfs subvolume create /mnt/home
@@ -38,16 +38,16 @@ function mount_partitions {
   btrfs subvolume create /mnt/tmp
 
   umount /mnt
-  mount -o noatime,compress=zstd,ssd,space_cache=v2,subvol=root "${DEVICE_NAME}3" /mnt
+  mount -o noatime,compress=zstd,ssd,space_cache=v2,subvol=root "${DEVICE_NAME}p3" /mnt
 
   mkdir -p /mnt/{boot/efi,home,tmp,nix,var}
-  mount -o noatime,compress=zstd,ssd,space_cache=v2,subvol=home "${DEVICE_NAME}3" /mnt/home
-  mount -o noatime,compress=zstd,ssd,space_cache=v2,subvol=nix "${DEVICE_NAME}3" /mnt/nix
-  mount -o noatime,compress=zstd,ssd,space_cache=v2,subvol=var "${DEVICE_NAME}3" /mnt/var
-  mount -o noatime,compress=zstd,ssd,space_cache=v2,subvol=tmp "${DEVICE_NAME}3" /mnt/tmp
+  mount -o noatime,compress=zstd,ssd,space_cache=v2,subvol=home "${DEVICE_NAME}p3" /mnt/home
+  mount -o noatime,compress=zstd,ssd,space_cache=v2,subvol=nix "${DEVICE_NAME}p3" /mnt/nix
+  mount -o noatime,compress=zstd,ssd,space_cache=v2,subvol=var "${DEVICE_NAME}p3" /mnt/var
+  mount -o noatime,compress=zstd,ssd,space_cache=v2,subvol=tmp "${DEVICE_NAME}p3" /mnt/tmp
 
-  mount "${DEVICE_NAME}1" /mnt/boot/efi
-  swapon "${DEVICE_NAME}2"
+  mount "${DEVICE_NAME}p1" /mnt/boot/efi
+  swapon "${DEVICE_NAME}p2"
 
   clear
   df -Th

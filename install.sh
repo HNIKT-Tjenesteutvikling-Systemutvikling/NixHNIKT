@@ -29,7 +29,7 @@ else
 fi
 
 # Source your setup script
-source ./scripts/setup.sh /dev/nvme0n1p
+source ./scripts/setup.sh
 
 # Run the nixos-install command
 nixos-install --flake .#$flake
