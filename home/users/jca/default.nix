@@ -4,7 +4,7 @@
 
   programs.git = {
     enable = true;
-    userEmail = "user email";
-    userName = "username";
+    userEmail = "jan.olov.gustav.carlsson@hnikt.no";
+    userName = "jca002";
   };
 }
