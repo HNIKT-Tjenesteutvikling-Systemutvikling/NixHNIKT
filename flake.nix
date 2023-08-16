@@ -166,7 +166,7 @@
         extraSpecialArgs = {inherit inputs;};
         modules = [
           ./home/home.nix
-          ./home/users/sigubrat
+          ./home/users/solheim
         ];
       };
       "dev@sigubrat" = home-manager.lib.homeManagerConfiguration {
@@ -174,7 +174,7 @@
         extraSpecialArgs = {inherit inputs;};
         modules = [
           ./home/home.nix
-          ./home/users/solheim
+          ./home/users/sigubrat
         ];
       };
       "dev@turbonaepskrel" = home-manager.lib.homeManagerConfiguration {
