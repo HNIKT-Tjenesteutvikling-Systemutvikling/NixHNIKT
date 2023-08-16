@@ -18,7 +18,7 @@ with lib; {
     ./daemons
     ./desktop
     ./fonts.nix
-    ./neard.nix
+    ./nfc.nix
     ./mysql.nix
     ./zsh.nix
   ];
