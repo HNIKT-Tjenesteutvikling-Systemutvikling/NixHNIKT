@@ -82,8 +82,14 @@ with builtins; let
       {
         name = "metals";
         publisher = "scalameta";
-        version = "1.23.4";
-        sha256 = "WPji2AAfJ6Q0njeuu/QlCui2wu9iUCnZzi0KHV6nCUg=";
+        version = "1.24.4";
+        sha256 = "/xQrElv92tVgiJRY3O3JCFxvI4tvlwKXfacv1UZZhWA=";
+      }
+      {
+        name = "scala";
+        publisher = "scala-lang";
+        version = "0.5.7";
+        sha256 = "cjMrUgp2+zyqT7iTdtMeii81X0HSly//+gGPOh/Mfn4=";
       }
       {
         name = "vscode-clang";
