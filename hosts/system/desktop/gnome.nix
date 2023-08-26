@@ -31,7 +31,6 @@
 
   # Systray Icons
   environment.systemPackages = with pkgs; [
-    gnomeExtensions.appindicator
     gnomeExtensions.vitals
     gnomeExtensions.tiling-assistant
     gnomeExtensions.user-themes

@@ -33,6 +33,7 @@ in [
   ./browser/slack.nix
   ./browser/teams.nix
   ./citrix.nix
+  ./emacs.nix
   ./intellij.nix
   ./git.nix
   ./network.nix

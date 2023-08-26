@@ -42,6 +42,8 @@
   # Add dconf settings
   programs.dconf.enable = true;
   services = {
+    printing.enable = true; # Enable CUPS to print documents.
+    # Enable the X11 windowing system.
     xserver = {
       videoDrivers = ["intel"];
       displayManager = {
