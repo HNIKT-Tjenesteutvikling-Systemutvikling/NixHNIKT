@@ -31,8 +31,6 @@ Remember, while NixOS provides a high level of flexibility and power, it also re
 home/default.nix
 ```
 
-On line 24 and 25, the username and user email need to be set, for Github config.
-
 # How To Install
 
 There are two main ways to deploy these dotfiles on a system:
@@ -63,6 +61,12 @@ After switching to this configuration, you can update your system using the foll
 
 ```shell
 nixos-rebuild switch --upgrade --flake .#
+```
+
+or run:
+
+```shell
+./update.sh
 ```
 
 ## Understanding the Structure
