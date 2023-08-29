@@ -14,6 +14,7 @@
     dive                 # explore docker layers
     drawio               # diagram design
     duf                  # disk usage/free utility
+    dropbox              # cloud storage
     exa                  # a better `ls`
     fd                   # "find" for files
     geany                # text editor
@@ -45,6 +46,7 @@
     xarchiver            # archive manager
     xclip                # command-line interface to X selections
     xdotool              # command-line X11 automation tool
+    xmind                # mind mapping tool
     zip                  # zip files
   ];
 
