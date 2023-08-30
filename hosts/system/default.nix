@@ -20,6 +20,7 @@ with lib; {
     ./fonts.nix
     ./nfc.nix
     ./mysql.nix
+    ./onedrive.nix
     ./zsh.nix
   ];
 }
