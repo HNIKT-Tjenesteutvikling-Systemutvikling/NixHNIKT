@@ -45,12 +45,7 @@
     printing.enable = true; # Enable CUPS to print documents.
     # Enable the X11 windowing system.
     xserver = {
-      videoDrivers = ["intel"];
-      displayManager = {
-        sessionCommands = ''
-          ${lib.getBin pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all
-        '';
-      };
+      videoDrivers = ["intel" "displaylink"];
     };
     blueman.enable = true;
     dbus.enable = true;
