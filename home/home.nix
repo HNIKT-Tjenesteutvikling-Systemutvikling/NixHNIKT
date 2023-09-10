@@ -15,7 +15,7 @@
     drawio               # diagram design
     duf                  # disk usage/free utility
     dropbox              # cloud storage
-    exa                  # a better `ls`
+    eza                  # a better `ls`
     fd                   # "find" for files
     geany                # text editor
     gimp                 # gnu image manipulation program
