@@ -15,8 +15,6 @@
     ++ (with pkgs.gnome; [
       cheese # webcam tool
       gnome-music
-      gnome-weather
-      gnome-system-monitor
       gnome-contacts
       simple-scan
       epiphany # web browser
