@@ -35,7 +35,7 @@ in {
       enable = true;
       aliases = {
         amend = "commit -a --amend";
-        fix = "commit -a fixup HEAD";
+        fix = "commit -a --fixup HEAD";
         base = "rebase -i --autosquash";
         br = "branch";
         co = "checkout";
