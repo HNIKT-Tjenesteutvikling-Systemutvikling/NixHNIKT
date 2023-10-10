@@ -82,6 +82,14 @@ in {
   # restart services on change
   systemd.user.startServices = "sd-switch";
 
+  # Fake a tray, so apps can start
+  systemd.user.targets.tray = {
+    Unit = {
+      Description = "Home Manager System Tray";
+      Requires = ["graphical-session-pre.target"];
+    };
+  };
+
   # notifications about home-manager news
   news.display = "silent";
 }

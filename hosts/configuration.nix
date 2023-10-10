@@ -84,18 +84,23 @@
         PasswordAuthentication = false;
       };
     };
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      wireplumber.enable = true;
+    };
   };
+  sound.enable = true;
   hardware = {
+    opengl.enable = true;
     opengl.driSupport = true;
     keyboard.zsa.enable = true;
     bluetooth.enable = true;
     # Enable braodcom chip for bluetooth
     enableAllFirmware = true;
-    pulseaudio = {
-      enable = true;
-      support32Bit = true;
-      package = pkgs.pulseaudioFull;
-    };
+    pulseaudio.enable = false;
   };
   # Enable virtualisation and docker support
   virtualisation = {
