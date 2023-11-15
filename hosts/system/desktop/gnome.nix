@@ -34,19 +34,6 @@
       atomix # puzzle game
     ]);
 
-  # Systray Icons
-  environment.systemPackages = with pkgs; [
-    gnomeExtensions.vitals
-    gnomeExtensions.tiling-assistant
-    gnomeExtensions.user-themes
-    gnomeExtensions.sound-output-device-chooser
-    gnomeExtensions.caffeine
-    gnomeExtensions.dash-to-dock
-    gnome.gnome-tweaks
-    gnome.dconf-editor
-    gnome.gnome-notes
-    evince
-  ];
   # ensure gnome-settings-daemon udev rules are enabled
   services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
   # ensure telepathy is enable
