@@ -12,6 +12,7 @@ with lib; let
     # Git alias
     gcm = "git checkout master";
     gc = "git checkout";
+    gs = "git status";
 
     nixgc = "nix-collect-garbage";
     nixgcd = "sudo nix-collect-garbage -d";
