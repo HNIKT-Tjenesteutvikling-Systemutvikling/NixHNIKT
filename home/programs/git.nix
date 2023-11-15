@@ -47,8 +47,6 @@ in {
         pp = "push";
         f = "fetch";
         ppf = "push --force-with-lease";
-        gcm = "git checkout master";
-        gc = "git checkout";
       };
       extraConfig = gitConfig;
       ignores = [
