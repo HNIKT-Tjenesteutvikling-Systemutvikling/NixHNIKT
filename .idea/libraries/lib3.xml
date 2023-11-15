@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="lib3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/result/home-files/.local/dev/java19/lib/openjdk/lib/jrt-fs.jar!/" />
+      <root url="jar://$PROJECT_DIR$/result/home-files/.local/dev/java19/lib/openjdk/lib/src.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

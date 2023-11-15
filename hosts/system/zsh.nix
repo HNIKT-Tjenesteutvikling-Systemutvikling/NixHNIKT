@@ -9,8 +9,12 @@ with lib; let
     ll = "ls -la";
     df = "df -Th";
 
-    gc = "nix-collect-garbage";
-    gcd = "sudo nix-collect-garbage -d";
+    # Git alias
+    gcm = "git checkout master";
+    gc = "git checkout";
+
+    nixgc = "nix-collect-garbage";
+    nixgcd = "sudo nix-collect-garbage -d";
 
     # Locations
     dot = "cd ~/Sources/NixHNIKT";

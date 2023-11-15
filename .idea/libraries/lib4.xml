@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="lib4">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/result/home-path/dbeaver/plugins/org.jkiss.bundle.sshj_0.34.1/lib/eddsa-0.3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/result/home-path/dbeaver/plugins/org.jkiss.bundle.sshj_0.34.1/lib/jzlib-1.1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/result/home-path/dbeaver/plugins/org.jkiss.bundle.sshj_0.34.1/lib/asn-one-0.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/result/home-path/dbeaver/plugins/org.jkiss.bundle.sshj_0.34.1/lib/sshj-0.34.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
