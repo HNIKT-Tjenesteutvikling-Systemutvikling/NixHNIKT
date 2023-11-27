@@ -21,7 +21,6 @@
     gimp                      # gnu image manipulation program
     glow                      # terminal markdown viewer
     hyperfine                 # command-line benchmarking tool
-    jetbrains.idea-ultimate   # java idea
     killall                   # kill processes by name
     keepass                   # password manager
     lazygit                   # terminal git ui
