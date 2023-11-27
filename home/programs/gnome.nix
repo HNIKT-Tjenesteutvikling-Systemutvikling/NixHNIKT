@@ -83,7 +83,7 @@
     "org/gnome/settings-daemon/plugins/media-keys" = {
       email = ["<Super>e"];
       www = ["<Super>w"];
-      screensaver = ["<Shift><Super>P"];
+      screensaver = ["<Super>L"];
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
