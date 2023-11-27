@@ -1,5 +1,6 @@
 {
   imports = [
+    ../../programs/intellij.nix
   ];
 
   programs.git = {
