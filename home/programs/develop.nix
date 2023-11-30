@@ -4,7 +4,7 @@
   ...
 }: let
   devSDKs = with pkgs; {
-    java19 = jdk19;
+    java21 = jdk21;
     scala = dotty;
     node = nodejs;
     yarn = yarn;
