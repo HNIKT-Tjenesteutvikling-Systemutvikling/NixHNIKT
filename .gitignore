@@ -11,6 +11,9 @@ node_modules
 # VSCode
 .vscode
 
+# Intellij
+/.idea/
+
 # Nix
 result
 secrets
