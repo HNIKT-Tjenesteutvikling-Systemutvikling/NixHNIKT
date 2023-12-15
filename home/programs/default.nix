@@ -32,8 +32,6 @@ in [
   ./browser/firefox.nix
   ./browser/slack.nix
   ./browser/teams.nix
-  ./citrix.nix
-  ./emacs.nix
   ./git.nix
   ./gnome.nix
   ./network.nix

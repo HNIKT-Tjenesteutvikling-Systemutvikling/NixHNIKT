@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  userSetup,
   lib,
   pkgs,
   ...
@@ -68,7 +69,10 @@
     printing.enable = true; # Enable CUPS to print documents.
     # Enable the X11 windowing system.
     xserver = {
-      videoDrivers = ["intel" "displaylink"];
+      videoDrivers =
+        if userSetup.displayLink
+        then ["intel" "displaylink"]
+        else ["intel"];
     };
     blueman.enable = true;
     dbus.enable = true;

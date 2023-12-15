@@ -25,10 +25,29 @@ It is important to note that while this configuration has been made available to
 
 Remember, while NixOS provides a high level of flexibility and power, it also requires a good understanding of how the system works. Therefore, ensure to familiarize yourself with the NixOS manual and seek help from the community if you run into any problems.
 
-# Setting Github config
+# Setting Up User Configuration
 
+Before you start the installation process, you need to set up your user configuration in the `userSetting.nix` file. This file contains various settings such as your username, hostname, git email, git username, and xrandr settings.
+
+You can find an example of this file named `userSetting.nix.default`. Copy this file and rename it to `userSetting.nix`:
+
+```shell
+cp userSetting.nix.default userSetting.nix
 ```
-home/default.nix
+
+Then, open `userSetting.nix` and replace the placeholder values with actual settings.
+
+```shell
+{
+  username = "your-username";
+  hostname = "your-hostname";
+  gitEmail = "your-git-email";
+  gitUsername = "your-git-username";
+  xrandrSettings = "your-xrandr-settings";
+
+  # user-specific packages
+  intellijCli = false;        # Set to true, if installing IntelliJ CLI (Start from the command-line)
+}
 ```
 
 # How To Install
@@ -43,6 +62,12 @@ the following commands:
 ```shell
 nix-shell
 nixos-rebuild switch --flake .#
+```
+
+If you have set the `userSetting.nix`, then to install just run:
+
+```shell
+./install.sh
 ```
 
 `Note: This assumes your computer name matches one of the configurations in the flake.`

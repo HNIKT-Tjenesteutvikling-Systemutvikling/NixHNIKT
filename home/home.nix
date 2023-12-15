@@ -1,5 +1,9 @@
-{pkgs, ...}: let
-  username = "dev";
+{
+  pkgs,
+  userSetup,
+  ...
+}: let
+  username = "${userSetup.username}";
   homeDirectory = "/home/${username}";
   configHome = "${homeDirectory}/.config";
 
@@ -49,7 +53,6 @@
     xmind                     # mind mapping tool
     zip                       # zip files
   ];
-
 in {
   programs.home-manager.enable = true;
   imports = builtins.concatMap import [
@@ -65,7 +68,7 @@ in {
   };
 
   # Default services
-  services.pasystray.enable = true;   # pulseaudio system tray
+  services.pasystray.enable = true; # pulseaudio system tray
 
   home = {
     inherit username homeDirectory;
