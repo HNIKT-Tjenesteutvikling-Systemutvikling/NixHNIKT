@@ -49,6 +49,8 @@
       default = legacyPackages.${system}.callPackage ./shell.nix {};
     });
 
+    userSetup = import ./userSetting.nix;
+
     legacyPackages = forAllSystems (system:
       import inputs.nixpkgs {
         inherit system;
@@ -58,131 +60,21 @@
 
     nixosConfigurations = {
       # System Config
-      grindstein = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+      ${userSetup.hostname} = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs userSetup;};
         modules = [
           ./hosts/configuration.nix
-          ./hosts/users/grindstein
-          {nixpkgs.overlays = builtins.attrValues overlays;}
-          ({
-            config,
-            pkgs,
-            ...
-          }: {
-            environment.systemPackages = [
-              neovim-flake.defaultPackage.x86_64-linux
-            ];
-          })
-        ];
-      };
-      jca = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/configuration.nix
-          ./hosts/users/jca
-          {nixpkgs.overlays = builtins.attrValues overlays;}
-          ({
-            config,
-            pkgs,
-            ...
-          }: {
-            environment.systemPackages = [
-              neovim-flake.defaultPackage.x86_64-linux
-            ];
-          })
-        ];
-      };
-      sigubrat = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/configuration.nix
-          ./hosts/users/sigubrat
-          {nixpkgs.overlays = builtins.attrValues overlays;}
-          ({
-            config,
-            pkgs,
-            ...
-          }: {
-            environment.systemPackages = [
-              neovim-flake.defaultPackage.x86_64-linux
-            ];
-          })
-        ];
-      };
-      solheim = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/configuration.nix
-          ./hosts/users/solheim
-          {nixpkgs.overlays = builtins.attrValues overlays;}
-          ({
-            config,
-            pkgs,
-            ...
-          }: {
-            environment.systemPackages = [
-              neovim-flake.defaultPackage.x86_64-linux
-            ];
-          })
-        ];
-      };
-      turbonaepskrel = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/configuration.nix
-          ./hosts/users/turbonaepskrel
-          {nixpkgs.overlays = builtins.attrValues overlays;}
-          ({
-            config,
-            pkgs,
-            ...
-          }: {
-            environment.systemPackages = [
-              neovim-flake.defaultPackage.x86_64-linux
-            ];
-          })
+          ./hosts/users
         ];
       };
     };
     homeConfigurations = {
-      "dev@grindstein" = home-manager.lib.homeManagerConfiguration {
+      "${userSetup.username}@${userSetup.hostname}" = home-manager.lib.homeManagerConfiguration {
         pkgs = legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs;};
+        extraSpecialArgs = {inherit inputs userSetup;};
         modules = [
           ./home/home.nix
-          ./home/users/grindstein
-        ];
-      };
-      "dev@jca" = home-manager.lib.homeManagerConfiguration {
-        pkgs = legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs;};
-        modules = [
-          ./home/home.nix
-          ./home/users/jca
-        ];
-      };
-      "dev@solheim" = home-manager.lib.homeManagerConfiguration {
-        pkgs = legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs;};
-        modules = [
-          ./home/home.nix
-          ./home/users/solheim
-        ];
-      };
-      "dev@sigubrat" = home-manager.lib.homeManagerConfiguration {
-        pkgs = legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs;};
-        modules = [
-          ./home/home.nix
-          ./home/users/sigubrat
-        ];
-      };
-      "dev@turbonaepskrel" = home-manager.lib.homeManagerConfiguration {
-        pkgs = legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs;};
-        modules = [
-          ./home/home.nix
-          ./home/users/turbonaepskrel
+          ./home/users
         ];
       };
     };

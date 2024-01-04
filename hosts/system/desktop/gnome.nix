@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   services.xserver = {
     enable = true;
     libinput.enable = true;
@@ -33,6 +37,10 @@
       hitori # sudoku game
       atomix # puzzle game
     ]);
+
+  environment.systemPackages = with pkgs; [
+    inputs.neovim-flake.defaultPackage.${pkgs.system}
+  ];
 
   # ensure gnome-settings-daemon udev rules are enabled
   services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];

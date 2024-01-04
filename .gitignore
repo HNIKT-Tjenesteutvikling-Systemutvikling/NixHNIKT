@@ -19,6 +19,7 @@ result
 secrets
 *.qcow2
 .direnv/
+userSetting.nix
 
 # Certs
 certs/*.pem
