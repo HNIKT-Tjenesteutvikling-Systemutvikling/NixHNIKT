@@ -1,15 +1,22 @@
-{
-  config,
-  inputs,
-  userSetup,
-  lib,
-  pkgs,
-  ...
+{ config
+, inputs
+, userSetup
+, lib
+, pkgs
+, ...
 }: {
-  imports = [
-    ./hardware-configuration.nix
-    ./system
-  ];
+  imports = (
+    if userSetup.wireguard
+    then [
+      ./system/wireguard.nix
+      ./hardware-configuration.nix
+      ./system
+    ]
+    else [
+      ./hardware-configuration.nix
+      ./system
+    ]
+  );
   networking = {
     networkmanager.enable = true;
     firewall.enable = false;
@@ -33,7 +40,7 @@
     randomizedDelaySec = "1min";
   };
   nix = {
-    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
+    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
     settings = {
       experimental-features = "nix-command flakes";
@@ -47,7 +54,7 @@
     };
     optimise = {
       automatic = true;
-      dates = ["weekly"];
+      dates = [ "weekly" ];
     };
   };
   time.timeZone = "Europe/Oslo";
@@ -60,9 +67,19 @@
       openssh.authorizedKeys.keys = [
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
-      extraGroups = ["wheel" "networkmanager" "docker" "libvirtd" "video" "audio"];
+      extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" "video" "audio" ];
     };
   };
+
+  users.groups.openvpn =
+    if userSetup.wireguard
+    then {
+      name = "openvpn";
+      members = [ "dev" ];
+      gid = 1100;
+    }
+    else { };
+
   # Add dconf settings
   programs.dconf.enable = true;
   services = {
@@ -71,12 +88,12 @@
     xserver = {
       videoDrivers =
         if userSetup.displayLink
-        then ["intel" "displaylink"]
-        else ["intel"];
+        then [ "intel" "displaylink" ]
+        else [ "intel" ];
     };
     blueman.enable = true;
     dbus.enable = true;
-    dbus.packages = [pkgs.gnome.gnome-keyring pkgs.gcr];
+    dbus.packages = [ pkgs.gnome.gnome-keyring pkgs.gcr ];
     gnome.gnome-keyring = {
       enable = true;
     };
