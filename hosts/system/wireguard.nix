@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   networking.wg-quick.interfaces =
     let
-      server_ip = "18.19.23.66";
+      server_ip = "176.125.235.71";
     in
     {
       wg0 = {
@@ -19,7 +19,7 @@
         privateKeyFile = "/etc/mullvad-vpn.key";
 
         peers = [{
-          publicKey = "1493vtFUbIfSpQKRBki/1d0YgWIQwMV4AQAvGxjCNVM=";
+          publicKey = "jOUZjMq2PWHDzQxu3jPXktYB7EKeFwBzGZx56cTXXQg=";
           allowedIPs = [ "0.0.0.0/0" ];
           endpoint = "${server_ip}:51820";
           persistentKeepalive = 25;
