@@ -16,7 +16,7 @@
     )
     ++ (
       if userSetup.emacsConfig
-      then [./../programs/emacs.nix]
+      then [./../programs/emacs/default.nix]
       else []
     );
 
