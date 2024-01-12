@@ -28,6 +28,7 @@ with lib; let
     homeflake = "home-manager switch --flake";
     homeflake_install = "nix run github:nix-community/home-manager#home-manager -- switch --flake";
 
+    cleanstart = "runapp drop; runapp code";
     rzsh = "source ~/.zshrc";
   };
 in {
