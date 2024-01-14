@@ -17,6 +17,8 @@ jobs:
       uses: actions/checkout@v3
     - name: Copy userSetting.nix.default to userSetting.nix
       run: cp userSetting.nix.default userSetting.nix
+    - name: List files in directory
+      run: ls -al
     - name: Install nix
       uses: cachix/install-nix-action@v20
       with:
