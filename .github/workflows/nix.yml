@@ -15,8 +15,22 @@ jobs:
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
-    - name: Copy userSetting.nix.default to userSetting.nix
-      run: cp userSetting.nix.default userSetting.nix
+    - name: Create userSetting.nix
+      run: |
+        echo '{
+          username        = "dev";
+          hostname        = "Your-username";
+          gitEmail        = "email.address@org.no";
+          gitUsername     = "git-username";
+          gitEditor       = "nano";
+          xrandrSettings  = "--output eDP-1 --mode 1920x1080 --pos 4480x858 --rotate normal --output DP-10 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output DP-11 --mode 1920x1200 --pos 2560x240 --rotate normal";
+          intellijCli     = false;
+          displayLink     = false;
+          emacsConfig     = true;
+          xrandrConfig    = false;
+          citrixConfig    = false;
+          wireguard       = false;
+        }' > userSetting.nix
     - name: List files in directory
       run: ls -al
     - name: Install nix
