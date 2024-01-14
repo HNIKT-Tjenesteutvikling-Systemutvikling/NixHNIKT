@@ -5,12 +5,18 @@ on:
     branches: [ master ]
   push:
     branches: [ master ]
+  workflow_run:
+    workflows: ["Update Flake Deps"]
+    types:
+      - completed
 jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
+    - name: Copy userSetting.nix.default to userSetting.nix
+      run: cp userSetting.nix.default userSetting.nix
     - name: Install nix
       uses: cachix/install-nix-action@v20
       with:
@@ -24,3 +30,5 @@ jobs:
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - name: Test checks
       run: nix flake check -L --show-trace
+    - name: Remove userSetting.nix
+      run: rm userSetting.nix

@@ -13,4 +13,5 @@
   emacsConfig   = true;     # install Emacs, Only if using emacs
   xrandrConfig  = false;    # install xrandr config, ALWAYS false on install
   citrixConfig  = false;    # install Citrix config, ALWAYS false on install
+  wireguard     = false;    # install wireguard VPN
 }
