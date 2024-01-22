@@ -226,15 +226,16 @@
         "plugins-telescope": "plugins-telescope",
         "plugins-todo-comments": "plugins-todo-comments",
         "plugins-trouble": "plugins-trouble",
+        "plugins-vim-vsnip": "plugins-vim-vsnip",
         "plugins-which-key": "plugins-which-key",
         "rnix-lsp": "rnix-lsp"
       },
       "locked": {
-        "lastModified": 1705768660,
-        "narHash": "sha256-r2p7yWQPRN0PoHnsqRL4ldOqzFrIhZvcJGGaumOr1QA=",
+        "lastModified": 1705835180,
+        "narHash": "sha256-ucQ7Jn4n/HWLensIBeEQ9sB6pcrQg6v8UCnz0caOvs0=",
         "owner": "gako358",
         "repo": "neovim",
-        "rev": "64ba908e47a01f36338826a5ca259b7ad4010130",
+        "rev": "0764e54ad4d63b44e41179e2e5c4224dbaa4ed89",
         "type": "github"
       },
       "original": {
@@ -907,6 +908,22 @@
       "original": {
         "owner": "folke",
         "repo": "trouble.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-vim-vsnip": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1704937299,
+        "narHash": "sha256-gvm6z4pgSULBVPukewRyjwxZ0vZgreQWbG/0kOB1QBo=",
+        "owner": "hrsh7th",
+        "repo": "vim-vsnip",
+        "rev": "02a8e79295c9733434aab4e0e2b8c4b7cea9f3a9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hrsh7th",
+        "repo": "vim-vsnip",
         "type": "github"
       }
     },
