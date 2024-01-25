@@ -97,11 +97,11 @@
     },
     "hardware": {
       "locked": {
-        "lastModified": 1705312285,
-        "narHash": "sha256-rd+dY+v61Y8w3u9bukO/hB55Xl4wXv4/yC8rCGVnK5U=",
+        "lastModified": 1706182238,
+        "narHash": "sha256-Ti7CerGydU7xyrP/ow85lHsOpf+XMx98kQnPoQCSi1g=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "bee2202bec57e521e3bd8acd526884b9767d7fa0",
+        "rev": "f84eaffc35d1a655e84749228cde19922fcf55f1",
         "type": "github"
       },
       "original": {
@@ -138,11 +138,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1705794055,
-        "narHash": "sha256-mv/KrxEAZNhpPJcDqdQ709If9p2DTEYIDPo2r9xchlg=",
+        "lastModified": 1706134977,
+        "narHash": "sha256-KwNb1Li3K6vuVwZ77tFjZ89AWBo7AiCs9t0Cens4BsM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "9b378afae72cb07471e19aefc30e8e05ef2d7a61",
+        "rev": "6359d40f6ec0b72a38e02b333f343c3d4929ec10",
         "type": "github"
       },
       "original": {
@@ -169,7 +169,7 @@
     "naersk": {
       "inputs": {
         "nixpkgs": [
-          "neovim-flake",
+          "neovimFlake",
           "rnix-lsp",
           "nixpkgs"
         ]
@@ -188,13 +188,14 @@
         "type": "github"
       }
     },
-    "neovim-flake": {
+    "neovimFlake": {
       "inputs": {
         "flake-utils": "flake-utils_2",
         "nil": "nil",
         "nixpkgs": "nixpkgs_2",
         "plugins-borealis": "plugins-borealis",
         "plugins-cmp-buffer": "plugins-cmp-buffer",
+        "plugins-cmp-dap": "plugins-cmp-dap",
         "plugins-cmp-nvim-lsp": "plugins-cmp-nvim-lsp",
         "plugins-cmp-path": "plugins-cmp-path",
         "plugins-cmp-treesitter": "plugins-cmp-treesitter",
@@ -214,6 +215,9 @@
         "plugins-nvim-autopairs": "plugins-nvim-autopairs",
         "plugins-nvim-cmp": "plugins-nvim-cmp",
         "plugins-nvim-cursorline": "plugins-nvim-cursorline",
+        "plugins-nvim-dap": "plugins-nvim-dap",
+        "plugins-nvim-dap-ui": "plugins-nvim-dap-ui",
+        "plugins-nvim-dap-virtual-text": "plugins-nvim-dap-virtual-text",
         "plugins-nvim-jdtls": "plugins-nvim-jdtls",
         "plugins-nvim-lspconfig": "plugins-nvim-lspconfig",
         "plugins-nvim-metals": "plugins-nvim-metals",
@@ -231,11 +235,11 @@
         "rnix-lsp": "rnix-lsp"
       },
       "locked": {
-        "lastModified": 1705835180,
-        "narHash": "sha256-ucQ7Jn4n/HWLensIBeEQ9sB6pcrQg6v8UCnz0caOvs0=",
+        "lastModified": 1705951822,
+        "narHash": "sha256-sruWf0YHPl5/MV+xO/J4qukVP2owvZtTKInSqcGZIRU=",
         "owner": "gako358",
         "repo": "neovim",
-        "rev": "0764e54ad4d63b44e41179e2e5c4224dbaa4ed89",
+        "rev": "85727fc454126dcada7663eaa2cb6e85474121a7",
         "type": "github"
       },
       "original": {
@@ -247,11 +251,11 @@
     "nil": {
       "inputs": {
         "flake-utils": [
-          "neovim-flake",
+          "neovimFlake",
           "flake-utils"
         ],
         "nixpkgs": [
-          "neovim-flake",
+          "neovimFlake",
           "nixpkgs"
         ],
         "rust-overlay": "rust-overlay"
@@ -354,11 +358,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1705677747,
-        "narHash": "sha256-eyM3okYtMgYDgmYukoUzrmuoY4xl4FUujnsv/P6I/zI=",
+        "lastModified": 1705856552,
+        "narHash": "sha256-JXfnuEf5Yd6bhMs/uvM67/joxYKoysyE3M2k6T3eWbg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "bbe7d8f876fbbe7c959c90ba2ae2852220573261",
+        "rev": "612f97239e2cc474c13c9dafa0df378058c5ad8d",
         "type": "github"
       },
       "original": {
@@ -370,11 +374,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1705809989,
-        "narHash": "sha256-zJ/PlQNM35ySlJPGO13CfjHdqwlDimcKYuCcJ4IlGt4=",
+        "lastModified": 1706211899,
+        "narHash": "sha256-gedJjTowTi71oxbYiMXRvzlbMthu2knSmvpuqe7QO4Y=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "246a031505b2c9043e82fcabd551f5dcded77c2d",
+        "rev": "61c04b2e2cc15d505cab5c959df9388fde20525f",
         "type": "github"
       },
       "original": {
@@ -412,6 +416,22 @@
       "original": {
         "owner": "hrsh7th",
         "repo": "cmp-buffer",
+        "type": "github"
+      }
+    },
+    "plugins-cmp-dap": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1702237116,
+        "narHash": "sha256-wi9L4RcnJWUzTkC4u8vSTacrMxg4ftm/K7pkuwLEQ3U=",
+        "owner": "rcarriga",
+        "repo": "cmp-dap",
+        "rev": "ea92773e84c0ad3288c3bc5e452ac91559669087",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rcarriga",
+        "repo": "cmp-dap",
         "type": "github"
       }
     },
@@ -719,6 +739,54 @@
         "type": "github"
       }
     },
+    "plugins-nvim-dap": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1705151920,
+        "narHash": "sha256-9Rc4dxbgN1LxoXPXHTi+V92MA0fEn5PveqCSMHbgn98=",
+        "owner": "mfussenegger",
+        "repo": "nvim-dap",
+        "rev": "9adbfdca13afbe646d09a8d7a86d5d031fb9c5a5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mfussenegger",
+        "repo": "nvim-dap",
+        "type": "github"
+      }
+    },
+    "plugins-nvim-dap-ui": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1705942789,
+        "narHash": "sha256-4tYSdxPj+/hxd8KNzCU6Lvf+ACxpKgYyGOlF+Jwzxa8=",
+        "owner": "rcarriga",
+        "repo": "nvim-dap-ui",
+        "rev": "d845ebd798ad1cf30aa4abd4c4eff795cdcfdd4f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rcarriga",
+        "repo": "nvim-dap-ui",
+        "type": "github"
+      }
+    },
+    "plugins-nvim-dap-virtual-text": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1703770915,
+        "narHash": "sha256-IJMdDcrfsNfxd4rvLVCD1L2FL7Tzm6dV8c0mtEo98vU=",
+        "owner": "theHamsta",
+        "repo": "nvim-dap-virtual-text",
+        "rev": "d4542ac257d3c7ee4131350db6179ae6340ce40b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "theHamsta",
+        "repo": "nvim-dap-virtual-text",
+        "type": "github"
+      }
+    },
     "plugins-nvim-jdtls": {
       "flake": false,
       "locked": {
@@ -970,7 +1038,7 @@
         "hardware": "hardware",
         "home-manager": "home-manager_2",
         "impermanence": "impermanence",
-        "neovim-flake": "neovim-flake",
+        "neovimFlake": "neovimFlake",
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs_4",
         "nur": "nur"
@@ -979,12 +1047,12 @@
     "rust-overlay": {
       "inputs": {
         "flake-utils": [
-          "neovim-flake",
+          "neovimFlake",
           "nil",
           "flake-utils"
         ],
         "nixpkgs": [
-          "neovim-flake",
+          "neovimFlake",
           "nil",
           "nixpkgs"
         ]

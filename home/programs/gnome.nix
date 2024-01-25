@@ -20,7 +20,7 @@
     flat-remix-gnome
 
     # Neovim flake
-    inputs.neovim-flake.defaultPackage.${pkgs.system}
+    inputs.neovimFlake.defaultPackage.${pkgs.system}
   ];
   dconf.settings = {
     "org/gnome/tweaks".show-extensions-notice = false;

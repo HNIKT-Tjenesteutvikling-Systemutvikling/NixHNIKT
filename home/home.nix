@@ -9,6 +9,7 @@
 
   defaultPkgs = with pkgs; [
     acpi                      # battery info
+    android-studio            # android development
     arandr                    # screen layout manager
     btop                      # alternative to htop & ytop
     cacert                    # ca certificates
@@ -29,6 +30,7 @@
     keepass                   # password manager
     lazygit                   # terminal git ui
     libsecret                 # secret management
+    libreoffice               # office suite
     ncdu                      # disk space info (a better du)
     ncspot                    # ncurses spotify client
     nitch                     # minimal system information fetch
