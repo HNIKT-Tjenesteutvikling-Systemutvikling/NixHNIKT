@@ -21,9 +21,16 @@
     );
 
   home.packages = with pkgs;
-    if !userSetup.intellijCli
-    then [jetbrains.idea-ultimate]
-    else [];
+    (
+      if !userSetup.intellijCli
+      then [jetbrains.idea-ultimate]
+      else []
+    )
+    ++ (
+      if userSetup.rider
+      then [jetbrains.rider]
+      else []
+    );
 
   programs.git = {
     enable = true;
