@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  inputs,
   ...
 }: {
   home.packages = with pkgs; [
@@ -18,9 +17,6 @@
     gnome.gnome-tweaks
     gnomeExtensions.pop-shell
     flat-remix-gnome
-
-    # Neovim flake
-    inputs.neovimFlake.defaultPackage.${pkgs.system}
   ];
   dconf.settings = {
     "org/gnome/tweaks".show-extensions-notice = false;

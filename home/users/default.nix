@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   userSetup,
   ...
 }: {
@@ -39,6 +40,11 @@
     ++ (
       if userSetup.android
       then [android-studio]
+      else []
+    )
+    ++ (
+      if userSetup.nvim
+      then [inputs.neovimFlake.defaultPackage.${pkgs.system}]
       else []
     );
 
