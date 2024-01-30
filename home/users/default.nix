@@ -18,6 +18,11 @@
       if userSetup.emacsConfig
       then [./../programs/emacs/default.nix]
       else []
+    )
+    ++ (
+      if userSetup.android
+      then [./../programs/android.nix]
+      else []
     );
 
   home.packages = with pkgs;
@@ -29,6 +34,11 @@
     ++ (
       if userSetup.rider
       then [jetbrains.rider]
+      else []
+    )
+    ++ (
+      if userSetup.android
+      then [android-studio]
       else []
     );
 

@@ -10,9 +10,10 @@
   # user-specific packages
   intellijCli   = false;    # install IntelliJ CLI (Terminal Launcher), if not then GUI
   displayLink   = false;    # install DisplayLink driver
-  emacsConfig   = false;     # install Emacs, Only if using emacs
+  emacsConfig   = false;    # install Emacs, Only if using emacs
   xrandrConfig  = false;    # install xrandr config, ALWAYS false on install
   citrixConfig  = false;    # install Citrix config, ALWAYS false on install
   wireguard     = false;    # install wireguard VPN
   rider         = false;    # install Rider IDE
+  android       = true;     # Setup android SDK
 }

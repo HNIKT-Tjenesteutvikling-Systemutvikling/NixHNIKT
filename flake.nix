@@ -21,6 +21,11 @@
 
     # Neovim built with flake support
     neovimFlake.url = "github:gako358/neovim";
+    # android flake
+    android-nixpkgs = {
+      url = "github:tadfisher/android-nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -29,6 +34,7 @@
     flake-utils,
     home-manager,
     neovimFlake,
+    android-nixpkgs,
     nur,
     ...
   } @ inputs: let

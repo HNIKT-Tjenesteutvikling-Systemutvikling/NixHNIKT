@@ -9,7 +9,6 @@
 
   defaultPkgs = with pkgs; [
     acpi                      # battery info
-    android-studio            # android development
     arandr                    # screen layout manager
     btop                      # alternative to htop & ytop
     cacert                    # ca certificates
@@ -40,7 +39,6 @@
     ouch                      # painless compression and decompression for your terminal
     paprefs                   # pulseaudio preferences
     prettyping                # a nicer ping
-    # postman                   # api testing
     rage                      # encryption tool for secrets management
     spotify                   # music streaming
     ripgrep                   # fast grep
