@@ -38,9 +38,10 @@
       atomix # puzzle game
     ]);
 
-  environment.systemPackages = with pkgs; [
-    inputs.neovimFlake.defaultPackage.${pkgs.system}
+  environment.systemPackages = [
+    inputs.neovim-flake.packages.${pkgs.system}.nvim
   ];
+
   # ensure gnome-settings-daemon udev rules are enabled
   services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
   # ensure telepathy is enable

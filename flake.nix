@@ -19,8 +19,8 @@
     impermanence.url = "github:riscadoa/impermanence"; # Utilities for opt-in persistance
     agenix.url = "github:ryantm/agenix"; # Secrets management
 
-    # Neovim built with flake support
-    neovimFlake.url = "github:gako358/neovim";
+    neovim-flake.url = "github:KristianAN/neovim-flake";
+
     # android flake
     android-nixpkgs = {
       url = "github:tadfisher/android-nixpkgs";
@@ -33,8 +33,8 @@
     hardware,
     flake-utils,
     home-manager,
-    neovimFlake,
     android-nixpkgs,
+    neovim-flake,
     nur,
     ...
   } @ inputs: let
