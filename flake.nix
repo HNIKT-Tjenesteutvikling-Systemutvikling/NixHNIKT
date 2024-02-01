@@ -20,7 +20,7 @@
     agenix.url = "github:ryantm/agenix"; # Secrets management
 
     # Neovim built with flake support
-    # neovimFlake.url = "github:gako358/neovim";
+    neovimFlake.url = "github:gako358/neovim";
     # android flake
     android-nixpkgs = {
       url = "github:tadfisher/android-nixpkgs";
@@ -33,7 +33,7 @@
     hardware,
     flake-utils,
     home-manager,
-    # neovimFlake,
+    neovimFlake,
     android-nixpkgs,
     nur,
     ...
