@@ -7,13 +7,13 @@
   xrandrSettings  = "--output eDP-1 --mode 1920x1080 --pos 4480x858 --rotate normal --output DP-10 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output DP-11 --mode 1920x1200 --pos 2560x240 --rotate normal";
   # other user-specific settings...
 
-  # user-specific packages
-  intellijCli   = false;    # install IntelliJ CLI (Terminal Launcher), if not then GUI
-  displayLink   = false;    # install DisplayLink driver
-  emacsConfig   = false;    # install Emacs, Only if using emacs
   xrandrConfig  = false;    # install xrandr config, ALWAYS false on install
   citrixConfig  = false;    # install Citrix config, ALWAYS false on install
+  displayLink   = false;    # install DisplayLink driver
+  emacsConfig   = false;    # install Emacs, Only if using emacs
   wireguard     = false;    # install wireguard VPN
-  rider         = false;    # install Rider IDE
-  android       = true;     # Setup android SDK
+  intellij      = true;     # install jetbrains IntelliJ IDE
+  android       = false;    # Setup android SDK
+  vscode        = true;     # install Visual Studio Code
+  rider         = false;    # install jetbrains Rider IDE
 }

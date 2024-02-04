@@ -35,6 +35,5 @@ in [
   ./git.nix
   ./gnome.nix
   ./network.nix
-  ./vscode.nix
   more
 ]

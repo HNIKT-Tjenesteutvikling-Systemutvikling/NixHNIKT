@@ -5,9 +5,19 @@
 }: {
   imports =
     (
-      if userSetup.intellijCli
+      if userSetup.android
+      then [./../programs/android.nix]
+      else []
+    )
+    ++ (
+      if userSetup.vscode
+      then [./../programs/vscode.nix]
+      else []
+    )
+    ++ (
+      if userSetup.intellij
       then [./../programs/intellij.nix]
-      else [./../programs/develop.nix]
+      else []
     )
     ++ (
       if userSetup.citrixConfig
@@ -18,20 +28,10 @@
       if userSetup.emacsConfig
       then [./../programs/emacs/default.nix]
       else []
-    )
-    ++ (
-      if userSetup.android
-      then [./../programs/android.nix]
-      else []
     );
 
   home.packages = with pkgs;
     (
-      if !userSetup.intellijCli
-      then [jetbrains.idea-ultimate]
-      else []
-    )
-    ++ (
       if userSetup.rider
       then [jetbrains.rider]
       else []
