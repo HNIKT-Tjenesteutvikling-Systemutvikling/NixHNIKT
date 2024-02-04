@@ -5,9 +5,11 @@
 }: {
   services.xserver = {
     enable = true;
+    xkb = {
+      variant = "";
+      layout = "us";
+    };
     libinput.enable = true;
-    layout = "us";
-    xkbVariant = "";
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
   };
