@@ -1,8 +1,13 @@
 {
+  config,
   lib,
   pkgs,
   ...
-}: let
+}:
+with lib;
+with builtins; let
+  cfg = config.intellij;
+
   overrideWithGApps = pkg: pkg.overrideAttrs (oldAttrs: {nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [pkgs.wrapGAppsHook];});
   devSDKs = with pkgs; {
     java21 = jdk21;
@@ -22,6 +27,11 @@
   entries = lib.mapAttrsToList mkEntry devSDKs;
   devSymlink = pkgs.linkFarm "local-dev" entries;
 in {
-  home.packages = [idea-with-copilot];
-  home.file.".local/dev".source = devSymlink;
+  options.intellij.enable = lib.mkEnableOption "intellij";
+
+  config = lib.mkIf cfg.enable {
+    home.packages = [idea-with-copilot];
+    home.file.".local/dev".source = devSymlink;
+  };
 }
+

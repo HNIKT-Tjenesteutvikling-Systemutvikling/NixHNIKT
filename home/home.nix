@@ -1,9 +1,5 @@
-{
-  pkgs,
-  userSetup,
-  ...
-}: let
-  username = "${userSetup.username}";
+{pkgs, ...}: let
+  username = "dev";
   homeDirectory = "/home/${username}";
   configHome = "${homeDirectory}/.config";
 

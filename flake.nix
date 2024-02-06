@@ -55,8 +55,6 @@
       default = legacyPackages.${system}.callPackage ./shell.nix {};
     });
 
-    userSetup = import ./userSetting.nix;
-
     legacyPackages = forAllSystems (system:
       import inputs.nixpkgs {
         inherit system;
@@ -64,25 +62,7 @@
         config.allowUnfree = true;
       });
 
-    nixosConfigurations = {
-      # System Config
-      ${userSetup.hostname} = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs userSetup;};
-        modules = [
-          ./hosts/configuration.nix
-          ./hosts/users
-        ];
-      };
-    };
-    homeConfigurations = {
-      "${userSetup.username}@${userSetup.hostname}" = home-manager.lib.homeManagerConfiguration {
-        pkgs = legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs userSetup;};
-        modules = [
-          ./home/home.nix
-          ./home/users
-        ];
-      };
-    };
+    nixosConfigurations = import ./hosts/users/default.nix {inherit nixpkgs inputs;};
+    homeConfigurations = import ./home/users/default.nix {inherit home-manager legacyPackages inputs;};
   };
 }
