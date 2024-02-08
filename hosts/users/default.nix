@@ -16,7 +16,14 @@
       ./sigubrat
     ];
   };
-  intervbs = nixpkgs.lib.nixosSystem {
+    Turbonaepskrel = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../configuration.nix
+      ./Turbonaepskrel
+    ];
+  };
+    intervbs = nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs;};
     modules = [
       ../configuration.nix
