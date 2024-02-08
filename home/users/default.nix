@@ -35,4 +35,20 @@
       }
     ];
   };
+  "dev@Turbonaepskrel" = home-manager.lib.homeManagerConfiguration {
+    pkgs = legacyPackages.x86_64-linux;
+    extraSpecialArgs = {inherit inputs;};
+    modules = [
+      ../home.nix
+      ./Turbonaepskrel
+
+      # Optional modules
+      {
+        emacs.enable = false;
+        citrix.enable = true;
+        intellij.enable = true;
+        vscode.enable = true;
+      }
+    ];
+  };
 }

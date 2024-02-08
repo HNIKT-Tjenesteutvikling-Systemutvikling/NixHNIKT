@@ -16,5 +16,12 @@
       ./sigubrat
     ];
   };
+    Turbonaepskrel = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../configuration.nix
+      ./Turbonaepskrel
+    ];
+  };
 }
 
