@@ -16,5 +16,12 @@
       ./sigubrat
     ];
   };
+  intervbs = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../configuration.nix
+      ./intervbs
+    ];
+  };
 }
 
