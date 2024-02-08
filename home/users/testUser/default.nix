@@ -1,4 +1,19 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  home.packages = with pkgs; [
+    jetbrains.rider
+    android-studio
+  ];
+
+  programs.git = {
+    enable = true;
+    userEmail = "testUser.gmail.com";
+    userName = "testUser";
+  };
+
   imports = [inputs.android-nixpkgs.hmModule];
 
   nixpkgs.overlays = [inputs.android-nixpkgs.overlays.default];

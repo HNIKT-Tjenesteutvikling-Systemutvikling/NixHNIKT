@@ -1,8 +1,13 @@
 {
+  config,
   lib,
   pkgs,
   ...
-}: let
+}:
+with lib;
+with builtins; let
+  cfg = config.citrix;
+
   extraCerts = [];
 
   citrixOverlay = self: super: {
@@ -20,10 +25,15 @@
     });
   };
 in {
-  nixpkgs.config.allowUnfree = true;
+  options.citrix.enable = lib.mkEnableOption "citrix";
 
-  nixpkgs.overlays = [citrixOverlay];
-  home.packages = with pkgs; [
-    citrix_workspace
-  ];
+  config = lib.mkIf cfg.enable {
+    nixpkgs.config.allowUnfree = true;
+
+    nixpkgs.overlays = [citrixOverlay];
+    home.packages = with pkgs; [
+      citrix_workspace
+    ];
+  };
 }
+

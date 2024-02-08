@@ -1,50 +1,22 @@
 {
-  pkgs,
-  userSetup,
-  ...
+  home-manager,
+  legacyPackages,
+  inputs,
 }: {
-  imports =
-    (
-      if userSetup.android
-      then [./../programs/android.nix]
-      else []
-    )
-    ++ (
-      if userSetup.vscode
-      then [./../programs/vscode.nix]
-      else []
-    )
-    ++ (
-      if userSetup.intellij
-      then [./../programs/intellij.nix]
-      else []
-    )
-    ++ (
-      if userSetup.citrixConfig
-      then [./../programs/citrix.nix]
-      else []
-    )
-    ++ (
-      if userSetup.emacsConfig
-      then [./../programs/emacs/default.nix]
-      else []
-    );
+  "dev@testUser" = home-manager.lib.homeManagerConfiguration {
+    pkgs = legacyPackages.x86_64-linux;
+    extraSpecialArgs = {inherit inputs;};
+    modules = [
+      ../home.nix
+      ./testUser
 
-  home.packages = with pkgs;
-    (
-      if userSetup.rider
-      then [jetbrains.rider]
-      else []
-    )
-    ++ (
-      if userSetup.android
-      then [android-studio]
-      else []
-    );
-
-  programs.git = {
-    enable = true;
-    userEmail = "${userSetup.gitEmail}";
-    userName = "${userSetup.gitUsername}";
+      # Optional modules
+      {
+        emacs.enable = true;
+        citrix.enable = true;
+        intellij.enable = true;
+        vscode.enable = true;
+      }
+    ];
   };
 }

@@ -1,22 +1,14 @@
-{ config
-, inputs
-, userSetup
-, lib
-, pkgs
-, ...
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
 }: {
-  imports = (
-    if userSetup.wireguard
-    then [
-      ./system/wireguard.nix
-      ./hardware-configuration.nix
-      ./system
-    ]
-    else [
-      ./hardware-configuration.nix
-      ./system
-    ]
-  );
+  imports = [
+    ./hardware-configuration.nix
+    ./system
+  ];
   networking = {
     networkmanager.enable = true;
     firewall.enable = false;
@@ -40,7 +32,7 @@
     randomizedDelaySec = "1min";
   };
   nix = {
-    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
     settings = {
       experimental-features = "nix-command flakes";
@@ -54,7 +46,7 @@
     };
     optimise = {
       automatic = true;
-      dates = [ "weekly" ];
+      dates = ["weekly"];
     };
   };
   time.timeZone = "Europe/Oslo";
@@ -65,20 +57,10 @@
     dev = {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
-        # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
-      extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" "video" "audio" ];
+      extraGroups = ["wheel" "networkmanager" "docker" "libvirtd" "video" "audio"];
     };
   };
-
-  users.groups.openvpn =
-    if userSetup.wireguard
-    then {
-      name = "openvpn";
-      members = [ "dev" ];
-      gid = 1100;
-    }
-    else { };
 
   # Add dconf settings
   programs.dconf.enable = true;
@@ -86,14 +68,11 @@
     printing.enable = true; # Enable CUPS to print documents.
     # Enable the X11 windowing system.
     xserver = {
-      videoDrivers =
-        if userSetup.displayLink
-        then [ "intel" "displaylink" ]
-        else [ "intel" ];
+      videoDrivers = ["intel"]; # Optional use displayLink for USB-C docking station
     };
     blueman.enable = true;
     dbus.enable = true;
-    dbus.packages = [ pkgs.gnome.gnome-keyring pkgs.gcr ];
+    dbus.packages = [pkgs.gnome.gnome-keyring pkgs.gcr];
     gnome.gnome-keyring = {
       enable = true;
     };
@@ -119,7 +98,6 @@
     opengl.driSupport = true;
     keyboard.zsa.enable = true;
     bluetooth.enable = true;
-    # Enable braodcom chip for bluetooth
     enableAllFirmware = true;
     pulseaudio.enable = false;
   };

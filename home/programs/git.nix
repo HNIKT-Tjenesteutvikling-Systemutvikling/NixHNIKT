@@ -1,11 +1,7 @@
-{
-  pkgs,
-  userSetup,
-  ...
-}: let
+{pkgs, ...}: let
   gitConfig = {
     core = {
-      editor = "${userSetup.gitEditor}";
+      editor = "code";
       pager = "diff-so-fancy | less --tabs=4 -RFX";
     };
     init.defaultBranch = "main";

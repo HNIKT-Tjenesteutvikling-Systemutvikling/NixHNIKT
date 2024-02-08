@@ -27,32 +27,16 @@ Remember, while NixOS provides a high level of flexibility and power, it also re
 
 # Setting Up User Configuration
 
-Before you start the installation process, you need to set up your user configuration in the `userSetting.nix` file. This file contains various settings such as your username, hostname, git email, git username, and xrandr settings.
+Before you start the install script, you need to setup the user profile.
+Inn the `hosts/users/default.nix` you need to add the user config and then also add the expression in `hosts/users/yourusername/default.nix`
 
-You can find an example of this file named `userSetting.nix.default`. Copy this file and rename it to `userSetting.nix`:
-
-```shell
-cp userSetting.nix.default userSetting.nix
-```
-
-Then, open `userSetting.nix` and replace the placeholder values with actual settings.
-
-```shell
-{
-  username = "your-username";
-  hostname = "your-hostname";
-  gitEmail = "your-git-email";
-  gitUsername = "your-git-username";
-  xrandrSettings = "your-xrandr-settings";
-
-  # user-specific packages
-  intellijCli = false;        # Set to true, if installing IntelliJ CLI (Start from the command-line)
-}
-```
+Look at `hosts/users/testUser/default.nix` for example.
 
 # How To Install
 
-There are two main ways to deploy these dotfiles on a system:
+```shell
+./install.sh
+```
 
 ### On an existing NixOS system
 
@@ -64,7 +48,7 @@ nix-shell
 nixos-rebuild switch --flake .#
 ```
 
-If you have set the `userSetting.nix`, then to install just run:
+If you have setup the userprofile, then to install just run:
 
 ```shell
 ./install.sh
