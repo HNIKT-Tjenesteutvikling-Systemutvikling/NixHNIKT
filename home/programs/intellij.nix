@@ -34,4 +34,3 @@ in {
     home.file.".local/dev".source = devSymlink;
   };
 }
-

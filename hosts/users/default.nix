@@ -2,11 +2,18 @@
   nixpkgs,
   inputs,
 }: {
-  testUser = nixpkgs.lib.nixosSystem {
+  grindstein = nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs;};
     modules = [
       ../configuration.nix
-      ./testUser
+      ./grindstein
+    ];
+  };
+  intervbs = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../configuration.nix
+      ./intervbs
     ];
   };
   sigubrat = nixpkgs.lib.nixosSystem {
@@ -16,26 +23,18 @@
       ./sigubrat
     ];
   };
-    Turbonaepskrel = nixpkgs.lib.nixosSystem {
+  testUser = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../configuration.nix
+      ./testUser
+    ];
+  };
+  Turbonaepskrel = nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs;};
     modules = [
       ../configuration.nix
       ./Turbonaepskrel
     ];
   };
-    intervbs = nixpkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs;};
-    modules = [
-      ../configuration.nix
-      ./intervbs
-    ];
-  };
-    grindstein = nixpkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs;};
-    modules = [
-      ../configuration.nix
-      ./grindstein
-    ];
-  };
 }
-

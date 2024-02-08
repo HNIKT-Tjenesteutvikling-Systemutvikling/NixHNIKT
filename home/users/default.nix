@@ -3,6 +3,51 @@
   legacyPackages,
   inputs,
 }: {
+  "dev@grindstein" = home-manager.lib.homeManagerConfiguration {
+    pkgs = legacyPackages.x86_64-linux;
+    extraSpecialArgs = {inherit inputs;};
+    modules = [
+      ../home.nix
+      ./grindstein
+
+      {
+        emacs.enable = true;
+        citrix.enable = true;
+        intellij.enable = true;
+        vscode.enable = true;
+      }
+    ];
+  };
+  "dev@intervbs" = home-manager.lib.homeManagerConfiguration {
+    pkgs = legacyPackages.x86_64-linux;
+    extraSpecialArgs = {inherit inputs;};
+    modules = [
+      ../home.nix
+      ./intervbs
+
+      {
+        emacs.enable = false;
+        citrix.enable = true;
+        intellij.enable = true;
+        vscode.enable = true;
+      }
+    ];
+  };
+  "dev@sigubrat" = home-manager.lib.homeManagerConfiguration {
+    pkgs = legacyPackages.x86_64-linux;
+    extraSpecialArgs = {inherit inputs;};
+    modules = [
+      ../home.nix
+      ./sigubrat
+
+      {
+        emacs.enable = false;
+        citrix.enable = true;
+        intellij.enable = true;
+        vscode.enable = true;
+      }
+    ];
+  };
   "dev@testUser" = home-manager.lib.homeManagerConfiguration {
     pkgs = legacyPackages.x86_64-linux;
     extraSpecialArgs = {inherit inputs;};
@@ -19,22 +64,6 @@
       }
     ];
   };
-  "dev@sigubrat" = home-manager.lib.homeManagerConfiguration {
-    pkgs = legacyPackages.x86_64-linux;
-    extraSpecialArgs = {inherit inputs;};
-    modules = [
-      ../home.nix
-      ./sigubrat
-
-      # Optional modules
-      {
-        emacs.enable = false;
-        citrix.enable = true;
-        intellij.enable = true;
-        vscode.enable = true;
-      }
-    ];
-  };
   "dev@Turbonaepskrel" = home-manager.lib.homeManagerConfiguration {
     pkgs = legacyPackages.x86_64-linux;
     extraSpecialArgs = {inherit inputs;};
@@ -45,38 +74,6 @@
       # Optional modules
       {
         emacs.enable = false;
-        citrix.enable = true;
-        intellij.enable = true;
-        vscode.enable = true;
-      }
-    ];
-  };
-  "dev@intervbs" = home-manager.lib.homeManagerConfiguration {
-    pkgs = legacyPackages.x86_64-linux;
-    extraSpecialArgs = {inherit inputs;};
-    modules = [
-      ../home.nix
-      ./intervbs
-
-      # Optional modules
-      {
-        emacs.enable = false;
-        citrix.enable = true;
-        intellij.enable = true;
-        vscode.enable = true;
-      }
-    ];
-  };
-  "dev@grindstein" = home-manager.lib.homeManagerConfiguration {
-    pkgs = legacyPackages.x86_64-linux;
-    extraSpecialArgs = {inherit inputs;};
-    modules = [
-      ../home.nix
-      ./grindstein
-
-      # Optional modules
-      {
-        emacs.enable = true;
         citrix.enable = true;
         intellij.enable = true;
         vscode.enable = true;
