@@ -68,7 +68,7 @@
     printing.enable = true; # Enable CUPS to print documents.
     # Enable the X11 windowing system.
     xserver = {
-      videoDrivers = ["intel"]; # Optional use displayLink for USB-C docking station
+      videoDrivers = ["intel" "displayLink"]; # Optional use displayLink for USB-C docking station
     };
     blueman.enable = true;
     dbus.enable = true;
