@@ -37,4 +37,11 @@
       ./Turbonaepskrel
     ];
   };
+  vebjorn = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../configuration.nix
+      ./vebjorn
+    ];
+  };
 }
