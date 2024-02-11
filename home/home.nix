@@ -19,6 +19,7 @@
     fd                        # "find" for files
     geany                     # text editor
     gimp                      # gnu image manipulation program
+    github-copilot-cli        # github copilot cli
     glow                      # terminal markdown viewer
     hyperfine                 # command-line benchmarking tool
     killall                   # kill processes by name
