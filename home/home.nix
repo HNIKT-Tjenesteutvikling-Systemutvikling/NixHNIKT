@@ -51,7 +51,10 @@
     zip                       # zip files
   ];
 in {
-  programs.home-manager.enable = true;
+  programs = {
+    home-manager.enable = true;
+    gh.enable = true;
+  };
   imports = builtins.concatMap import [
     ./cli
     ./programs
