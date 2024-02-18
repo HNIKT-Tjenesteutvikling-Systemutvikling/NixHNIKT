@@ -6,8 +6,10 @@
   defaultPkgs = with pkgs; [
     acpi                      # battery info
     arandr                    # screen layout manager
+    asciiquarium              # aquarium in your terminal
     btop                      # alternative to htop & ytop
     cacert                    # ca certificates
+    cmatrix                   # matrix in your terminal
     dbeaver                   # database manager
     dconf2nix                 # dconf (gnome) files to nix converter
     docker-compose            # docker manager
