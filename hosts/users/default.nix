@@ -16,6 +16,13 @@
       ./intervbs
     ];
   };
+  jca = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../configuration.nix
+      ./jca
+    ];
+  };
   sigubrat = nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs;};
     modules = [
