@@ -13,6 +13,9 @@ with lib; let
     gcm = "git checkout master";
     gc = "git checkout";
     gs = "git status";
+    ga = "git add";
+    gaa = "git add -A";
+    gm = "git commit -m";
 
     nixgc = "nix-collect-garbage";
     nixgcd = "sudo nix-collect-garbage -d";

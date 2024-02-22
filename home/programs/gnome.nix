@@ -147,6 +147,10 @@
       switch-to-workspace-3 = ["<Super>3"];
       # Switch to workspace 4
       switch-to-workspace-4 = ["<Super>4"];
+      # Switch to workspace on the left
+      switch-to-workspace-left = ["Page_Up"];
+      # Switch to workspace on the right
+      switch-to-workspace-right = ["Page_Down"];
       # Switch windows
       switch-windows = ["<Super>Tab"];
       switch-windows-backward = ["<Shift><Super>Tab"];
