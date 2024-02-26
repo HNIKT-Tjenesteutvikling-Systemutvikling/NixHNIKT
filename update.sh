@@ -26,7 +26,7 @@ else
     continue
 fi
 
-nix-collect-garbage
+# nix-collect-garbage
 
 echo "Updating system..."
 echo "Run a garbage collection?"

@@ -66,10 +66,6 @@
   programs.dconf.enable = true;
   services = {
     printing.enable = true; # Enable CUPS to print documents.
-    # Enable the X11 windowing system.
-    xserver = {
-      videoDrivers = ["intel" "displaylink"]; # Optional use displayLink for USB-C docking station
-    };
     blueman.enable = true;
     dbus.enable = true;
     dbus.packages = [pkgs.gnome.gnome-keyring pkgs.gcr];
