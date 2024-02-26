@@ -7,6 +7,7 @@
     acpi                      # battery info
     arandr                    # screen layout manager
     asciiquarium              # aquarium in your terminal
+    azure-cli                 # azure command-line interface
     btop                      # alternative to htop & ytop
     cacert                    # ca certificates
     cmatrix                   # matrix in your terminal
