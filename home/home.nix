@@ -4,6 +4,7 @@
   configHome = "${homeDirectory}/.config";
 
   defaultPkgs = with pkgs; [
+    azure-cli                 # azure command-line interface
     acpi                      # battery info
     arandr                    # screen layout manager
     asciiquarium              # aquarium in your terminal
