@@ -19,7 +19,7 @@
     impermanence.url = "github:riscadoa/impermanence"; # Utilities for opt-in persistance
     agenix.url = "github:ryantm/agenix"; # Secrets management
 
-    neovim-flake.url = "github:KristianAN/neovim-flake";
+    neovim-flake.url = "github:gako358/neovim";
 
     # android flake
     android-nixpkgs = {

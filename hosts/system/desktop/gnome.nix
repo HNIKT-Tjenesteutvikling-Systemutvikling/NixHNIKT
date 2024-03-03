@@ -41,7 +41,7 @@
     ]);
 
   environment.systemPackages = [
-    inputs.neovim-flake.packages.${pkgs.system}.nvim
+    inputs.neovim-flake.defaultPackage.${pkgs.system}
   ];
 
   # ensure gnome-settings-daemon udev rules are enabled
