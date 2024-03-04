@@ -3,6 +3,7 @@
   lib,
   ...
 }: {
+  desktop.environment = "gnome";
   networking.hostName = "Solheim";
   services.xserver = {
     videoDrivers = ["intel"]; # Optional use displayLink for USB-C docking station
