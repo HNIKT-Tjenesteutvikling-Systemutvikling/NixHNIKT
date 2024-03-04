@@ -3,6 +3,7 @@
   lib,
   ...
 }: {
+  desktop.environment = "gnome";
   networking.hostName = "sigubrat";
   services.xserver = {
     videoDrivers = ["intel" "displaylink"]; # Optional use displayLink for USB-C docking station
