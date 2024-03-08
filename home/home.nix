@@ -4,6 +4,7 @@
   configHome = "${homeDirectory}/.config";
 
   defaultPkgs = with pkgs; [
+    brave                     # web browser
     azure-cli                 # azure command-line interface
     acpi                      # battery info
     arandr                    # screen layout manager
