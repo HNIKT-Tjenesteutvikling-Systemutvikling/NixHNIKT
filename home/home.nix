@@ -45,7 +45,6 @@
     tldr                      # summary of a man page
     tree                      # display files in a tree view
     unzip                     # unzip files
-    virt-manager              # virtual machine manager
     wgetpaste                 # paste to pastebin
     xarchiver                 # archive manager
     xclip                     # command-line interface to X selections

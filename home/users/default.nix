@@ -107,6 +107,7 @@
         emacs.enable = false;
         citrix.enable = true;
         intellij.enable = true;
+        virt-manager.enable = false;
         vscode.enable = true;
       }
     ];

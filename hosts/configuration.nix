@@ -100,7 +100,6 @@
   # Enable virtualisation and docker support
   virtualisation = {
     podman.enable = true;
-    libvirtd.enable = true;
     docker = {
       enable = true;
       daemon.settings = {

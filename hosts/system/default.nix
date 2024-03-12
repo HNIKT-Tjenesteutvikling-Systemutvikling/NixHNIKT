@@ -21,6 +21,7 @@ with lib; {
     ./nfc.nix
     ./mysql.nix
     ./onedrive.nix
+    ./virt-manager.nix
     ./zsh.nix
   ];
 }

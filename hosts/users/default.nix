@@ -7,6 +7,10 @@
     modules = [
       ../configuration.nix
       ./grindstein
+
+      {
+        virt-manager.enable = true;
+      }
     ];
   };
   intervbs = nixpkgs.lib.nixosSystem {
