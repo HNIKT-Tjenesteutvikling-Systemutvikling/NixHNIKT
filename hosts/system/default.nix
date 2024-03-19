@@ -17,11 +17,12 @@ with lib; {
   imports = [
     ./daemons
     ./desktop
+    ./docker.nix
     ./fonts.nix
     ./nfc.nix
     ./mysql.nix
     ./onedrive.nix
-    ./virt-manager.nix
     ./zsh.nix
+    ./qemu.nix
   ];
 }

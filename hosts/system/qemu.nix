@@ -11,6 +11,9 @@ in {
   options.virt-manager.enable = lib.mkEnableOption "virt-manager";
 
   config = lib.mkIf cfg.enable {
+    programs = {
+      virt-manager.enable = true;
+    };
     virtualisation = {
       libvirtd = {
         enable = true;
@@ -23,14 +26,16 @@ in {
       };
       spiceUSBRedirection.enable = true;
     };
-    # Packages for virtualisation
     environment.systemPackages = with pkgs; [
       spice
+      spice-vdagent
+      spice-autorandr
       spice-gtk
       spice-protocol
       virt-viewer
       virtio-win
       win-spice
+      win-virtio
     ];
     services.spice-vdagentd.enable = true;
   };

@@ -63,10 +63,7 @@
   };
 
   # Add dconf settings
-  programs = {
-    dconf.enable = true;
-    virt-manager.enable = true;
-  };
+  programs.dconf.enable = true;
 
   services = {
     printing.enable = true; # Enable CUPS to print documents.
@@ -100,16 +97,6 @@
     bluetooth.enable = true;
     enableAllFirmware = true;
     pulseaudio.enable = false;
-  };
-  # Enable virtualisation and docker support
-  virtualisation = {
-    podman.enable = true;
-    docker = {
-      enable = true;
-      daemon.settings = {
-        data-root = "/opt/docker";
-      };
-    };
   };
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [

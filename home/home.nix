@@ -13,7 +13,6 @@
     cmatrix                   # matrix in your terminal
     dbeaver                   # database manager
     dconf2nix                 # dconf (gnome) files to nix converter
-    docker-compose            # docker manager
     dive                      # explore docker layers
     drawio                    # diagram design
     duf                       # disk usage/free utility
