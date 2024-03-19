@@ -32,5 +32,6 @@ in {
       virtio-win
       win-spice
     ];
+    services.spice-vdagentd.enable = true;
   };
 }
