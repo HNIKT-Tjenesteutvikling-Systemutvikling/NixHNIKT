@@ -27,6 +27,13 @@
       ./jca
     ];
   };
+  jonas = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../configuration.nix
+      ./jonas
+    ];
+  };
   sigubrat = nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs;};
     modules = [
