@@ -69,6 +69,13 @@ in {
     enable = true;
   };
 
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
+    };
+  };
+
   # Default services
   services.pasystray.enable = true; # pulseaudio system tray
 

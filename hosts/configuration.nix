@@ -63,7 +63,11 @@
   };
 
   # Add dconf settings
-  programs.dconf.enable = true;
+  programs = {
+    dconf.enable = true;
+    virt-manager.enable = true;
+  };
+
   services = {
     printing.enable = true; # Enable CUPS to print documents.
     blueman.enable = true;

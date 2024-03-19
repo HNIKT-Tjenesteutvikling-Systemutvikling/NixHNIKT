@@ -11,7 +11,7 @@ with builtins; let
   extraCerts = [];
 
   citrixOverlay = self: super: {
-    citrix_workspace = super.citrix_workspace.overrideAttrs (oldAttrs: rec {
+    citrix_workspace_23_09_0 = super.citrix_workspace_23_09_0.overrideAttrs (oldAttrs: rec {
       inherit extraCerts;
       buildInputs = oldAttrs.buildInputs ++ [self.openssl];
       postInstall = ''
@@ -32,7 +32,7 @@ in {
 
     nixpkgs.overlays = [citrixOverlay];
     home.packages = with pkgs; [
-      citrix_workspace
+      citrix_workspace_23_09_0
     ];
   };
 }

@@ -90,7 +90,6 @@ in {
     };
 
     home.packages = with pkgs; [
-      rnix-lsp
     ];
 
     home.file."./.emacs.d/emacsCopilot".source = emacsCopilotSrc;

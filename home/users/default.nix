@@ -107,7 +107,6 @@
         emacs.enable = false;
         citrix.enable = true;
         intellij.enable = true;
-        virt-manager.enable = false;
         vscode.enable = true;
       }
     ];
@@ -122,7 +121,7 @@
       # Optional modules
       {
         emacs.enable = false;
-        citrix.enable = false;
+        citrix.enable = true;
         intellij.enable = true;
         vscode.enable = true;
       }
