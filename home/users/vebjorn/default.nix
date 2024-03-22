@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     brave
+    asciiquarium-transparent
   ];
 
   programs.git = {
