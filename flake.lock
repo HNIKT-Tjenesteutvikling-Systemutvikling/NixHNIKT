@@ -8,11 +8,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1707830867,
-        "narHash": "sha256-PAdwm5QqdlwIqGrfzzvzZubM+FXtilekQ/FA0cI49/o=",
+        "lastModified": 1712079060,
+        "narHash": "sha256-/JdiT9t+zzjChc5qQiF+jhrVhRt8figYH29rZO7pFe4=",
         "owner": "ryantm",
         "repo": "agenix",
-        "rev": "8cb01a0e717311680e0cbca06a76cbceba6f3ed6",
+        "rev": "1381a759b205dff7a6818733118d02253340fd5e",
         "type": "github"
       },
       "original": {
@@ -30,11 +30,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1711829684,
-        "narHash": "sha256-Nzid5t76drAhMpYOMnb0wC2eEJj0As79uEZnVRM70aU=",
+        "lastModified": 1712088936,
+        "narHash": "sha256-mVjeSWQiR/t4UZ9fUawY9OEPAhY1R3meYG+0oh8DUBs=",
         "owner": "tadfisher",
         "repo": "android-nixpkgs",
-        "rev": "ca6b2c03dab03f05594243e3e48bef77602bd550",
+        "rev": "2d8181caef279f19c4a33dc694723f89ffc195d4",
         "type": "github"
       },
       "original": {
@@ -218,11 +218,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1711625603,
-        "narHash": "sha256-W+9dfqA9bqUIBV5u7jaIARAzMe3kTq/Hp2SpSVXKRQw=",
+        "lastModified": 1712093955,
+        "narHash": "sha256-94I0sXz6fiVBvUAk2tg6t3UpM5rOImj4JTSTNFbg64s=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "c0ef0dab55611c676ad7539bf4e41b3ec6fa87d2",
+        "rev": "80546b220e95a575c66c213af1b09fe255299438",
         "type": "github"
       },
       "original": {
@@ -265,7 +265,6 @@
         "plugins-indent-blankline": "plugins-indent-blankline",
         "plugins-kommentary": "plugins-kommentary",
         "plugins-lazygit": "plugins-lazygit",
-        "plugins-nightfox": "plugins-nightfox",
         "plugins-noice": "plugins-noice",
         "plugins-notify": "plugins-notify",
         "plugins-nui": "plugins-nui",
@@ -284,6 +283,7 @@
         "plugins-nvim-web-devicons": "plugins-nvim-web-devicons",
         "plugins-octo-nvim": "plugins-octo-nvim",
         "plugins-plenary-nvim": "plugins-plenary-nvim",
+        "plugins-rose-pine": "plugins-rose-pine",
         "plugins-rust-tools": "plugins-rust-tools",
         "plugins-sqls-nvim": "plugins-sqls-nvim",
         "plugins-telescope": "plugins-telescope",
@@ -293,11 +293,11 @@
         "plugins-which-key": "plugins-which-key"
       },
       "locked": {
-        "lastModified": 1711800447,
-        "narHash": "sha256-aetWtY2noK4vwz/6tLi3/4ehqQvvwdYotK3bB5JRqkk=",
+        "lastModified": 1712038039,
+        "narHash": "sha256-SbC5A4xLFiooGNv3ARSWSDSNDd0E+pDTCSmReMr9XDs=",
         "owner": "gako358",
         "repo": "neovim",
-        "rev": "e34c8530d406a7ea2e3099ae96e9af17de10142a",
+        "rev": "150a39a5831961b0c2acec7f2893415d75c9ebf1",
         "type": "github"
       },
       "original": {
@@ -416,11 +416,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1711858794,
-        "narHash": "sha256-ad+sFxu8NOcBAb5OQa1qIycT/Q7oGYuVSjlKu3KHp80=",
+        "lastModified": 1712127152,
+        "narHash": "sha256-LPFdS9oxJfLsIPn3/59p/n43EgUV3InMZdhlhmMg8WI=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "7bae6312a92dddd288da938bc07b1932b02c63d4",
+        "rev": "9d71b5e8ad6127de490d4715170ce32e767f2d0f",
         "type": "github"
       },
       "original": {
@@ -650,22 +650,6 @@
       "original": {
         "owner": "kdheepak",
         "repo": "lazygit.nvim",
-        "type": "github"
-      }
-    },
-    "plugins-nightfox": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1710800073,
-        "narHash": "sha256-wNLvE2D9WTBIxHw6NZ+J/wvvcBWEJQB1xz1rvxSFIIc=",
-        "owner": "EdenEast",
-        "repo": "nightfox.nvim",
-        "rev": "e352a32e0f54feb2550ebdab815ae8f7f26ed63b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "EdenEast",
-        "repo": "nightfox.nvim",
         "type": "github"
       }
     },
@@ -954,6 +938,22 @@
       "original": {
         "owner": "nvim-lua",
         "repo": "plenary.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-rose-pine": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711769966,
+        "narHash": "sha256-GVYCkyFdVgye/8pEXPT8Y+4YyLmivgX/IHht/G1DdEA=",
+        "owner": "rose-pine",
+        "repo": "neovim",
+        "rev": "19055dfe90bfa46a1e5b0a706d13980bdffa2dee",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rose-pine",
+        "repo": "neovim",
         "type": "github"
       }
     },
