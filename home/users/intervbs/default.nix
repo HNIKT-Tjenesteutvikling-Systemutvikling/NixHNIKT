@@ -5,7 +5,6 @@
 }: {
   home.packages = with pkgs; [
     android-studio
-    teamviewer
   ];
 
   programs.git = {
