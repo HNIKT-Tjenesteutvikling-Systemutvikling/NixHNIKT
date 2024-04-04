@@ -16,6 +16,7 @@ with lib; let
     ga = "git add";
     gaa = "git add -A";
     gm = "git commit -m";
+    gp = "git push";
 
     nixgc = "nix-collect-garbage";
     nixgcd = "sudo nix-collect-garbage -d";
