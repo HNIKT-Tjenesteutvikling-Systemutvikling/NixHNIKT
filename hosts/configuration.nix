@@ -88,7 +88,6 @@
       pulse.enable = true;
       wireplumber.enable = true;
     };
-    teamviewer.enable = true;
   };
   sound.enable = true;
   hardware = {
