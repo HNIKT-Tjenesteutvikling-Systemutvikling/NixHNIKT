@@ -21,8 +21,7 @@ with lib; {
     ./fonts.nix
     ./nfc.nix
     ./mysql.nix
-    ./onedrive.nix 
-    ./teamviewer.nix
+    ./onedrive.nix
     ./zsh.nix
     ./qemu.nix
   ];
