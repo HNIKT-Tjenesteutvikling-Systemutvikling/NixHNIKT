@@ -177,11 +177,11 @@
     },
     "hardware": {
       "locked": {
-        "lastModified": 1711352745,
-        "narHash": "sha256-luvqik+i3HTvCbXQZgB6uggvEcxI9uae0nmrgtXJ17U=",
+        "lastModified": 1712324865,
+        "narHash": "sha256-+BatEWd4HlMeK7Ora+gYIkarjxFVCg9oKrIeybHIIX4=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "9a763a7acc4cfbb8603bb0231fec3eda864f81c0",
+        "rev": "f3b959627bca46a9f7052b8fbc464b8323e68c2c",
         "type": "github"
       },
       "original": {
@@ -218,11 +218,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1712093955,
-        "narHash": "sha256-94I0sXz6fiVBvUAk2tg6t3UpM5rOImj4JTSTNFbg64s=",
+        "lastModified": 1712390667,
+        "narHash": "sha256-ebq+fJZfobqpsAdGDGpxNWSySbQejRwW9cdiil6krCo=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "80546b220e95a575c66c213af1b09fe255299438",
+        "rev": "b787726a8413e11b074cde42704b4af32d95545c",
         "type": "github"
       },
       "original": {
@@ -265,6 +265,8 @@
         "plugins-indent-blankline": "plugins-indent-blankline",
         "plugins-kommentary": "plugins-kommentary",
         "plugins-lazygit": "plugins-lazygit",
+        "plugins-lua-utils": "plugins-lua-utils",
+        "plugins-neorg": "plugins-neorg",
         "plugins-noice": "plugins-noice",
         "plugins-notify": "plugins-notify",
         "plugins-nui": "plugins-nui",
@@ -293,11 +295,11 @@
         "plugins-which-key": "plugins-which-key"
       },
       "locked": {
-        "lastModified": 1712038039,
-        "narHash": "sha256-SbC5A4xLFiooGNv3ARSWSDSNDd0E+pDTCSmReMr9XDs=",
+        "lastModified": 1712177506,
+        "narHash": "sha256-dQPnQMALSKbd4PJww8zJBgEyxoTKuqf1T4jMUYarM68=",
         "owner": "gako358",
         "repo": "neovim",
-        "rev": "150a39a5831961b0c2acec7f2893415d75c9ebf1",
+        "rev": "d35376e20c7b570ddf962c8ff8ff9f5cbe1ea3a2",
         "type": "github"
       },
       "original": {
@@ -400,11 +402,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1711703276,
-        "narHash": "sha256-iMUFArF0WCatKK6RzfUJknjem0H9m4KgorO/p3Dopkk=",
+        "lastModified": 1712163089,
+        "narHash": "sha256-Um+8kTIrC19vD4/lUCN9/cU9kcOsD1O1m+axJqQPyMM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d8fe5e6c92d0d190646fb9f1056741a229980089",
+        "rev": "fd281bd6b7d3e32ddfa399853946f782553163b5",
         "type": "github"
       },
       "original": {
@@ -416,11 +418,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1712127152,
-        "narHash": "sha256-LPFdS9oxJfLsIPn3/59p/n43EgUV3InMZdhlhmMg8WI=",
+        "lastModified": 1712460626,
+        "narHash": "sha256-h3aBqHFlnQW9JJlo8LMPnLs2+E2XY61LBM5H+9GwG7E=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "9d71b5e8ad6127de490d4715170ce32e767f2d0f",
+        "rev": "14f7736a89ffa94603db2d0479c0622a80091718",
         "type": "github"
       },
       "original": {
@@ -650,6 +652,38 @@
       "original": {
         "owner": "kdheepak",
         "repo": "lazygit.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-lua-utils": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1708177208,
+        "narHash": "sha256-9ildzQEMkXKZ3LHq+khGFgRQFxlIXQclQ7QU3fcU1C4=",
+        "owner": "nvim-neorg",
+        "repo": "lua-utils.nvim",
+        "rev": "e565749421f4bbb5d2e85e37c3cef9d56553d8bd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-neorg",
+        "repo": "lua-utils.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-neorg": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1712163378,
+        "narHash": "sha256-6peTrrJnw03Wuh+kSlro/Fga+wfoUwfLqPZapE0L2NU=",
+        "owner": "nvim-neorg",
+        "repo": "neorg",
+        "rev": "89f9a79179e179e9e0d96d6adce14473bed896bc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-neorg",
+        "repo": "neorg",
         "type": "github"
       }
     },
