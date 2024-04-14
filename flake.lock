@@ -177,11 +177,11 @@
     },
     "hardware": {
       "locked": {
-        "lastModified": 1712324865,
-        "narHash": "sha256-+BatEWd4HlMeK7Ora+gYIkarjxFVCg9oKrIeybHIIX4=",
+        "lastModified": 1712909959,
+        "narHash": "sha256-7/5ubuwdEbQ7Z+Vqd4u0mM5L2VMNDsBh54visp27CtQ=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "f3b959627bca46a9f7052b8fbc464b8323e68c2c",
+        "rev": "f58b25254be441cd2a9b4b444ed83f1e51244f1f",
         "type": "github"
       },
       "original": {
@@ -218,11 +218,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1712390667,
-        "narHash": "sha256-ebq+fJZfobqpsAdGDGpxNWSySbQejRwW9cdiil6krCo=",
+        "lastModified": 1713077896,
+        "narHash": "sha256-Noot8H0EZEAFRQWyGxh9ryvhK96xpIqKbh78X447JWs=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "b787726a8413e11b074cde42704b4af32d95545c",
+        "rev": "630a0992b3627c64e34f179fab68e3d48c6991c0",
         "type": "github"
       },
       "original": {
@@ -257,10 +257,10 @@
         "plugins-cmp-path": "plugins-cmp-path",
         "plugins-cmp-treesitter": "plugins-cmp-treesitter",
         "plugins-cmp-vsnip": "plugins-cmp-vsnip",
+        "plugins-copilot": "plugins-copilot",
         "plugins-copilot-chat": "plugins-copilot-chat",
         "plugins-crates-nvim": "plugins-crates-nvim",
         "plugins-fidget": "plugins-fidget",
-        "plugins-github-copilot": "plugins-github-copilot",
         "plugins-gitsigns-nvim": "plugins-gitsigns-nvim",
         "plugins-glow-nvim": "plugins-glow-nvim",
         "plugins-indent-blankline": "plugins-indent-blankline",
@@ -299,11 +299,11 @@
         "plugins-which-key": "plugins-which-key"
       },
       "locked": {
-        "lastModified": 1712865175,
-        "narHash": "sha256-A0Gah5QOqXy4YKveRQ3o7NEKzIMaJVd8uiBvJ65fXhY=",
+        "lastModified": 1712954151,
+        "narHash": "sha256-lYKpQZbJpwuuigsvAuK1K0FtE/vZKLpUzfRaf8PcBPA=",
         "owner": "gako358",
         "repo": "neovim",
-        "rev": "c78c861114f48c0c29c1c39f1e6a103d064a77bf",
+        "rev": "cddd4da6ba0cbbfa6adf8ecb598ff63b61b158e2",
         "type": "github"
       },
       "original": {
@@ -406,11 +406,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1712439257,
-        "narHash": "sha256-aSpiNepFOMk9932HOax0XwNxbA38GOUVOiXfUVPOrck=",
+        "lastModified": 1712791164,
+        "narHash": "sha256-3sbWO1mbpWsLepZGbWaMovSO7ndZeFqDSdX0hZ9nVyw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "ff0dbd94265ac470dda06a657d5fe49de93b4599",
+        "rev": "1042fd8b148a9105f3c0aca3a6177fd1d9360ba5",
         "type": "github"
       },
       "original": {
@@ -422,11 +422,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1712485930,
-        "narHash": "sha256-Gx1kXJYnYENoJKWdZpTSDj9fAbnhSzp/cTpFFIXre/M=",
+        "lastModified": 1713080250,
+        "narHash": "sha256-cAO7BUGZcN9Nd4j2cqA/gJxjwieWXYB/oIAA0GRKn2o=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "e4dfbd7eb86b3ac1bf5b7d5c4ca200dba5cbb5a9",
+        "rev": "d97e32e6a989752e2e19833a8b1dd263f8dcaef5",
         "type": "github"
       },
       "original": {
@@ -531,6 +531,22 @@
         "type": "github"
       }
     },
+    "plugins-copilot": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1709095198,
+        "narHash": "sha256-JX3sdsnOnjkY7r9fCtC2oauo0PXF3SQ+SHUo8ifBvAc=",
+        "owner": "zbirenbaum",
+        "repo": "copilot.lua",
+        "rev": "f7612f5af4a7d7615babf43ab1e67a2d790c13a6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zbirenbaum",
+        "repo": "copilot.lua",
+        "type": "github"
+      }
+    },
     "plugins-copilot-chat": {
       "flake": false,
       "locked": {
@@ -576,22 +592,6 @@
       "original": {
         "owner": "j-hui",
         "repo": "fidget.nvim",
-        "type": "github"
-      }
-    },
-    "plugins-github-copilot": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1712773354,
-        "narHash": "sha256-dERU8mGk8aoSS5jUDmyMGKuv+e1hw7Pp7+qdvSDXwuw=",
-        "owner": "github",
-        "repo": "copilot.vim",
-        "rev": "f45ecd95c1474885e278f20d6ae86a6e30de2151",
-        "type": "github"
-      },
-      "original": {
-        "owner": "github",
-        "repo": "copilot.vim",
         "type": "github"
       }
     },
