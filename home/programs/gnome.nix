@@ -4,7 +4,6 @@
   ...
 }: {
   home.packages = with pkgs; [
-    gnomeExtensions.battery-indicator-upower
     gnomeExtensions.caffeine
     gnomeExtensions.clipboard-indicator
     gnomeExtensions.dash-to-panel
