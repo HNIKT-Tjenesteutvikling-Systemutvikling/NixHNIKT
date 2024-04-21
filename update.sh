@@ -43,6 +43,9 @@ else
     continue
 fi
 
+# delete older generations
+nix-collect-garbage --delete-older-than 28d
+
 git pull
 clear
 
@@ -53,7 +56,7 @@ sudo nixos-rebuild switch --flake .#$flake
 # Clean up
 clear
 
-home-manager expire-generations "-3 days"
+home-manager expire-generations "-19 days"
 
 # Update home-manager
 echo "System updated!, updating home-manager for $home_name..."
