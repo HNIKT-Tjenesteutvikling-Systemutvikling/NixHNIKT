@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    inkscape
   ];
 
   programs.git = {
@@ -77,9 +78,9 @@
       # Switch to workspace 4
       switch-to-workspace-4 = ["<Super>4"];
       # Switch to workspace on the left
-      switch-to-workspace-left = ["Page_Up"];
+      switch-to-workspace-left = ["<control>left"];
       # Switch to workspace on the right
-      switch-to-workspace-right = ["Page_Down"];
+      switch-to-workspace-right = ["<control>right"];
       # Switch windows
       switch-windows = ["<Super>Tab"];
       switch-windows-backward = ["<Shift><Super>Tab"];
