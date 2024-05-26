@@ -11,7 +11,7 @@
     btop                      # alternative to htop & ytop
     cacert                    # ca certificates
     cmatrix                   # matrix in your terminal
-    dbeaver                   # database manager
+    dbeaver-bin               # database manager
     dconf2nix                 # dconf (gnome) files to nix converter
     dive                      # explore docker layers
     drawio                    # diagram design
