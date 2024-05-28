@@ -20,6 +20,13 @@
       ./intervbs
     ];
   };
+  ievensen = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../configuration.nix
+      ./ievensen
+    ];
+  };
   jca = nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs;};
     modules = [
