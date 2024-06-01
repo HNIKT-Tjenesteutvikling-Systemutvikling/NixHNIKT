@@ -133,10 +133,10 @@
 
       # Optional modules
       {
-        emacs.enable = true;
+        emacs.enable = false;
         citrix.enable = false;
         intellij.enable = false;
-        vscode.enable = true;
+        vscode.enable = false;
       }
     ];
   };
