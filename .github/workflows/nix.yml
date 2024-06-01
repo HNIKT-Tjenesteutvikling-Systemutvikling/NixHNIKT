@@ -1,50 +1,34 @@
-name: "Nix"
+name: "Test system and home-manager"
+
 on:
   workflow_dispatch:
   pull_request:
-    branches: [ master ]
-  push:
-    branches: [ master ]
-  workflow_run:
-    workflows: ["Update Flake Deps"]
-    types:
-      - completed
+    branches: ["master"]
+
+permissions:
+  contents: write
+
 jobs:
-  tests:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
-    - name: Create userSetting.nix
-      run: |
-        echo '{
-          username        = "dev";
-          hostname        = "Your-username";
-          gitEmail        = "email.address@org.no";
-          gitUsername     = "git-username";
-          gitEditor       = "nano";
-          xrandrSettings  = "--output eDP-1 --mode 1920x1080 --pos 4480x858 --rotate normal --output DP-10 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output DP-11 --mode 1920x1200 --pos 2560x240 --rotate normal";
-          intellijCli     = false;
-          displayLink     = false;
-          emacsConfig     = true;
-          xrandrConfig    = false;
-          citrixConfig    = false;
-          wireguard       = false;
-        }' > userSetting.nix
-    - name: List files in directory
-      run: ls -al
-    - name: Install nix
-      uses: cachix/install-nix-action@v20
-      with:
-        extra_nix_config: |
-          experimental-features = nix-command flakes
-        nix_path: nixpkgs=channel:nixos-unstable
-    - name: Setup cachix
-      uses: cachix/cachix-action@v12
-      with:
-        name: nix-cargo-integration
-        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - name: Test checks
-      run: nix flake check -L --show-trace
-    - name: Remove userSetting.nix
-      run: rm userSetting.nix
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - uses: cachix/install-nix-action@v22
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          install_url: https://nixos.org/nix/install
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build NixOS configuration
+        run: nix build .#nixosConfigurations.jca.config.system.build.toplevel
+
+      - name: Build home-manager configuration
+        run: nix build .#homeConfigurations.dev@jca.config.home.activationPackage
+
+      - name: Fail job if previous steps failed
+        run: exit ${{ job.status }}
