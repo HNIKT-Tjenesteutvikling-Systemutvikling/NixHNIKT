@@ -134,8 +134,8 @@
       # Optional modules
       {
         emacs.enable = true;
-        citrix.enable = true;
-        intellij.enable = true;
+        citrix.enable = false;
+        intellij.enable = false;
         vscode.enable = true;
       }
     ];

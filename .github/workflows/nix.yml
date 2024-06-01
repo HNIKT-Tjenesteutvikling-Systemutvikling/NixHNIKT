@@ -25,10 +25,10 @@ jobs:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build NixOS configuration
-        run: nix build .#nixosConfigurations.jca.config.system.build.toplevel
+        run: nix build .#nixosConfigurations.testUser.config.system.build.toplevel
 
       - name: Build home-manager configuration
-        run: nix build .#homeConfigurations.dev@jca.config.home.activationPackage
+        run: nix build .#homeConfigurations.dev@testUser.config.home.activationPackage
 
       - name: Fail job if previous steps failed
         run: exit ${{ job.status }}

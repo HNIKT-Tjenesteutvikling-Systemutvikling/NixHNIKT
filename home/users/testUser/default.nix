@@ -4,8 +4,6 @@
   ...
 }: {
   home.packages = with pkgs; [
-    jetbrains.rider
-    android-studio
   ];
 
   programs.git = {
