@@ -34,6 +34,13 @@
       ./jca
     ];
   };
+  jergen = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../configuration.nix
+      ./jergen
+    ];
+  };
   jonas = nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs;};
     modules = [
