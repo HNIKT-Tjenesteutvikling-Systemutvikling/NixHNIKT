@@ -1,15 +1,13 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
+    obsidian
+    filezilla
   ];
 
   programs.git = {
     enable = true;
-    userEmail = "testUser.gmail.com";
-    userName = "testUser";
+    userEmail = "jorgen.aspehaug.bjerkan@hnikt.no";
+    userName = "jab600";
   };
 
   dconf.settings = {
@@ -23,22 +21,6 @@
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
       ];
-    };
-
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      binding = "<super>return";
-      command = "alacritty";
-      name = "open-terminal";
-    };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-      binding = "<shift><super>r";
-      command = "alacritty -e ranger";
-      name = "Ranger";
-    };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
-      binding = "<shift><super>b";
-      command = "alacritty -e btm";
-      name = "Btop";
     };
 
     # Windows
@@ -125,26 +107,4 @@
       toggle-overview = [];
     };
   };
-
-  imports = [inputs.android-nixpkgs.hmModule];
-
-  nixpkgs.overlays = [inputs.android-nixpkgs.overlays.default];
-  android-sdk.enable = true;
-
-  android-sdk.packages = sdk:
-    with sdk; [
-      build-tools-34-0-0-rc3
-      build-tools-33-0-0
-      build-tools-30-0-3
-
-      platforms-android-33
-      ndk-23-1-7779620
-      cmake-3-22-1
-
-      emulator
-
-      cmdline-tools-latest
-      platform-tools
-      tools
-    ];
 }

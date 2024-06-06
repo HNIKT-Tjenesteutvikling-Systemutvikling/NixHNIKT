@@ -1,8 +1,12 @@
 {
+  inputs,
   pkgs,
   lib,
   ...
 }: {
+  environment.systemPackages = [
+    inputs.neovim-flake.defaultPackage.${pkgs.system}
+  ];
   desktop.environment = "gnome";
   networking.hostName = "sigubrat";
   services.xserver = {

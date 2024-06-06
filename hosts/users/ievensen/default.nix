@@ -1,8 +1,13 @@
 {
+  inputs,
   pkgs,
   lib,
   ...
 }: {
+  environment.systemPackages = [
+    inputs.neovim-flake.defaultPackage.${pkgs.system}
+  ];
+
   desktop.environment = "gnome";
   environment.systemPackages = [ pkgs.k3s ];
   networking.hostName = "ievensen";

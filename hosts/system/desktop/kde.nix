@@ -2,7 +2,6 @@
   lib,
   pkgs,
   config,
-  inputs,
   ...
 }:
 with lib;
@@ -29,9 +28,6 @@ in {
       ];
     };
     environment = {
-      systemPackages = [
-        inputs.neovim-flake.defaultPackage.${pkgs.system}
-      ];
       # Add Kde packages to exclude
       plasma5.excludePackages = with pkgs.libsForQt5; [
       ];
