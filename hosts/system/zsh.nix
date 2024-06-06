@@ -8,6 +8,7 @@ with lib; let
   shellAliases = {
     ll = "ls -la";
     df = "df -Th";
+    k = "kubectl";
 
     # Git alias
     gcm = "git checkout master";

@@ -1,7 +1,9 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    rclone
     obsidian
     filezilla
+    logitech-udev-rules
   ];
 
   programs.git = {
