@@ -30,11 +30,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1715992941,
-        "narHash": "sha256-hWorTlyCMo9n1zOmxvUo7uvOIICLDOfjGNN9GoisGXI=",
+        "lastModified": 1717877770,
+        "narHash": "sha256-mczCJ+TLksK3EqXpjAYnpDss8gy23dwPmQhlaIZKqIE=",
         "owner": "tadfisher",
         "repo": "android-nixpkgs",
-        "rev": "938b40d509cd293f01fedcc751ebc86530d9a285",
+        "rev": "217e29f47191bce8acb2f98a1d07856e719b0af5",
         "type": "github"
       },
       "original": {
@@ -90,11 +90,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1711099426,
-        "narHash": "sha256-HzpgM/wc3aqpnHJJ2oDqPBkNsqWbW0WfWUO8lKu8nGk=",
+        "lastModified": 1717408969,
+        "narHash": "sha256-Q0OEFqe35fZbbRPPRdrjTUUChKVhhWXz3T9ZSKmaoVY=",
         "owner": "numtide",
         "repo": "devshell",
-        "rev": "2d45b54ca4a183f2fdcf4b19c895b64fbf620ee8",
+        "rev": "1ebbe68d57457c8cae98145410b164b5477761f4",
         "type": "github"
       },
       "original": {
@@ -177,11 +177,11 @@
     },
     "hardware": {
       "locked": {
-        "lastModified": 1717248095,
-        "narHash": "sha256-e8X2eWjAHJQT82AAN+mCI0B68cIDBJpqJ156+VRrFO0=",
+        "lastModified": 1717828156,
+        "narHash": "sha256-YvstO0lobf3JWQuAfZCLYRTROC2ZDEgtWeQtWbO49p4=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "7b49d3967613d9aacac5b340ef158d493906ba79",
+        "rev": "057a7996d012f342a38a26261ee529cebb1755ef",
         "type": "github"
       },
       "original": {
@@ -218,11 +218,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1717097707,
-        "narHash": "sha256-HC5vJ3oYsjwsCaSbkIPv80e4ebJpNvFKQTBOGlHvjLs=",
+        "lastModified": 1717525419,
+        "narHash": "sha256-5z2422pzWnPXHgq2ms8lcCfttM0dz+hg+x1pCcNkAws=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "0eb314b4f0ba337e88123e0b1e57ef58346aafd9",
+        "rev": "a7117efb3725e6197dd95424136f79147aa35e5b",
         "type": "github"
       },
       "original": {
@@ -268,7 +268,6 @@
         "plugins-lsp-signature": "plugins-lsp-signature",
         "plugins-lspkind": "plugins-lspkind",
         "plugins-lualine": "plugins-lualine",
-        "plugins-nightfox": "plugins-nightfox",
         "plugins-noice": "plugins-noice",
         "plugins-notify": "plugins-notify",
         "plugins-nui": "plugins-nui",
@@ -290,7 +289,9 @@
         "plugins-rust-tools": "plugins-rust-tools",
         "plugins-sqls-nvim": "plugins-sqls-nvim",
         "plugins-telescope": "plugins-telescope",
+        "plugins-tokyonight": "plugins-tokyonight",
         "plugins-trouble": "plugins-trouble",
+        "plugins-undotree": "plugins-undotree",
         "plugins-vim-dadbod": "plugins-vim-dadbod",
         "plugins-vim-dadbod-completion": "plugins-vim-dadbod-completion",
         "plugins-vim-dadbod-ui": "plugins-vim-dadbod-ui",
@@ -298,11 +299,11 @@
         "plugins-which-key": "plugins-which-key"
       },
       "locked": {
-        "lastModified": 1716736503,
-        "narHash": "sha256-aGorXMqM+b4lqRaUK6idQxAW9dO/czmkmQoql2YIhuk=",
+        "lastModified": 1717705599,
+        "narHash": "sha256-AR3E1HHJ4FzycXRO4rgIZMWiDPqN5yOCZ+jdWTYsq7k=",
         "owner": "gako358",
         "repo": "neovim",
-        "rev": "a83c23a1c74948582b8b212a34559b23781c0383",
+        "rev": "d484df716ae03b539f0b83c6925b455b0e22a1d4",
         "type": "github"
       },
       "original": {
@@ -405,11 +406,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1716948383,
-        "narHash": "sha256-SzDKxseEcHR5KzPXLwsemyTR/kaM9whxeiJohbL04rs=",
+        "lastModified": 1717786204,
+        "narHash": "sha256-4q0s6m0GUcN7q+Y2DqD27iLvbcd1G50T2lv08kKxkSI=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "ad57eef4ef0659193044870c731987a6df5cf56b",
+        "rev": "051f920625ab5aabe37c920346e3e69d7d34400e",
         "type": "github"
       },
       "original": {
@@ -421,11 +422,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1717301790,
-        "narHash": "sha256-/Dtmwy5j6bp0j7iAlj3gFQsgvZw0+SQspGWyYvOypVo=",
+        "lastModified": 1717905981,
+        "narHash": "sha256-gxIiqUdSTwLduVsLDQMsgBFpV7RhvJA3s0Tkdr5S/n4=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "bc1f54d0b897b238c966f85a995bdea35ab3572d",
+        "rev": "c781302e17479dc07f54f002ff43580839726f49",
         "type": "github"
       },
       "original": {
@@ -703,22 +704,6 @@
       "original": {
         "owner": "hoob3rt",
         "repo": "lualine.nvim",
-        "type": "github"
-      }
-    },
-    "plugins-nightfox": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1714329621,
-        "narHash": "sha256-ly9yavagB6A8t2plHZyNJt5tqCBq+ExEtYGKR4+9qHQ=",
-        "owner": "EdenEast",
-        "repo": "nightfox.nvim",
-        "rev": "df75a6a94910ae47854341d6b5a6fd483192c0eb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "EdenEast",
-        "repo": "nightfox.nvim",
         "type": "github"
       }
     },
@@ -1058,6 +1043,22 @@
         "type": "github"
       }
     },
+    "plugins-tokyonight": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1717670776,
+        "narHash": "sha256-16/H5Oy6iQLmVrMA6zxHJkE4s4CQAoAAqA2pbZiCOWA=",
+        "owner": "folke",
+        "repo": "tokyonight.nvim",
+        "rev": "9d88650502bc331f43eb0bef6286e58144ac5a96",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "tokyonight.nvim",
+        "type": "github"
+      }
+    },
     "plugins-trouble": {
       "flake": false,
       "locked": {
@@ -1071,6 +1072,22 @@
       "original": {
         "owner": "folke",
         "repo": "trouble.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-undotree": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1707485506,
+        "narHash": "sha256-FIYDyfkaIS9C16ClWKLMdpSPv/OrcOalVVsyFJBU2eI=",
+        "owner": "jiaoshijie",
+        "repo": "undotree",
+        "rev": "eab459ab87dd249617b5f7187bb69e614a083047",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jiaoshijie",
+        "repo": "undotree",
         "type": "github"
       }
     },
