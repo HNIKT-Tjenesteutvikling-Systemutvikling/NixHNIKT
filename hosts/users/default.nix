@@ -55,6 +55,13 @@
       ./jonvidars
     ];
   };
+  neethan = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../configuration.nix
+      ./neethan
+    ];
+  };
   sigubrat = nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs;};
     modules = [

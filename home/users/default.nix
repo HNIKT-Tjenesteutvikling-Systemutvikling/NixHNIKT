@@ -108,6 +108,21 @@
       }
     ];
   };
+  "dev@neethan" = home-manager.lib.homeManagerConfiguration {
+    pkgs = legacyPackages.x86_64-linux;
+    extraSpecialArgs = {inherit inputs;};
+    modules = [
+      ../home.nix
+      ./neethan
+
+      {
+        emacs.enable = false;
+        citrix.enable = true;
+        intellij.enable = false;
+        vscode.enable = true;
+      }
+    ];
+  };
   "dev@sigubrat" = home-manager.lib.homeManagerConfiguration {
     pkgs = legacyPackages.x86_64-linux;
     extraSpecialArgs = {inherit inputs;};
