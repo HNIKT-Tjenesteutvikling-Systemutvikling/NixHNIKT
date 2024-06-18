@@ -10,6 +10,8 @@
     enable = true;
     userEmail = "jan.henrik.hasselberg@hnikt.no";
     userName = "jhhhnikt";
+    userSigningkey = "530B240AB1AD2F7C";
+    commitGpgsign = "true"
   };
 
   dconf.settings = {
