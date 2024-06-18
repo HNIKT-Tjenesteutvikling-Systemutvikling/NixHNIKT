@@ -8,7 +8,7 @@
     inputs.neovim-flake.defaultPackage.${pkgs.system}
   ];
   desktop.environment = "gnome";
-  networking.hostName = "jhhhnikt";
+  networking.hostName = "nora";
   services.xserver = {
     videoDrivers = ["intel"]; # Optional use displayLink for USB-C docking station
     displayManager = {

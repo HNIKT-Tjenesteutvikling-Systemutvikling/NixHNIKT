@@ -41,6 +41,13 @@
       ./jergen
     ];
   };
+  nora = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../configuration.nix
+      ./nora
+    ];
+  };
   jhhhnikt = nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs;};
     modules = [
