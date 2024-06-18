@@ -3,7 +3,7 @@
     figma-linux
     vmware-horizon-client
     clamav
-    pkgs.google-chrome
+    google-chrome
   ];
 
   programs.git = {
