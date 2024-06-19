@@ -1,9 +1,11 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    figma-linux
-    vmware-horizon-client
+    bitwarden-desktop
     clamav
+    figma-linux
     google-chrome
+    gitg
+    vmware-horizon-client
   ];
 
   programs.git = {
