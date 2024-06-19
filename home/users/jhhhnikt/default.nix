@@ -5,6 +5,7 @@
     figma-linux
     google-chrome
     gitg
+    microsoft-edge
     vmware-horizon-client
   ];
 
@@ -19,6 +20,26 @@
   };
 
   dconf.settings = {
+    "org/gnome/shell" = {
+      # Favoritt-panelet.
+      favorite-apps = [
+        #"firefox-beta.desktop"
+        #"firefontelx.desktop"
+        #"thunderbird.desktop"
+        "org.gnome.Nautilus.desktop"
+        #"spotify.desktop"
+        "dbeaver.desktop"
+        "code.desktop"
+        #"discord.desktop"
+        "gimp.desktop"
+        "google-chrome.desktop"
+        "microsoft-edge.desktop"
+        #"slack.desktop"
+        "bitwarden.desktop"
+        "org.gnome.Console.desktop"
+      ];
+    };
+
     # Keybindings
     "org/gnome/settings-daemon/plugins/media-keys" = {
       email = ["<Super>e"];
