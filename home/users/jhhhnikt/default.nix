@@ -1,18 +1,45 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    figma-linux
-    vmware-horizon-client
+    bitwarden-desktop
     clamav
+    figma-linux
     google-chrome
+    gitg
+    microsoft-edge
+    vmware-horizon-client
   ];
 
   programs.git = {
     enable = true;
     userEmail = "jan.henrik.hasselberg@hnikt.no";
     userName = "jhhhnikt";
+    signing = {
+      key = "530B240AB1AD2F7C";
+      signByDefault = true;
+    };
   };
 
   dconf.settings = {
+    "org/gnome/shell" = {
+      # Favoritt-panelet.
+      favorite-apps = [
+        #"firefox-beta.desktop"
+        #"firefontelx.desktop"
+        #"thunderbird.desktop"
+        "org.gnome.Nautilus.desktop"
+        #"spotify.desktop"
+        "dbeaver.desktop"
+        "code.desktop"
+        #"discord.desktop"
+        "gimp.desktop"
+        "google-chrome.desktop"
+        "microsoft-edge.desktop"
+        #"slack.desktop"
+        "bitwarden.desktop"
+        "org.gnome.Console.desktop"
+      ];
+    };
+
     # Keybindings
     "org/gnome/settings-daemon/plugins/media-keys" = {
       email = ["<Super>e"];
