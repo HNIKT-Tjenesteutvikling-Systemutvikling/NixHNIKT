@@ -20,6 +20,13 @@
       ./intervbs
     ];
   };
+  ievensen = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../configuration.nix
+      ./ievensen
+    ];
+  };
   jca = nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs;};
     modules = [
@@ -27,11 +34,46 @@
       ./jca
     ];
   };
+  jergen = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../configuration.nix
+      ./jergen
+    ];
+  };
+  nora = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../configuration.nix
+      ./nora
+    ];
+  };
+  jhhhnikt = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../configuration.nix
+      ./jhhhnikt
+    ];
+  };
   jonas = nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs;};
     modules = [
       ../configuration.nix
       ./jonas
+    ];
+  };
+  jonvidars = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../configuration.nix
+      ./jonvidars
+    ];
+  };
+  neethan = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../configuration.nix
+      ./neethan
     ];
   };
   sigubrat = nixpkgs.lib.nixosSystem {

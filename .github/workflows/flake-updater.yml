@@ -1,30 +1,56 @@
 name: "Update Flake Deps"
+
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 5 * * 0'
+    - cron: "0 5 * * 0"
 
 jobs:
   update-flake-deps:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
-      with:
-        token: "${{ secrets.GITHUB_TOKEN }}"
-    - name: Install nix
-      uses: cachix/install-nix-action@v20
-      with:
-        extra_nix_config: |
-          experimental-features = nix-command flakes
-        nix_path: nixpkgs=channel:nixos-unstable
-    - name: Update flake deps
-      run: nix flake update
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v3
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: "chore(deps): update flake deps"
-        title: "chore(deps): update flake deps"
-        branch: "update-flake-deps"
-        body: "This pull request updates the flake dependencies."
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Install nix
+        uses: cachix/install-nix-action@v20
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+          nix_path: nixpkgs=channel:nixos-unstable
+
+      - name: Update flake deps
+        run: nix flake update
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(deps): update flake deps"
+          title: "chore(deps): update flake deps"
+          branch: "update-flake-deps"
+          body: "This pull request updates the flake dependencies."
+          labels: "automerge"
+
+  automerge:
+    needs: update-flake-deps
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup auto merge
+        uses: pascalgn/automerge-action@v0.14.3
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_LABELS: "automerge,!work in progress"
+          MERGE_METHOD: "squash"
+          MERGE_COMMIT_MESSAGE: "automatic"
+          MERGE_FORKS: "false"
+          MERGE_RETRIES: "6"
+          MERGE_RETRY_SLEEP: "10000"
+          UPDATE_LABELS: ""

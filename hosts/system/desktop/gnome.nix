@@ -16,7 +16,6 @@ in {
         variant = "";
         layout = "us";
       };
-      libinput.enable = true;
       displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
     };
@@ -46,10 +45,6 @@ in {
         hitori # sudoku game
         atomix # puzzle game
       ]);
-
-    environment.systemPackages = [
-      inputs.neovim-flake.defaultPackage.${pkgs.system}
-    ];
 
     # ensure gnome-settings-daemon udev rules are enabled
     services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];

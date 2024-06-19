@@ -53,6 +53,8 @@
     templates = import ./templates;
     devShells = forAllSystems (system: {
       default = legacyPackages.${system}.callPackage ./shell.nix {};
+      buildInputs = [
+      ];
     });
 
     legacyPackages = forAllSystems (system:

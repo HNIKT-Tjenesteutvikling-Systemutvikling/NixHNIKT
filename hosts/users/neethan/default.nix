@@ -8,9 +8,9 @@
     inputs.neovim-flake.defaultPackage.${pkgs.system}
   ];
   desktop.environment = "gnome";
-  networking.hostName = "sigubrat";
+  networking.hostName = "neethan";
   services.xserver = {
-    videoDrivers = ["intel" "displaylink"]; # Optional use displayLink for USB-C docking station
+    videoDrivers = ["intel"]; # Optional use displayLink for USB-C docking station
     displayManager = {
       sessionCommands = ''
         ${lib.getBin pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all

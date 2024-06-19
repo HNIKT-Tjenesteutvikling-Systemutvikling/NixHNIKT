@@ -66,6 +66,7 @@
   programs.dconf.enable = true;
 
   services = {
+    libinput.enable = true;
     printing.enable = true; # Enable CUPS to print documents.
     blueman.enable = true;
     dbus.enable = true;

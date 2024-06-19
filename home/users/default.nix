@@ -18,6 +18,21 @@
       }
     ];
   };
+  "dev@ievensen" = home-manager.lib.homeManagerConfiguration {
+    pkgs = legacyPackages.x86_64-linux;
+    extraSpecialArgs = {inherit inputs;};
+    modules = [
+      ../home.nix
+      ./ievensen
+
+      {
+        emacs.enable = false;
+        citrix.enable = true;
+        intellij.enable = false;
+        vscode.enable = true;
+      }
+    ];
+  };
   "dev@intervbs" = home-manager.lib.homeManagerConfiguration {
     pkgs = legacyPackages.x86_64-linux;
     extraSpecialArgs = {inherit inputs;};
@@ -48,12 +63,87 @@
       }
     ];
   };
+  "dev@nora" = home-manager.lib.homeManagerConfiguration {
+    pkgs = legacyPackages.x86_64-linux;
+    extraSpecialArgs = {inherit inputs;};
+    modules = [
+      ../home.nix
+      ./nora
+
+      {
+        emacs.enable = false;
+        citrix.enable = true;
+        intellij.enable = false;
+        vscode.enable = true;
+      }
+    ];
+  };
+  "dev@jhhhnikt" = home-manager.lib.homeManagerConfiguration {
+    pkgs = legacyPackages.x86_64-linux;
+    extraSpecialArgs = {inherit inputs;};
+    modules = [
+      ../home.nix
+      ./jhhhnikt
+
+      {
+        emacs.enable = false;
+        citrix.enable = true;
+        intellij.enable = true;
+        vscode.enable = true;
+      }
+    ];
+  };
+  "dev@jergen" = home-manager.lib.homeManagerConfiguration {
+    pkgs = legacyPackages.x86_64-linux;
+    extraSpecialArgs = {inherit inputs;};
+    modules = [
+      ../home.nix
+      ./jergen
+
+      {
+        emacs.enable = false;
+        citrix.enable = true;
+        intellij.enable = false;
+        vscode.enable = true;
+      }
+    ];
+  };
   "dev@jonas" = home-manager.lib.homeManagerConfiguration {
     pkgs = legacyPackages.x86_64-linux;
     extraSpecialArgs = {inherit inputs;};
     modules = [
       ../home.nix
       ./jonas
+
+      {
+        emacs.enable = false;
+        citrix.enable = true;
+        intellij.enable = false;
+        vscode.enable = true;
+      }
+    ];
+  };
+  "dev@jonvidars" = home-manager.lib.homeManagerConfiguration {
+    pkgs = legacyPackages.x86_64-linux;
+    extraSpecialArgs = {inherit inputs;};
+    modules = [
+      ../home.nix
+      ./jonvidars
+
+      {
+        emacs.enable = false;
+        citrix.enable = true;
+        intellij.enable = false;
+        vscode.enable = true;
+      }
+    ];
+  };
+  "dev@neethan" = home-manager.lib.homeManagerConfiguration {
+    pkgs = legacyPackages.x86_64-linux;
+    extraSpecialArgs = {inherit inputs;};
+    modules = [
+      ../home.nix
+      ./neethan
 
       {
         emacs.enable = false;
@@ -103,10 +193,10 @@
 
       # Optional modules
       {
-        emacs.enable = true;
-        citrix.enable = true;
-        intellij.enable = true;
-        vscode.enable = true;
+        emacs.enable = false;
+        citrix.enable = false;
+        intellij.enable = false;
+        vscode.enable = false;
       }
     ];
   };
