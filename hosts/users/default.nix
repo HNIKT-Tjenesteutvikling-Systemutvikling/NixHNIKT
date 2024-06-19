@@ -48,6 +48,13 @@
       ./nora
     ];
   };
+  borgej = nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../configuration.nix
+      ./borgej
+    ];
+  };
   jhhhnikt = nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs;};
     modules = [
