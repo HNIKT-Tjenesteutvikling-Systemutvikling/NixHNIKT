@@ -10,6 +10,7 @@
 
       {
         virt-manager.enable = true;
+        mysql.enable = true;
       }
     ];
   };
@@ -18,6 +19,10 @@
     modules = [
       ../configuration.nix
       ./intervbs
+      {
+        virt-manager.enable = false;
+        mysql.enable = true;
+      }
     ];
   };
   ievensen = nixpkgs.lib.nixosSystem {
@@ -25,6 +30,10 @@
     modules = [
       ../configuration.nix
       ./ievensen
+      {
+        virt-manager.enable = false;
+        mysql.enable = false;
+      }
     ];
   };
   jca = nixpkgs.lib.nixosSystem {
@@ -32,6 +41,10 @@
     modules = [
       ../configuration.nix
       ./jca
+      {
+        virt-manager.enable = false;
+        mysql.enable = true;
+      }
     ];
   };
   jergen = nixpkgs.lib.nixosSystem {
@@ -39,6 +52,10 @@
     modules = [
       ../configuration.nix
       ./jergen
+      {
+        virt-manager.enable = false;
+        mysql.enable = false;
+      }
     ];
   };
   nora = nixpkgs.lib.nixosSystem {
@@ -46,6 +63,10 @@
     modules = [
       ../configuration.nix
       ./nora
+      {
+        virt-manager.enable = false;
+        mysql.enable = false;
+      }
     ];
   };
   borgej = nixpkgs.lib.nixosSystem {
@@ -53,6 +74,10 @@
     modules = [
       ../configuration.nix
       ./borgej
+      {
+        virt-manager.enable = false;
+        mysql.enable = false;
+      }
     ];
   };
   jhhhnikt = nixpkgs.lib.nixosSystem {
@@ -60,6 +85,10 @@
     modules = [
       ../configuration.nix
       ./jhhhnikt
+      {
+        virt-manager.enable = false;
+        mysql.enable = false;
+      }
     ];
   };
   jonas = nixpkgs.lib.nixosSystem {
@@ -67,6 +96,10 @@
     modules = [
       ../configuration.nix
       ./jonas
+      {
+        virt-manager.enable = false;
+        mysql.enable = false;
+      }
     ];
   };
   jonvidars = nixpkgs.lib.nixosSystem {
@@ -74,6 +107,10 @@
     modules = [
       ../configuration.nix
       ./jonvidars
+      {
+        virt-manager.enable = false;
+        mysql.enable = false;
+      }
     ];
   };
   neethan = nixpkgs.lib.nixosSystem {
@@ -81,6 +118,10 @@
     modules = [
       ../configuration.nix
       ./neethan
+      {
+        virt-manager.enable = false;
+        mysql.enable = false;
+      }
     ];
   };
   sigubrat = nixpkgs.lib.nixosSystem {
@@ -88,6 +129,10 @@
     modules = [
       ../configuration.nix
       ./sigubrat
+      {
+        virt-manager.enable = false;
+        mysql.enable = true;
+      }
     ];
   };
   Solheim = nixpkgs.lib.nixosSystem {
@@ -95,6 +140,10 @@
     modules = [
       ../configuration.nix
       ./Solheim
+      {
+        virt-manager.enable = false;
+        mysql.enable = true;
+      }
     ];
   };
   testUser = nixpkgs.lib.nixosSystem {
@@ -102,6 +151,10 @@
     modules = [
       ../configuration.nix
       ./testUser
+      {
+        virt-manager.enable = false;
+        mysql.enable = true;
+      }
     ];
   };
   Turbonaepskrel = nixpkgs.lib.nixosSystem {
@@ -109,6 +162,10 @@
     modules = [
       ../configuration.nix
       ./Turbonaepskrel
+      {
+        virt-manager.enable = false;
+        mysql.enable = true;
+      }
     ];
   };
   vebjorn = nixpkgs.lib.nixosSystem {
@@ -116,6 +173,10 @@
     modules = [
       ../configuration.nix
       ./vebjorn
+      {
+        virt-manager.enable = false;
+        mysql.enable = false;
+      }
     ];
   };
 }
