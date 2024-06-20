@@ -11,7 +11,6 @@ let
     home.packages =
       [
         gen-ssh-key # generate ssh key and add it to the system
-        fvm-install # Script to download and install Flutter Version Manager in user home.
       ]
       ++ (pkgs.sxm.scripts or []);
   };
