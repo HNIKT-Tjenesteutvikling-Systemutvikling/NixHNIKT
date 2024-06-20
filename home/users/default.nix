@@ -63,6 +63,51 @@
       }
     ];
   };
+  "dev@borgej" = home-manager.lib.homeManagerConfiguration {
+    pkgs = legacyPackages.x86_64-linux;
+    extraSpecialArgs = {inherit inputs;};
+    modules = [
+      ../home.nix
+      ./borgej
+
+      {
+        emacs.enable = false;
+        citrix.enable = true;
+        intellij.enable = true;
+        vscode.enable = true;
+      }
+    ];
+  };
+  "dev@nora" = home-manager.lib.homeManagerConfiguration {
+    pkgs = legacyPackages.x86_64-linux;
+    extraSpecialArgs = {inherit inputs;};
+    modules = [
+      ../home.nix
+      ./nora
+
+      {
+        emacs.enable = false;
+        citrix.enable = true;
+        intellij.enable = false;
+        vscode.enable = true;
+      }
+    ];
+  };
+  "dev@jhhhnikt" = home-manager.lib.homeManagerConfiguration {
+    pkgs = legacyPackages.x86_64-linux;
+    extraSpecialArgs = {inherit inputs;};
+    modules = [
+      ../home.nix
+      ./jhhhnikt
+
+      {
+        emacs.enable = false;
+        citrix.enable = true;
+        intellij.enable = true;
+        vscode.enable = true;
+      }
+    ];
+  };
   "dev@jergen" = home-manager.lib.homeManagerConfiguration {
     pkgs = legacyPackages.x86_64-linux;
     extraSpecialArgs = {inherit inputs;};

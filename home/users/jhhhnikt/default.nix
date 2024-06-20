@@ -1,44 +1,53 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    inkscape
-    alacritty
+    bitwarden-desktop
+    clamav
+    figma-linux
+    google-chrome
+    gitg
+    microsoft-edge
+    vmware-horizon-client
   ];
 
   programs.git = {
     enable = true;
-    userEmail = "jonas.nordhaug.myhre@hnikt.no";
-    userName = "jonas-hnikt";
+    userEmail = "jan.henrik.hasselberg@hnikt.no";
+    userName = "jhhhnikt";
+    signing = {
+      key = "530B240AB1AD2F7C";
+      signByDefault = true;
+    };
   };
 
   dconf.settings = {
+    "org/gnome/shell" = {
+      # Favoritt-panelet.
+      favorite-apps = [
+        #"firefox-beta.desktop"
+        #"firefontelx.desktop"
+        #"thunderbird.desktop"
+        "org.gnome.Nautilus.desktop"
+        #"spotify.desktop"
+        "dbeaver.desktop"
+        "code.desktop"
+        #"discord.desktop"
+        "gimp.desktop"
+        "google-chrome.desktop"
+        "microsoft-edge.desktop"
+        #"slack.desktop"
+        "bitwarden.desktop"
+        "org.gnome.Console.desktop"
+      ];
+    };
+
     # Keybindings
     "org/gnome/settings-daemon/plugins/media-keys" = {
       email = ["<Super>e"];
       www = ["<Super>w"];
       screensaver = ["<Super>L"];
       custom-keybindings = [
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
       ];
     };
-
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      binding = "<super>return";
-      command = "alacritty";
-      name = "open-terminal";
-    };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-      binding = "<shift><super>r";
-      command = "alacritty -e ranger";
-      name = "Ranger";
-    };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
-      binding = "<shift><super>b";
-      command = "alacritty -e btm";
-      name = "Btop";
-    };
-
     # Windows
     "org/gnome/desktop/wm/keybindings" = {
       # Activate the window menu
@@ -79,9 +88,9 @@
       # Switch to workspace 4
       switch-to-workspace-4 = ["<Super>4"];
       # Switch to workspace on the left
-      switch-to-workspace-left = ["<control>left"];
+      switch-to-workspace-left = ["Page_Up"];
       # Switch to workspace on the right
-      switch-to-workspace-right = ["<control>right"];
+      switch-to-workspace-right = ["Page_Down"];
       # Switch windows
       switch-windows = ["<Super>Tab"];
       switch-windows-backward = ["<Shift><Super>Tab"];

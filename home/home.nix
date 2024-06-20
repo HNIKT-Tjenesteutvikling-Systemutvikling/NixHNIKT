@@ -81,7 +81,7 @@ in {
 
   home = {
     inherit username homeDirectory;
-    stateVersion = "23.11";
+    stateVersion = "24.05";
 
     packages = defaultPkgs;
 
