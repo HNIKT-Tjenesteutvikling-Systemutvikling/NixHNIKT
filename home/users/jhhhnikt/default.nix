@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    android-studio
     bitwarden-desktop
     clamav
     figma-linux
@@ -41,6 +42,7 @@
         #"spotify.desktop"
         "dbeaver.desktop"
         "code.desktop"
+        "android-studio.desktop"
         #"discord.desktop"
         "gimp.desktop"
         "google-chrome.desktop"
