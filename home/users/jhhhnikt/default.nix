@@ -20,7 +20,7 @@
     };
   };
 
-    # Allow devcontainers to speak with gpg agent.
+  # Allow devcontainers to speak with gpg agent.
   services.gpg-agent.enableExtraSocket = true;
 
   # Fix git push not working in vscode terminal due to permissions.
