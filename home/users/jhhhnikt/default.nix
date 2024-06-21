@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    android-studio
     bitwarden-desktop
     clamav
     figma-linux
@@ -19,6 +20,17 @@
     };
   };
 
+  # Allow devcontainers to speak with gpg agent.
+  services.gpg-agent.enableExtraSocket = true;
+
+  # Fix git push not working in vscode terminal due to permissions.
+  # Copies the ssh config instead of symlinking it.
+  # https://github.com/nix-community/home-manager/issues/322#issuecomment-1856128020
+  home.file.".ssh/config" = {
+    target = ".ssh/config_source";
+    onChange = ''cat ~/.ssh/config_source > ~/.ssh/config && chmod 400 ~/.ssh/config'';
+  };
+
   dconf.settings = {
     "org/gnome/shell" = {
       # Favoritt-panelet.
@@ -30,6 +42,7 @@
         #"spotify.desktop"
         "dbeaver.desktop"
         "code.desktop"
+        "android-studio.desktop"
         #"discord.desktop"
         "gimp.desktop"
         "google-chrome.desktop"
