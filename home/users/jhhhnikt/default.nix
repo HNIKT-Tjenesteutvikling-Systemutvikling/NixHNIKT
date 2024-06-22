@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, lib, ...}: {
   home.packages = with pkgs; [
     android-studio
     bitwarden-desktop
@@ -8,6 +8,9 @@
     gitg
     microsoft-edge
     vmware-horizon-client
+    yaru-theme
+    corefonts # Microsoft free fonts
+    dejavu_fonts
   ];
 
   programs.git = {
@@ -31,7 +34,51 @@
     onChange = ''cat ~/.ssh/config_source > ~/.ssh/config && chmod 400 ~/.ssh/config'';
   };
 
+  # Override defaults in home/themes/default.nix
+  # Reference: https://github.com/nix-community/home-manager/blob/master/modules/misc/gtk.nix
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = lib.mkForce "Yaru";
+      package = lib.mkForce pkgs.yaru-theme;
+    };
+    theme = {
+      name = lib.mkForce "Yaru";
+      package = lib.mkForce pkgs.yaru-theme;
+    };
+    cursorTheme = {
+      name = "Yaru";
+      size = 16;
+      package = pkgs.yaru-theme;
+    };
+  };
+
+  # QT theme.
+  # Reference: https://github.com/nix-community/home-manager/blob/master/modules/misc/qt.nix
+  qt = {
+    enable = true;
+    platformTheme = { name = "adwaita"; };
+    style = { 
+      name = "adwaita";
+      package = pkgs.adwaita-qt; 
+    };
+  };
+
   dconf.settings = {
+    "org/gnome/desktop/background" = {
+      picture-uri-dark = "file://${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.src}";
+    };
+
+    # Override defaults in home/programs/gnome.nix.
+    "org/gnome/desktop/interface" = {
+      color-scheme = lib.mkForce "prefer-dark";
+    };
+
+    # Override defaults in home/programs/gnome.nix
+    "org/gnome/shell/extensions/user-theme" = { 
+      name = lib.mkForce "Yaru";
+    };
+
     "org/gnome/shell" = {
       # Favoritt-panelet.
       favorite-apps = [
@@ -44,7 +91,8 @@
         "code.desktop"
         "android-studio.desktop"
         #"discord.desktop"
-        "gimp.desktop"
+        #"gimp.desktop"
+        "virt-manager.desktop"
         "google-chrome.desktop"
         "microsoft-edge.desktop"
         #"slack.desktop"

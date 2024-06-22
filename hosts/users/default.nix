@@ -86,7 +86,7 @@
       ../configuration.nix
       ./jhhhnikt
       {
-        virt-manager.enable = false;
+        virt-manager.enable = true;
         mysql.enable = false;
       }
     ];
