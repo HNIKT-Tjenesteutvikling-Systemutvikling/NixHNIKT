@@ -49,8 +49,6 @@ if (( disk_space > 60 )); then
     sudo nix-collect-garbage -d
     clear
 else
-    echo "Disk space is $disk_space% "
-    echo "Enough disk space available, skipping garbage collection..."
     echo "Deleting older generations..."
     nix-collect-garbage --delete-older-than 28d
     home-manager expire-generations "-19 days"
