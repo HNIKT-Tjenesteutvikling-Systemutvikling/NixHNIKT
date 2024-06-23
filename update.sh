@@ -22,10 +22,10 @@ spinner() {
     local update_message=$2
     local delay=0.75
     local spinstr='|/-\'
-    printf " [ ]  $update_message...  " # Print the update message once before the loop
+    printf " [ ]  $update_message...  "
     while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
         local temp=${spinstr#?}
-        printf "\b\b\b[%c]" "$spinstr" # Update the spinner character only
+        printf "\b\b\b[%c]" "$spinstr"
         local spinstr=$temp${spinstr%"$temp"}
         sleep $delay
     done
@@ -73,6 +73,7 @@ fi
 
 # Run the nixos-rebuild command
 echo "Updating system for $flake..."
+sudo -v
 (sudo nixos-rebuild switch --flake .#$flake &>nixos-switch.log || (cat nixos-switch.log | grep --color error && echo "An error occurred during the rebuild. Do you want to continue? (yes/no)" && read continue && if [[ "$continue" == "no" ]]; then exit 1; fi)) &
 spinner $! "System updating..."
 echo ""
