@@ -81,7 +81,7 @@
 
     "org/gnome/shell" = {
       # Favoritt-panelet.
-      favorite-apps = [
+      favorite-apps = lib.mkForce [
         #"firefox-beta.desktop"
         #"firefontelx.desktop"
         #"thunderbird.desktop"
