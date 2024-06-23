@@ -29,7 +29,7 @@ spinner() {
         local spinstr=$temp${spinstr%"$temp"}
         sleep $delay
     done
-    printf "\b\b\b                 \b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
+    printf "\r\e[K [✓]  $update_message...  "
 }
 
 # Check if there are any changes in the local repository
