@@ -46,24 +46,24 @@ if (( disk_space > 60 )); then
     echo "Disk space is $disk_space% "
     echo "which is more than 60%, running garbage collection,"
     echo "to free up boot..."
-    # sudo nix-collect-garbage -d
+    sudo nix-collect-garbage -d
+    clear
 else
     echo "Disk space is $disk_space% "
     echo "Enough disk space available, skipping garbage collection..."
     echo "Deleting older generations..."
-    # nix-collect-garbage --delete-older-than 28d
-    # home-manager expire-generations "-19 days"
+    nix-collect-garbage --delete-older-than 28d
+    home-manager expire-generations "-19 days"
+    clear
 fi
 
 # Run the nixos-rebuild command
 echo "Updating system for $flake..."
-nixos-rebuild build --flake .#jca &>nixos-switch.log || (cat nixos-switch.log | grep --color error && echo "An error occurred during the rebuild. Do you want to continue? (yes/no)" && read continue && if [[ "$continue" == "no" ]]; then exit 1; fi)
-# sudo nixos-rebuild switch --flake .#$flake &>nixos-switch.log || (cat nixos-switch.log | grep --color error && echo "An error occurred during the rebuild. Do you want to continue? (yes/no)" && read continue && if [[ "$continue" == "no" ]]; then exit 1; fi)
+sudo nixos-rebuild switch --flake .#$flake &>nixos-switch.log || (cat nixos-switch.log | grep --color error && echo "An error occurred during the rebuild. Do you want to continue? (yes/no)" && read continue && if [[ "$continue" == "no" ]]; then exit 1; fi)
 
 # Update home-manager
 echo "System updated!, updating home-manager for $home_name..."
-home-manager build --flake .#"dev@jca" &>home-manager.log || (cat home-manager.log | grep --color error && echo "An error occurred during the home-manager update. Exiting." && exit 1)
-# home-manager switch --flake .#$home_name &>home-manager.log || (cat home-manager.log | grep --color error && echo "An error occurred during the home-manager update. Exiting." && exit 1)
+home-manager switch --flake .#$home_name &>home-manager.log || (cat home-manager.log | grep --color error && echo "An error occurred during the home-manager update. Exiting." && exit 1)
 
 # Check if there were any errors during the execution of the script
 if ! grep -q "error" nixos-switch.log && ! grep -q "error" home-manager.log; then
