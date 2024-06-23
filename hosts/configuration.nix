@@ -92,8 +92,7 @@
   };
   sound.enable = true;
   hardware = {
-    opengl.enable = true;
-    opengl.driSupport = true;
+    graphics.enable = true;
     keyboard.zsa.enable = true;
     bluetooth.enable = true;
     enableAllFirmware = true;
