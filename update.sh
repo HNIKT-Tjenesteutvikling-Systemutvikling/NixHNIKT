@@ -48,6 +48,7 @@ else
         git pull > /dev/null 2>&1
     else
         echo "No changes detected in the remote repository, exiting."
+        echo "Nothing to update..."
         exit 0
     fi
 fi
@@ -77,10 +78,8 @@ sudo -v
 (sudo nixos-rebuild switch --flake .#$flake &>nixos-switch.log || (cat nixos-switch.log | grep --color error && echo "An error occurred during the rebuild. Do you want to continue? (yes/no)" && read continue && if [[ "$continue" == "no" ]]; then exit 1; fi)) &
 spinner $! "System updating..."
 echo ""
-echo ""
 
 # Update home-manager
-echo "System updated!, updating home-manager for $home_name..."
 (home-manager switch --flake .#$home_name &>home-manager.log || (cat home-manager.log | grep --color error && echo "An error occurred during the home-manager update. Exiting." && exit 1)) &
 spinner $! "Updating home"
 echo ""
