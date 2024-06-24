@@ -1,7 +1,5 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    rustdesk
-    anydesk
   ];
 
   programs.git = {
@@ -24,8 +22,8 @@
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      binding = "<super>return";
-      command = "alacritty";
+      binding = "<ctrl><alt>t";
+      command = "kgx";
       name = "open-terminal";
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
