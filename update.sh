@@ -154,7 +154,6 @@ if (( disk_space > 60 )); then
     # (sudo nix-collect-garbage -d > /dev/null 2>&1) &
     # spinner $! "Collecting garbage"
     echo ""
-    clear
 else
     # (nix-collect-garbage --delete-older-than 28d > /dev/null 2>&1) &
     # spinner $! "Deleting older generations"
@@ -162,7 +161,6 @@ else
     echo ""
     # (home-manager expire-generations "-19 days" > /dev/null 2>&1) &
     # spinner $! "Removing older home generations..."
-    clear
 fi
 
 # Run the nixos-rebuild command
