@@ -19,7 +19,7 @@ echo ""
 
 
 # Fetch the latest changes from the remote repository
-git fetch
+git fetch -a
 
 # Extract the username from the userSetting.nix file
 flake=$(hostname)
@@ -59,6 +59,17 @@ check_and_pull() {
     fi
 }
 
+merge_master_into_branch() {
+    git fetch origin > /dev/null 2>&1
+    git merge origin/master > /dev/null 2>&1
+
+    # Check if there are any merge conflicts
+    if git diff --name-only --diff-filter=U | grep . > /dev/null; then
+        echo "Merge conflicts detected. Please resolve them manually."
+        exit 1
+    fi
+}
+
 handle_unstaged_changes() {
     echo "Unstaged changes detected."
     echo "Do you want to add these changes? (yes/no)"
@@ -76,6 +87,8 @@ handle_unstaged_changes() {
     if [ "$add_changes" == "yes" ]; then
         git add . || true
         changes_made=true
+        echo "Upstream changes will be merged into the branch..."
+        merge_master_into_branch
     else
         echo "Do you want to 1) discard these changes or 2) stash these changes? (1/2)"
         read action
@@ -138,29 +151,31 @@ disk_space=$(df /dev/nvme0n1p1 | awk 'NR==2 {print $5}' | sed 's/%//g')
 
 # Run a garbage collection if disk space is less than 60%
 if (( disk_space > 60 )); then
-    (sudo nix-collect-garbage -d > /dev/null 2>&1) &
-    spinner $! "Collecting garbage"
+    # (sudo nix-collect-garbage -d > /dev/null 2>&1) &
+    # spinner $! "Collecting garbage"
     echo ""
     clear
 else
-    (nix-collect-garbage --delete-older-than 28d > /dev/null 2>&1) &
-    spinner $! "Deleting older generations"
+    # (nix-collect-garbage --delete-older-than 28d > /dev/null 2>&1) &
+    # spinner $! "Deleting older generations"
     echo ""
     echo ""
-    (home-manager expire-generations "-19 days" > /dev/null 2>&1) &
-    spinner $! "Removing older home generations..."
+    # (home-manager expire-generations "-19 days" > /dev/null 2>&1) &
+    # spinner $! "Removing older home generations..."
     clear
 fi
 
 # Run the nixos-rebuild command
 echo "Updating system for $flake..."
-sudo -v
-(sudo nixos-rebuild switch --flake .#$flake &>nixos-switch.log || (cat nixos-switch.log | grep --color error && echo "An error occurred during the rebuild. Do you want to continue? (yes/no)" && read continue && if [[ "$continue" == "no" ]]; then exit 1; fi)) &
+# sudo -v
+(nixos-rebuild build --flake .#jca &>nixos-switch.log || (cat nixos-switch.log | grep --color error && echo "An error occurred during the rebuild. Do you want to continue? (yes/no)" && read continue && if [[ "$continue" == "no" ]]; then exit 1; fi)) &
+# (sudo nixos-rebuild switch --flake .#$flake &>nixos-switch.log || (cat nixos-switch.log | grep --color error && echo "An error occurred during the rebuild. Do you want to continue? (yes/no)" && read continue && if [[ "$continue" == "no" ]]; then exit 1; fi)) &
 spinner $! "System updating..."
 echo ""
 
 # Update home-manager
-(home-manager switch --flake .#$home_name &>home-manager.log || (cat home-manager.log | grep --color error && echo "An error occurred during the home-manager update. Exiting." && exit 1)) &
+(home-manager build --flake .#"dev@jca" &>home-manager.log || (cat home-manager.log | grep --color error && echo "An error occurred during the home-manager update. Exiting." && exit 1)) &
+# (home-manager switch --flake .#$home_name &>home-manager.log || (cat home-manager.log | grep --color error && echo "An error occurred during the home-manager update. Exiting." && exit 1)) &
 spinner $! "Updating home"
 echo ""
 
