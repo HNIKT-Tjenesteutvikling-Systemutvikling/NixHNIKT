@@ -138,31 +138,29 @@ disk_space=$(df /dev/nvme0n1p1 | awk 'NR==2 {print $5}' | sed 's/%//g')
 
 # Run a garbage collection if disk space is less than 60%
 if (( disk_space > 60 )); then
-    # (sudo nix-collect-garbage -d > /dev/null 2>&1) &
-    # spinner $! "Collecting garbage"
+    (sudo nix-collect-garbage -d > /dev/null 2>&1) &
+    spinner $! "Collecting garbage"
     echo ""
     clear
 else
-    # (nix-collect-garbage --delete-older-than 28d > /dev/null 2>&1) &
-    # spinner $! "Deleting older generations"
+    (nix-collect-garbage --delete-older-than 28d > /dev/null 2>&1) &
+    spinner $! "Deleting older generations"
     echo ""
     echo ""
-    # (home-manager expire-generations "-19 days" > /dev/null 2>&1) &
-    # spinner $! "Removing older home generations..."
+    (home-manager expire-generations "-19 days" > /dev/null 2>&1) &
+    spinner $! "Removing older home generations..."
     clear
 fi
 
 # Run the nixos-rebuild command
 echo "Updating system for $flake..."
-# sudo -v
-(nixos-rebuild build --flake .#jca &>nixos-switch.log || (cat nixos-switch.log | grep --color error && echo "An error occurred during the rebuild. Do you want to continue? (yes/no)" && read continue && if [[ "$continue" == "no" ]]; then exit 1; fi)) &
-# (sudo nixos-rebuild switch --flake .#$flake &>nixos-switch.log || (cat nixos-switch.log | grep --color error && echo "An error occurred during the rebuild. Do you want to continue? (yes/no)" && read continue && if [[ "$continue" == "no" ]]; then exit 1; fi)) &
+sudo -v
+(sudo nixos-rebuild switch --flake .#$flake &>nixos-switch.log || (cat nixos-switch.log | grep --color error && echo "An error occurred during the rebuild. Do you want to continue? (yes/no)" && read continue && if [[ "$continue" == "no" ]]; then exit 1; fi)) &
 spinner $! "System updating..."
 echo ""
 
 # Update home-manager
-(home-manager build --flake .#"dev@jca" &>home-manager.log || (cat home-manager.log | grep --color error && echo "An error occurred during the home-manager update. Exiting." && exit 1)) &
-# (home-manager switch --flake .#$home_name &>home-manager.log || (cat home-manager.log | grep --color error && echo "An error occurred during the home-manager update. Exiting." && exit 1)) &
+(home-manager switch --flake .#$home_name &>home-manager.log || (cat home-manager.log | grep --color error && echo "An error occurred during the home-manager update. Exiting." && exit 1)) &
 spinner $! "Updating home"
 echo ""
 
@@ -188,16 +186,16 @@ echo "| |_| | (_) | | | |  __/"
 echo "|____/ \___/|_| |_|\___|"
 echo ""
 echo ""
-echo "Some updates may require a restart"
-echo "Do you want to restart now?"
-echo "1. Yes, 2. No"
-read restart
-
 echo ""
 echo ""
 if $changes_made; then
     echo "Pushed changes to git, please create pull request to get changes on master from $branch_name..."
 fi
+echo ""
+echo "Some updates may require a restart"
+echo "Do you want to restart now?"
+echo "1. Yes, 2. No"
+read restart
 
 if [[ "$restart" == "1" ]]; then
     reboot
