@@ -2,6 +2,7 @@
 
 set -e
 
+clear
 echo ""
 echo ""
 echo ""
@@ -48,7 +49,6 @@ spinner() {
 }
 
 check_and_pull() {
-    git fetch
     if ! git diff --quiet HEAD origin/master; then
         echo "Changes detected in the remote repository, pulling changes."
         git pull > /dev/null 2>&1
