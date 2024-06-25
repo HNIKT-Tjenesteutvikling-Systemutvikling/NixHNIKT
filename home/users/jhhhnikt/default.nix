@@ -3,6 +3,7 @@
     android-studio
     bitwarden-desktop
     clamav
+    clapper
     figma-linux
     google-chrome
     gitg
@@ -11,7 +12,6 @@
     yaru-theme
     corefonts # Microsoft free fonts
     dejavu_fonts
-    gnome.totem
   ];
 
   programs.git = {
