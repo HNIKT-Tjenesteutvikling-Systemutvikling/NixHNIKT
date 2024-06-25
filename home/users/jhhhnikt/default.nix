@@ -11,7 +11,7 @@
     yaru-theme
     corefonts # Microsoft free fonts
     dejavu_fonts
-    totem
+    gnome.totem
   ];
 
   programs.git = {
