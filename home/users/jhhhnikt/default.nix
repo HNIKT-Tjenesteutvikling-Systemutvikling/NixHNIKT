@@ -3,9 +3,9 @@
     android-studio
     bitwarden-desktop
     clamav
-    clapper
     figma-linux
     google-chrome
+    gnome.totem
     gitg
     microsoft-edge
     vmware-horizon-client
@@ -80,6 +80,7 @@
       name = lib.mkForce "Yaru";
     };
 
+    # Hint: Use "gsettings get org.gnome.shell favorite-apps" to find *.desktop name after added manually.
     "org/gnome/shell" = {
       # Favoritt-panelet.
       favorite-apps = lib.mkForce [
@@ -99,6 +100,7 @@
         #"slack.desktop"
         "bitwarden.desktop"
         "org.gnome.Console.desktop"
+        "chrome-cifhbcnohmdccbgoicgdjpfamggdegmo-Profile_1.desktop" # Google Chrome Teams app.
       ];
     };
 
