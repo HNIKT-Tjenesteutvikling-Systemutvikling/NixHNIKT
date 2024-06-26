@@ -97,6 +97,7 @@
         "virt-manager.desktop"
         "google-chrome.desktop"
         "microsoft-edge.desktop"
+        "chrome-cinhimbnkkaeohfgghhklpknlkffjgod-Default.desktop" # Google Chrome YouTube Music app.
         #"slack.desktop"
         "bitwarden.desktop"
         "org.gnome.Console.desktop"
