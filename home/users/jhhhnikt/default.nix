@@ -4,6 +4,7 @@
     bitwarden-desktop
     clamav
     figma-linux
+    filezilla
     google-chrome
     gnome.totem
     gitg
