@@ -132,7 +132,6 @@ in {
       escapeTime = 0;
       keyMode = "vi";
       mouse = true;
-      shell = "${pkgs.fish}/bin/fish";
       extraConfig = ''
         set -g @continuum-restore 'on'
         run-shell ${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/resurrect.tmux
