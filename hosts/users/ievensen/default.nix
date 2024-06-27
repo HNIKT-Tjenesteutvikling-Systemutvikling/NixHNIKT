@@ -6,10 +6,10 @@
 }: {
   environment.systemPackages = [
     inputs.neovim-flake.defaultPackage.${pkgs.system}
+    pkgs.k3s
   ];
 
   desktop.environment = "gnome";
-  environment.systemPackages = [ pkgs.k3s ];
   networking.hostName = "ievensen";
   networking.firewall.allowedTCPPorts = [
     6443 # k3s default API server port
