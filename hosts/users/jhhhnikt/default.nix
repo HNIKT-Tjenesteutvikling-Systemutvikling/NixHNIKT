@@ -18,7 +18,7 @@
     ::1 keycloak.localhost
   '';
   services.xserver = {
-    videoDrivers = ["intel"]; # Optional use displayLink for USB-C docking station, e.g. ["intel" "displaylink"];
+    videoDrivers = [ "modesetting" ]; # https://nixos.org/manual/nixos/stable/#sec-x11--graphics-cards-intel
     displayManager = {
       # Optional command xrandr, e.g. ${pkgs.xorg.xrandr}/bin/xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x360 --rotate normal --output DP-9 --mode 2560x1440 --pos 1920x0 --rotate normal --output DP-14 --mode 2560x1440 --pos 4480x0 --rotate normal
       sessionCommands = ''
