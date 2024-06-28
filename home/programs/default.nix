@@ -38,6 +38,7 @@ in [
   ./gnome.nix
   ./intellij.nix
   ./network.nix
+  ./tmux.nix
   ./vscode.nix
   more
 ]

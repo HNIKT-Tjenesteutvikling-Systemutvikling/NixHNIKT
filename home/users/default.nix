@@ -11,6 +11,7 @@
       ./grindstein
 
       {
+        tmux.enable = false;
         emacs.enable = true;
         citrix.enable = true;
         intellij.enable = true;
@@ -26,6 +27,7 @@
       ./ievensen
 
       {
+        tmux.enable = true;
         emacs.enable = false;
         citrix.enable = true;
         intellij.enable = false;
@@ -41,6 +43,7 @@
       ./intervbs
 
       {
+        tmux.enable = false;
         emacs.enable = false;
         citrix.enable = true;
         intellij.enable = true;
@@ -56,6 +59,7 @@
       ./jca
 
       {
+        tmux.enable = false;
         emacs.enable = false;
         citrix.enable = true;
         intellij.enable = true;
@@ -71,6 +75,7 @@
       ./borgej
 
       {
+        tmux.enable = false;
         emacs.enable = false;
         citrix.enable = true;
         intellij.enable = true;
@@ -86,6 +91,7 @@
       ./nora
 
       {
+        tmux.enable = false;
         emacs.enable = false;
         citrix.enable = true;
         intellij.enable = false;
@@ -101,6 +107,7 @@
       ./jhhhnikt
 
       {
+        tmux.enable = true;
         emacs.enable = false;
         citrix.enable = true;
         intellij.enable = true;
@@ -116,6 +123,7 @@
       ./jergen
 
       {
+        tmux.enable = false;
         emacs.enable = false;
         citrix.enable = true;
         intellij.enable = false;
@@ -131,6 +139,7 @@
       ./jonas
 
       {
+        tmux.enable = false;
         emacs.enable = false;
         citrix.enable = true;
         intellij.enable = false;
@@ -146,6 +155,7 @@
       ./jonvidars
 
       {
+        tmux.enable = false;
         emacs.enable = false;
         citrix.enable = true;
         intellij.enable = false;
@@ -161,6 +171,7 @@
       ./neethan
 
       {
+        tmux.enable = false;
         emacs.enable = false;
         citrix.enable = true;
         intellij.enable = false;
@@ -176,6 +187,7 @@
       ./sigubrat
 
       {
+        tmux.enable = false;
         emacs.enable = false;
         citrix.enable = true;
         intellij.enable = true;
@@ -190,8 +202,8 @@
       ../home.nix
       ./Solheim
 
-      # Optional modules
       {
+        tmux.enable = false;
         emacs.enable = false;
         citrix.enable = true;
         intellij.enable = true;
@@ -206,8 +218,8 @@
       ../home.nix
       ./testUser
 
-      # Optional modules
       {
+        tmux.enable = false;
         emacs.enable = false;
         citrix.enable = false;
         intellij.enable = false;
@@ -222,8 +234,8 @@
       ../home.nix
       ./Turbonaepskrel
 
-      # Optional modules
       {
+        tmux.enable = false;
         emacs.enable = false;
         citrix.enable = true;
         intellij.enable = true;
@@ -238,8 +250,8 @@
       ../home.nix
       ./vebjorn
 
-      # Optional modules
       {
+        tmux.enable = true;
         emacs.enable = false;
         citrix.enable = true;
         intellij.enable = true;
