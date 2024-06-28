@@ -3,6 +3,13 @@
     figma-linux
     vmware-horizon-client
     clamav
+    vivaldi
+    gitg
+    figma-linux
+    google-chrome
+    gitg
+    microsoft-edge
+    bitwarden-desktop
   ];
 
   programs.git = {
