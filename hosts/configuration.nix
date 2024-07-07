@@ -70,7 +70,7 @@
     printing.enable = true; # Enable CUPS to print documents.
     blueman.enable = true;
     dbus.enable = true;
-    dbus.packages = [pkgs.gnome.gnome-keyring pkgs.gcr];
+    dbus.packages = [pkgs.gnome-keyring pkgs.gcr];
     gnome.gnome-keyring = {
       enable = true;
     };

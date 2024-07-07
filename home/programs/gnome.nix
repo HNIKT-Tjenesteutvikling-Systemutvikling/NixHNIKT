@@ -12,9 +12,9 @@
     gnomeExtensions.tray-icons-reloaded
     gnomeExtensions.vitals
     gnomeExtensions.space-bar
-    gnome.dconf-editor
-    gnome.gnome-tweaks
     gnomeExtensions.pop-shell
+    gnome-tweaks
+    dconf-editor
     flat-remix-gnome
   ];
   dconf.settings = {
