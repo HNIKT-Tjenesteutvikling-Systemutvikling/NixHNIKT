@@ -54,8 +54,7 @@ check_and_pull() {
         git pull >/dev/null 2>&1
     else
         echo "No changes detected in the remote repository, exiting."
-        echo "Nothing to update..."
-        exit 0
+        echo "Building local..."
     fi
 }
 
