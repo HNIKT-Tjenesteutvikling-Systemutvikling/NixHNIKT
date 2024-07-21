@@ -30,11 +30,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1720901828,
-        "narHash": "sha256-RzjcRcP0gMbTFYwGa3SFECQs87cKXV31r2XMuyGkcWA=",
+        "lastModified": 1720988215,
+        "narHash": "sha256-nQ0Zx0vAWJo0IOGNFjCOdIkDSgOpMa//GalR8tbTl3A=",
         "owner": "tadfisher",
         "repo": "android-nixpkgs",
-        "rev": "44f5ec9d91e97dd20b1033c237986899b75908b5",
+        "rev": "5a052c62cdb51b210bc0717177d5bd014cba3df1",
         "type": "github"
       },
       "original": {
@@ -177,11 +177,11 @@
     },
     "hardware": {
       "locked": {
-        "lastModified": 1720737798,
-        "narHash": "sha256-G/OtEAts7ZUvW5lrGMXSb8HqRp2Jr9I7reBuvCOL54w=",
+        "lastModified": 1721413321,
+        "narHash": "sha256-0GdiQScDceUrVGbxYpV819LHesK3szHOhJ09e6sgES4=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "c5013aa7ce2c7ec90acee5d965d950c8348db751",
+        "rev": "ab165a8a6cd12781d76fe9cbccb9e975d0fb634f",
         "type": "github"
       },
       "original": {
@@ -218,11 +218,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1720734513,
-        "narHash": "sha256-neWQ8eNtLTd+YMesb7WjKl1SVCbDyCm46LUgP/g/hdo=",
+        "lastModified": 1721135958,
+        "narHash": "sha256-H548rpPMsn25LDKn1PCFmPxmWlClJJGnvdzImHkqjuY=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "90ae324e2c56af10f20549ab72014804a3064c7f",
+        "rev": "afd2021bedff2de92dfce0e257a3d03ae65c603d",
         "type": "github"
       },
       "original": {
@@ -299,11 +299,11 @@
         "plugins-which-key": "plugins-which-key"
       },
       "locked": {
-        "lastModified": 1719252269,
-        "narHash": "sha256-PywhgJdH/fkxpW3E706IoBN1MQ/ykJElvDvEqLqQY9E=",
+        "lastModified": 1721281015,
+        "narHash": "sha256-liLjAfDI4k1m1N5IubWErPH/V6YLCvZpVofFLd08iic=",
         "owner": "gako358",
         "repo": "neovim",
-        "rev": "6cf9f3597318f4314b3331ab5e15eadab83ceaae",
+        "rev": "c7af18b25c9dae645b55bf0b0c59b67c578e4961",
         "type": "github"
       },
       "original": {
@@ -406,11 +406,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1720768451,
-        "narHash": "sha256-EYekUHJE2gxeo2pM/zM9Wlqw1Uw2XTJXOSAO79ksc4Y=",
+        "lastModified": 1721379653,
+        "narHash": "sha256-8MUgifkJ7lkZs3u99UDZMB4kbOxvMEXQZ31FO3SopZ0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "7e7c39ea35c5cdd002cd4588b03a3fb9ece6fad9",
+        "rev": "1d9c2c9b3e71b9ee663d11c5d298727dace8d374",
         "type": "github"
       },
       "original": {
@@ -422,11 +422,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1720931558,
-        "narHash": "sha256-YyAlrO0occOs4UkZLPQHeVTNcR+G5FZzkpx9M7vm0B0=",
+        "lastModified": 1721534662,
+        "narHash": "sha256-/2TL6I7hapUzEHYbZuhyg75DG92j/BSl3E0AeezcDQs=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "33262cda24af36267d3cef00910eef4e30505f4c",
+        "rev": "0f61f0a7e37cd8c15446b40ac3b09186bc58c7b1",
         "type": "github"
       },
       "original": {
@@ -534,11 +534,11 @@
     "plugins-copilot": {
       "flake": false,
       "locked": {
-        "lastModified": 1709095198,
-        "narHash": "sha256-JX3sdsnOnjkY7r9fCtC2oauo0PXF3SQ+SHUo8ifBvAc=",
+        "lastModified": 1718412968,
+        "narHash": "sha256-HC1QZlqEg+RBz/8kjLadafc06UoMAjhh0UO/BWQGMY8=",
         "owner": "zbirenbaum",
         "repo": "copilot.lua",
-        "rev": "f7612f5af4a7d7615babf43ab1e67a2d790c13a6",
+        "rev": "86537b286f18783f8b67bccd78a4ef4345679625",
         "type": "github"
       },
       "original": {
@@ -550,11 +550,11 @@
     "plugins-copilot-chat": {
       "flake": false,
       "locked": {
-        "lastModified": 1716568919,
-        "narHash": "sha256-dE5Q3WeLn9gY4KBIyhhDjkfxWeBuvlKmsdaSMkwEcUM=",
+        "lastModified": 1721236422,
+        "narHash": "sha256-v/ZMyAKDK9z3KaPJ6n2ubDnsHBueQaw2rvXcdQIaCxc=",
         "owner": "CopilotC-Nvim",
         "repo": "CopilotChat.nvim",
-        "rev": "feca60cf0ae08d866ba35cc8a95d12941ccc4f59",
+        "rev": "92bc7b5e564c23b12b2ed41dd7657fdafe39d95f",
         "type": "github"
       },
       "original": {
