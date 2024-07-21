@@ -90,7 +90,6 @@
       wireplumber.enable = true;
     };
   };
-  sound.enable = true;
   hardware = {
     graphics.enable = true;
     keyboard.zsa.enable = true;
