@@ -6,7 +6,7 @@
     figma-linux
     filezilla
     google-chrome
-    gnome.totem
+    totem
     gitg
     microsoft-edge
     vmware-horizon-client
