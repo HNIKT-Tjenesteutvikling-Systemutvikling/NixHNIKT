@@ -39,5 +39,6 @@ in [
   ./intellij.nix
   ./network.nix
   ./vscode.nix
+  ./tmux.nix
   more
 ]
