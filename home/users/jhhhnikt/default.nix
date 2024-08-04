@@ -4,7 +4,9 @@
     bitwarden-desktop
     clamav
     figma-linux
+    filezilla
     google-chrome
+    totem
     gitg
     microsoft-edge
     vmware-horizon-client
@@ -79,9 +81,10 @@
       name = lib.mkForce "Yaru";
     };
 
+    # Hint: Use "gsettings get org.gnome.shell favorite-apps" to find *.desktop name after added manually.
     "org/gnome/shell" = {
       # Favoritt-panelet.
-      favorite-apps = [
+      favorite-apps = lib.mkForce [
         #"firefox-beta.desktop"
         #"firefontelx.desktop"
         #"thunderbird.desktop"
@@ -95,9 +98,11 @@
         "virt-manager.desktop"
         "google-chrome.desktop"
         "microsoft-edge.desktop"
+        "chrome-cinhimbnkkaeohfgghhklpknlkffjgod-Default.desktop" # Google Chrome YouTube Music app.
         #"slack.desktop"
         "bitwarden.desktop"
         "org.gnome.Console.desktop"
+        "chrome-cifhbcnohmdccbgoicgdjpfamggdegmo-Profile_1.desktop" # Google Chrome Teams app.
       ];
     };
 
