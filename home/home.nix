@@ -8,6 +8,7 @@
     arandr # screen layout manager
     asciiquarium # aquarium in your terminal
     azure-cli # azure command-line interface
+    beekeeper-studio # database manager
     btop # alternative to htop & ytop
     cacert # ca certificates
     cmatrix # matrix in your terminal
