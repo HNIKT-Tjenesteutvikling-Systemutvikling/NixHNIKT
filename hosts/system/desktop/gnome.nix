@@ -29,15 +29,15 @@ in {
       (with pkgs; [
         gnome-photos
         gnome-tour
-      ])
-      ++ (with pkgs.gnome; [
         gnome-music
         gnome-contacts
         tali # poker game
         iagno # go game
         hitori # sudoku game
         atomix # puzzle game
-      ]);
+      ])
+      ++ (with pkgs.gnome; [
+        ]);
 
     # ensure gnome-settings-daemon udev rules are enabled
     services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
