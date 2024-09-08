@@ -40,7 +40,7 @@ in {
         ]);
 
     # ensure gnome-settings-daemon udev rules are enabled
-    services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
+    services.udev.packages = with pkgs; [gnome-settings-daemon];
     # ensure telepathy is enable
     services.telepathy.enable = true;
   };
