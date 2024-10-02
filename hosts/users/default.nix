@@ -58,39 +58,6 @@
       }
     ];
   };
-  nora = nixpkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs;};
-    modules = [
-      ../configuration.nix
-      ./nora
-      {
-        virt-manager.enable = false;
-        mysql.enable = false;
-      }
-    ];
-  };
-  borgej = nixpkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs;};
-    modules = [
-      ../configuration.nix
-      ./borgej
-      {
-        virt-manager.enable = false;
-        mysql.enable = false;
-      }
-    ];
-  };
-  jhhhnikt = nixpkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs;};
-    modules = [
-      ../configuration.nix
-      ./jhhhnikt
-      {
-        virt-manager.enable = true;
-        mysql.enable = false;
-      }
-    ];
-  };
   jonas = nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs;};
     modules = [

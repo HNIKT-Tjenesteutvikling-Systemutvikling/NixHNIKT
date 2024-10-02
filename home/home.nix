@@ -47,6 +47,7 @@
     tree # display files in a tree view
     unzip # unzip files
     wgetpaste # paste to pastebin
+    vmware-horizon-client # vmware horizon client
     xarchiver # archive manager
     xclip # command-line interface to X selections
     xdotool # command-line X11 automation tool

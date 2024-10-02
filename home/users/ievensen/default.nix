@@ -4,7 +4,6 @@
     obsidian
     filezilla
     logitech-udev-rules
-    vmware-horizon-client
   ];
 
   programs.git = {
