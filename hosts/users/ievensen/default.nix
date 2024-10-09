@@ -11,6 +11,7 @@
 
   desktop.environment = "gnome";
   networking.hostName = "ievensen";
+  networking.enableIPv6 = "false";
   networking.firewall.allowedTCPPorts = [
     6443 # k3s default API server port
   ];
