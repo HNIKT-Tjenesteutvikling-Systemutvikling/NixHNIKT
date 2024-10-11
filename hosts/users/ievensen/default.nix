@@ -17,6 +17,10 @@
   networking.firewall.allowedUDPPorts = [
     8472 # k3s, flannel: required if using multi-node for inter-node networking
   ];
+  boot.kernel.sysctl = {
+    "net.ipv6.conf.all.disable_ipv6" = "1";
+    "net.ipv6.conf.default.disable_ipv6" = "1";
+  };
   services = {
     k3s.enable = true;
     k3s.role = "server";
