@@ -3,15 +3,12 @@
   lib,
   pkgs,
   ...
-}:
-with lib;
-with builtins; let
+}: let
   cfg = config.citrix;
 
   extraCerts = [];
-
   citrixOverlay = self: super: {
-    citrix_workspace_24_05_0 = super.citrix_workspace_24_05_0.overrideAttrs (oldAttrs: rec {
+    citrix_workspace = super.citrix_workspace.overrideAttrs (oldAttrs: rec {
       inherit extraCerts;
       buildInputs = oldAttrs.buildInputs ++ [self.openssl];
       postInstall = ''
@@ -24,6 +21,18 @@ with builtins; let
       '';
     });
   };
+
+  citrix_workspace = pkgs.citrix_workspace.override {
+    libvorbis = pkgs.libvorbis.override {
+      libogg = pkgs.libogg.overrideAttrs (prevAttrs: {
+        cmakeFlags =
+          (prevAttrs.cmakeFlags or [])
+          ++ [
+            (lib.cmakeBool "BUILD_SHARED_LIBS" true)
+          ];
+      });
+    };
+  };
 in {
   options.citrix.enable = lib.mkEnableOption "citrix";
 
@@ -31,8 +40,8 @@ in {
     nixpkgs.config.allowUnfree = true;
 
     nixpkgs.overlays = [citrixOverlay];
-    home.packages = with pkgs; [
-      citrix_workspace_24_05_0
+    home.packages = [
+      citrix_workspace
     ];
   };
 }
