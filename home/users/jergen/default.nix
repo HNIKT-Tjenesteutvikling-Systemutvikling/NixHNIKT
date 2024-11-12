@@ -23,6 +23,23 @@
       ];
     };
 
+    "org/gnome/shell" = {
+      favorite-apps = [
+        "firefox.desktop"
+        "thunderbird.desktop"
+        "org.gnome.Nautilus.desktop"
+        "org.gnome.Calendar.desktop"
+        "spotify.desktop"
+        "vmware-view.desktop"
+        "Slack.desktop"
+        "gimp.desktop"
+        "Discord.desktop"
+        "dbeaver.desktop"
+        "selfservice.desktop"
+        "chromium-browser.desktop"
+      ];
+    };
+
     # Windows
     "org/gnome/desktop/wm/keybindings" = {
       # Activate the window menu

@@ -22,6 +22,23 @@
       ];
     };
 
+    "org/gnome/shell" = {
+      favorite-apps = [
+        "firefox.desktop"
+        "thunderbird.desktop"
+        "org.gnome.Nautilus.desktop"
+        "org.gnome.Calendar.desktop"
+        "spotify.desktop"
+        "vmware-view.desktop"
+        "Slack.desktop"
+        "gimp.desktop"
+        "Discord.desktop"
+        "dbeaver.desktop"
+        "selfservice.desktop"
+        "chromium-browser.desktop"
+      ];
+    };
+
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "<super>return";
       command = "alacritty";

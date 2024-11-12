@@ -15,7 +15,7 @@
     target = ".ssh/config_source";
     onChange = ''cat ~/.ssh/config_source > ~/.ssh/config && chmod 400 ~/.ssh/config'';
   };
-  
+
   dconf.settings = {
     # Keybindings
     "org/gnome/settings-daemon/plugins/media-keys" = {
@@ -26,6 +26,23 @@
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
+      ];
+    };
+
+    "org/gnome/shell" = {
+      favorite-apps = [
+        "firefox.desktop"
+        "thunderbird.desktop"
+        "org.gnome.Nautilus.desktop"
+        "org.gnome.Calendar.desktop"
+        "spotify.desktop"
+        "vmware-view.desktop"
+        "Slack.desktop"
+        "gimp.desktop"
+        "Discord.desktop"
+        "dbeaver.desktop"
+        "selfservice.desktop"
+        "chromium-browser.desktop"
       ];
     };
 
