@@ -93,7 +93,7 @@ in
         panel-anchors = "{\"0\":\"MIDDLE\"}";
         panel-lengths = "{\"0\":100}";
         panel-positions = "{\"0\":\"BOTTOM\"}";
-        panel-sizes = "{\"0\":24}";
+        panel-sizes = "{\"0\":48}";
         status-icon-padding = -1;
         tray-padding = -1;
         window-preview-title-position = "TOP";

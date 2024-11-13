@@ -9,39 +9,51 @@ with builtins; let
   cfg = config.desktop;
 in {
   config = mkIf (cfg.environment == "gnome") {
-    services.xserver = {
-      enable = true;
-      xkb = {
-        variant = "";
-        layout = "us";
-      };
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-    };
-    xdg.portal = {
-      enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gnome
-        xdg-desktop-portal-wlr
+    environment = {
+      systemPackages = with pkgs; [
+        morewaita-icon-theme
+        qogir-icon-theme
+        gnome-extension-manager
+      ];
+
+      gnome.excludePackages = with pkgs; [
+        # gnome-text-editor
+        atomix # puzzle game
+        cheese # webcam tool
+        epiphany # web browser
+        evince # document viewer
+        gedit
+        geary # email reader
+        gnome-characters
+        gnome-connections
+        gnome-contacts
+        gnome-font-viewer
+        gnome-initial-setup
+        gnome-maps
+        gnome-music
+        gnome-photos
+        gnome-shell-extensions
+        gnome-tour
+        iagno # go game
+        snapshot
+        tali # poker game
+        totem # video player
+        hitori # sudoku game
+        yelp # Help view
       ];
     };
-    environment.gnome.excludePackages =
-      (with pkgs; [
-        gnome-photos
-        gnome-tour
-        gnome-music
-        gnome-contacts
-        tali # poker game
-        iagno # go game
-        hitori # sudoku game
-        atomix # puzzle game
-      ])
-      ++ (with pkgs.gnome; [
-        ]);
 
-    # ensure gnome-settings-daemon udev rules are enabled
-    services.udev.packages = with pkgs; [gnome-settings-daemon];
-    # ensure telepathy is enable
-    services.telepathy.enable = true;
+    services = {
+      xserver = {
+        enable = true;
+        displayManager.gdm.enable = true;
+        desktopManager.gnome.enable = true;
+      };
+    };
+
+    systemd.services = {
+      "getty@tty1".enable = false;
+      "autovt@tty1".enable = false;
+    };
   };
 }
