@@ -41,7 +41,7 @@ in
         mouse-button-modifier = "<Super>";
         num-workspaces = 5;
         resize-with-right-button = true;
-        focus-mode = "sloppy";
+        focus-mode = "click";
       };
 
       "org/gnome/mutter" = {
