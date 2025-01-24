@@ -33,9 +33,7 @@ in [
   ./browser/slack.nix
   ./browser/teams.nix
   ./emacs
-  ./citrix.nix
   ./git.nix
-  ./gnome.nix
   ./intellij.nix
   ./network.nix
   ./tmux.nix

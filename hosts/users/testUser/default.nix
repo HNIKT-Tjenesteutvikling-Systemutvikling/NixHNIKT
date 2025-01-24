@@ -4,7 +4,6 @@
   ...
 }: {
   networking.hostName = "testUser";
-  desktop.environment = "kde";
   services.xserver = {
     displayManager = {
       sessionCommands = let

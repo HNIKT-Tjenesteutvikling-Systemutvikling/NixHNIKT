@@ -9,7 +9,6 @@
     pkgs.k3s
   ];
 
-  desktop.environment = "gnome";
   networking.hostName = "ievensen";
   networking.firewall.allowedTCPPorts = [
     6443 # k3s default API server port

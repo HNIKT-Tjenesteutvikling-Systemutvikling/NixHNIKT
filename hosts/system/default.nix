@@ -16,7 +16,7 @@ with lib; {
 
   imports = [
     ./daemons
-    ./desktop
+    ./desktop.nix
     ./docker.nix
     ./fonts.nix
     ./nfc.nix

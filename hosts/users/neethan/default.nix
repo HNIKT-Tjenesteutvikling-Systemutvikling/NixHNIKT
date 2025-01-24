@@ -7,7 +7,6 @@
   environment.systemPackages = [
     inputs.neovim-flake.defaultPackage.${pkgs.system}
   ];
-  desktop.environment = "gnome";
   networking.hostName = "neethan";
   services.xserver = {
     videoDrivers = ["modesetting"]; # Optional use displayLink for USB-C docking station

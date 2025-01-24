@@ -13,7 +13,6 @@
       {
         tmux.enable = false;
         emacs.enable = true;
-        citrix.enable = true;
         intellij.enable = true;
         vscode.enable = true;
       }
@@ -29,7 +28,6 @@
       {
         tmux.enable = true;
         emacs.enable = false;
-        citrix.enable = true;
         intellij.enable = false;
         vscode.enable = true;
       }
@@ -45,7 +43,6 @@
       {
         tmux.enable = false;
         emacs.enable = false;
-        citrix.enable = true;
         intellij.enable = true;
         vscode.enable = true;
       }
@@ -61,7 +58,6 @@
       {
         tmux.enable = false;
         emacs.enable = false;
-        citrix.enable = true;
         intellij.enable = true;
         vscode.enable = true;
       }
@@ -77,7 +73,6 @@
       {
         tmux.enable = false;
         emacs.enable = false;
-        citrix.enable = true;
         intellij.enable = false;
         vscode.enable = true;
       }
@@ -93,7 +88,6 @@
       {
         tmux.enable = false;
         emacs.enable = false;
-        citrix.enable = true;
         intellij.enable = false;
         vscode.enable = true;
       }
@@ -109,7 +103,6 @@
       {
         tmux.enable = false;
         emacs.enable = false;
-        citrix.enable = true;
         intellij.enable = false;
         vscode.enable = true;
       }
@@ -125,7 +118,6 @@
       {
         tmux.enable = false;
         emacs.enable = false;
-        citrix.enable = true;
         intellij.enable = false;
         vscode.enable = true;
       }
@@ -141,7 +133,6 @@
       {
         tmux.enable = false;
         emacs.enable = false;
-        citrix.enable = true;
         intellij.enable = true;
         vscode.enable = true;
       }
@@ -157,7 +148,6 @@
       {
         tmux.enable = false;
         emacs.enable = false;
-        citrix.enable = false;
         intellij.enable = true;
         vscode.enable = true;
       }
@@ -173,7 +163,6 @@
       {
         tmux.enable = false;
         emacs.enable = false;
-        citrix.enable = false;
         intellij.enable = false;
         vscode.enable = false;
       }
@@ -189,7 +178,6 @@
       {
         tmux.enable = false;
         emacs.enable = false;
-        citrix.enable = true;
         intellij.enable = true;
         vscode.enable = true;
       }
@@ -205,7 +193,6 @@
       {
         tmux.enable = true;
         emacs.enable = false;
-        citrix.enable = true;
         intellij.enable = true;
         vscode.enable = true;
       }

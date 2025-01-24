@@ -3,7 +3,6 @@
   lib,
   ...
 }: {
-  desktop.environment = "gnome";
   networking.hostName = "jergen";
   services.xserver = {
     videoDrivers = ["modesetting"]; # Optional use displayLink for USB-C docking station

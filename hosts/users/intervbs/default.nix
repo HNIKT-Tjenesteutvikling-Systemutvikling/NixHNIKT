@@ -3,7 +3,6 @@
   lib,
   ...
 }: {
-  desktop.environment = "gnome";
   networking.hostName = "intervbs";
   services.xserver = {
     videoDrivers = ["modesetting" "displaylink"]; # Optional use displayLink for USB-C docking station

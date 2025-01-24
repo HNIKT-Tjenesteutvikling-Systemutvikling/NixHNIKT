@@ -8,7 +8,6 @@
     inputs.neovim-flake.defaultPackage.${pkgs.system}
   ];
   networking.hostName = "jonas";
-  desktop.environment = "gnome";
   services.xserver = {
     displayManager = {
       sessionCommands = let
