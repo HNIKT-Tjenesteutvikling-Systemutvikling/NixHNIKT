@@ -96,6 +96,7 @@
     bluetooth.enable = true;
     enableAllFirmware = true;
     pulseaudio.enable = false;
+    bumblebee.enable = true;
   };
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
