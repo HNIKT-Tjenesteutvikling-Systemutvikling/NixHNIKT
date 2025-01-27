@@ -28,43 +28,40 @@
     };
   };
 
-  outputs = {
-    nixpkgs,
-    hardware,
-    flake-utils,
-    home-manager,
-    android-nixpkgs,
-    neovim-flake,
-    nur,
-    ...
-  } @ inputs: let
-    forAllSystems = nixpkgs.lib.genAttrs systems;
-    systems = [
-      "aarch64-linux"
-      "i686-linux"
-      "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
-    ];
-  in rec {
-    overlays = {
-      default = import ./overlay {inherit inputs;};
-    };
-    templates = import ./templates;
-    devShells = forAllSystems (system: {
-      default = legacyPackages.${system}.callPackage ./shell.nix {};
-      buildInputs = [
+  outputs =
+    { nixpkgs
+    , home-manager
+    , ...
+    } @ inputs:
+    let
+      forAllSystems = nixpkgs.lib.genAttrs systems;
+      systems = [
+        "aarch64-linux"
+        "i686-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
       ];
-    });
-
-    legacyPackages = forAllSystems (system:
-      import inputs.nixpkgs {
-        inherit system;
-        overlays = builtins.attrValues overlays;
-        config.allowUnfree = true;
+    in
+    rec {
+      overlays = {
+        default = import ./overlay { inherit inputs; };
+      };
+      templates = import ./templates;
+      devShells = forAllSystems (system: {
+        default = legacyPackages.${system}.callPackage ./shell.nix { };
+        buildInputs = [
+        ];
       });
 
-    nixosConfigurations = import ./hosts/users/default.nix {inherit nixpkgs inputs;};
-    homeConfigurations = import ./home/users/default.nix {inherit home-manager legacyPackages inputs;};
-  };
+      legacyPackages = forAllSystems (system:
+        import inputs.nixpkgs {
+          inherit system;
+          overlays = builtins.attrValues overlays;
+          config.allowUnfree = true;
+        });
+
+      nixosConfigurations = import ./hosts/users/default.nix { inherit nixpkgs inputs; };
+      homeConfigurations = import ./home/users/default.nix { inherit home-manager legacyPackages inputs; };
+    };
 }

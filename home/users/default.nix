@@ -1,11 +1,11 @@
-{
-  home-manager,
-  legacyPackages,
-  inputs,
+{ home-manager
+, legacyPackages
+, inputs
+,
 }: {
   "dev@grindstein" = home-manager.lib.homeManagerConfiguration {
     pkgs = legacyPackages.x86_64-linux;
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     modules = [
       ../home.nix
       ./grindstein
@@ -20,7 +20,7 @@
   };
   "dev@ievensen" = home-manager.lib.homeManagerConfiguration {
     pkgs = legacyPackages.x86_64-linux;
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     modules = [
       ../home.nix
       ./ievensen
@@ -35,7 +35,7 @@
   };
   "dev@intervbs" = home-manager.lib.homeManagerConfiguration {
     pkgs = legacyPackages.x86_64-linux;
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     modules = [
       ../home.nix
       ./intervbs
@@ -50,7 +50,7 @@
   };
   "dev@jca" = home-manager.lib.homeManagerConfiguration {
     pkgs = legacyPackages.x86_64-linux;
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     modules = [
       ../home.nix
       ./jca
@@ -65,7 +65,7 @@
   };
   "dev@jergen" = home-manager.lib.homeManagerConfiguration {
     pkgs = legacyPackages.x86_64-linux;
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     modules = [
       ../home.nix
       ./jergen
@@ -80,7 +80,7 @@
   };
   "dev@jonas" = home-manager.lib.homeManagerConfiguration {
     pkgs = legacyPackages.x86_64-linux;
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     modules = [
       ../home.nix
       ./jonas
@@ -95,7 +95,7 @@
   };
   "dev@jonvidars" = home-manager.lib.homeManagerConfiguration {
     pkgs = legacyPackages.x86_64-linux;
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     modules = [
       ../home.nix
       ./jonvidars
@@ -110,7 +110,7 @@
   };
   "dev@neethan" = home-manager.lib.homeManagerConfiguration {
     pkgs = legacyPackages.x86_64-linux;
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     modules = [
       ../home.nix
       ./neethan
@@ -125,7 +125,7 @@
   };
   "dev@sigubrat" = home-manager.lib.homeManagerConfiguration {
     pkgs = legacyPackages.x86_64-linux;
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     modules = [
       ../home.nix
       ./sigubrat
@@ -140,7 +140,7 @@
   };
   "dev@Solheim" = home-manager.lib.homeManagerConfiguration {
     pkgs = legacyPackages.x86_64-linux;
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     modules = [
       ../home.nix
       ./Solheim
@@ -155,7 +155,7 @@
   };
   "dev@testUser" = home-manager.lib.homeManagerConfiguration {
     pkgs = legacyPackages.x86_64-linux;
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     modules = [
       ../home.nix
       ./testUser
@@ -170,7 +170,7 @@
   };
   "dev@Turbonaepskrel" = home-manager.lib.homeManagerConfiguration {
     pkgs = legacyPackages.x86_64-linux;
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     modules = [
       ../home.nix
       ./Turbonaepskrel
@@ -185,7 +185,7 @@
   };
   "dev@vebjorn" = home-manager.lib.homeManagerConfiguration {
     pkgs = legacyPackages.x86_64-linux;
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     modules = [
       ../home.nix
       ./vebjorn
