@@ -4,6 +4,7 @@
     obsidian
     filezilla
     logitech-udev-rules
+    headsetcontrol
   ];
 
   programs.git = {
