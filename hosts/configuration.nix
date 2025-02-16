@@ -1,8 +1,9 @@
-{ config
-, inputs
-, lib
-, pkgs
-, ...
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
 }: {
   imports = [
     ./hardware-configuration.nix
@@ -31,7 +32,7 @@
     randomizedDelaySec = "1min";
   };
   nix = {
-    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
     settings = {
       experimental-features = "nix-command flakes";
@@ -45,7 +46,7 @@
     };
     optimise = {
       automatic = true;
-      dates = [ "weekly" ];
+      dates = ["weekly"];
     };
   };
   time.timeZone = "Europe/Oslo";
@@ -57,7 +58,7 @@
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
       ];
-      extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" "video" "audio" ];
+      extraGroups = ["wheel" "networkmanager" "docker" "libvirtd" "video" "audio"];
     };
   };
 
@@ -69,7 +70,7 @@
     printing.enable = true; # Enable CUPS to print documents.
     blueman.enable = true;
     dbus.enable = true;
-    dbus.packages = [ pkgs.gnome-keyring pkgs.gcr ];
+    dbus.packages = [pkgs.gnome-keyring pkgs.gcr];
     gnome.gnome-keyring = {
       enable = true;
     };
@@ -81,6 +82,7 @@
         PasswordAuthentication = false;
       };
     };
+    pulseaudio.enable = false;
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -94,7 +96,6 @@
     keyboard.zsa.enable = true;
     bluetooth.enable = true;
     enableAllFirmware = true;
-    pulseaudio.enable = false;
     bumblebee.enable = true;
   };
   nixpkgs.config = {
