@@ -39,6 +39,7 @@ let
     nix-output-monitor # nom: monitor nix commands
     nyancat # the famous rainbow cat!
     ouch # painless compression and decompression for your terminal
+    pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
     paprefs # pulseaudio preferences
     prettyping # a nicer ping
     rage # encryption tool for secrets management

@@ -96,7 +96,7 @@
     keyboard.zsa.enable = true;
     bluetooth.enable = true;
     enableAllFirmware = true;
-    bumblebee.enable = true;
+    bumblebee.enable = false;
   };
   nixpkgs.config = {
     allowUnfree = true;
