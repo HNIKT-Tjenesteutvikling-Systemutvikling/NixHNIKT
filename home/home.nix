@@ -25,12 +25,14 @@ let
     gimp # gnu image manipulation program
     github-copilot-cli # github copilot cli
     glow # terminal markdown viewer
+    headsetcontrol # logitech headset control
     hyperfine # command-line benchmarking tool
     killall # kill processes by name
     keepass # password manager
     lazygit # terminal git ui
     libsecret # secret management
     libreoffice # office suite
+    logitech-udev-rules # logitech udev rules
     ncdu # disk space info (a better du)
     ncspot # ncurses spotify client
     nettools # network tools
