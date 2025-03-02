@@ -1,9 +1,8 @@
-{
-  config,
-  inputs,
-  lib,
-  pkgs,
-  ...
+{ config
+, inputs
+, lib
+, pkgs
+, ...
 }: {
   imports = [
     ./hardware-configuration.nix
@@ -32,7 +31,7 @@
     randomizedDelaySec = "1min";
   };
   nix = {
-    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
+    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
     settings = {
       experimental-features = "nix-command flakes";
@@ -46,7 +45,7 @@
     };
     optimise = {
       automatic = true;
-      dates = ["weekly"];
+      dates = [ "weekly" ];
     };
   };
   time.timeZone = "Europe/Oslo";
@@ -57,8 +56,9 @@
     dev = {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
+        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDEPjadku0NlF1Zkkn5lEQoUtQf7Ze4MiumMJu24y6LVFHwuygjIfZvNZYgcylMR5JzzDiCpz06cuO8pm0nGntquXADwZ6VyMdYqvepUVAMxesmSIr3p0tYhAtaPg0AvQ6CalSHe3tsL9KJPqqRAnqDB3PXSOI7hY3i5mR3EnwC7HzdEc9LlkR7NH3X2nLiY0b6Olhvgr9LhlENJ0dZxMMk36iLPDmL+dmnVITDkLFMkxS4TBNo5aA5AtNod9uMc+r96Y1Y8+6siHe4qNKdibrfp6xKaDnXIWstxaM076WTMINqzdK6/eXNnaTaIYnEkEU91jvS6tcvFwrEyhfWd+8wkJZ7JdCg4Y3dTwl2/3Ok3/jZvi79wrNpHWzlmAdj0EpGV9kLdgAD5nuEvI+zs8uJXC1CWiKj8cPo5wR5HK0pYFqXCvSGyhZRwSYwK4VgRSjJFz8SqX/5FlHLSK7Dbf3ULTmcPERMP84Q1B5h32Cwxn3G9iriPVRZ8yk24IJdQ62LBoAHjJHNjquFlpUXeXLr6mA1wXE32sCFOHV7PpsK9OOdpghQkDUZ2AgHLiL/czrozSy+y4eodBWQI0Abn9QptIYQfH9zppT4L2PZsdjCF7dclbKyKv9IJ2uWnMoZJoG0dO6hGt+xLGsfftCZH7eu3/NmX3WI1uGOuSacQv/YFQ== gako358@outlook.com"
       ];
-      extraGroups = ["wheel" "networkmanager" "docker" "libvirtd" "video" "audio"];
+      extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" "video" "audio" ];
     };
   };
 
@@ -70,7 +70,7 @@
     printing.enable = true; # Enable CUPS to print documents.
     blueman.enable = true;
     dbus.enable = true;
-    dbus.packages = [pkgs.gnome-keyring pkgs.gcr];
+    dbus.packages = [ pkgs.gnome-keyring pkgs.gcr ];
     gnome.gnome-keyring = {
       enable = true;
     };
@@ -79,7 +79,7 @@
       # Forbid root login through SSH.
       settings = {
         PermitRootLogin = "no";
-        PasswordAuthentication = false;
+        PasswordAuthentication = true;
       };
     };
     pulseaudio.enable = false;
