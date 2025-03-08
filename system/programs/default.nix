@@ -1,4 +1,5 @@
-{ pkgs
+{ inputs
+, pkgs
 , lib
 , ...
 }:
@@ -11,6 +12,7 @@ with lib; {
 
     nodejs-18_x # Github Copilot requires nodejs 16
     alejandra # Nix formatting tool
+    inputs.neovim-flake.defaultPackage.${pkgs.system}
   ];
 
   imports = [

@@ -5,6 +5,7 @@ let
     };
   };
 in [
+  ./network.nix
   ./secret.nix
   more
 ]

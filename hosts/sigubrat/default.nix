@@ -1,11 +1,7 @@
-{ inputs
-, pkgs
+{ pkgs
 , lib
 , ...
 }: {
-  environment.systemPackages = [
-    inputs.neovim-flake.defaultPackage.${pkgs.system}
-  ];
   networking.hostName = "sigubrat";
   services.xserver = {
     videoDrivers = [ "modesetting" "displaylink" ]; # Optional use displayLink for USB-C docking station

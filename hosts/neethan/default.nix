@@ -1,11 +1,7 @@
-{ inputs
-, pkgs
+{ pkgs
 , lib
 , ...
 }: {
-  environment.systemPackages = [
-    inputs.neovim-flake.defaultPackage.${pkgs.system}
-  ];
   networking.hostName = "neethan";
   services.xserver = {
     videoDrivers = [ "modesetting" ]; # Optional use displayLink for USB-C docking station

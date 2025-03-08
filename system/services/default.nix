@@ -1,15 +1,15 @@
 {
   imports = [
-    ./battery.nix
     ./bluetooth.nix
     ./dbus.nix
     ./garbage.nix
     ./gnome.nix
+    ./k3s.nix
     ./mysql.nix
     ./nfc.nix
     ./onedrive.nix
     ./openssh.nix
-    ./pipwire.nix
+    ./pipewire.nix
     ./qemu.nix
   ];
 }

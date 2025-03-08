@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   gitConfig = {
     core = {
       editor = "code";
@@ -20,9 +21,8 @@
       "ssh://git@github.com".pushInsteadOf = "gh:";
     };
   };
-
-  rg = "${pkgs.ripgrep}/bin/rg";
-in {
+in
+{
   home.packages = with pkgs.gitAndTools; [
     diff-so-fancy # git diff with colors
     git-crypt # git files encryption
@@ -62,5 +62,5 @@ in {
         "*.jvmopts" # should be local to every project
       ];
     }
-    // (pkgs.sxm.git or {});
+    // (pkgs.sxm.git or { });
 }
