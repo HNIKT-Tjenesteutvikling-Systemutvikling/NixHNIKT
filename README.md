@@ -1,123 +1,132 @@
-[![NixOS Unstable](https://img.shields.io/badge/NixOS-unstable-blue.svg?style=flat-square&logo=NixOS&logoColor=white)](https://nixos.org)
-
 > **Disclaimer:** _This is not a community framework or distribution._ It's a
 > private configuration and an ongoing experiment to use for Java and Scala dev. There are no
 > guarantees that it will work out of the box for anyone. It may also
 > change drastically and without warning.
 
+[![NixOS Unstable](https://img.shields.io/badge/NixOS-unstable-blue.svg?style=flat-square&logo=NixOS&logoColor=white)](https://nixos.org)
+
 # HNIKT NixOS Configuration
 
-HNIKT NixOS Configuration is a personalized, sophisticated system configuration for NixOS that is tailored towards Java and Scala development. It is based on the flake system, a new mechanism introduced in Nix to manage Nix projects in a more reproducible way.
+> **Note:** This is a specialized NixOS configuration for HNIKT development environments. It's designed to provide consistent development environments for Java/Scala development teams.
 
-It is worth noting that HNIKT is not a community framework or distribution. Instead, it's a personal, ongoing experiment and its main aim is to create a system setup that enhances productivity for Java and Scala developers.
+## Overview
 
-The configuration features a plethora of tools and utilities that are often used in Java and Scala development, including (but not limited to):
+This flake-based NixOS configuration provides a consistent, reproducible development environment for HNIKT teams. The configuration includes:
 
-- Various IDEs and text editors optimized for Java and Scala development.
-- A variety of build tools such as SBT, Gradle, and Maven.
-- Databases and other services often used in Java and Scala projects.
-- Debugging and profiling tools to help optimize your code.
-- A rich set of command-line utilities that can be used for a variety of tasks.
+- Pre-configured development tools (IDEs, editors, build tools)
+- Team-specific user configurations
+- Module-based system configuration
+- Automated update mechanism
+- Language-specific templates for new projects
 
-Moreover, the configuration is designed to be modular, allowing the setup to be tailored to specific needs. Each module contains a particular set of tools and services that can be enabled or disabled according to the requirement. Furthermore, there are also templates for setting up development environments for several other programming languages.
+## Structure
 
-It is important to note that while this configuration has been made available to the public, it remains a personal experiment, meaning it may not suit everyone's needs or work out of the box for everyone. Also, it may undergo drastic changes without prior notice. Therefore, if you wish to use this setup, please be prepared to spend some time customizing it to your needs.
+- `flake.nix`: Main configuration file defining inputs and outputs
+- `hosts/`: System configurations for each machine
+- `modules/`: Shared NixOS and home-manager modules
+- `system/`: Core system configurations (hardware, programs, services)
+- `templates/`: Project templates for different languages
+- `update.sh`: Script for updating the system
+- `install.sh`: Script for initial system installation
 
-Remember, while NixOS provides a high level of flexibility and power, it also requires a good understanding of how the system works. Therefore, ensure to familiarize yourself with the NixOS manual and seek help from the community if you run into any problems.
+## Getting Started
 
-# Setting Up User Configuration
+### Prerequisites
 
-Before you start the install script, you need to setup the user profile.
-Inn the `hosts/users/default.nix` you need to add the user config and then also add the expression in `hosts/users/yourusername/default.nix`
+- A NixOS installation (or installation media)
+- Git
+- Internet connection
 
-Look at `hosts/users/testUser/default.nix` for example.
+### Setting Up User Configuration
 
-# How To Install
+Before installation, you need to set up your user profile:
 
-```shell
-./install.sh
+1. Create a user configuration in `modules/users/yourusername/default.nix`
+2. Follow the examples in existing user configurations (like `modules/users/neethan/default.nix`)
+
+### Installation Methods
+
+#### On a Fresh System
+
+1. Boot from NixOS installation media
+2. Create and mount partitions to `/mnt`
+3. Clone this repository:
+   ```bash
+   git clone https://github.com/HNIKT-Tjenesteutvikling-Systemutvikling/NixHNIKT.git
+   cd NixHNIKT
+   ```
+4. Run the installation script:
+   ```bash
+   ./install.sh
+   ```
+
+#### On an Existing NixOS System
+
+If you already have a NixOS system and want to switch to this configuration:
+
+1. Clone this repository:
+
+   ```bash
+   git clone https://github.com/HNIKT-Tjenesteutvikling-Systemutvikling/NixHNIKT.git
+   cd NixHNIKT
+   ```
+
+2. Enter a nix shell and switch to the configuration:
+
+   ```bash
+   nix-shell
+   nixos-rebuild switch --flake .#$(hostname)
+   ```
+
+   Alternatively, use the install script:
+
+   ```bash
+   ./install.sh
+   ```
+
+#### Via Installation Media (Direct)
+
+You can also install directly from the GitHub repository:
+
+```bash
+nixos-install --flake github:HNIKT-Tjenesteutvikling-Systemutvikling/NixHNIKT#$(hostname)
 ```
 
-### On an existing NixOS system
+## Updating
 
-If you have setup a NixOS system with a configuration.nix file its possible to switch over to this nix config with
-the following commands:
+The configuration includes an automatic update mechanism:
 
-```shell
-nix-shell
-nixos-rebuild switch --flake .#
-```
-
-If you have setup the userprofile, then to install just run:
-
-```shell
-./install.sh
-```
-
-`Note: This assumes your computer name matches one of the configurations in the flake.`
-
-### Installation via Media
-
-Alternatively, you can install these configurations via the install media from the nix-install repo as follows:
-
-- Boot off the install media.
-- Create the partition schedule and mount it to /mnt
-- Run `nixos-install --flake github:HNIKT-Tjenesteutvikling-Systemutvikling/NixHNIKT#hnikt`
-
-# Updating
-
-After switching to this configuration, you can update your system using the following command:
-
-```shell
-nixos-rebuild switch --upgrade --flake .#
-```
-
-or run:
-
-```shell
+```bash
 ./update.sh
 ```
 
-## Understanding the Structure
+This script:
 
-The flake configuration is organized as follows:
+1. Pulls the latest changes from the remote repository
+2. Handles any local modifications (offering to stash, commit, or discard)
+3. Creates branches for changes when needed
+4. Performs garbage collection to free disk space
+5. Rebuilds the system with the latest configuration
+6. Optionally restarts the system if needed
 
-- `flake.nix`: This is the main configuration file for the project. It contains the flake specification, along with inputs (dependencies) for the project.
+## Available Templates
 
-- `flake.lock`: This file, typically generated by Nix, specifies exact versions of your flake's dependencies.
+Initialize new projects using the included templates:
 
-- `home`: Home-manager configuration, acessible via `home-manager --flake`
+```bash
+nix flake init -t .#template-name
+```
 
-  - Each directory here is a "feature" each hm configuration can toggle, thus
-    customizing my setup for each machine (be it a server, desktop, laptop,
-    anything really).
+Available templates:
 
-- `host`: This directory contains configurations for different hosts. Each host has its own directory which includes a default.nix file and any other specific configurations.
+- `c`: C development environment
+- `devshell`: Basic development shell
+- `java`: Java development environment
+- `nodejs`: Node.js development environment
+- `python`: Python development environment
+- `rust`: Rust development environment
+- `wasm`: WebAssembly development environment
 
-- `modules/`: This directory contains common NixOS configurations that can be shared across multiple machines.
-
-- `overlays/`: This directory contains Nixpkgs overlays. Overlays allow custom modifications of Nixpkgs.
-
-- `pkgs/`: This directory contains custom packages.
-
-- `templates`: A couple project templates for different languages. Accessible
-  via `nix init`.
-  - `C` - C develop environment
-  - `devshell` - Basic develop shell, to be bootstapped to anything
-  - `latex` - Latex develop environment
-  - `python` - Python develop environment
-  - `rust` - Rust develop environment
-  - `wasm` - wasm develop environment
-  - `java` - Java develop environment
-
-Please consult the respective directories and files for more information.
-
-# License
+## License
 
 This project is licensed under the GNU General Public License v3.0 - see the LICENSE file for details.
-
-The GPL-3.0 License is a free, copyleft license for software and other kinds of works. This license ensures that you have the freedom to distribute copies of free software (and charge for them if you wish), that you receive source code or can get it if you want it, that you can change the software or use pieces of it in new free programs, and that you know you can do these things.
-
-Please remember to respect the terms and conditions of this license when using this project, including the requirements of compatibility, attribution and disclosing source.
-
-For more details about this license, please visit GNU General Public License v3.0.
