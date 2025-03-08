@@ -23,7 +23,6 @@ echo ""
 
 # Extract the username from the userSetting.nix file
 flake=$(hostname)
-home_name="dev@$flake"
 
 # Get the current generation
 current=$(nixos-rebuild list-generations | grep current | awk '{print $1}')
@@ -169,11 +168,6 @@ echo ""
 sudo -v
 (sudo nixos-rebuild switch --flake .#$flake &>nixos-switch.log || (cat nixos-switch.log | grep --color error && echo "An error occurred during the rebuild. Do you want to continue? (yes/no)" && read continue && if [[ "$continue" == "no" ]]; then exit 1; fi)) &
 spinner $! "System updating..."
-echo ""
-
-# Update home-manager
-(home-manager switch --flake .#$home_name &>home-manager.log || (cat home-manager.log | grep --color error && echo "An error occurred during the home-manager update. Exiting." && exit 1)) &
-spinner $! "Updating home"
 echo ""
 
 # Check if there were any errors during the execution of the script

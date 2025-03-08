@@ -21,28 +21,6 @@
         "type": "github"
       }
     },
-    "android-nixpkgs": {
-      "inputs": {
-        "devshell": "devshell",
-        "flake-utils": "flake-utils",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1740860325,
-        "narHash": "sha256-ipYYiwNqZ915bjmgOP2SnoL7Y+DOqSFiuiTrlv6z0so=",
-        "owner": "tadfisher",
-        "repo": "android-nixpkgs",
-        "rev": "81c92c9360288080354bac9bfb89c5116f7962c8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tadfisher",
-        "repo": "android-nixpkgs",
-        "type": "github"
-      }
-    },
     "base16-schemes": {
       "flake": false,
       "locked": {
@@ -78,27 +56,6 @@
         "owner": "lnl7",
         "ref": "master",
         "repo": "nix-darwin",
-        "type": "github"
-      }
-    },
-    "devshell": {
-      "inputs": {
-        "nixpkgs": [
-          "android-nixpkgs",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1735644329,
-        "narHash": "sha256-tO3HrHriyLvipc4xr+Ewtdlo7wM1OjXNjlWRgmM7peY=",
-        "owner": "numtide",
-        "repo": "devshell",
-        "rev": "f7795ede5b02664b57035b3b757876703e2c3eac",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "devshell",
         "type": "github"
       }
     },
@@ -144,24 +101,6 @@
     "flake-utils_2": {
       "inputs": {
         "systems": "systems_3"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flake-utils_3": {
-      "inputs": {
-        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1710146030,
@@ -250,7 +189,7 @@
     },
     "neovim-flake": {
       "inputs": {
-        "flake-utils": "flake-utils_3",
+        "flake-utils": "flake-utils_2",
         "nil": "nil",
         "nixpkgs": "nixpkgs_2",
         "plugins-cmp-buffer": "plugins-cmp-buffer",
@@ -302,11 +241,11 @@
         "plugins-which-key": "plugins-which-key"
       },
       "locked": {
-        "lastModified": 1740467692,
-        "narHash": "sha256-etdn8v+0rqMTaQEqgRe8h+RbDZJ2ukXR87NoTWoyXj0=",
+        "lastModified": 1740918180,
+        "narHash": "sha256-dsPsHpkdS3GZn2PL8rsS3Dh8YPh6jguL5XeQGQKs5fs=",
         "owner": "gako358",
         "repo": "neovim",
-        "rev": "85a1b31523f8daaafd16b51d5bcc23bc4581ef96",
+        "rev": "72375b3692c7f5d53f86730a834aea68382f73b2",
         "type": "github"
       },
       "original": {
@@ -606,11 +545,11 @@
     "plugins-copilot-chat": {
       "flake": false,
       "locked": {
-        "lastModified": 1740283955,
-        "narHash": "sha256-pXH1wHbWg6euXN/yGaqI8v4EIX0I5Tay0jMvOH2wpNo=",
+        "lastModified": 1740885005,
+        "narHash": "sha256-6tJ38bQ/pLsPDMRW1nUGZWZGpuqyd26zvxCenzn7F4M=",
         "owner": "CopilotC-Nvim",
         "repo": "CopilotChat.nvim",
-        "rev": "a3932a1505a990c238183617b5c5cb239f43f5ec",
+        "rev": "a0b1e415336fa2562ad8e14553f7888b7acb1010",
         "type": "github"
       },
       "original": {
@@ -1214,8 +1153,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
-        "android-nixpkgs": "android-nixpkgs",
-        "flake-utils": "flake-utils_2",
+        "flake-utils": "flake-utils",
         "hardware": "hardware",
         "home-manager": "home-manager_2",
         "impermanence": "impermanence",
@@ -1283,21 +1221,6 @@
       }
     },
     "systems_3": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_4": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
