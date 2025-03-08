@@ -20,48 +20,66 @@
     agenix.url = "github:ryantm/agenix"; # Secrets management
 
     neovim-flake.url = "github:gako358/neovim";
-
-    # android flake
-    android-nixpkgs = {
-      url = "github:tadfisher/android-nixpkgs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
-    { nixpkgs
+    { self
+    , nixpkgs
     , home-manager
     , ...
     } @ inputs:
     let
-      forAllSystems = nixpkgs.lib.genAttrs systems;
-      systems = [
-        "aarch64-linux"
-        "i686-linux"
-        "x86_64-linux"
-        "aarch64-darwin"
-        "x86_64-darwin"
-      ];
-    in
-    rec {
-      overlays = {
-        default = import ./overlay { inherit inputs; };
-      };
-      templates = import ./templates;
-      devShells = forAllSystems (system: {
-        default = legacyPackages.${system}.callPackage ./shell.nix { };
-        buildInputs = [
-        ];
-      });
-
-      legacyPackages = forAllSystems (system:
-        import inputs.nixpkgs {
+      inherit (self) outputs;
+      lib = nixpkgs.lib // home-manager.lib;
+      systems = [ "x86_64-linux" "aarch64-linux" ];
+      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs systems (system:
+        import nixpkgs {
           inherit system;
-          overlays = builtins.attrValues overlays;
           config.allowUnfree = true;
         });
+    in
+    {
+      inherit lib;
+      overlays = {
+        default = import ./overlay { inherit inputs outputs; };
+      };
+      templates = import ./templates;
+      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+      devShells = forEachSystem (pkgs:
+        import ./shell.nix {
+          inherit pkgs;
+          buildInputs = [
+          ];
+        });
 
-      nixosConfigurations = import ./hosts/users/default.nix { inherit nixpkgs inputs; };
-      homeConfigurations = import ./home/users/default.nix { inherit home-manager legacyPackages inputs; };
+      nixosConfigurations = {
+        grindstein = lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+          };
+          modules = [
+            inputs.home-manager.nixosModules.home-manager
+            ./system
+            ./hosts/grindstein
+            {
+              virt-manager.enable = true;
+              mysql.enable = true;
+              home-manager = {
+                useUserPackages = true;
+                extraSpecialArgs = {
+                  inherit inputs outputs;
+                  hidpi = false;
+                };
+                backupFileExtension = ".hm-backup";
+                users.dev = { ... }: {
+                  nixpkgs.config.allowUnfree = true;
+                  imports = [ ./modules ];
+                };
+              };
+            }
+          ];
+        };
+      };
     };
 }

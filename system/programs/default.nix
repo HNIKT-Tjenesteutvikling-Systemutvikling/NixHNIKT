@@ -1,7 +1,6 @@
-{
-  pkgs,
-  lib,
-  ...
+{ pkgs
+, lib
+, ...
 }:
 with lib; {
   # Core pakages for system
@@ -15,13 +14,9 @@ with lib; {
   ];
 
   imports = [
-    ./daemons
     ./desktop.nix
     ./docker.nix
     ./fonts.nix
-    ./nfc.nix
-    ./mysql.nix
     ./zsh.nix
-    ./qemu.nix
   ];
 }
