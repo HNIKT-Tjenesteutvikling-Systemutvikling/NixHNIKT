@@ -1,7 +1,6 @@
-{
-  pkgs,
-  lib,
-  ...
+{ pkgs
+, lib
+, ...
 }:
 with builtins;
 with lib; let
@@ -30,13 +29,11 @@ with lib; let
     supdate = "sudo nix flake update";
     upgrade = "sudo nixos-rebuild switch --flake";
 
-    homeflake = "home-manager switch --flake";
-    homeflake_install = "nix run github:nix-community/home-manager#home-manager -- switch --flake";
-
     cleanstart = "runapp drop; runapp code";
     rzsh = "source ~/.zshrc";
   };
-in {
+in
+{
   environment.systemPackages = with pkgs; [
     spaceship-prompt
     nix-zsh-completions

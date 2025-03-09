@@ -174,36 +174,6 @@
             }
           ];
         };
-        jonvidars = lib.nixosSystem {
-          specialArgs = {
-            inherit inputs outputs;
-          };
-          modules = [
-            inputs.home-manager.nixosModules.home-manager
-            ./system
-            ./hosts/jonvidars
-            {
-              virt-manager.enable = false;
-              k3s-service.enable = false;
-              mysql.enable = false;
-              home-manager = {
-                useUserPackages = true;
-                extraSpecialArgs = {
-                  inherit inputs outputs;
-                };
-                backupFileExtension = ".hm-backup";
-                users.dev = { ... }: {
-                  nixpkgs.config.allowUnfree = true;
-                  imports = [ ./modules ./modules/users/jonvidars ];
-                  tmux.enable = false;
-                  intellij.enable = false;
-                  rider.enable = true;
-                  vscode.enable = true;
-                };
-              };
-            }
-          ];
-        };
         neethan = lib.nixosSystem {
           specialArgs = {
             inherit inputs outputs;
