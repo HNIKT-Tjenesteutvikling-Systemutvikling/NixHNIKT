@@ -31,7 +31,13 @@ jobs:
       - id: gen_nixos_configurations
         run: |
           nixos_configurations=$(jq -c '.nixosConfigurations | keys' < flake.json)
-          echo "nixos_configurations=$nixos_configurations" >> $GITHUB_OUTPUT
+          # Get array length and calculate max index (length-1)
+          length=$(echo $nixos_configurations | jq 'length')
+          max_index=$((length - 1))
+          # Select a random configuration from the list
+          random_index=$(shuf -i 0-$max_index -n 1)
+          random_config=$(echo $nixos_configurations | jq -r ".[$random_index]")
+          echo "nixos_configurations=[\"$random_config\"]" >> $GITHUB_OUTPUT
 
   update_flake:
     runs-on: ubuntu-20.04
@@ -81,7 +87,7 @@ jobs:
         uses: easimon/maximize-build-space@master
         with:
           build-mount-path: /nix
-          swap-size-mb: 6144
+          swap-size-mb: 8192
           root-reserve-mb: 4096
           remove-dotnet: true
           remove-android: true
@@ -108,6 +114,7 @@ jobs:
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= hnikt.cachix.org-1:68VdsP/kBPkwqQJA3UKGR6iy8pCAflsj5ekkbWr5LnU=
             max-jobs = 2
             cores = 2
+            max-silent-time = 1800
           install_url: https://releases.nixos.org/nix/nix-2.25.0/install
       - name: Set up cachix
         uses: cachix/cachix-action@master
