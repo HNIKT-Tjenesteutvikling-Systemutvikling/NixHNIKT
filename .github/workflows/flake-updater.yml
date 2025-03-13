@@ -6,7 +6,7 @@ on:
 
 jobs:
   generate_matrix:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     outputs:
       nixos_configurations: ${{ steps.gen_nixos_configurations.outputs.nixos_configurations }}
     steps:
@@ -40,7 +40,7 @@ jobs:
           echo "nixos_configurations=[\"$random_config\"]" >> $GITHUB_OUTPUT
 
   update_flake:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
@@ -74,7 +74,7 @@ jobs:
           path: flake.lock
 
   build_flake:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest-4-core
     timeout-minutes: 180
     needs: [generate_matrix, update_flake]
     strategy:
@@ -142,7 +142,7 @@ jobs:
           done
 
   check_flake:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     needs: [update_flake]
     continue-on-error: true
     steps:
@@ -173,7 +173,7 @@ jobs:
         run: nix flake check --keep-going
 
   push_update:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     permissions: write-all
     needs: [update_flake, build_flake, check_flake]
     steps:
