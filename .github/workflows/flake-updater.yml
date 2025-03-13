@@ -2,9 +2,36 @@ name: "Update Flake Deps"
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 5 * * 0"
+    - cron: "0 2 * * 1"
 
 jobs:
+  generate_matrix:
+    runs-on: ubuntu-20.04
+    outputs:
+      nixos_configurations: ${{ steps.gen_nixos_configurations.outputs.nixos_configurations }}
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+        with:
+          token: "${{ secrets.TEST_TOKEN }}"
+      - name: Install nix
+        uses: cachix/install-nix-action@v30
+        with:
+          extra_nix_config: |
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.TEST_TOKEN }}
+            experimental-features = nix-command flakes
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org https://hnikt.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= hnikt.cachix.org-1:68VdsP/kBPkwqQJA3UKGR6iy8pCAflsj5ekkbWr5LnU=
+          install_url: https://releases.nixos.org/nix/nix-2.25.0/install
+      - name: Generate flake.json
+        run: |
+          nix flake show --json > flake.json
+      - id: gen_nixos_configurations
+        run: |
+          nixos_configurations=$(jq -c '.nixosConfigurations | keys' < flake.json)
+          echo "nixos_configurations=$nixos_configurations" >> $GITHUB_OUTPUT
+
   update_flake:
     runs-on: ubuntu-20.04
     steps:
@@ -19,8 +46,15 @@ jobs:
             auto-optimise-store = true
             access-tokens = github.com=${{ secrets.TEST_TOKEN }}
             experimental-features = nix-command flakes
-            substituters = https://cache.nixos.org/
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org https://hnikt.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= hnikt.cachix.org-1:68VdsP/kBPkwqQJA3UKGR6iy8pCAflsj5ekkbWr5LnU=
           install_url: https://releases.nixos.org/nix/nix-2.25.0/install
+      - name: Set up cachix
+        uses: cachix/cachix-action@master
+        with:
+          name: hnikt
+          authToken: "${{ secrets.CACHIX_SIGNING_KEY }}"
+          skipPush: true
       - name: Set up git
         run: |
           git config user.email "gako358@outlook.com"
@@ -35,12 +69,14 @@ jobs:
 
   build_flake:
     runs-on: ubuntu-20.04
-    needs: [update_flake]
+    timeout-minutes: 55
+    needs: [generate_matrix, update_flake]
     strategy:
       fail-fast: false
+      max-parallel: 5
+      matrix:
+        nixos_configuration: ${{ fromJson(needs.generate_matrix.outputs.nixos_configurations) }}
     steps:
-      # - name: Prepare store folder
-      #   run: sudo mkdir -p /nix
       - name: Free diskspace
         uses: easimon/maximize-build-space@master
         with:
@@ -60,19 +96,59 @@ jobs:
             auto-optimise-store = true
             access-tokens = github.com=${{ secrets.TEST_TOKEN }}
             experimental-features = nix-command flakes
-            substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org https://hnikt.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= hnikt.cachix.org-1:68VdsP/kBPkwqQJA3UKGR6iy8pCAflsj5ekkbWr5LnU=
           install_url: https://releases.nixos.org/nix/nix-2.25.0/install
+      - name: Set up cachix
+        uses: cachix/cachix-action@master
+        with:
+          name: hnikt
+          authToken: "${{ secrets.CACHIX_SIGNING_KEY }}"
+          pathsToPush: result
       - name: Restore flake.lock
         uses: actions/download-artifact@v4
         with:
           name: flake_lock
       - name: Build everything
-        run: nix build .#nixosConfigurations.jca.config.system.build.toplevel
+        run: |
+          nix build .#nixosConfigurations.${{ matrix.nixos_configuration }}.config.system.build.toplevel --out-link result
+
+  check_flake:
+    runs-on: ubuntu-20.04
+    needs: [update_flake]
+    continue-on-error: true
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+        with:
+          token: "${{ secrets.TEST_TOKEN }}"
+      - name: Install nix
+        uses: cachix/install-nix-action@v30
+        with:
+          extra_nix_config: |
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.TEST_TOKEN }}
+            experimental-features = nix-command flakes
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org https://hnikt.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= hnikt.cachix.org-1:68VdsP/kBPkwqQJA3UKGR6iy8pCAflsj5ekkbWr5LnU=
+          install_url: https://releases.nixos.org/nix/nix-2.25.0/install
+      - name: Set up cachix
+        uses: cachix/cachix-action@master
+        with:
+          name: hnikt
+          authToken: "${{ secrets.CACHIX_SIGNING_KEY }}"
+          skipPush: true
+      - name: Restore flake.lock
+        uses: actions/download-artifact@v4
+        with:
+          name: flake_lock
+      - name: Check flake
+        run: nix flake check --keep-going
 
   push_update:
     runs-on: ubuntu-20.04
     permissions: write-all
-    needs: [update_flake, build_flake]
+    needs: [update_flake, build_flake, check_flake]
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
@@ -93,11 +169,11 @@ jobs:
           git push -u origin updates-${{ github.run_id }}
           PR=$(gh pr create \
             --assignee Gako358 \
-            --base master \
+            --base main \
             --body "Automatic flake update on $(date -I)" \
             --fill \
             --label bot \
             --title "Auto update $(date -I)")
-          gh pr merge "$PR" --merge --admin
+          gh pr merge $PR --merge --delete-branch
         env:
           GITHUB_TOKEN: ${{ secrets.TEST_TOKEN }}

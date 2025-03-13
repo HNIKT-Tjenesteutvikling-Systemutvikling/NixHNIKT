@@ -16,6 +16,7 @@ with lib; {
   ];
 
   imports = [
+    ./cachix
     ./desktop.nix
     ./docker.nix
     ./fonts.nix
