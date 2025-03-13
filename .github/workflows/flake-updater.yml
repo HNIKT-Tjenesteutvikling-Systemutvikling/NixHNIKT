@@ -196,7 +196,7 @@ jobs:
           git push -u origin updates-${{ github.run_id }}
           PR=$(gh pr create \
             --assignee Gako358 \
-            --base main \
+            --base master \
             --body "Automatic flake update on $(date -I)" \
             --fill \
             --label bot \
