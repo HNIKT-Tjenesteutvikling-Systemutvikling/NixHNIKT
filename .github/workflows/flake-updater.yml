@@ -74,7 +74,7 @@ jobs:
           path: flake.lock
 
   build_flake:
-    runs-on: ubuntu-latest-4-core
+    runs-on: ubuntu-4core-8gb
     timeout-minutes: 180
     needs: [generate_matrix, update_flake]
     strategy:
