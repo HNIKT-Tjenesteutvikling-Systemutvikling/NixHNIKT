@@ -66,6 +66,7 @@
               virt-manager.enable = true;
               k3s-service.enable = false;
               mysql.enable = true;
+              onedrive.enable = true;
               home-manager = {
                 useUserPackages = true;
                 extraSpecialArgs = {
@@ -96,6 +97,7 @@
               virt-manager.enable = false;
               k3s-service.enable = true;
               mysql.enable = false;
+              onedrive.enable = false;
               home-manager = {
                 useUserPackages = true;
                 extraSpecialArgs = {
@@ -126,6 +128,7 @@
               virt-manager.enable = false;
               k3s-service.enable = false;
               mysql.enable = true;
+              onedrive.enable = false;
               home-manager = {
                 useUserPackages = true;
                 extraSpecialArgs = {
@@ -156,6 +159,7 @@
               virt-manager.enable = false;
               k3s-service.enable = false;
               mysql.enable = true;
+              onedrive.enable = false;
               home-manager = {
                 useUserPackages = true;
                 extraSpecialArgs = {
@@ -186,6 +190,7 @@
               virt-manager.enable = false;
               k3s-service.enable = false;
               mysql.enable = false;
+              onedrive.enable = false;
               home-manager = {
                 useUserPackages = true;
                 extraSpecialArgs = {
@@ -216,6 +221,7 @@
               virt-manager.enable = false;
               k3s-service.enable = false;
               mysql.enable = true;
+              onedrive.enable = false;
               home-manager = {
                 useUserPackages = true;
                 extraSpecialArgs = {
@@ -246,6 +252,7 @@
               virt-manager.enable = false;
               k3s-service.enable = false;
               mysql.enable = true;
+              onedrive.enable = false;
               home-manager = {
                 useUserPackages = true;
                 extraSpecialArgs = {
@@ -276,6 +283,7 @@
               virt-manager.enable = false;
               k3s-service.enable = false;
               mysql.enable = true;
+              onedrive.enable = false;
               home-manager = {
                 useUserPackages = true;
                 extraSpecialArgs = {
