@@ -1,13 +1,15 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   mailClient = pkgs.thunderbird;
-in {
+in
+{
   programs.firefox = {
     enable = true;
     package = pkgs.wrapFirefox pkgs.firefox-devedition-unwrapped {
       extraPolicies = {
-        ExtensionSettings = {};
+        ExtensionSettings = { };
       };
     };
   };
-  home.packages = [mailClient];
+  home.packages = [ mailClient ];
 }

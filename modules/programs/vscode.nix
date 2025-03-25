@@ -1,13 +1,13 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 with lib;
 with builtins; let
   cfg = config.vscode;
-in {
+in
+{
   options.vscode.enable = lib.mkEnableOption "vscode";
 
   config = lib.mkIf cfg.enable {

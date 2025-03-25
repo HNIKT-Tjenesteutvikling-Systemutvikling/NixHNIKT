@@ -1,8 +1,7 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib;
 with builtins; let
@@ -115,7 +114,8 @@ with builtins; let
     format = "#[fg=${fg}]#{b:pane_current_path}";
     module = "${icon}${format}";
   };
-in {
+in
+{
   options.tmux.enable = lib.mkEnableOption "tmux";
 
   config = lib.mkIf cfg.enable {

@@ -67,6 +67,7 @@
               k3s-service.enable = false;
               mysql.enable = true;
               onedrive.enable = true;
+              dropbox.enable = true;
               home-manager = {
                 useUserPackages = true;
                 extraSpecialArgs = {
@@ -98,6 +99,7 @@
               k3s-service.enable = true;
               mysql.enable = false;
               onedrive.enable = false;
+              dropbox.enable = false;
               home-manager = {
                 useUserPackages = true;
                 extraSpecialArgs = {
@@ -129,6 +131,7 @@
               k3s-service.enable = false;
               mysql.enable = true;
               onedrive.enable = false;
+              dropbox.enable = false;
               home-manager = {
                 useUserPackages = true;
                 extraSpecialArgs = {
@@ -160,6 +163,7 @@
               k3s-service.enable = false;
               mysql.enable = true;
               onedrive.enable = false;
+              dropbox.enable = false;
               home-manager = {
                 useUserPackages = true;
                 extraSpecialArgs = {
@@ -191,6 +195,7 @@
               k3s-service.enable = false;
               mysql.enable = false;
               onedrive.enable = false;
+              dropbox.enable = false;
               home-manager = {
                 useUserPackages = true;
                 extraSpecialArgs = {
@@ -222,6 +227,7 @@
               k3s-service.enable = false;
               mysql.enable = true;
               onedrive.enable = false;
+              dropbox.enable = false;
               home-manager = {
                 useUserPackages = true;
                 extraSpecialArgs = {
@@ -253,6 +259,7 @@
               k3s-service.enable = false;
               mysql.enable = true;
               onedrive.enable = false;
+              dropbox.enable = false;
               home-manager = {
                 useUserPackages = true;
                 extraSpecialArgs = {
@@ -284,6 +291,7 @@
               k3s-service.enable = false;
               mysql.enable = true;
               onedrive.enable = false;
+              dropbox.enable = false;
               home-manager = {
                 useUserPackages = true;
                 extraSpecialArgs = {

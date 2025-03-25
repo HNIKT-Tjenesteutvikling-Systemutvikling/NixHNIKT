@@ -1,9 +1,10 @@
 let
   ext = import ./extensions.nix;
-in {
+in
+{
   programs.chromium = {
     enable = true;
     extensions = builtins.attrValues ext;
-    commandLineArgs = ["--ozone-platform-hint=auto"];
+    commandLineArgs = [ "--ozone-platform-hint=auto" ];
   };
 }

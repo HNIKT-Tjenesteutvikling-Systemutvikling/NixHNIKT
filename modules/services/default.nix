@@ -4,7 +4,8 @@ let
       flameshot.enable = true;
     };
   };
-in [
+in
+[
   ./network.nix
   ./secret.nix
   more

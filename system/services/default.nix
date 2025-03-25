@@ -2,6 +2,7 @@
   imports = [
     ./bluetooth.nix
     ./dbus.nix
+    ./dropbox.nix
     ./garbage.nix
     ./gnome.nix
     ./k3s.nix

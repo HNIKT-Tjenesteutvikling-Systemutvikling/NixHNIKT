@@ -1,6 +1,8 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   microsoft-edge = pkgs.microsoft-edge;
-in {
+in
+{
   home.packages = [
     microsoft-edge
   ];
