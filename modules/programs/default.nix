@@ -43,6 +43,7 @@ let
       paprefs # pulseaudio preferences
       prettyping # a nicer ping
       rage # encryption tool for secrets management
+      slack # team communication
       spotify # music streaming
       rclone # cloud storage
       ripgrep # fast grep
@@ -88,7 +89,6 @@ in
   ./browser/discord.nix
   ./browser/edge.nix
   ./browser/firefox.nix
-  ./browser/slack.nix
   ./browser/teams.nix
   ./git.nix
   ./intellij.nix
