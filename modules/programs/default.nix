@@ -5,7 +5,6 @@ let
       acpi # battery info
       arandr # screen layout manager
       asciiquarium # aquarium in your terminal
-      beekeeper-studio # database manager
       btop # alternative to htop & ytop
       cacert # ca certificates
       cmatrix # matrix in your terminal
