@@ -45,6 +45,7 @@ let
       slack # team communication
       spotify # music streaming
       rclone # cloud storage
+      remmina # Remote desktop client
       ripgrep # fast grep
       tldr # summary of a man page
       tree # display files in a tree view
