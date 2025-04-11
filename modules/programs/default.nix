@@ -90,6 +90,7 @@ in
   ./browser/edge.nix
   ./browser/firefox.nix
   ./browser/teams.nix
+  ./browser/zen.nix
   ./git.nix
   ./intellij.nix
   ./tmux.nix

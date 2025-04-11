@@ -17,7 +17,10 @@
     nur.url = "github:nix-community/NUR"; # User contributed pkgs and modules
     nix-colors.url = "github:misterio77/nix-colors"; # Color schemes for usage with home-manager
     impermanence.url = "github:riscadoa/impermanence"; # Utilities for opt-in persistance
-    agenix.url = "github:ryantm/agenix"; # Secrets management
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     neovim-flake.url = "github:gako358/neovim";
   };
