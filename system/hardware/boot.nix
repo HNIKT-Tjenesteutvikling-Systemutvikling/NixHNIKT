@@ -6,16 +6,28 @@
   ];
 
   boot = {
+    consoleLogLevel = 3;
+    initrd = {
+      availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod" ];
+      kernelModules = [ ];
+      verbose = false;
+    };
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "udev.log_priority=3"
+      "rd.systemd.show_status=auto"
+    ];
     loader = {
-      systemd-boot.enable = true;
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot/efi";
       };
+      systemd-boot.enable = true;
     };
-    initrd = {
-      availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod" ];
-      kernelModules = [ ];
+    plymouth = {
+      enable = true;
     };
     kernelModules = [
       "kvm-intel"

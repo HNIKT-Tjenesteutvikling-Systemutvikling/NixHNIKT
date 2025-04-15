@@ -2,21 +2,20 @@
   description = "HNIKT Flake";
 
   inputs = {
-    # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    # Home manager
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Utilities for building our flake
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-utils.url = "github:numtide/flake-utils";
-
-    # Extra flakes for modules, packages, etc
-    hardware.url = "github:nixos/nixos-hardware"; # Convenience modules for hardware-specific quirks
-    nur.url = "github:nix-community/NUR"; # User contributed pkgs and modules
-    nix-colors.url = "github:misterio77/nix-colors"; # Color schemes for usage with home-manager
-    impermanence.url = "github:riscadoa/impermanence"; # Utilities for opt-in persistance
+    hardware.url = "github:nixos/nixos-hardware";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    impermanence.url = "github:nix-community/impermanence";
+    nix-colors.url = "github:misterio77/nix-colors";
+    nur.url = "github:nix-community/NUR";
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
