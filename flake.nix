@@ -71,13 +71,13 @@
               onedrive.enable = true;
               dropbox.enable = true;
               home-manager = {
+                useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = {
                   inherit inputs outputs;
                 };
                 backupFileExtension = ".hm-backup";
                 users.dev = { ... }: {
-                  nixpkgs.config.allowUnfree = true;
                   imports = [ ./modules ./modules/users/grindstein ];
                   tmux.enable = true;
                   intellij.enable = true;
@@ -103,13 +103,13 @@
               onedrive.enable = false;
               dropbox.enable = false;
               home-manager = {
+                useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = {
                   inherit inputs outputs;
                 };
                 backupFileExtension = ".hm-backup";
                 users.dev = { ... }: {
-                  nixpkgs.config.allowUnfree = true;
                   imports = [ ./modules ./modules/users/ievensen ];
                   tmux.enable = true;
                   intellij.enable = false;
@@ -135,13 +135,13 @@
               onedrive.enable = false;
               dropbox.enable = false;
               home-manager = {
+                useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = {
                   inherit inputs outputs;
                 };
                 backupFileExtension = ".hm-backup";
                 users.dev = { ... }: {
-                  nixpkgs.config.allowUnfree = true;
                   imports = [ ./modules ./modules/users/intervbs ];
                   tmux.enable = false;
                   intellij.enable = true;
@@ -167,13 +167,13 @@
               onedrive.enable = false;
               dropbox.enable = false;
               home-manager = {
+                useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = {
                   inherit inputs outputs;
                 };
                 backupFileExtension = ".hm-backup";
                 users.dev = { ... }: {
-                  nixpkgs.config.allowUnfree = true;
                   imports = [ ./modules ./modules/users/jca ];
                   tmux.enable = false;
                   intellij.enable = true;
@@ -199,13 +199,13 @@
               onedrive.enable = false;
               dropbox.enable = false;
               home-manager = {
+                useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = {
                   inherit inputs outputs;
                 };
                 backupFileExtension = ".hm-backup";
                 users.dev = { ... }: {
-                  nixpkgs.config.allowUnfree = true;
                   imports = [ ./modules ./modules/users/neethan ];
                   tmux.enable = false;
                   intellij.enable = false;
@@ -231,13 +231,13 @@
               onedrive.enable = false;
               dropbox.enable = false;
               home-manager = {
+                useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = {
                   inherit inputs outputs;
                 };
                 backupFileExtension = ".hm-backup";
                 users.dev = { ... }: {
-                  nixpkgs.config.allowUnfree = true;
                   imports = [ ./modules ./modules/users/sigubrat ];
                   tmux.enable = false;
                   intellij.enable = true;
@@ -263,13 +263,13 @@
               onedrive.enable = false;
               dropbox.enable = false;
               home-manager = {
+                useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = {
                   inherit inputs outputs;
                 };
                 backupFileExtension = ".hm-backup";
                 users.dev = { ... }: {
-                  nixpkgs.config.allowUnfree = true;
                   imports = [ ./modules ./modules/users/Solheim ];
                   tmux.enable = false;
                   intellij.enable = true;
@@ -295,13 +295,13 @@
               onedrive.enable = false;
               dropbox.enable = false;
               home-manager = {
+                useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = {
                   inherit inputs outputs;
                 };
                 backupFileExtension = ".hm-backup";
                 users.dev = { ... }: {
-                  nixpkgs.config.allowUnfree = true;
                   imports = [ ./modules ./modules/users/Turbonaepskrel ];
                   tmux.enable = false;
                   intellij.enable = true;
