@@ -66,10 +66,10 @@
             ./hosts/grindstein
             {
               virt-manager.enable = true;
-              k3s-service.enable = false;
               mysql.enable = true;
               onedrive.enable = true;
               dropbox.enable = true;
+              printing.enable = true;
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
@@ -81,7 +81,6 @@
                   imports = [ ./modules ./modules/users/grindstein ];
                   tmux.enable = true;
                   intellij.enable = true;
-                  rider.enable = false;
                   vscode.enable = true;
                 };
               };
@@ -97,11 +96,7 @@
             ./system
             ./hosts/ievensen
             {
-              virt-manager.enable = false;
               k3s-service.enable = true;
-              mysql.enable = false;
-              onedrive.enable = false;
-              dropbox.enable = false;
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
@@ -112,8 +107,6 @@
                 users.dev = { ... }: {
                   imports = [ ./modules ./modules/users/ievensen ];
                   tmux.enable = true;
-                  intellij.enable = false;
-                  rider.enable = false;
                   vscode.enable = true;
                 };
               };
@@ -129,11 +122,7 @@
             ./system
             ./hosts/intervbs
             {
-              virt-manager.enable = false;
-              k3s-service.enable = false;
               mysql.enable = true;
-              onedrive.enable = false;
-              dropbox.enable = false;
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
@@ -143,9 +132,7 @@
                 backupFileExtension = ".hm-backup";
                 users.dev = { ... }: {
                   imports = [ ./modules ./modules/users/intervbs ];
-                  tmux.enable = false;
                   intellij.enable = true;
-                  rider.enable = false;
                   vscode.enable = true;
                 };
               };
@@ -161,11 +148,7 @@
             ./system
             ./hosts/jca
             {
-              virt-manager.enable = false;
-              k3s-service.enable = false;
               mysql.enable = true;
-              onedrive.enable = false;
-              dropbox.enable = false;
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
@@ -175,9 +158,7 @@
                 backupFileExtension = ".hm-backup";
                 users.dev = { ... }: {
                   imports = [ ./modules ./modules/users/jca ];
-                  tmux.enable = false;
                   intellij.enable = true;
-                  rider.enable = false;
                   vscode.enable = true;
                 };
               };
@@ -193,11 +174,6 @@
             ./system
             ./hosts/neethan
             {
-              virt-manager.enable = false;
-              k3s-service.enable = false;
-              mysql.enable = false;
-              onedrive.enable = false;
-              dropbox.enable = false;
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
@@ -207,9 +183,6 @@
                 backupFileExtension = ".hm-backup";
                 users.dev = { ... }: {
                   imports = [ ./modules ./modules/users/neethan ];
-                  tmux.enable = false;
-                  intellij.enable = false;
-                  rider.enable = false;
                   vscode.enable = true;
                 };
               };
@@ -225,11 +198,7 @@
             ./system
             ./hosts/sigubrat
             {
-              virt-manager.enable = false;
-              k3s-service.enable = false;
               mysql.enable = true;
-              onedrive.enable = false;
-              dropbox.enable = false;
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
@@ -239,9 +208,7 @@
                 backupFileExtension = ".hm-backup";
                 users.dev = { ... }: {
                   imports = [ ./modules ./modules/users/sigubrat ];
-                  tmux.enable = false;
                   intellij.enable = true;
-                  rider.enable = false;
                   vscode.enable = true;
                 };
               };
@@ -257,11 +224,7 @@
             ./system
             ./hosts/Solheim
             {
-              virt-manager.enable = false;
-              k3s-service.enable = false;
               mysql.enable = true;
-              onedrive.enable = false;
-              dropbox.enable = false;
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
@@ -271,9 +234,7 @@
                 backupFileExtension = ".hm-backup";
                 users.dev = { ... }: {
                   imports = [ ./modules ./modules/users/Solheim ];
-                  tmux.enable = false;
                   intellij.enable = true;
-                  rider.enable = false;
                   vscode.enable = true;
                 };
               };
@@ -289,11 +250,7 @@
             ./system
             ./hosts/Turbonaepskrel
             {
-              virt-manager.enable = false;
-              k3s-service.enable = false;
               mysql.enable = true;
-              onedrive.enable = false;
-              dropbox.enable = false;
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
@@ -303,9 +260,7 @@
                 backupFileExtension = ".hm-backup";
                 users.dev = { ... }: {
                   imports = [ ./modules ./modules/users/Turbonaepskrel ];
-                  tmux.enable = false;
                   intellij.enable = true;
-                  rider.enable = false;
                   vscode.enable = true;
                 };
               };

@@ -11,6 +11,7 @@
     ./onedrive.nix
     ./openssh.nix
     ./pipewire.nix
+    ./printing.nix
     ./qemu.nix
   ];
 }
