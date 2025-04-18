@@ -13,7 +13,6 @@ in
     ./cli
     ./programs
     ./services
-    ./themes
   ];
   xdg = {
     inherit configHome;
