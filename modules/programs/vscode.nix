@@ -3,12 +3,11 @@
 , pkgs
 , ...
 }:
-with lib;
-with builtins; let
-  cfg = config.vscode;
+let
+  cfg = config.program.vscode;
 in
 {
-  options.vscode.enable = lib.mkEnableOption "vscode";
+  options.program.vscode.enable = lib.mkEnableOption "vscode";
 
   config = lib.mkIf cfg.enable {
     programs.vscode = {

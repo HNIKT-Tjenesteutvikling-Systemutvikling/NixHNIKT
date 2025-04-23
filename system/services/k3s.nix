@@ -1,16 +1,17 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
+{ config
+, lib
+, pkgs
+, ...
+}:
 let
-  cfg = config.k3s-service;
+  cfg = config.service.k3s-service;
 in
 {
-  options.k3s-service = {
-    enable = mkEnableOption "Kubernetes k3s service";
+  options.service.k3s-service = {
+    enable = lib.mkEnableOption "Kubernetes k3s service";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = [ pkgs.k3s ];
 
     networking.firewall = {

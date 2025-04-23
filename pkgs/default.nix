@@ -1,4 +1,5 @@
-# When you add custom packages, list them here
-{ pkgs }: {
-  # example = pkgs.callPackage ./example { };
+{ inputs, lib, config, pkgs, system, ... }: {
+  perSystem = { pkgs, lib, config, system, ... }: {
+    packages = { };
+  };
 }

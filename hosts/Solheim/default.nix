@@ -11,4 +11,7 @@
       '';
     };
   };
+
+  # Modules loaded
+  service.mysql.enable = true;
 }

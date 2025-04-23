@@ -1,3 +1,4 @@
+{ ... }:
 let
   username = "dev";
   homeDirectory = "/home/${username}";
@@ -10,8 +11,8 @@ in
     gh.enable = true;
   };
   imports = builtins.concatMap import [
-    ./cli
     ./programs
+    ./scripts
     ./services
   ];
   xdg = {
@@ -19,21 +20,11 @@ in
     enable = true;
   };
 
-  dconf.settings = {
-    "org/virt-manager/virt-manager/connections" = {
-      autoconnect = [ "qemu:///system" ];
-      uris = [ "qemu:///system" ];
-    };
-  };
-
   home = {
     inherit username homeDirectory;
     stateVersion = "24.11";
   };
 
-  # restart services on change
   systemd.user.startServices = "sd-switch";
-
-  # notifications about home-manager news
   news.display = "silent";
 }

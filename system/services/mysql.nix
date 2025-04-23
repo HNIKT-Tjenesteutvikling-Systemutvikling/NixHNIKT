@@ -4,10 +4,10 @@
 , ...
 }:
 let
-  cfg = config.mysql;
+  cfg = config.service.mysql;
 in
 {
-  options.mysql.enable = lib.mkEnableOption "mysql";
+  options.service.mysql.enable = lib.mkEnableOption "mysql";
   config = lib.mkIf cfg.enable {
     services.mysql = {
       enable = true;

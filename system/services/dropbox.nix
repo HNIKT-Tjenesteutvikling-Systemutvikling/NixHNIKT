@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.dropbox;
+  cfg = config.service.dropbox;
 
 in
 {
-  options.dropbox.enable = lib.mkEnableOption "dropbox";
+  options.service.dropbox.enable = lib.mkEnableOption "dropbox";
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       dropbox-cli

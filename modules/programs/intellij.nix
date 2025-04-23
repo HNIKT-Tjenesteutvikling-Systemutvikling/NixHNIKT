@@ -5,7 +5,7 @@
 }:
 with lib;
 with builtins; let
-  cfg = config.intellij;
+  cfg = config.program.intellij;
 
   devSDKs = with pkgs; {
     java21 = jdk21;
@@ -22,7 +22,7 @@ with builtins; let
   devSymlink = pkgs.linkFarm "local-dev" entries;
 in
 {
-  options.intellij.enable = lib.mkEnableOption "intellij";
+  options.program.intellij.enable = lib.mkEnableOption "intellij";
 
   config = lib.mkIf cfg.enable {
     home.packages = [ pkgs.jetbrains.idea-ultimate ];

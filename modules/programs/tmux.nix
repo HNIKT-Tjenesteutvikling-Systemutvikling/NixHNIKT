@@ -5,7 +5,7 @@
 }:
 with lib;
 with builtins; let
-  cfg = config.tmux;
+  cfg = config.program.tmux;
   bg = "default";
   fg = "default";
   bg2 = "brightblack";
@@ -116,7 +116,7 @@ with builtins; let
   };
 in
 {
-  options.tmux.enable = lib.mkEnableOption "tmux";
+  options.program.tmux.enable = lib.mkEnableOption "tmux";
 
   config = lib.mkIf cfg.enable {
     programs.tmux = {

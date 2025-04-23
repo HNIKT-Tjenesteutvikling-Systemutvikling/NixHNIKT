@@ -5,7 +5,7 @@
 }:
 with lib;
 with builtins; let
-  cfg = config.rider;
+  cfg = config.program.rider;
 
   devSDKs = with pkgs; {
     dotnet-sdk = dotnet-sdk;
@@ -21,7 +21,7 @@ with builtins; let
   devSymlink = pkgs.linkFarm "local-dotnet" entries;
 in
 {
-  options.rider.enable = lib.mkEnableOption "rider";
+  options.program.rider.enable = lib.mkEnableOption "rider";
 
   config = lib.mkIf cfg.enable {
     home.packages = [ pkgs.jetbrains.rider ];

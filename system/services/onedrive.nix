@@ -3,10 +3,10 @@
 , ...
 }:
 let
-  cfg = config.onedrive;
+  cfg = config.service.onedrive;
 in
 {
-  options.onedrive.enable = lib.mkEnableOption "onedrive";
+  options.service.onedrive.enable = lib.mkEnableOption "onedrive";
 
   config = lib.mkIf cfg.enable {
     services.onedrive.enable = true;

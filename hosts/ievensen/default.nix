@@ -11,4 +11,7 @@
       '';
     };
   };
+
+  # Modules loaded
+  service.k3s-service.enable = true;
 }

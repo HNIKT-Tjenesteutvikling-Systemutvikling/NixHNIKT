@@ -6,7 +6,8 @@ let
   };
 in
 [
+  ./dconf.nix
+  ./gpg.nix
   ./network.nix
-  ./secret.nix
   more
 ]

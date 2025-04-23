@@ -1,6 +1,6 @@
 {
   imports = [
-    ./bluetooth.nix
+    ./blueman.nix
     ./dbus.nix
     ./dropbox.nix
     ./garbage.nix

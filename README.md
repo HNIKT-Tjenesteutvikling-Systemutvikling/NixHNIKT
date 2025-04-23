@@ -25,9 +25,6 @@ This flake-based NixOS configuration provides a consistent, reproducible develop
 - `hosts/`: System configurations for each machine
 - `modules/`: Shared NixOS and home-manager modules
 - `system/`: Core system configurations (hardware, programs, services)
-- `templates/`: Project templates for different languages
-- `update.sh`: Script for updating the system
-- `install.sh`: Script for initial system installation
 
 ## Getting Started
 
@@ -41,8 +38,8 @@ This flake-based NixOS configuration provides a consistent, reproducible develop
 
 Before installation, you need to set up your user profile:
 
-1. Create a user configuration in `modules/users/yourusername/default.nix`
-2. Follow the examples in existing user configurations (like `modules/users/neethan/default.nix`)
+1. Create a user configuration in `modules/profiles/yourusername/default.nix`
+2. Follow the examples in existing user configurations (like `modules/profiles/neethan/default.nix`)
 
 ### Installation Methods
 
@@ -57,7 +54,7 @@ Before installation, you need to set up your user profile:
    ```
 4. Run the installation script:
    ```bash
-   ./install.sh
+   ./scripts/install.sh
    ```
 
 #### On an Existing NixOS System
@@ -78,12 +75,6 @@ If you already have a NixOS system and want to switch to this configuration:
    nixos-rebuild switch --flake .#$(hostname)
    ```
 
-   Alternatively, use the install script:
-
-   ```bash
-   ./install.sh
-   ```
-
 #### Via Installation Media (Direct)
 
 You can also install directly from the GitHub repository:
@@ -91,41 +82,6 @@ You can also install directly from the GitHub repository:
 ```bash
 nixos-install --flake github:HNIKT-Tjenesteutvikling-Systemutvikling/NixHNIKT#$(hostname)
 ```
-
-## Updating
-
-The configuration includes an automatic update mechanism:
-
-```bash
-./update.sh
-```
-
-This script:
-
-1. Pulls the latest changes from the remote repository
-2. Handles any local modifications (offering to stash, commit, or discard)
-3. Creates branches for changes when needed
-4. Performs garbage collection to free disk space
-5. Rebuilds the system with the latest configuration
-6. Optionally restarts the system if needed
-
-## Available Templates
-
-Initialize new projects using the included templates:
-
-```bash
-nix flake init -t .#template-name
-```
-
-Available templates:
-
-- `c`: C development environment
-- `devshell`: Basic development shell
-- `java`: Java development environment
-- `nodejs`: Node.js development environment
-- `python`: Python development environment
-- `rust`: Rust development environment
-- `wasm`: WebAssembly development environment
 
 ## License
 

@@ -1,10 +1,10 @@
 { config, lib, ... }:
 with lib;
 let
-  cfg = config.printing;
+  cfg = config.service.printing;
 in
 {
-  options.printing = {
+  options.service.printing = {
     enable = mkOption {
       type = types.bool;
       default = false;
@@ -15,7 +15,7 @@ in
   config = mkIf cfg.enable {
     services.avahi = {
       enable = true;
-      nssmdns = true;
+      nssmdns4 = true;
       openFirewall = true;
       publish = {
         enable = true;
