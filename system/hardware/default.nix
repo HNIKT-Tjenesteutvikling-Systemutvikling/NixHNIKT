@@ -19,7 +19,7 @@
 
   users = {
     defaultUserShell = pkgs.fish;
-    mutableUsers = false;
-    users.root.initialHashedPassword = "$6$pbE4rcxk1KsvypJn$ZJlFtw85hgSWzdJnAuZr935zmm6Qc974ehL13/8WGPKnxX4epK5FiP2BBM/q89Gii9Xk0hxVvVKOkdkZuR2xE0";
+    # mutableUsers = false;
+    # users.root.initialHashedPassword = "$6$pbE4rcxk1KsvypJn$ZJlFtw85hgSWzdJnAuZr935zmm6Qc974ehL13/8WGPKnxX4epK5FiP2BBM/q89Gii9Xk0hxVvVKOkdkZuR2xE0";
   };
 }
