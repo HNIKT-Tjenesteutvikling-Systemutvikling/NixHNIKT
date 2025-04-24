@@ -17,7 +17,7 @@ with lib; {
     ./cachix
     ./desktop.nix
     ./docker.nix
+    ./fish.nix
     ./fonts.nix
-    ./shell.nix
   ];
 }

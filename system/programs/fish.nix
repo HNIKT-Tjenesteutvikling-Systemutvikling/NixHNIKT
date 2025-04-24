@@ -66,15 +66,13 @@ in
       xdg-open = "${pkgs.mimeo}/bin/mimeo";
 
       # Nix
-      gcn = "nix-collect-garbage";
-      gcd = "sudo nix-collect-garbage -d";
+      nixgc = "nix-collect-garbage";
+      nixgcd = "sudo nix-collect-garbage -d";
 
       # Locations
-      dot = "cd ~/Sources/dotfiles";
+      dot = "cd ~/Sources/NixHNIKT";
       doc = "cd ~/Documents";
-      neovim = "cd ~/Projects/neovim";
       work = "cd ~/Projects/workspace/";
-      www = "cd ~/Projects/wwwsite/";
 
       update = "nix flake update";
       supdate = "sudo nix flake update";
