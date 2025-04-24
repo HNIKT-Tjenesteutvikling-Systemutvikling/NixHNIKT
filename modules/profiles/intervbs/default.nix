@@ -25,6 +25,7 @@ in
   # Home modules to load
   program = {
     dbeaver.enable = true;
+    discord.enable = true;
     gimp.enable = true;
     intellij.enable = true;
     keepass.enable = true;

@@ -9,6 +9,7 @@
 
   # Home modules to load
   program = {
+    discord.enable = true;
     gimp.enable = true;
     keepass.enable = true;
     remmina.enable = true;
