@@ -2,6 +2,7 @@ let
   more = { pkgs, ... }: {
     home.packages = with pkgs; [
       acpi # battery info
+      any-nix-shell # fish support for nix shell
       arandr # screen layout manager
       btop # alternative to htop & ytop
       cacert # ca certificates
