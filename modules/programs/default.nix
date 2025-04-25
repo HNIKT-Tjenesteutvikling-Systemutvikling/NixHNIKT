@@ -15,6 +15,7 @@ let
       glow # terminal markdown viewer
       headsetcontrol # logitech headset control
       hyperfine # command-line benchmarking tool
+      jump # fast directory navigation
       killall # kill processes by name
       lazygit # terminal git ui
       libsecret # secret management
