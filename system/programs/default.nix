@@ -9,7 +9,7 @@ with lib; {
     wget
     git
 
-    nodejs-18_x # Github Copilot requires nodejs 16
+    nodejs_20 # Github Copilot requires
     inputs.neovim-flake.defaultPackage.${pkgs.system}
   ];
 
