@@ -1,5 +1,5 @@
-{ inputs, lib, config, pkgs, system, ... }: {
-  perSystem = { pkgs, lib, config, system, ... }: {
+_: {
+  perSystem = _: {
     packages = { };
   };
 }

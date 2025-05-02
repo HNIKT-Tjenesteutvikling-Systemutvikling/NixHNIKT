@@ -1,13 +1,7 @@
 let
-  scripts =
-    { config
-    , lib
-    , pkgs
-    , ...
-    }:
+  scripts = { pkgs, ... }:
     let
       gen-ssh-key = pkgs.callPackage ./gen-ssh-key.nix { inherit pkgs; };
-      fvm-install = pkgs.callPackage ./fvm-install.nix { inherit pkgs; };
     in
     {
       home.packages =

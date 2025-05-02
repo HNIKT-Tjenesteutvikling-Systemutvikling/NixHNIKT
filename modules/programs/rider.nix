@@ -3,13 +3,11 @@
 , pkgs
 , ...
 }:
-with lib;
-with builtins; let
+let
   cfg = config.program.rider;
 
   devSDKs = with pkgs; {
-    dotnet-sdk = dotnet-sdk;
-    dotnet-runtime = dotnet-runtime;
+    inherit dotnet-sdk dotnet-runtime;
   };
 
   mkEntry = name: value: {

@@ -3,14 +3,13 @@
 , pkgs
 , ...
 }:
-with lib;
-with builtins; let
+let
   cfg = config.program.intellij;
 
   devSDKs = with pkgs; {
     java21 = jdk21;
     scala = dotty;
-    metals = metals;
+    inherit metals;
   };
 
   mkEntry = name: value: {
