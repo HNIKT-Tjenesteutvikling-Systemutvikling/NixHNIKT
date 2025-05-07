@@ -52,11 +52,12 @@ in
 
       # Git alias
       gcm = "git checkout master";
-      gst = "git status";
+      gs = "git status";
       ga = "git add";
       gaa = "git add -A";
       gm = "git commit -m";
       gp = "git push";
+      gc = "git checkout";
 
       # Maven alias
       mvncp = "mvn clean package";
