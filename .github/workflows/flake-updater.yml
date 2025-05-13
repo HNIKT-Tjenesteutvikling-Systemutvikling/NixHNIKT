@@ -8,7 +8,8 @@ jobs:
   generate_matrix:
     runs-on: ubuntu-latest
     outputs:
-      nixos_configurations: ${{ steps.gen_nixos_configurations.outputs.nixos_configurations }}
+      nixos_configurations:
+        ${{ steps.gen_nixos_configurations.outputs.nixos_configurations }}
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
@@ -30,14 +31,7 @@ jobs:
           nix flake show --json > flake.json
       - id: gen_nixos_configurations
         run: |
-          nixos_configurations=$(jq -c '.nixosConfigurations | keys' < flake.json)
-          # Get array length and calculate max index (length-1)
-          length=$(echo $nixos_configurations | jq 'length')
-          max_index=$((length - 1))
-          # Select a random configuration from the list
-          random_index=$(shuf -i 0-$max_index -n 1)
-          random_config=$(echo $nixos_configurations | jq -r ".[$random_index]")
-          echo "nixos_configurations=[\"$random_config\"]" >> $GITHUB_OUTPUT
+          echo 'nixos_configurations=["grindstein"]' >> $GITHUB_OUTPUT
 
   update_flake:
     runs-on: ubuntu-latest
@@ -81,7 +75,8 @@ jobs:
       fail-fast: false
       max-parallel: 3
       matrix:
-        nixos_configuration: ${{ fromJson(needs.generate_matrix.outputs.nixos_configurations) }}
+        nixos_configuration:
+          ${{ fromJson(needs.generate_matrix.outputs.nixos_configurations) }}
     steps:
       - name: Free diskspace
         uses: easimon/maximize-build-space@master
@@ -204,3 +199,4 @@ jobs:
           gh pr merge $PR --merge --admin
         env:
           GITHUB_TOKEN: ${{ secrets.TEST_TOKEN }}
+
