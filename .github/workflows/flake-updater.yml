@@ -131,10 +131,11 @@ jobs:
           # Build the configuration
           nix build .#nixosConfigurations.${{ matrix.nixos_configuration }}.config.system.build.toplevel --out-link result
       - name: Push to cachix in smaller batches
-        run: |
-          for path in $(nix path-info --json result | jq -r '.[].path'); do
-            cachix push hnikt $path || true
-          done
+        # Not pushing to cachix for now, need to figure out the storages problem
+        # run: |
+        #   for path in $(nix path-info --json result | jq -r '.[].path'); do
+        #     cachix push hnikt $path || true
+        #   done
 
   check_flake:
     runs-on: ubuntu-latest
