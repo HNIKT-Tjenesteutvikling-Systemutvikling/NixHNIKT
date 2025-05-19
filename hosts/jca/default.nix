@@ -13,5 +13,8 @@
   };
 
   # Modules loaded
-  service.mysql.enable = true;
+  service = {
+    mysql.enable = true;
+    printing.enable = true;
+  };
 }
