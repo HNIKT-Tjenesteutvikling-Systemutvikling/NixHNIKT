@@ -17,6 +17,6 @@
     spotify.enable = true;
     tmux.enable = true;
     vscode.enable = true;
-    wmvare-horizon.enable = true;
+    wmware-horizon.enable = true;
   };
 }
