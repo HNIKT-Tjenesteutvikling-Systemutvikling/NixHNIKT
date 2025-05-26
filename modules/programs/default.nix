@@ -46,7 +46,7 @@ let
 in
 [
   ./browser/chromium.nix
-  ./browser/edge.nix
+  #./browser/edge.nix
   ./browser/firefox.nix
   ./browser/zen.nix
   ./anydesk.nix
