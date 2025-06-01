@@ -12,6 +12,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.vscode = {
       enable = true;
+      package = pkgs.vscode.fhs;
       mutableExtensionsDir = true;
       profiles.default = {
         extensions = with pkgs.vscode-extensions; [
