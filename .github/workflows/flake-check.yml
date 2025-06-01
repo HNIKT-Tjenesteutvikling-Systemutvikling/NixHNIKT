@@ -1,7 +1,10 @@
 name: "PR Flake Check"
+
 permissions:
   contents: read
   issues: write
+  pull-requests: write
+
 on:
   pull_request:
     types: [opened, synchronize, reopened]
@@ -62,6 +65,6 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '✅ **Flake check passed**\n\nThe `nix flake check --all-systems` command completed successfully for this PR.'
+              body: '✅ **Flake check passed**\n\nThis PR has checked out successfully.'
             })
 
