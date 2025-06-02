@@ -1,0 +1,70 @@
+name: "PR Flake Check"
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  flake_check:
+    runs-on: ubuntu-latest
+    if: ${{ !startsWith(github.head_ref, 'updates-') }}
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          ref: ${{ github.head_ref }}
+
+      - name: Install nix
+        uses: cachix/install-nix-action@v30
+        with:
+          extra_nix_config: |
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.TEST_TOKEN }}
+            experimental-features = nix-command flakes
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org https://hnikt.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= hnikt.cachix.org-1:68VdsP/kBPkwqQJA3UKGR6iy8pCAflsj5ekkbWr5LnU=
+          install_url: https://releases.nixos.org/nix/nix-2.25.0/install
+
+      - name: Set up cachix
+        uses: cachix/cachix-action@master
+        with:
+          name: hnikt
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+
+      - name: Run flake check
+        run: |
+          echo "Running nix flake check --all-systems on PR #${{ github.event.number }}"
+          nix flake check --all-systems --keep-going
+
+      - name: Comment on PR if check fails
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '❌ **Flake check failed**\n\nThe `nix flake check --all-systems` command failed for this PR. Please check the [workflow logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.'
+            })
+
+      - name: Comment on PR if check succeeds
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ **Flake check passed**\n\nThis PR has checked out successfully.'
+            })
+
