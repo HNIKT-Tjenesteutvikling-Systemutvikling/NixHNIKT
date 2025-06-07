@@ -15,6 +15,7 @@ in
       package = pkgs.vscode.fhs;
       mutableExtensionsDir = true;
       profiles.default = {
+        # Extensions are managed by Nix - users can still install additional ones
         extensions = with pkgs.vscode-extensions; [
           # Copilot
           github.copilot
@@ -58,7 +59,14 @@ in
           esbenp.prettier-vscode
         ];
 
-        userSettings = {
+        # Don't manage userSettings
+        userSettings = { };
+      };
+    };
+
+    home = {
+      file.".config/Code/User/nix-defaults.json" = {
+        text = builtins.toJSON {
           # Performance improvements for Scala/Metals
           "files.watcherExclude" = {
             "**/.bloop" = true;
@@ -166,50 +174,16 @@ in
           "[html]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
         };
       };
-    };
 
-    home = {
-      file.".config/Code/User/settings.json".enable = false;
-      file.".config/Code/User/nix-system-settings.json".text = builtins.toJSON {
-        # Performance improvements
-        "files.watcherExclude" = {
-          "**/.bloop" = true;
-          "**/.metals" = true;
-          "**/.ammonite" = true;
-        };
-
-        # Language servers and formatters
-        "nix.enableLanguageServer" = true;
-        "nix.serverPath" = "${pkgs.nil}/bin/nil";
-        "prettier.prettierPath" = "${pkgs.nodePackages.prettier}/bin/prettier";
-        "nix.formatterPath" = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
-
-        # Java/Metals: use environment variables
-        "java.configuration.detectJdksAtStart" = true;
-        "metals.sbtScript" = "${pkgs.sbt}/bin/sbt";
-        "metals.javaHome" = null;
-        "java.home" = null;
-
-        # System tool paths
-        "docker.dockerPath" = "${pkgs.docker}/bin/docker";
-        "remote.SSH.path" = "${pkgs.openssh}/bin/ssh";
-
-        # Core UX improvements that should always be enforced
-        "workbench.startupEditor" = "none";
-        "editor.formatOnSave" = true;
-        "git.enableSmartCommit" = true;
-        "security.workspace.trust.untrustedFiles" = "open";
-      };
-
-      activation.setupVSCodeSettings = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+      # Initialize settings.json only if it doesn't exist
+      activation.initializeVSCodeSettings = config.lib.dag.entryAfter [ "writeBoundary" ] ''
         SETTINGS_FILE="$HOME/.config/Code/User/settings.json"
-        SYSTEM_SETTINGS="$HOME/.config/Code/User/nix-system-settings.json"
+        NIX_DEFAULTS="$HOME/.config/Code/User/nix-defaults.json"
 
+        # Only initialize if settings.json doesn't exist
         if [ ! -f "$SETTINGS_FILE" ]; then
-          cp "$SYSTEM_SETTINGS" "$SETTINGS_FILE"
-        else
-          ${pkgs.jq}/bin/jq -s '.[1] * .[0]' "$SYSTEM_SETTINGS" "$SETTINGS_FILE" > "$SETTINGS_FILE.tmp"
-          mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
+          echo "Initializing VS Code settings with Nix defaults..."
+          cp "$NIX_DEFAULTS" "$SETTINGS_FILE"
         fi
       '';
 
