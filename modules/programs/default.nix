@@ -12,7 +12,7 @@ let
       duf # disk usage/free utility
       eza # a better `ls`
       fd # "find" for files
-      github-copilot-cli # github copilot cli
+      gh-copilot # github copilot cli
       glow # terminal markdown viewer
       headsetcontrol # logitech headset control
       hyperfine # command-line benchmarking tool
