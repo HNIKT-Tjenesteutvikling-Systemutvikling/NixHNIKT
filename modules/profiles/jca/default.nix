@@ -16,7 +16,10 @@
     remmina.enable = true;
     slack.enable = true;
     spotify.enable = true;
-    vscode.enable = true;
+    vscode = {
+      enable = true;
+      theme = "light";
+    };
     wmware-horizon.enable = true;
   };
 }

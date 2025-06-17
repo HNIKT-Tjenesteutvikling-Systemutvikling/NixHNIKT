@@ -5,17 +5,69 @@
 }:
 let
   cfg = config.program.vscode;
+
+  # VS Code only tools
+  vscodeOnlyTools = with pkgs; [
+    # Language servers and formatters
+    nil
+    metals
+    nixpkgs-fmt
+    nodePackages.prettier
+    google-java-format
+    black
+    rustfmt
+    haskell-language-server
+    kotlin-language-server
+
+    # JavaScript/TypeScript ecosystem
+    nodejs_20
+    nodePackages.typescript
+    typescript-language-server
+    vue-language-server
+
+    # Utilities
+    jq
+  ];
+
+  # Create a PATH string for these tools
+  vscodeOnlyPath = "${pkgs.lib.makeBinPath vscodeOnlyTools}";
+
+  # Create a PATH string for system tools
+  systemToolsPath = "/run/current-system/sw/bin";
+
+  # Use the nix-profile path for Home Manager packages
+  homeManagerPath = "/etc/profiles/per-user/${config.home.username}/bin";
 in
 {
-  options.program.vscode.enable = lib.mkEnableOption "vscode";
+  options.program.vscode = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enable VSCode";
+    };
+
+    godMode = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enable vim mode";
+    };
+
+    theme = lib.mkOption {
+      type = lib.types.enum [ "dark" "light" ];
+      default = "dark";
+      description = "VSCode color theme";
+    };
+  };
 
   config = lib.mkIf cfg.enable {
+
     programs.vscode = {
       enable = true;
-      package = pkgs.vscode.fhs;
+      package = pkgs.vscode;
       mutableExtensionsDir = true;
       profiles.default = {
-        # Extensions are managed by Nix - users can still install additional ones
+        enableUpdateCheck = false;
+        enableExtensionUpdateCheck = false;
         extensions = with pkgs.vscode-extensions; [
           # Copilot
           github.copilot
@@ -25,16 +77,28 @@ in
           editorconfig.editorconfig
           ms-azuretools.vscode-docker
           ms-vscode-remote.remote-ssh
+          ms-vscode-remote.remote-ssh-edit
+          ms-vscode-remote.remote-containers
+          ms-vscode.makefile-tools
+          mkhl.direnv
+          bmalehorn.vscode-fish
 
-          # Scala/Metals
-          scalameta.metals
-          scala-lang.scala
+          # Formatters
+          esbenp.prettier-vscode
 
-          # Java essentials
+          # Haskell
+          haskell.haskell
+          justusadam.language-haskell
+
+          # Java
           redhat.java
           vscjava.vscode-java-debug
           vscjava.vscode-java-dependency
           vscjava.vscode-java-pack
+
+          # Javascript/CSS
+          vue.volar
+          bradlc.vscode-tailwindcss
 
           # Kotlin
           mathiasfrohlich.kotlin
@@ -43,6 +107,18 @@ in
           bbenoist.nix
           jnoortheen.nix-ide
 
+          # Python
+          ms-python.python
+          ms-pyright.pyright
+
+          # Rust
+          rust-lang.rust-analyzer
+          tamasfe.even-better-toml
+
+          # Scala/Metals
+          scalameta.metals
+          scala-lang.scala
+
           # Yaml/Markdown
           bierner.github-markdown-preview
           bierner.markdown-checkbox
@@ -50,23 +126,15 @@ in
           bierner.markdown-footnotes
           bierner.markdown-mermaid
           bierner.markdown-preview-github-styles
+        ] ++ lib.optionals cfg.godMode [ vscodevim.vim ];
 
-          # Javascript/CSS
-          vue.volar
-          bradlc.vscode-tailwindcss
+        userSettings = {
+          # Theme settings
+          "workbench.colorTheme" = if cfg.theme == "dark" then "Default Dark Modern" else "Default Light Modern";
+          "workbench.preferredDarkColorTheme" = "Default Dark Modern";
+          "workbench.preferredLightColorTheme" = "Default Light Modern";
+          "window.autoDetectColorScheme" = false;
 
-          # Formatters
-          esbenp.prettier-vscode
-        ];
-
-        # Don't manage userSettings
-        userSettings = { };
-      };
-    };
-
-    home = {
-      file.".config/Code/User/nix-defaults.json" = {
-        text = builtins.toJSON {
           # Performance improvements for Scala/Metals
           "files.watcherExclude" = {
             "**/.bloop" = true;
@@ -86,6 +154,7 @@ in
           "editor.formatOnPaste" = true;
           "editor.minimap.enabled" = false;
           "editor.defaultFormatter" = "esbenp.prettier-vscode";
+          "editor.lineNumbers" = "relative";
 
           # Code lens for better navigation
           "java.referencesCodeLens.enabled" = true;
@@ -113,10 +182,45 @@ in
           # Metals configuration - let it use environment JAVA_HOME
           "metals.sbtScript" = "${pkgs.sbt}/bin/sbt";
           "metals.javaHome" = null;
+          "metals.customRepositories" = [ ];
+          "metals.bloopSbtLocation" = "${pkgs.bloop}/bin/bloop";
+          "metals.scalafixConfigPath" = ".scalafix.conf";
+          "metals.scalafixOnCompile" = false;
+          "metals.scalafixConfig" = ''
+            rules = [
+              OrganizeImports
+            ]
+
+            OrganizeImports {
+              targetDialect = Scala3
+              removeUnused = true
+              groupedImports = Merge
+              groups = [
+                "re:javax?\\."
+                "scala."
+                "re:^(?!scala\\.).*"
+              ]
+            }
+          '';
+          "metals.serverProperties" = [
+            "-Dmetals.client=vscode"
+            "-Xmx2G"
+            "-Xms2G"
+            "-XX:MaxMetaspaceSize=512m"
+            "-Dscalafix.timeout=30s"
+          ];
 
           # Nix Language Server
           "nix.enableLanguageServer" = true;
           "nix.serverPath" = "${pkgs.nil}/bin/nil";
+          "nil.formatting.command" = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
+          "nix.serverSettings" = {
+            "nil" = {
+              "formatting" = {
+                "command" = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
+              };
+            };
+          };
 
           # Formatters
           "prettier.prettierPath" = "${pkgs.nodePackages.prettier}/bin/prettier";
@@ -127,6 +231,8 @@ in
           "java.configuration.runtimes" = [ ];
           "java.import.gradle.java.home" = null;
           "java.import.maven.java.home" = null;
+          "java.format.settings.url" = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml";
+          "java.format.settings.profile" = "GoogleStyle";
 
           # Docker
           "docker.dockerPath" = "${pkgs.docker}/bin/docker";
@@ -161,48 +267,93 @@ in
           ];
 
           # Formatter configuration
-          "[scala]"."editor.defaultFormatter" = "scalameta.metals";
-          "[java]"."editor.defaultFormatter" = "redhat.java";
-          "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
-          "[javascript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
-          "[typescript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
-          "[vue]"."editor.defaultFormatter" = "vue.volar";
-          "[markdown]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
-          "[yaml]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
-          "[json]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
-          "[css]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
-          "[html]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+          "[css]" = {
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
+          };
+          "[html]" = {
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
+          };
+          "[java]" = {
+            "editor.defaultFormatter" = "redhat.java";
+          };
+          "[javascript]" = {
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
+          };
+          "[json]" = {
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
+          };
+          "[jsonc]" = {
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
+          };
+          "[kotlin]" = {
+            "editor.defaultFormatter" = "mathiasfrohlich.kotlin";
+          };
+          "[markdown]" = {
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
+          };
+          "[nix]" = {
+            "editor.defaultFormatter" = "jnoortheen.nix-ide";
+          };
+          "[python]" = {
+            "editor.defaultFormatter" = "ms-python.black-formatter";
+          };
+          "[rust]" = {
+            "editor.defaultFormatter" = "rust-lang.rust-analyzer";
+          };
+          "[scala]" = {
+            "editor.defaultFormatter" = "scalameta.metals";
+          };
+          "[toml]" = {
+            "editor.defaultFormatter" = "tamasfe.even-better-toml";
+          };
+          "[typescript]" = {
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
+          };
+          "[typescriptreact]" = {
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
+          };
+          "[vue]" = {
+            "editor.defaultFormatter" = "vue.volar";
+          };
+          "[yaml]" = {
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
+          };
+
+          "python.formatting.provider" = "black";
+          "python.formatting.blackPath" = "${pkgs.black}/bin/black";
+
+          "rust-analyzer.rustfmt.extraArgs" = [ "+nightly" ];
         };
       };
+    };
 
-      # Initialize settings.json only if it doesn't exist
-      activation.initializeVSCodeSettings = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-        SETTINGS_FILE="$HOME/.config/Code/User/settings.json"
-        NIX_DEFAULTS="$HOME/.config/Code/User/nix-defaults.json"
+    home.packages = [
+      (pkgs.writeShellScriptBin "code-wrapped" ''
+        # Add our specific tools to the front of the PATH but preserve the rest
+        export PATH="${vscodeOnlyPath}:${systemToolsPath}:${homeManagerPath}:$PATH"
+        exec ${pkgs.vscode.fhs}/bin/code "$@"
+      '')
+    ];
 
-        # Only initialize if settings.json doesn't exist
-        if [ ! -f "$SETTINGS_FILE" ]; then
-          echo "Initializing VS Code settings with Nix defaults..."
-          cp "$NIX_DEFAULTS" "$SETTINGS_FILE"
-        fi
-      '';
+    programs.fish.shellAliases = {
+      code = "code-wrapped";
+    };
 
-      packages = with pkgs; [
-        # Build tools
-        sbt
-
-        # Language servers and formatters
-        nil
-        nixpkgs-fmt
-        nodePackages.prettier
-
-        # JavaScript/TypeScript ecosystem
-        nodejs_20
-        nodePackages.typescript
-
-        # Utilities
-        jq
-      ];
+    xdg.desktopEntries."code" = {
+      name = "Visual Studio Code";
+      comment = "Code Editing. Redefined.";
+      genericName = "Text Editor";
+      exec = "code-wrapped %F";
+      icon = "code";
+      startupNotify = true;
+      categories = [ "Utility" "TextEditor" "Development" "IDE" ];
+      mimeType = [ "text/plain" "inode/directory" ];
+      actions = {
+        new-empty-window = {
+          exec = "code-wrapped --new-window %F";
+          name = "New Empty Window";
+        };
+      };
     };
   };
 }
