@@ -21,5 +21,6 @@
       theme = "light";
     };
     wmware-horizon.enable = true;
+    libreoffice.enable = true;
   };
 }
