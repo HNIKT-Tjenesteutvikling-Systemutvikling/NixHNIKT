@@ -16,6 +16,7 @@
     remmina.enable = true;
     slack.enable = true;
     spotify.enable = true;
+    libreoffice.enable = true;
     vscode = {
       enable = true;
       theme = "light";

@@ -14,6 +14,7 @@
     intellij.enable = true;
     keepass.enable = true;
     remmina.enable = true;
+    libreoffice.enable = true;
     slack.enable = true;
     spotify.enable = true;
     vscode.enable = true;
