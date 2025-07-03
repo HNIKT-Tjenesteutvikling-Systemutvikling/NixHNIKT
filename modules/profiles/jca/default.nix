@@ -21,6 +21,6 @@
       enable = true;
       theme = "light";
     };
-    wmware-horizon.enable = true;
+    vmware-horizon.enable = true;
   };
 }

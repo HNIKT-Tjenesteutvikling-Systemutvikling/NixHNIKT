@@ -32,6 +32,6 @@ in
     slack.enable = true;
     spotify.enable = true;
     vscode.enable = true;
-    wmware-horizon.enable = true;
+    vmware-horizon.enable = true;
   };
 }

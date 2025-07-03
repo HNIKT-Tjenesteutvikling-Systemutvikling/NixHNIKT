@@ -13,6 +13,7 @@
     gimp.enable = true;
     keepass.enable = true;
     remmina.enable = true;
+    vmware-horizon.enable = true;
     slack.enable = true;
     spotify.enable = true;
     tmux.enable = true;
