@@ -22,13 +22,6 @@ let
 
   mainProgram = "horizon-client";
 
-  wrapBinCommands = path: name: ''
-    makeWrapper "$out/${path}/${name}" "$out/bin/${name}_wrapper" \
-    --set GTK_THEME Adwaita \
-    --suffix XDG_DATA_DIRS : "${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}" \
-    --suffix LD_LIBRARY_PATH : "$out/lib/omnissa/horizon/crtbora:$out/lib/omnissa"
-  '';
-
   omnissaHorizonClientFiles = stdenv.mkDerivation {
     pname = "omnissa-horizon-files";
     inherit version;
@@ -51,8 +44,15 @@ let
       mkdir $out/lib/omnissa/horizon/pkcs11
       ln -s ${opensc}/lib/pkcs11/opensc-pkcs11.so $out/lib/omnissa/horizon/pkcs11/libopenscpkcs11.so
 
-      ${wrapBinCommands "bin" "horizon-client"}
-      ${wrapBinCommands "lib/omnissa/horizon/usb" "horizon-eucusbarbitrator"}
+      makeWrapper "$out/bin/horizon-client" "$out/bin/horizon-client-wrapped" \
+        --set GTK_THEME Adwaita \
+        --suffix XDG_DATA_DIRS : "${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}" \
+        --suffix LD_LIBRARY_PATH : "$out/lib/omnissa/horizon/crtbora:$out/lib/omnissa"
+
+      makeWrapper "$out/lib/omnissa/horizon/usb/horizon-eucusbarbitrator" "$out/bin/horizon-eucusbarbitrator-wrapped" \
+        --set GTK_THEME Adwaita \
+        --suffix XDG_DATA_DIRS : "${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}" \
+        --suffix LD_LIBRARY_PATH : "$out/lib/omnissa/horizon/crtbora:$out/lib/omnissa"
     '';
   };
 
@@ -61,7 +61,13 @@ let
     buildFHSEnv {
       inherit pname version;
 
-      runScript = "${omnissaHorizonClientFiles}/bin/${pname}_wrapper";
+      runScript =
+        if pname == "horizon-client" then
+          "${omnissaHorizonClientFiles}/bin/horizon-client-wrapped"
+        else if pname == "omnissa-usbarbitrator" then
+          "${omnissaHorizonClientFiles}/bin/horizon-eucusbarbitrator-wrapped"
+        else
+          throw "Unknown program: ${pname}";
 
       targetPkgs =
         pkgs: with pkgs; [
