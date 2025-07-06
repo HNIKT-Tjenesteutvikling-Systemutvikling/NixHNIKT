@@ -32,6 +32,9 @@ let
   # Create a PATH string for these tools
   vscodeOnlyPath = "${pkgs.lib.makeBinPath vscodeOnlyTools}";
 
+  # Add wrappers bin for sudo and other setuid programs
+  wrappersPath = "/run/wrappers/bin";
+
   # Create a PATH string for system tools
   systemToolsPath = "/run/current-system/sw/bin";
 
@@ -53,7 +56,10 @@ in
     };
 
     theme = lib.mkOption {
-      type = lib.types.enum [ "dark" "light" ];
+      type = lib.types.enum [
+        "dark"
+        "light"
+      ];
       default = "dark";
       description = "VSCode color theme";
     };
@@ -68,69 +74,73 @@ in
       profiles.default = {
         enableUpdateCheck = false;
         enableExtensionUpdateCheck = false;
-        extensions = with pkgs.vscode-extensions; [
-          # Copilot
-          github.copilot
-          github.copilot-chat
+        extensions =
+          with pkgs.vscode-extensions;
+          [
+            # Copilot
+            github.copilot
+            github.copilot-chat
 
-          # Editor
-          editorconfig.editorconfig
-          ms-azuretools.vscode-docker
-          ms-vscode-remote.remote-ssh
-          ms-vscode-remote.remote-ssh-edit
-          ms-vscode-remote.remote-containers
-          ms-vscode.makefile-tools
-          mkhl.direnv
-          bmalehorn.vscode-fish
+            # Editor
+            editorconfig.editorconfig
+            ms-azuretools.vscode-docker
+            ms-vscode-remote.remote-ssh
+            ms-vscode-remote.remote-ssh-edit
+            ms-vscode-remote.remote-containers
+            ms-vscode.makefile-tools
+            mkhl.direnv
+            bmalehorn.vscode-fish
 
-          # Formatters
-          esbenp.prettier-vscode
+            # Formatters
+            esbenp.prettier-vscode
 
-          # Haskell
-          haskell.haskell
-          justusadam.language-haskell
+            # Haskell
+            haskell.haskell
+            justusadam.language-haskell
 
-          # Java
-          redhat.java
-          vscjava.vscode-java-debug
-          vscjava.vscode-java-dependency
-          vscjava.vscode-java-pack
+            # Java
+            redhat.java
+            vscjava.vscode-java-debug
+            vscjava.vscode-java-dependency
+            vscjava.vscode-java-pack
 
-          # Javascript/CSS
-          vue.volar
-          bradlc.vscode-tailwindcss
+            # Javascript/CSS
+            vue.volar
+            bradlc.vscode-tailwindcss
 
-          # Kotlin
-          mathiasfrohlich.kotlin
+            # Kotlin
+            mathiasfrohlich.kotlin
 
-          # Nix
-          bbenoist.nix
-          jnoortheen.nix-ide
+            # Nix
+            bbenoist.nix
+            jnoortheen.nix-ide
 
-          # Python
-          ms-python.python
-          ms-pyright.pyright
+            # Python
+            ms-python.python
+            ms-pyright.pyright
 
-          # Rust
-          rust-lang.rust-analyzer
-          tamasfe.even-better-toml
+            # Rust
+            rust-lang.rust-analyzer
+            tamasfe.even-better-toml
 
-          # Scala/Metals
-          scalameta.metals
-          scala-lang.scala
+            # Scala/Metals
+            scalameta.metals
+            scala-lang.scala
 
-          # Yaml/Markdown
-          bierner.github-markdown-preview
-          bierner.markdown-checkbox
-          bierner.markdown-emoji
-          bierner.markdown-footnotes
-          bierner.markdown-mermaid
-          bierner.markdown-preview-github-styles
-        ] ++ lib.optionals cfg.godMode [ vscodevim.vim ];
+            # Yaml/Markdown
+            bierner.github-markdown-preview
+            bierner.markdown-checkbox
+            bierner.markdown-emoji
+            bierner.markdown-footnotes
+            bierner.markdown-mermaid
+            bierner.markdown-preview-github-styles
+          ]
+          ++ lib.optionals cfg.godMode [ vscodevim.vim ];
 
         userSettings = {
           # Theme settings
-          "workbench.colorTheme" = if cfg.theme == "dark" then "Default Dark Modern" else "Default Light Modern";
+          "workbench.colorTheme" =
+            if cfg.theme == "dark" then "Default Dark Modern" else "Default Light Modern";
           "workbench.preferredDarkColorTheme" = "Default Dark Modern";
           "workbench.preferredLightColorTheme" = "Default Light Modern";
           "window.autoDetectColorScheme" = false;
@@ -231,7 +241,8 @@ in
           "java.configuration.runtimes" = [ ];
           "java.import.gradle.java.home" = null;
           "java.import.maven.java.home" = null;
-          "java.format.settings.url" = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml";
+          "java.format.settings.url" =
+            "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml";
           "java.format.settings.profile" = "GoogleStyle";
 
           # Docker
@@ -330,7 +341,7 @@ in
     home.packages = [
       (pkgs.writeShellScriptBin "code-wrapped" ''
         # Add our specific tools to the front of the PATH but preserve the rest
-        export PATH="${vscodeOnlyPath}:${systemToolsPath}:${homeManagerPath}:$PATH"
+        export PATH="${vscodeOnlyPath}:${wrappersPath}:${systemToolsPath}:${homeManagerPath}:$PATH"
         exec ${pkgs.vscode.fhs}/bin/code "$@"
       '')
     ];
@@ -346,8 +357,16 @@ in
       exec = "code-wrapped %F";
       icon = "code";
       startupNotify = true;
-      categories = [ "Utility" "TextEditor" "Development" "IDE" ];
-      mimeType = [ "text/plain" "inode/directory" ];
+      categories = [
+        "Utility"
+        "TextEditor"
+        "Development"
+        "IDE"
+      ];
+      mimeType = [
+        "text/plain"
+        "inode/directory"
+      ];
       actions = {
         new-empty-window = {
           exec = "code-wrapped --new-window %F";
