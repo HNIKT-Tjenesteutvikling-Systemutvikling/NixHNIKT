@@ -45,6 +45,13 @@
         desktopManager.gnome.enable = true;
         displayManager.gdm.enable = true;
       };
+      xdg.portal = {
+        enable = true;
+        extraPortals = with pkgs; [
+          xdg-desktop-portal-wlr
+          xdg-desktop-portal-gtk
+        ];
+      };
       environment.gnome.excludePackages = with pkgs; [
         gnome-photos
         gnome-tour
