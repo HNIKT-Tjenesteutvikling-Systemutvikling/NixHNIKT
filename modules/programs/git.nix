@@ -30,37 +30,35 @@ in
     tig # diff and commit view
   ];
 
-  programs.git =
-    {
-      enable = true;
-      aliases = {
-        amend = "commit -a --amend";
-        fix = "commit -a --fixup HEAD";
-        base = "rebase -i --autosquash";
-        br = "branch";
-        co = "checkout";
-        s = "status";
-        cm = "commit -m";
-        ca = "commit -am";
-        dc = "diff --cached";
-        p = "pull";
-        pp = "push";
-        f = "fetch";
-        ppf = "push --force-with-lease";
-      };
-      extraConfig = gitConfig;
-      ignores = [
-        "*.bloop"
-        "*.bsp"
-        "*.metals"
-        "*.metals.sbt"
-        "*metals.sbt"
-        "*.direnv"
-        "*.envrc" # there is lorri, nix-direnv & simple direnv; let people decide
-        "*hie.yaml" # ghcide files
-        "*.mill-version" # used by metals
-        "*.jvmopts" # should be local to every project
-      ];
-    }
-    // (pkgs.sxm.git or { });
+  programs.git = {
+    enable = true;
+    aliases = {
+      amend = "commit -a --amend";
+      fix = "commit -a --fixup HEAD";
+      base = "rebase -i --autosquash";
+      br = "branch";
+      co = "checkout";
+      s = "status";
+      cm = "commit -m";
+      ca = "commit -am";
+      dc = "diff --cached";
+      p = "pull";
+      pp = "push";
+      f = "fetch";
+      ppf = "push --force-with-lease";
+    };
+    extraConfig = gitConfig;
+    ignores = [
+      "*.bloop"
+      "*.bsp"
+      "*.metals"
+      "*.metals.sbt"
+      "*metals.sbt"
+      "*.direnv"
+      "*.envrc" # there is lorri, nix-direnv & simple direnv; let people decide
+      "*hie.yaml" # ghcide files
+      "*.mill-version" # used by metals
+      "*.jvmopts" # should be local to every project
+    ];
+  } // (pkgs.sxm.git or { });
 }

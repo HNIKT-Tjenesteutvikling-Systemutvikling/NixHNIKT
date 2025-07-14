@@ -14,6 +14,11 @@ in
       packages = [
         pkgs.discord
       ];
+      persistence."/persist/${config.home.homeDirectory}" = {
+        directories = [
+          ".config/discord"
+        ];
+      };
     };
 
     xdg.configFile = {

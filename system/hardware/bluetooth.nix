@@ -1,4 +1,11 @@
 {
+
+  environment.persistence."/persist" = {
+    directories = [
+      "/var/lib/bluetooth"
+    ];
+  };
+
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -9,8 +16,12 @@
         FastConnectable = "true";
         Experimental = "true";
       };
-      Policy = { AutoEnable = "true"; };
-      LE = { EnableAdvMonInterleaveScan = "true"; };
+      Policy = {
+        AutoEnable = "true";
+      };
+      LE = {
+        EnableAdvMonInterleaveScan = "true";
+      };
     };
   };
 }

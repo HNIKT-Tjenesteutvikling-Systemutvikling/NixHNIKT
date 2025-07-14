@@ -1,9 +1,11 @@
-{ config
+{ osConfig
+, config
 , lib
 , pkgs
 , ...
 }:
 let
+  inherit (osConfig.environment) desktop;
   cfg = config.program.intellij;
 
   devSDKs = with pkgs; {
@@ -23,8 +25,15 @@ in
 {
   options.program.intellij.enable = lib.mkEnableOption "intellij";
 
-  config = lib.mkIf cfg.enable {
-    home.packages = [ pkgs.jetbrains.idea-ultimate ];
-    home.file.".local/dev".source = devSymlink;
+  config = lib.mkIf (cfg.enable && desktop.enable && desktop.develop) {
+    home = {
+      packages = [ pkgs.jetbrains.idea-ultimate ];
+      file.".local/dev".source = devSymlink;
+      persistence."/persist/${config.home.homeDirectory}" = {
+        directories = [
+          ".config/Jetbrains"
+        ];
+      };
+    };
   };
 }

@@ -1,9 +1,11 @@
-{ config
+{ osConfig
+, config
 , lib
 , pkgs
 , ...
 }:
 let
+  inherit (osConfig.environment) desktop;
   cfg = config.program.vscode;
 
   # VS Code only tools
@@ -65,7 +67,7 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && desktop.enable && desktop.develop) {
 
     programs.vscode = {
       enable = true;
@@ -338,13 +340,22 @@ in
       };
     };
 
-    home.packages = [
-      (pkgs.writeShellScriptBin "code-wrapped" ''
-        # Add our specific tools to the front of the PATH but preserve the rest
-        export PATH="${vscodeOnlyPath}:${wrappersPath}:${systemToolsPath}:${homeManagerPath}:$PATH"
-        exec ${pkgs.vscode.fhs}/bin/code "$@"
-      '')
-    ];
+    home = {
+      packages = [
+        (pkgs.writeShellScriptBin "code-wrapped" ''
+          # Add our specific tools to the front of the PATH but preserve the rest
+          export PATH="${vscodeOnlyPath}:${wrappersPath}:${systemToolsPath}:${homeManagerPath}:$PATH"
+          exec ${pkgs.vscode.fhs}/bin/code "$@"
+        '')
+      ];
+      persistence."/persist/${config.home.homeDirectory}" = {
+        directories = [
+          ".config/Code"
+          ".config/copilot-chat"
+          ".config/github-copilot"
+        ];
+      };
+    };
 
     programs.fish.shellAliases = {
       code = "code-wrapped";
