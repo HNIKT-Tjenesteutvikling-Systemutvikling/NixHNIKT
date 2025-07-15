@@ -17,9 +17,11 @@ in
       ncdu # disk space info (a better du)
       nitch # minimal system information fetch
     ];
+
     persistence."/persist/${config.home.homeDirectory}" = {
       directories = [
         ".local/share/fish"
+        ".jump"
       ];
     };
   };

@@ -14,5 +14,12 @@ in
       package = pkgs.mysql80;
     };
     networking.firewall.allowedTCPPorts = [ 3306 ];
+
+    environment.persistence."/persist".users.dev = {
+      directories = [
+        "/var/lib/mysql"
+        ".mysql"
+      ];
+    };
   };
 }

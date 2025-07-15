@@ -16,7 +16,7 @@ in
       ];
       persistence."/persist/${config.home.homeDirectory}" = {
         directories = [
-          ".keepass"
+          ".config/KeePass"
         ];
       };
     };

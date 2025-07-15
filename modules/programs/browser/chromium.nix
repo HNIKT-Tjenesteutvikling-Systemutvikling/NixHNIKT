@@ -1,3 +1,4 @@
+{ config, ... }:
 let
   ext = import ./extensions.nix;
 in
@@ -6,5 +7,11 @@ in
     enable = true;
     extensions = builtins.attrValues ext;
     commandLineArgs = [ "--ozone-platform-hint=auto" ];
+  };
+
+  home.persistence."/persist/${config.home.homeDirectory}" = {
+    directories = [
+      ".config/chromium"
+    ];
   };
 }
