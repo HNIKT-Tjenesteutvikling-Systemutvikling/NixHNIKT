@@ -91,7 +91,6 @@ in
             ms-vscode-remote.remote-containers
             ms-vscode.makefile-tools
             mkhl.direnv
-            bmalehorn.vscode-fish
 
             # Formatters
             esbenp.prettier-vscode
