@@ -15,8 +15,8 @@ with lib;
 
   imports = [
     ./cachix
+    ./fish
     ./docker.nix
-    ./fish.nix
     ./fonts.nix
   ];
 }
