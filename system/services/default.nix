@@ -1,11 +1,12 @@
 {
   imports = [
     ./blueman.nix
-    ./dbus.nix
     ./dropbox.nix
     ./garbage.nix
     ./gnome.nix
+    ./impermanence.nix
     ./k3s.nix
+    ./kde.nix
     # ./mugge.nix
     ./mysql.nix
     ./nfc.nix

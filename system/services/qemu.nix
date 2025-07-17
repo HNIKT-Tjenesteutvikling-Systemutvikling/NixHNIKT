@@ -25,17 +25,24 @@ in
       };
       spiceUSBRedirection.enable = true;
     };
-    environment.systemPackages = with pkgs; [
-      spice
-      spice-vdagent
-      spice-autorandr
-      spice-gtk
-      spice-protocol
-      virt-viewer
-      virtio-win
-      win-spice
-      win-virtio
-    ];
+    environment = {
+      systemPackages = with pkgs; [
+        spice
+        spice-vdagent
+        spice-autorandr
+        spice-gtk
+        spice-protocol
+        virt-viewer
+        virtio-win
+        win-spice
+        win-virtio
+      ];
+      persistence."/persist" = {
+        directories = [
+          "/var/lib/libvirt/images"
+        ];
+      };
+    };
     services.spice-vdagentd.enable = true;
   };
 }

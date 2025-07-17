@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 let
   mailClient = pkgs.thunderbird;
 in
@@ -11,5 +11,14 @@ in
       };
     };
   };
-  home.packages = [ mailClient ];
+  home = {
+    packages = [ mailClient ];
+
+    persistence."/persist/${config.home.homeDirectory}" = {
+      directories = [
+        "mozilla"
+        ".thunderbird"
+      ];
+    };
+  };
 }

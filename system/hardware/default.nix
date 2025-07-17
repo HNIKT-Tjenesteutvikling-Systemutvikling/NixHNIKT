@@ -2,11 +2,12 @@
 , pkgs
 , lib
 , ...
-}: {
+}:
+{
   imports = [
     ./bluetooth.nix
     ./boot.nix
-    ./disk.nix
+    ./disko.nix
     ./graphics.nix
     ./locale.nix
     ./network.nix
@@ -22,9 +23,9 @@
     config = {
       allowUnfree = true;
       nvidia.acceptLicense = true;
-      permittedInsecurePackages = [
-        "python-2.7.18.6"
-      ];
+      # permittedInsecurePackages = [
+      #   "python-2.7.18.6"
+      # ];
     };
     hostPlatform = lib.mkDefault "x86_64-linux";
   };
@@ -33,7 +34,7 @@
 
   users = {
     defaultUserShell = pkgs.fish;
-    # mutableUsers = false;
+    mutableUsers = false;
     users.root.initialHashedPassword = "$7$CU..../....jz9t1QKqQ.jT18.JftZ7E1$yLl5PDBaJCHdzx5YdI5IVAhmy7T6vUB063yjt/vpQn2";
   };
 }

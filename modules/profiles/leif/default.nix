@@ -3,8 +3,8 @@
 
   programs.git = {
     enable = true;
-    userEmail = "joran@lillegaard.com";
-    userName = "intervbs";
+    userEmail = "leif@leif.no";
+    userName = "leif";
   };
 
   # Home modules to load
@@ -12,13 +12,9 @@
     dbeaver.enable = true;
     discord.enable = true;
     gimp.enable = true;
-    intellij.enable = true;
     keepass.enable = true;
-    remmina.enable = true;
     slack.enable = true;
-    spotify.enable = false;
+    spotify.enable = true;
     vscode.enable = true;
-    wmware-horizon.enable = true;
-    libreoffice.enable = true;
   };
 }

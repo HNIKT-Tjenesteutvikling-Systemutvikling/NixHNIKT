@@ -10,8 +10,15 @@ in
   options.program.slack.enable = lib.mkEnableOption "slack";
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      slack
-    ];
+    home = {
+      packages = with pkgs; [
+        slack
+      ];
+      persistence."/persist/${config.home.homeDirectory}" = {
+        directories = [
+          ".config/Slack"
+        ];
+      };
+    };
   };
 }
