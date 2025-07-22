@@ -44,6 +44,15 @@
                         "space_cache=v2"
                       ];
                     };
+                    "/persist" = {
+                      mountpoint = "/persist";
+                      mountOptions = [
+                        "noatime"
+                        "compress=zstd"
+                        "ssd"
+                        "space_cache=v2"
+                      ];
+                    };
                     "/nix" = {
                       mountpoint = "/persist";
                       mountOptions = [
