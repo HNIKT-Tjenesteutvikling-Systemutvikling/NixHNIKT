@@ -2,7 +2,7 @@
   environment.systemPackages = with pkgs; [
     libnfc
     ccid
-    acsccid
+    #acsccid
     pcsclite
     pcsctools
   ];
