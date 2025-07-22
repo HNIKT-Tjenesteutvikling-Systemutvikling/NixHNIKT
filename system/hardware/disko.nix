@@ -1,7 +1,20 @@
 { config
+, lib
 , ...
 }:
 {
+  options = {
+    system = {
+      disks = {
+        mainDevice = lib.mkOption {
+          type = lib.types.str;
+          default = "/dev/nvme0n1";
+          description = "The block device path for the main system disk (containing root, boot, etc.).";
+        };
+      };
+    };
+  };
+
   config = {
     disko.devices.disk = {
       main = {
