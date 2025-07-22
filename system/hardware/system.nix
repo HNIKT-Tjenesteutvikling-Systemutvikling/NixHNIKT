@@ -1,7 +1,7 @@
 {
   system = {
     autoUpgrade = {
-      enable = true;
+      enable = false;
       flake = "github:HNIKT-Tjenesteutvikling-Systemutvikling/NixHNIKT";
       allowReboot = true;
       persistent = true;
