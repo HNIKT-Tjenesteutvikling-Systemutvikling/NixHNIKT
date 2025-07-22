@@ -67,7 +67,7 @@
                       ];
                     };
                     "/nix" = {
-                      mountpoint = "/persist";
+                      mountpoint = "/nix";
                       mountOptions = [
                         "noatime"
                         "noacl"
