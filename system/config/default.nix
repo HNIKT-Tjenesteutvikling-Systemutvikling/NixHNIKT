@@ -16,7 +16,7 @@
           "kde"
         ]
       );
-      default = "gnome";
+      default = "kde";
       description = "Set what window manager to use.";
     };
     develop = lib.mkOption {
