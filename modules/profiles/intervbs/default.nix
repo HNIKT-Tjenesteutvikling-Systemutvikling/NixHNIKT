@@ -1,3 +1,4 @@
+{ osConfig, lib, ... }:
 {
   imports = [ ../../default.nix ];
 
@@ -26,7 +27,7 @@
     libreoffice.enable = true;
 
     # Gnome dconf custom options
-    dconf = {
+    dconf = lib.mkIf (osConfig.environment.desktop.windowManager == "gnome") {
       pictureUri = "file:///home/dev/Pictures/002.jpg";
       pictureUriDark = "file:///home/dev/Pictures/002.jpg";
     };
