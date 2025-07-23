@@ -26,8 +26,8 @@
     libreoffice.enable = true;
 
     dconf = {
-      pictureUri = "file:///home/dev/.config/background";
-      pictureUriDark = "file:///home/dev/.config/background";
+      pictureUri = "file:///home/dev/Pictures/002.jpg";
+      pictureUriDark = "file:///home/dev/Pictures/002.jpg";
     };
   };
 }
