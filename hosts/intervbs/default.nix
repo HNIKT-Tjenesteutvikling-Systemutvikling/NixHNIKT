@@ -12,5 +12,6 @@
   };
 
   # Modules loaded
+  environment.desktop.windowManager = "gnome";
   service.mysql.enable = true;
 }
