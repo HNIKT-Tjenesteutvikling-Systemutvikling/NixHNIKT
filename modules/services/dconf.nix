@@ -30,7 +30,7 @@ in
       default = "file:///run/current-system/sw/share/backgrounds/gnome/symbolic-soup-l.jxl";
       description = "URI of the GNOME desktop background image.";
     };
-    pictureOption = lib.mkOption {
+    pictureOptions = lib.mkOption {
       type = lib.types.str;
       default = "zoom";
       description = "Option of the GNOME desktop background image.";
@@ -109,7 +109,7 @@ in
         };
         "org/gnome/desktop/background" = {
           picture-uri = config.program.dconf.pictureUri;
-          picture-option = config.program.dconf.pictureOption;
+          picture-options = config.program.dconf.pictureOptions;
           picture-uri-dark = config.program.dconf.pictureUriDark;
           primary-color = config.program.dconf.primaryColor;
         };

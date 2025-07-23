@@ -25,6 +25,7 @@
     wmware-horizon.enable = true;
     libreoffice.enable = true;
 
+    # Gnome dconf custom options
     dconf = {
       pictureUri = "file:///home/dev/Pictures/002.jpg";
       pictureUriDark = "file:///home/dev/Pictures/002.jpg";
