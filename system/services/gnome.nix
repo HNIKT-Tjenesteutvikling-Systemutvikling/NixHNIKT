@@ -75,12 +75,12 @@
         systemPackages = with pkgs; [
           gnome-tweaks
         ];
-      };
-      persistence."/persist" = {
-        users.dev = {
-          files = [
-            ".config/monitors.xml"
-          ];
+        persistence."/persist" = {
+          users.dev = {
+            files = [
+              ".config/monitors.xml"
+            ];
+          };
         };
       };
     })
