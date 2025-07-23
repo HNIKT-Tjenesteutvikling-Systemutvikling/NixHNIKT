@@ -20,11 +20,18 @@
         directories = [
           ".config/gtk-3.0" # fuse mounted from /nix/dotfiles/Plasma/.config/gtk-3.0
           ".config/gtk-4.0" # to /home/$USERNAME/.config/gtk-3.0
+          ".config/goa-1.0"
           ".config/KDE"
           ".config/kde.org"
           ".config/plasma-workspace"
           ".config/xsettingsd"
+          ".config/evolution"
+          ".config/kwalletrc"
+          ".config/session"
+          ".config/dconf"
+
           ".kde"
+          ".gtkrc-2.0"
 
           ".local/share/baloo"
           ".local/share/dolphin"
@@ -61,18 +68,22 @@
           ".config/kcminputrc"
           ".config/kconf_updaterc"
           ".config/kded5rc"
+          ".config/kded6rc"
+          ".config/kdedefaults"
           ".config/kdeglobals"
           ".config/kgammarc"
           ".config/kglobalshortcutsrc"
           ".config/khotkeysrc"
           ".config/kmixrc"
           ".config/konsolerc"
+          ".config/konsolesshconfig"
           ".config/kscreenlockerrc"
           ".config/ksmserverrc"
           ".config/ksplashrc"
           ".config/ktimezonedrc"
           ".config/kwinrc"
           ".config/kwinrulesrc"
+          ".config/kwinoutputconfig.json"
           ".config/kxkbrc"
           ".config/mimeapps.list"
           ".config/partitionmanagerrc"
@@ -92,11 +103,14 @@
           ".config/Trolltech.conf"
           ".config/user-dirs.dirs"
           ".config/user-dirs.locale"
+          ".config/emaildefaults"
 
           ".local/share/krunnerstaterc"
           ".local/share/user-places.xbel"
           ".local/share/user-places.xbel.bak"
           ".local/share/user-places.xbel.tbcache"
+
+          ".local/state/plasmashellstaterc"
         ];
       };
     };

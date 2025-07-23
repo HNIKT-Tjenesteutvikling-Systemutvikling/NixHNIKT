@@ -10,4 +10,12 @@
       wireplumber.enable = true;
     };
   };
+
+  environment.persistence."/persist" = {
+    users.dev = {
+      directories = [
+        ".config/pulse"
+      ];
+    };
+  };
 }
