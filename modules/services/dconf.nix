@@ -303,7 +303,7 @@ in
         ];
 
         persistence."/persist/${config.home.homeDirectory}" = {
-          directories = [
+          files = [
             ".config/monitors.xml"
           ];
         };
