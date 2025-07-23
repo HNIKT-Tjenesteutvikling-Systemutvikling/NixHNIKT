@@ -7,6 +7,10 @@
     userName = "intervbs";
   };
 
+  # Gnome dconf overrides
+  dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".binding =
+    "<Ctrl-Alt>t";
+
   # Home modules to load
   program = {
     dbeaver.enable = true;
@@ -20,5 +24,10 @@
     vscode.enable = true;
     wmware-horizon.enable = true;
     libreoffice.enable = true;
+
+    dconf = {
+      pictureUri = "file:///home/dev/.config/background";
+      pictureUriDark = "file:///home/dev/.config/background";
+    };
   };
 }

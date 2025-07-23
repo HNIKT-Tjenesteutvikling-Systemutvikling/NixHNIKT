@@ -1,15 +1,95 @@
 { osConfig
+, config
 , pkgs
 , lib
 , ...
 }:
 let
+  inherit (osConfig.environment) desktop;
+  cfg = config.program.dconf;
+
   autostartPrograms = [
     pkgs.discord
     pkgs.slack
   ];
 in
 {
+  options.program.dconf = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Enable Gnome configuration";
+    };
+    cursorSize = lib.mkOption {
+      type = lib.types.int;
+      default = 24;
+      description = "Set cursor size";
+    };
+    pictureUri = lib.mkOption {
+      type = lib.types.str;
+      default = "file:///run/current-system/sw/share/backgrounds/gnome/symbolic-soup-l.jxl";
+      description = "URI of the GNOME desktop background image.";
+    };
+    pictureOption = lib.mkOption {
+      type = lib.types.str;
+      default = "zoom";
+      description = "Option of the GNOME desktop background image.";
+    };
+    pictureUriDark = lib.mkOption {
+      type = lib.types.str;
+      default = "file:///run/current-system/sw/share/backgrounds/gnome/symbolic-soup-d.jxl";
+      description = "URI of the GNOME desktop background image (dark mode).";
+    };
+    primaryColor = lib.mkOption {
+      type = lib.types.str;
+      default = "#B9B5AE";
+      description = "Primary color of the GNOME desktop background.";
+    };
+    colorScheme = lib.mkOption {
+      type = lib.types.enum [
+        "prefer-dark"
+        "default"
+      ];
+      default = "prefer-dark";
+      description = "GNOME interface color scheme";
+    };
+    enableHotCorners = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Enable GNOME hot corners";
+    };
+    screensaverPictureUri = lib.mkOption {
+      type = lib.types.str;
+      default = "file:///run/current-system/sw/share/backgrounds/gnome/symbolic-soup-l.jxl";
+      description = "URI of the GNOME screensaver background.";
+    };
+    screensaverPrimaryColor = lib.mkOption {
+      type = lib.types.str;
+      default = "#B9B5AE";
+      description = "Primary color of the GNOME screensaver background.";
+    };
+    screensaverSecondaryColor = lib.mkOption {
+      type = lib.types.str;
+      default = "#000000";
+      description = "Secondary color of the GNOME screensaver background.";
+    };
+    traySize = lib.mkOption {
+      type = lib.types.int;
+      default = 15;
+      description = "Set the tray icon size.";
+    };
+    leftBoxSize = lib.mkOption {
+      type = lib.types.int;
+      default = 17;
+      description = "Set the left box icon size.";
+    };
+    panelSizes = lib.mkOption {
+      type = lib.types.str;
+      default = "{\"0\":46}";
+      description = "Panel size of the GNOME desktop";
+    };
+  };
+
   config = lib.mkMerge [
     (lib.mkIf osConfig.service.virt-manager.enable {
       dconf.settings = {
@@ -19,22 +99,23 @@ in
         };
       };
     })
-    (lib.mkIf (osConfig.environment.desktop.windowManager == "gnome") {
+    (lib.mkIf (cfg.enable && desktop.windowManager == "gnome") {
 
-      gtk.cursorTheme.size = lib.mkForce 24;
+      gtk.cursorTheme.size = lib.mkForce config.program.dconf.cursorSize;
 
       dconf.settings = {
         "org/gnome/TextEditor" = {
           keybindings = "vim";
         };
         "org/gnome/desktop/background" = {
-          picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/symbolic-soup-l.jxl";
-          picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/symbolic-soup-d.jxl";
-          primary-color = "#B9B5AE";
+          picture-uri = config.program.dconf.pictureUri;
+          picture-option = config.program.dconf.pictureOption;
+          picture-uri-dark = config.program.dconf.pictureUriDark;
+          primary-color = config.program.dconf.primaryColor;
         };
         "org/gnome/desktop/interface" = {
-          color-scheme = "prefer-dark";
-          enable-hot-corners = true;
+          color-scheme = config.program.dconf.colorScheme;
+          enable-hot-corners = config.program.dconf.enableHotCorners;
         };
         "org/gnome/desktop/input-sources" = {
           sources = [
@@ -49,9 +130,9 @@ in
           ];
         };
         "org/gnome/desktop/screensaver" = {
-          picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/symbolic-soup-l.jxl";
-          primary-color = "#B9B5AE";
-          secondary-color = "#000000";
+          picture-uri = config.program.dconf.screensaverPictureUri;
+          primary-color = config.program.dconf.screensaverPrimaryColor;
+          secondary-color = config.program.dconf.screensaverSecondaryColor;
         };
         "org/gnome/desktop/session" = {
           idle-delay = lib.hm.gvariant.mkUint32 0;
@@ -85,7 +166,7 @@ in
           workspaces-only-on-primary = true;
         };
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-          binding = "<Super>Return";
+          binding = lib.mkDefault "<Super>Return";
           command = "kgx";
           name = "console";
         };
@@ -133,10 +214,10 @@ in
           dot-style-focused = "DOTS";
           trans-use-custom-opacity = true;
           trans-panel-opacity = "0.55";
-          tray-size = 19;
-          leftbox-size = 21;
+          tray-size = config.program.dconf.traySize;
+          leftbox-size = config.program.dconf.leftBoxSize;
           panel-element-positions = ''{"AUS-0x0000bec6":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centered"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'';
-          panel-sizes = "{\"0\":64}";
+          panel-sizes = config.program.dconf.panelSizes;
           panel-positions = "{\"0\":\"BOTTOM\"}";
           showdesktop-button-width = "5";
           show-apps-icon-file = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
@@ -220,6 +301,12 @@ in
           gnomeExtensions.user-themes
           palenight-theme
         ];
+
+        persistence."/persist/${config.home.homeDirectory}" = {
+          directories = [
+            ".config/monitors.xml"
+          ];
+        };
       };
     })
   ];
