@@ -4,7 +4,10 @@
 , ...
 }:
 let
-  autostartPrograms = [ pkgs.discord ];
+  autostartPrograms = [
+    pkgs.discord
+    pkgs.slack
+  ];
 in
 {
   config = lib.mkMerge [
@@ -37,11 +40,11 @@ in
           sources = [
             (lib.hm.gvariant.mkTuple [
               "xkb"
-              "us"
+              "no"
             ])
             (lib.hm.gvariant.mkTuple [
               "xkb"
-              "no"
+              "us"
             ])
           ];
         };
