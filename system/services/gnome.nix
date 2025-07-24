@@ -71,18 +71,9 @@
         gnome-initial-setup
       ];
 
-      environment = {
-        systemPackages = with pkgs; [
-          gnome-tweaks
-        ];
-        persistence."/persist" = {
-          users.dev = {
-            files = [
-              ".config/monitors.xml"
-            ];
-          };
-        };
-      };
+      environment.systemPackages = with pkgs; [
+        gnome-tweaks
+      ];
     })
   ];
 }

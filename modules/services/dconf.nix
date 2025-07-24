@@ -301,6 +301,12 @@ in
           gnomeExtensions.user-themes
           palenight-theme
         ];
+
+        persistence."/persist/${config.home.homeDirectory}" = {
+          files = [
+            ".config/monitors.xml"
+          ];
+        };
       };
     })
   ];
