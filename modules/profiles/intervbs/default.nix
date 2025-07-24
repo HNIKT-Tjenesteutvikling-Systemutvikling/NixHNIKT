@@ -28,8 +28,8 @@
 
     # Gnome dconf custom options
     dconf = lib.mkIf (osConfig.environment.desktop.windowManager == "gnome") {
-      pictureUri = "file:///home/dev/Pictures/002.jpg";
-      pictureUriDark = "file:///home/dev/Pictures/002.jpg";
+      pictureUri = "file:///home/dev/Pictures/backgrounds/mario.jpg";
+      pictureUriDark = "file:///home/dev/Pictures/backgrounds/mario.jpg";
     };
   };
 }
