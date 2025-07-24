@@ -44,6 +44,9 @@
           ".local/share/kxmlgui5"
           ".local/share/RecentDocuments"
           ".local/share/sddm"
+
+          ".cache/thumbnails"
+          ".cache/systemsettings"
         ];
         files = [
           ".config/akregatorrc"
@@ -109,7 +112,6 @@
           ".local/share/user-places.xbel"
           ".local/share/user-places.xbel.bak"
           ".local/share/user-places.xbel.tbcache"
-
           ".local/state/plasmashellstaterc"
         ];
       };
