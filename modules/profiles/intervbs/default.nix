@@ -32,4 +32,25 @@
       pictureUriDark = "file:///home/dev/Pictures/backgrounds/mario.jpg";
     };
   };
+
+  # home.file.".config/monitors.xml".text =
+  #   lib.mkIf (osConfig.environment.desktop.windowManager == "gnome")
+  #     ''
+  #       <monitors version="2">
+  #         <configuration>
+  #           <clone>no</clone>
+  #           <output name="HDMI-1">
+  #             <vendor>GSM</vendor>
+  #             <product>LG ULTRAWIDE</product>
+  #             <serial>12345678</serial>
+  #             <width>2560</width>
+  #             <height>1080</height>
+  #             <rate>60.00</rate>
+  #             <x>0</x>
+  #             <y>0</y>
+  #             <primary>yes</primary>
+  #           </output>
+  #         </configuration>
+  #       </monitors>
+  #     '';
 }
