@@ -1,4 +1,7 @@
 { osConfig, lib, ... }:
+let
+  inherit (osConfig.environment) desktop;
+in
 {
   imports = [ ../../default.nix ];
 
@@ -27,30 +30,73 @@
     libreoffice.enable = true;
 
     # Gnome dconf custom options
-    dconf = lib.mkIf (osConfig.environment.desktop.windowManager == "gnome") {
+    dconf = lib.mkIf (desktop.windowManager == "gnome") {
       pictureUri = "file:///home/dev/Pictures/backgrounds/mario.jpg";
       pictureUriDark = "file:///home/dev/Pictures/backgrounds/mario.jpg";
     };
   };
 
-  # home.file.".config/monitors.xml".text =
-  #   lib.mkIf (osConfig.environment.desktop.windowManager == "gnome")
-  #     ''
-  #       <monitors version="2">
-  #         <configuration>
-  #           <clone>no</clone>
-  #           <output name="HDMI-1">
-  #             <vendor>GSM</vendor>
-  #             <product>LG ULTRAWIDE</product>
-  #             <serial>12345678</serial>
-  #             <width>2560</width>
-  #             <height>1080</height>
-  #             <rate>60.00</rate>
-  #             <x>0</x>
-  #             <y>0</y>
-  #             <primary>yes</primary>
-  #           </output>
-  #         </configuration>
-  #       </monitors>
-  #     '';
+  # Monitor settings for gnome
+  home.file.".config/monitors.xml".text = lib.mkIf (desktop.windowManager == "gnome") ''
+    <monitors version="2">
+      <configuration>
+        <layoutmode>physical</layoutmode>
+        <logicalmonitor>
+          <x>2843</x>
+          <y>1440</y>
+          <scale>1</scale>
+          <monitor>
+            <monitorspec>
+              <connector>eDP-1</connector>
+              <vendor>LGD</vendor>
+              <product>0x06fa</product>
+              <serial>0x00000000</serial>
+            </monitorspec>
+            <mode>
+              <width>1920</width>
+              <height>1200</height>
+              <rate>60.001</rate>
+            </mode>
+          </monitor>
+        </logicalmonitor>
+        <logicalmonitor>
+          <x>0</x>
+          <y>0</y>
+          <scale>1</scale>
+          <primary>yes</primary>
+          <monitor>
+            <monitorspec>
+              <connector>DP-8</connector>
+              <vendor>SAM</vendor>
+              <product>C32JG5x</product>
+              <serial>H4ZNA01013</serial>
+            </monitorspec>
+            <mode>
+              <width>2560</width>
+              <height>1440</height>
+              <rate>143.998</rate>
+            </mode>
+          </monitor>
+        </logicalmonitor>
+        <logicalmonitor>
+          <x>2560</x>
+          <y>0</y>
+          <scale>1</scale>
+          <monitor>
+            <monitorspec>
+              <connector>DP-9</connector>
+              <vendor>AOC</vendor>
+              <product>Q3279WG5B</product>
+              <serial>0x0000e1fb</serial>
+            </monitorspec>
+            <mode>
+              <width>2560</width>
+              <height>1440</height>
+              <rate>59.951</rate>
+            </mode>
+          </monitor>
+        </logicalmonitor>
+      </configuration>
+    </monitors>
+  '';
 }
