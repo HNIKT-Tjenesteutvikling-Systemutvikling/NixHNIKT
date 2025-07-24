@@ -152,7 +152,8 @@ in
           toggle-fullscreen = [ "<Super>g" ];
         };
         "org/gnome/desktop/wm/preferences" = {
-          focus-mode = "sloppy";
+          button-layout = "minimize,maximize,close";
+          focus-mode = "click";
           mouse-button-modifier = "<Super>";
           num-workspaces = 5;
           resize-with-right-button = true;
