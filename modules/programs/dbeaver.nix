@@ -36,6 +36,13 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ dbeaverWrapped ];
+    home = {
+      packages = [ dbeaverWrapped ];
+      persistence."/persist/${config.home.homeDirectory}" = {
+        directories = [
+          "/home/dev/.local/share/DBeaverData"
+        ];
+      };
+    };
   };
 }

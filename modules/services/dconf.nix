@@ -187,8 +187,13 @@ in
             "discord.desktop"
             "gimp.desktop"
             "org.gnome.Nautilus.desktop"
+            "thunderbird.desktop"
+            "firefox-devedition.desktop"
+            "chromium-browser.desktop"
+            "idea-ultimate.desktop"
+            "slack.desktop"
+            "code.desktop"
             "spotify.desktop"
-            "steam.desktop"
             "zen.desktop"
           ];
         };
