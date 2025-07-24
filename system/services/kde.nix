@@ -44,8 +44,10 @@
           ".local/share/kxmlgui5"
           ".local/share/RecentDocuments"
           ".local/share/sddm"
+          ".local/share/plasma"
 
           ".cache/thumbnails"
+          ".cache/plasmashell"
           ".cache/systemsettings"
           ".cache/qtshadercache-x86_64-little_endian-lp64"
         ];
@@ -114,6 +116,8 @@
           ".local/share/user-places.xbel.bak"
           ".local/share/user-places.xbel.tbcache"
           ".local/state/plasmashellstaterc"
+
+          ".cache/plasma_theme_default.kcache"
         ];
       };
     };
