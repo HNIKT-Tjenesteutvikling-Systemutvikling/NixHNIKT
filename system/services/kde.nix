@@ -47,6 +47,7 @@
 
           ".cache/thumbnails"
           ".cache/systemsettings"
+          ".cache/qtshadercache-x86_64-little_endian-lp64"
         ];
         files = [
           ".config/akregatorrc"
