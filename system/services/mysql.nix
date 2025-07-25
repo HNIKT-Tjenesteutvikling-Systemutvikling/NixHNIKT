@@ -17,8 +17,14 @@ in
 
     environment.persistence."/persist".users.dev = {
       directories = [
-        "/var/lib/mysql"
-        ".mysql"
+        {
+          directory = "/var/lib/mysql";
+          mode = "0700";
+        }
+        {
+          directory = ".mysql";
+          mode = "0700";
+        }
       ];
     };
   };
