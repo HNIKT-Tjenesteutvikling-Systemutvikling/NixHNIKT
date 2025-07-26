@@ -32,6 +32,9 @@
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
+  # Thunderbolt, a userspace daemon to enable security levels for Thunderbolt 3 on GNU/Linux.
+  services.hardware.bolt.enable = true;
+
   users = {
     defaultUserShell = pkgs.fish;
     mutableUsers = false;
