@@ -40,7 +40,7 @@ in
       packages = [ dbeaverWrapped ];
       persistence."/persist/${config.home.homeDirectory}" = {
         directories = [
-          "/home/dev/.local/share/DBeaverData"
+          ".local/share/DBeaverData"
         ];
       };
     };
