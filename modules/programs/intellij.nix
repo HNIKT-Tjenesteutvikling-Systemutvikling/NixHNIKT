@@ -34,6 +34,7 @@ in
           ".cache/JetBrains"
           ".config/JetBrains"
           ".local/share/JetBrains"
+          ".java"
         ];
       };
     };
