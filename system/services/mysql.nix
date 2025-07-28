@@ -18,10 +18,7 @@ in
     environment = {
       persistence."/persist" = {
         directories = [
-          {
-            directory = "/var/lib/mysql";
-            mode = "0700";
-          }
+          "/var/lib/mysql"
         ];
         users.dev = {
           directories = [

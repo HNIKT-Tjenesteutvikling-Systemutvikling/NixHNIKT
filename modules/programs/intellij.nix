@@ -31,6 +31,7 @@ in
       file.".local/dev".source = devSymlink;
       persistence."/persist/${config.home.homeDirectory}" = {
         directories = [
+          ".cache/JetBrains"
           ".config/JetBrains"
           ".local/share/JetBrains"
         ];
