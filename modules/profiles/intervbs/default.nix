@@ -16,19 +16,17 @@ in
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".binding = "<Ctrl-Alt>t";
 
     "org/gnome/shell".favorite-apps = [
-      "org.gnome.Console.desktop"
-      "discord.desktop"
-      "gimp.desktop"
       "org.gnome.Nautilus.desktop"
+      "org.gnome.Console.desktop"
       "thunderbird.desktop"
+      "zen.desktop"
       "firefox-devedition.desktop"
       "chromium-browser.desktop"
-      "idea-ultimate.desktop"
-      "dbeaver.desktop"
+      "discord.desktop"
       "slack.desktop"
+      "dbeaver.desktop"
+      "idea-ultimate.desktop"
       "code.desktop"
-      "spotify.desktop"
-      "zen.desktop"
     ];
   };
 
