@@ -32,6 +32,7 @@ in
       persistence."/persist/${config.home.homeDirectory}" = {
         directories = [
           ".config/JetBrains"
+          ".local/share/JetBrains"
         ];
       };
     };

@@ -15,17 +15,23 @@ in
     };
     networking.firewall.allowedTCPPorts = [ 3306 ];
 
-    environment.persistence."/persist".users.dev = {
-      directories = [
-        {
-          directory = "/var/lib/mysql";
-          mode = "0700";
-        }
-        {
-          directory = ".mysql";
-          mode = "0700";
-        }
-      ];
+    environment = {
+      persistence."/persist" = {
+        directories = [
+          {
+            directory = "/var/lib/mysql";
+            mode = "0700";
+          }
+        ];
+        users.dev = {
+          directories = [
+            {
+              directory = ".mysql";
+              mode = "0700";
+            }
+          ];
+        };
+      };
     };
   };
 }
