@@ -182,7 +182,7 @@ in
             tray-icons-reloaded.extensionUuid
             user-themes.extensionUuid
           ];
-          favorite-apps = [
+          favorite-apps = lib.mkDefault [
             "org.gnome.Console.desktop"
             "discord.desktop"
             "gimp.desktop"
