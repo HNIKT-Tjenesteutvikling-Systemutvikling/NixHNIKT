@@ -42,6 +42,64 @@ in
       <configuration>
         <layoutmode>physical</layoutmode>
         <logicalmonitor>
+          <x>0</x>
+          <y>0</y>
+          <scale>1</scale>
+          <monitor>
+            <monitorspec>
+              <connector>DP-5</connector>
+              <vendor>DEL</vendor>
+              <product>DELL U2717D</product>
+              <serial>J0XYN8AI261S</serial>
+            </monitorspec>
+            <mode>
+              <width>2560</width>
+              <height>1440</height>
+              <rate>59.951</rate>
+            </mode>
+          </monitor>
+        </logicalmonitor>
+        <logicalmonitor>
+          <x>5120</x>
+          <y>623</y>
+          <scale>1</scale>
+          <monitor>
+            <monitorspec>
+              <connector>eDP-1</connector>
+              <vendor>LGD</vendor>
+              <product>0x06fa</product>
+              <serial>0x00000000</serial>
+            </monitorspec>
+            <mode>
+              <width>1920</width>
+              <height>1200</height>
+              <rate>60.001</rate>
+            </mode>
+          </monitor>
+        </logicalmonitor>
+        <logicalmonitor>
+          <x>2560</x>
+          <y>0</y>
+          <scale>1</scale>
+          <primary>yes</primary>
+          <monitor>
+            <monitorspec>
+              <connector>DP-9</connector>
+              <vendor>DEL</vendor>
+              <product>DELL U2717D</product>
+              <serial>J0XYN8AI327S</serial>
+            </monitorspec>
+            <mode>
+              <width>2560</width>
+              <height>1440</height>
+              <rate>59.951</rate>
+            </mode>
+          </monitor>
+        </logicalmonitor>
+      </configuration>
+      <configuration>
+        <layoutmode>physical</layoutmode>
+        <logicalmonitor>
           <x>2843</x>
           <y>1440</y>
           <scale>1</scale>
