@@ -12,8 +12,25 @@ in
   };
 
   # Gnome dconf overrides
-  dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".binding =
-    "<Ctrl-Alt>t";
+  dconf.settings = {
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".binding = "<Ctrl-Alt>t";
+
+    "org/gnome/shell".favorite-apps = [
+      "org.gnome.Console.desktop"
+      "discord.desktop"
+      "gimp.desktop"
+      "org.gnome.Nautilus.desktop"
+      "thunderbird.desktop"
+      "firefox-devedition.desktop"
+      "chromium-browser.desktop"
+      "idea-ultimate.desktop"
+      "dbeaver.desktop"
+      "slack.desktop"
+      "code.desktop"
+      "spotify.desktop"
+      "zen.desktop"
+    ];
+  };
 
   # Home modules to load
   program = {
