@@ -191,6 +191,7 @@ in
             "firefox-devedition.desktop"
             "chromium-browser.desktop"
             "idea-ultimate.desktop"
+            "dbeaver.desktop"
             "slack.desktop"
             "code.desktop"
             "spotify.desktop"
