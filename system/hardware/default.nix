@@ -30,7 +30,7 @@
     hostPlatform = lib.mkDefault "x86_64-linux";
   };
 
-  powerManagement.powertop.enable = true;
+  powerManagement.powertop.enable = false;
 
   services = {
     hardware.bolt.enable = false; # Thunderbolt, a userspace daemon to enable security levels for Thunderbolt 3 on GNU/Linux.
