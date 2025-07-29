@@ -14,6 +14,7 @@ in
   # Gnome dconf overrides
   dconf.settings = {
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".binding = "<Ctrl-Alt>t";
+    "org/gnome/desktop/interface".show-battery-percentage = true;
 
     "org/gnome/shell".favorite-apps = [
       "org.gnome.Nautilus.desktop"
