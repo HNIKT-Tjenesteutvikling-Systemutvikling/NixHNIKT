@@ -254,6 +254,7 @@ in
           search = false;
           show-apps-button = true;
           startup-status = 0;
+          support-notifier-type = 0;
           theme = true;
           window-demands-attention-focus = true;
           window-picker-icon = false;
