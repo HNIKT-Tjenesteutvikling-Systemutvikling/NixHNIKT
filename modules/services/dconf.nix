@@ -168,7 +168,7 @@ in
         };
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
           binding = lib.mkDefault "<Super>Return";
-          command = "kgx";
+          command = lib.mkDefault "kgx";
           name = "console";
         };
         "org/gnome/shell" = {

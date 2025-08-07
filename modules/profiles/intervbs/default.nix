@@ -13,12 +13,14 @@ in
 
   # Gnome dconf overrides
   dconf.settings = {
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".binding = "<Ctrl-Alt>t";
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".binding = "<Control><Alt>t";
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".command = "tilix";
+
     "org/gnome/desktop/interface".show-battery-percentage = true;
 
     "org/gnome/shell".favorite-apps = [
       "org.gnome.Nautilus.desktop"
-      "org.gnome.Console.desktop"
+      "com.gexperts.Tilix.desktop"
       "thunderbird.desktop"
       "zen.desktop"
       "firefox-devedition.desktop"
@@ -42,8 +44,9 @@ in
     slack.enable = true;
     spotify.enable = false;
     vscode.enable = true;
-    wmware-horizon.enable = true;
+    wmware-horizon.enable = false;
     libreoffice.enable = true;
+    tilix.enable = true;
 
     # Gnome dconf custom options
     dconf = lib.mkIf (desktop.windowManager == "gnome") {
@@ -63,7 +66,7 @@ in
           <scale>1</scale>
           <monitor>
             <monitorspec>
-              <connector>DP-5</connector>
+              <connector>DP-6</connector>
               <vendor>DEL</vendor>
               <product>DELL U2717D</product>
               <serial>J0XYN8AI261S</serial>
@@ -77,7 +80,7 @@ in
         </logicalmonitor>
         <logicalmonitor>
           <x>5120</x>
-          <y>623</y>
+          <y>573</y>
           <scale>1</scale>
           <monitor>
             <monitorspec>
@@ -100,7 +103,7 @@ in
           <primary>yes</primary>
           <monitor>
             <monitorspec>
-              <connector>DP-9</connector>
+              <connector>DP-8</connector>
               <vendor>DEL</vendor>
               <product>DELL U2717D</product>
               <serial>J0XYN8AI327S</serial>

@@ -70,5 +70,6 @@ in
   ./tmux.nix
   ./vscode.nix
   ./wmware-horizon.nix
+  ./tilix.nix
   more
 ]
