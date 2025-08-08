@@ -74,6 +74,7 @@ in
       type = lib.types.enum [
         "dark"
         "light"
+        "onedark"
       ];
       default = "dark";
       description = "VSCode color theme";
@@ -142,6 +143,8 @@ in
             scalameta.metals
             scala-lang.scala
 
+            # Theme
+
             # Yaml/Markdown
             bierner.github-markdown-preview
             bierner.markdown-checkbox
@@ -150,12 +153,25 @@ in
             bierner.markdown-mermaid
             bierner.markdown-preview-github-styles
           ]
-          ++ lib.optionals cfg.godMode [ vscodevim.vim ];
+          ++ lib.optionals cfg.godMode [ vscodevim.vim ]
+          ++ [
+            (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+              name = "one-dark-theme";
+              publisher = "mskelton";
+              version = "1.14.2";
+              sha256 = "sha256-6nIfEPbau5Dy1DGJ0oQ5L2EGn2NDhpd8jSdYujtOU68=";
+            })
+          ];
 
         userSettings = {
           # Theme settings
           "workbench.colorTheme" =
-            if cfg.theme == "dark" then "Default Dark Modern" else "Default Light Modern";
+            if cfg.theme == "onedark" then
+              "One Dark"
+            else if cfg.theme == "dark" then
+              "Default Dark Modern"
+            else
+              "Default Light Modern";
           "workbench.preferredDarkColorTheme" = "Default Dark Modern";
           "workbench.preferredLightColorTheme" = "Default Light Modern";
           "window.autoDetectColorScheme" = false;

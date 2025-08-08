@@ -17,7 +17,10 @@
     remmina.enable = true;
     slack.enable = true;
     spotify.enable = true;
-    vscode.enable = true;
+    vscode = {
+      enable = true;
+      theme = "onedark";
+    };
     wmware-horizon.enable = false;
     libreoffice.enable = true;
     tilix.enable = true;
