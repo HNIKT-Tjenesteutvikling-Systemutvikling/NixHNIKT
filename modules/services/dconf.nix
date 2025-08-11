@@ -276,7 +276,7 @@ in
           switch-to-application-5 = [ ];
         };
         "system/locale" = {
-          region = "nb_NO.UTF-8";
+          region = "en_US.UTF-8";
         };
       };
 
