@@ -44,7 +44,7 @@ in
     slack.enable = true;
     spotify.enable = false;
     vscode.enable = true;
-    wmware-horizon.enable = false;
+    wmware-horizon.enable = true;
     libreoffice.enable = true;
     tilix.enable = true;
 

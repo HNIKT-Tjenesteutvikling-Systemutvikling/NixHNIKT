@@ -23,9 +23,10 @@
     config = {
       allowUnfree = true;
       nvidia.acceptLicense = true;
-      # permittedInsecurePackages = [
-      #   "python-2.7.18.6"
-      # ];
+      permittedInsecurePackages = [
+        # "python-2.7.18.6"
+        "libxml2-2.13.8"
+      ];
     };
     hostPlatform = lib.mkDefault "x86_64-linux";
   };
