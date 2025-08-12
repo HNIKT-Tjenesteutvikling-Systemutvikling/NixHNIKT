@@ -278,6 +278,12 @@ in
         "system/locale" = {
           region = "en_US.UTF-8";
         };
+        "org/gtk/gtk4/settings/file-chooser" = {
+          show-hidden = true;
+        };
+        "org/gnome/nautilus/icon-view" = {
+          default-zoom-level = "small-plus";
+        };
       };
 
       home = {
