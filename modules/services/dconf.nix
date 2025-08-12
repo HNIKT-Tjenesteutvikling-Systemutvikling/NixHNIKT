@@ -169,7 +169,7 @@ in
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
           binding = lib.mkDefault "<Super>Return";
           command = lib.mkDefault "kgx";
-          name = "console";
+          name = lib.mkDefault "console";
         };
         "org/gnome/shell" = {
           disable-user-extensions = false;

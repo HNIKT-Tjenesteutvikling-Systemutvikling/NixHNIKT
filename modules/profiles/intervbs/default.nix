@@ -15,6 +15,7 @@ in
   dconf.settings = {
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".binding = "<Control><Alt>t";
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".command = "tilix";
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".name = "Tilix Terminal";
 
     "org/gnome/desktop/interface".show-battery-percentage = true;
 
