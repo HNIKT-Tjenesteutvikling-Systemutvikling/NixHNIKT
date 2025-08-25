@@ -1,0 +1,17 @@
+[
+  {
+    "specie": "sheep",
+    "name": "Oliva",
+    "color": "adult"
+  },
+  {
+    "specie": "turtle",
+    "name": "Lucia",
+    "color": "green"
+  },
+  {
+    "specie": "dino",
+    "name": "Mar",
+    "color": ""
+  }
+]
