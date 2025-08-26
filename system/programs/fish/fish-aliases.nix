@@ -49,5 +49,6 @@ in
     dot = "cd ~/Sources/nixhnikt";
     doc = "cd ~/Documents";
     work = "cd ~/Projects/workspace";
+    tod = "cd ~/Projects/workspace/worksetup";
   };
 }
