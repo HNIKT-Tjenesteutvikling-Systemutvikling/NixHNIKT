@@ -1,24 +1,39 @@
-{ config, pkgs, ... }:
+{ config
+, pkgs
+, lib
+, ...
+}:
 let
+  cfg = config.program.browser.firefox;
+
   mailClient = pkgs.thunderbird;
 in
 {
-  programs.firefox = {
-    enable = true;
-    package = pkgs.wrapFirefox pkgs.firefox-devedition-unwrapped {
-      extraPolicies = {
-        ExtensionSettings = { };
-      };
+  options.program.browser.firefox = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enable firefox browser";
     };
   };
-  home = {
-    packages = [ mailClient ];
-    persistence."/persist/${config.home.homeDirectory}" = {
-      directories = [
-        ".config/mozilla"
-        ".mozilla"
-        ".thunderbird"
-      ];
+  config = lib.mkIf cfg.enable {
+    programs.firefox = {
+      enable = true;
+      package = pkgs.wrapFirefox pkgs.firefox-devedition-unwrapped {
+        extraPolicies = {
+          ExtensionSettings = { };
+        };
+      };
+    };
+    home = {
+      packages = [ mailClient ];
+      persistence."/persist/${config.home.homeDirectory}" = {
+        directories = [
+          ".config/mozilla"
+          ".mozilla"
+          ".thunderbird"
+        ];
+      };
     };
   };
 }

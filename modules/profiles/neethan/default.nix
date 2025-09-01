@@ -16,6 +16,11 @@
 
   # Home modules to load
   program = {
+    browser = {
+      chromium.enable = true;
+      firefox.enable = true;
+      zen.enable = true;
+    };
     gimp.enable = true;
     keepass.enable = true;
     remmina.enable = true;

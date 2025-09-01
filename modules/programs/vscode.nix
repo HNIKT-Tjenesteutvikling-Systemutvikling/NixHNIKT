@@ -42,6 +42,10 @@ let
     prettyping
     mimeo
     docker-compose
+
+    # Git
+    git
+    openssh
   ];
 
   # Create a PATH string for these tools
@@ -186,8 +190,7 @@ in
               version = "1.2.3";
               sha256 = "sha256-DEoe9smyIcsKd8hTm2b6/r1u95OtrbgoOix+6ai44pU=";
             })
-          ]
-        ;
+          ];
 
         userSettings = {
           # Theme settings
@@ -215,6 +218,7 @@ in
           "git.autofetch" = true;
           "git.confirmSync" = false;
           "git.enableSmartCommit" = true;
+          "git.path" = "${pkgs.git}/bin/git";
 
           # Editor improvements
           "workbench.tree.indent" = 20;

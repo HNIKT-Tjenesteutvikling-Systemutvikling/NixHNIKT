@@ -1,5 +1,4 @@
-{ inputs
-, pkgs
+{ pkgs
 , lib
 , ...
 }:
@@ -10,7 +9,7 @@ with lib;
     wget
     git
 
-    inputs.neovim-flake.defaultPackage.${pkgs.system}
+    # inputs.neovim-flake.defaultPackage.${pkgs.system}
   ];
 
   imports = [

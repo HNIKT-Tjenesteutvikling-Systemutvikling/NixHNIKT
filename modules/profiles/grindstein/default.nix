@@ -10,6 +10,11 @@
   # Home modules to load
   program = {
     anydesk.enable = true;
+    browser = {
+      chromium.enable = true;
+      firefox.enable = true;
+      zen.enable = true;
+    };
     dbeaver.enable = true;
     dropbox.enable = true;
     gimp.enable = true;

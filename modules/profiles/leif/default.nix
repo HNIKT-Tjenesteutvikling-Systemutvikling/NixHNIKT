@@ -9,6 +9,10 @@
 
   # Home modules to load
   program = {
+    browser = {
+      chromium.enable = true;
+      zen.enable = true;
+    };
     dbeaver.enable = true;
     discord.enable = true;
     gimp.enable = true;

@@ -40,10 +40,7 @@ let
     };
 in
 [
-  ./browser/chromium.nix
-  ./browser/brave.nix
-  ./browser/firefox.nix
-  ./browser/zen.nix
+  ./browser
   ./anydesk.nix
   ./bat.nix
   ./broot.nix
@@ -61,12 +58,13 @@ in
   ./jq.nix
   ./keepass.nix
   ./libreoffice.nix
+  ./neovim.nix
   ./obsidian.nix
   ./remmina.nix
   ./rider.nix
   ./slack.nix
   ./spotify.nix
-  # ./ssh.nix
+  ./ssh.nix
   ./starship.nix
   ./tmux.nix
   ./vscode.nix

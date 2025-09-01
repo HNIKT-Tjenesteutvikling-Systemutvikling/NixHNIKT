@@ -13,7 +13,8 @@ in
 
   # Gnome dconf overrides
   dconf.settings = {
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".binding = "<Control><Alt>t";
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".binding =
+      "<Control><Alt>t";
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".command = "tilix";
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".name = "Tilix Terminal";
 
@@ -36,6 +37,11 @@ in
 
   # Home modules to load
   program = {
+    browser = {
+      chromium.enable = true;
+      firefox.enable = true;
+      zen.enable = true;
+    };
     dbeaver.enable = true;
     discord.enable = true;
     gimp.enable = true;

@@ -67,7 +67,5 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    neovim-flake.url = "github:gako358/neovim";
   };
 }
