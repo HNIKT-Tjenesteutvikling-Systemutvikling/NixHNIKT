@@ -12,6 +12,7 @@ in
   home.persistence."/persist/${config.home.homeDirectory}" = {
     directories = [
       ".config/chromium"
+      ".config/BraveSoftware"
     ];
   };
 }
