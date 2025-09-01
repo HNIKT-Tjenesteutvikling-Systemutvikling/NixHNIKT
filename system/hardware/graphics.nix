@@ -8,9 +8,12 @@ in
 {
   boot.initrd.kernelModules = lib.mkIf (desktop.graphics == "nvidia") [ "nvidia" ];
   hardware = {
-    graphics = {
+    # graphics = {
+    #   enable = true;
+    #   enable32Bit = true;
+    # };
+    opengl = {
       enable = true;
-      enable32Bit = true;
     };
     nvidia = lib.mkIf (desktop.graphics == "nvidia") {
       modesetting.enable = true;
