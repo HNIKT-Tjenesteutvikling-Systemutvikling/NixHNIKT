@@ -4,7 +4,7 @@
 }:
 {
   networking.hostName = "ketil";
-  users.users.dev.initialHashedPassword = "$7$CU..../....LHBYw6TQguCtttLZrDM.J1$C9d/wSXL4C9kE1NOvMl2Z90rO1a9V368sFI3lUTljW6";
+  users.users.dev.initialHashedPassword = "$7$CU..../....0IqmDt/ChPhe/I58raj2M1$ZHxmsfaAGle1jLRfR1gIQ5boziud3YeuJuRpXB4HFfB";
   services.xserver = {
     videoDrivers = [ "nvidia" ]; # Optional use displayLink for USB-C docking station
     displayManager = {
