@@ -24,5 +24,15 @@
       default = true;
       description = "Enable Development toolchain";
     };
+    graphics = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "intel"
+          "nvidia"
+        ]
+      );
+      default = "intel";
+      description = "Set hardware graphics card.";
+    };
   };
 }

@@ -38,11 +38,12 @@ in
       tig # diff and commit view
     ];
 
-    # Fix git not working in vscode terminal
-    # Copies the ssh config instead of symlinking it
-    file.".ssh/config" = lib.mkIf sourceFileExists {
-      target = ".ssh/config_source";
-      onChange = ''cat ~/.ssh/config_source > ~/.ssh/config && chmod 400 ~/.ssh/config'';
+    file.".ssh/config_source" = lib.mkIf sourceFileExists {
+      source = sshConfigSourcePath;
+      onChange = ''
+        cp ${config.home.homeDirectory}/.ssh/config_source ${config.home.homeDirectory}/.ssh/config
+        chmod 600 ${config.home.homeDirectory}/.ssh/config
+      '';
     };
   };
 
@@ -76,5 +77,6 @@ in
       "*.mill-version" # used by metals
       "*.jvmopts" # should be local to every project
     ];
-  } // (pkgs.sxm.git or { });
+  }
+  // (pkgs.sxm.git or { });
 }
