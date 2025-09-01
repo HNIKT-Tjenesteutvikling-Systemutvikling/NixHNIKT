@@ -17,6 +17,9 @@
     libreoffice.enable = true;
     slack.enable = true;
     spotify.enable = true;
-    vscode.enable = true;
+    vscode = {
+      enable = true;
+      theme = "stardew";
+    };
   };
 }

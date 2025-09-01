@@ -21,7 +21,10 @@ in
     remmina.enable = true;
     slack.enable = true;
     spotify.enable = true;
-    vscode.enable = true;
+    vscode = {
+      enable = true;
+      theme = "stardew";
+    };
     wmware-horizon.enable = true;
   };
   # Monitor settings for gnome

@@ -75,6 +75,7 @@ in
         "dark"
         "light"
         "onedark"
+        "stardew"
       ];
       default = "dark";
       description = "VSCode color theme";
@@ -178,6 +179,14 @@ in
               sha256 = "sha256-bgdOSRqmPHlKX01uHjPWm5ak7FWvblUQ8p3H7PigdXc=";
             })
           ]
+          ++ [
+            (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+              name = "stardew-pets";
+              publisher = "Botpa";
+              version = "1.2.3";
+              sha256 = "sha256-DEoe9smyIcsKd8hTm2b6/r1u95OtrbgoOix+6ai44pU=";
+            })
+          ]
         ;
 
         userSettings = {
@@ -187,6 +196,8 @@ in
               "One Dark"
             else if cfg.theme == "dark" then
               "Default Dark Modern"
+            else if cfg.theme == "stardew" then
+              "Stardew Valley Theme"
             else
               "Default Light Modern";
           "workbench.preferredDarkColorTheme" = "Default Dark Modern";
@@ -292,7 +303,7 @@ in
           };
 
           # Formatters
-          "prettier.prettierPath" = "${pkgs.nodePackages.prettier}/bin/prettier";
+          # "prettier.prettierPath" = "${pkgs.nodePackages.prettier}/bin/prettier";
           "nix.formatterPath" = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
 
           # Java extension configuration to use environment variables
