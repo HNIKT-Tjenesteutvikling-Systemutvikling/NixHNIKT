@@ -8,15 +8,14 @@ install_nixos() {
     echo "=================================="
     echo "Please select a machine to install:"
     echo "1) grindstein"
-    echo "2) ievensen"
-    echo "3) intervbs"
-    echo "4) jca"
-    echo "5) ketil"
-    echo "6) leif"
-    echo "7) neethan"
-    echo "8) sigubrat"
-    echo "9) Solheim"
-    echo "10) Turbonaepskrel"
+    echo "2) intervbs"
+    echo "3) jca"
+    echo "4) ketil"
+    echo "5) leif"
+    echo "6) neethan"
+    echo "7) sigubrat"
+    echo "8) Solheim"
+    echo "9) Turbonaepskrel"
     echo "=================================="
     read -r -p "Enter your choice (1 to 8): " choice
 
@@ -25,30 +24,27 @@ install_nixos() {
             machine="grindstein"
             ;;
         2)
-            machine="ievensen"
-            ;;
-        3)
             machine="intervbs"
             ;;
-        4)
+        3)
             machine="jca"
             ;;
-        5)
+        4)
             machine="ketil"
             ;;
-        6)
+        5)
             machine="leif"
             ;;
-        7)
+        6)
             machine="neethan"
             ;;
-        8)
+        7)
             machine="sigubrat"
             ;;
-        9)
+        8)
             machine="Solheim"
             ;;
-        10)
+        9)
             machine="Turbonaepskrel"
             ;;
         *)
