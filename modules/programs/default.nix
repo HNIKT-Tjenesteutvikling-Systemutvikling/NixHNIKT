@@ -66,6 +66,7 @@ in
   ./rider.nix
   ./slack.nix
   ./spotify.nix
+  # ./ssh.nix
   ./starship.nix
   ./tmux.nix
   ./vscode.nix

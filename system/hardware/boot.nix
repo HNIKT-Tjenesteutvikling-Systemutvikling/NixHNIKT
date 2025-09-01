@@ -70,11 +70,11 @@ in
       };
     };
     kernelParams = [
-      "quiet"
-      "splash"
-      "boot.shell_on_fail"
-      "udev.log_priority=3"
-      "rd.systemd.show_status=auto"
+      # "quiet"
+      # "splash"
+      # "boot.shell_on_fail"
+      # "udev.log_priority=3"
+      # "rd.systemd.show_status=auto"
     ];
     loader = {
       efi = {
@@ -83,9 +83,9 @@ in
       };
       systemd-boot.enable = true;
     };
-    plymouth = {
-      enable = true;
-    };
+    # plymouth = {
+    #   enable = true;
+    # };
     kernelModules = [
       "kvm-intel"
       "virtio"
