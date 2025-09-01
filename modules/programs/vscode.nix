@@ -161,7 +161,24 @@ in
               version = "1.14.2";
               sha256 = "sha256-6nIfEPbau5Dy1DGJ0oQ5L2EGn2NDhpd8jSdYujtOU68=";
             })
-          ];
+          ]
+          ++ [
+            (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+              name = "stardew-valley-theme";
+              publisher = "zimo";
+              version = "0.0.6";
+              sha256 = "sha256-xYCqEDePdH9i4/MAcZCM0kYK4WQFVlc5Bpj0FQjVdgI=";
+            })
+          ]
+          ++ [
+            (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+              name = "stardew-valley-icon-theme";
+              publisher = "NqMax";
+              version = "0.0.1";
+              sha256 = "sha256-bgdOSRqmPHlKX01uHjPWm5ak7FWvblUQ8p3H7PigdXc=";
+            })
+          ]
+        ;
 
         userSettings = {
           # Theme settings
