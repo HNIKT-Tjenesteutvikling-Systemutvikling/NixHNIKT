@@ -4,7 +4,7 @@
 }:
 {
   networking.hostName = "leif";
-  users.users.dev.initialHashedPassword = "$7$CU..../....LemQQdYSZoWpNCYXFw/Iw1$RDXNztdFaE6qGnUMWsgW7cpMeBhofT/esvhJeC1QQD6";
+  users.users.dev.initialHashedPassword = "$7$CU..../....7emauu/nSIai9Z3k.5nme1$6FDaMoeVeQBls.bZ3FsswOVWoeB.ILPtcIAqZh24f54";
   services.xserver = {
     videoDrivers = [ "nvidia" ]; # Optional use displayLink for USB-C docking station
     displayManager = {
