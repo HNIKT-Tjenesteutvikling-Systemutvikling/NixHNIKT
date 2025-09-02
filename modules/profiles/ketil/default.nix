@@ -3,8 +3,8 @@
 
   programs.git = {
     enable = true;
-    userEmail = "ketil@ketil.no";
-    userName = "ketil";
+    userEmail = "ketilh@gmail.com";
+    userName = "knotilla";
   };
 
   # Home modules to load
