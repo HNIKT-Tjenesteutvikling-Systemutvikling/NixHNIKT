@@ -4,7 +4,7 @@
 }:
 {
   networking.hostName = "Solheim";
-  users.users.dev.initialHashedPassword = "$7$CU..../....LHBYw6TQguCtttLZrDM.J1$C9d/wSXL4C9kE1NOvMl2Z90rO1a9V368sFI3lUTljW6";
+  users.users.dev.initialHashedPassword = "$7$CU..../....golmFbccEgPjPFWwyiKYU0$Uu/jQNf2DAS8RgsUmMsU5oB61Oib6OWjCVAKd385rf5";
   services.xserver = {
     videoDrivers = [ "modesetting" ]; # Optional use displayLink for USB-C docking station
     displayManager = {
