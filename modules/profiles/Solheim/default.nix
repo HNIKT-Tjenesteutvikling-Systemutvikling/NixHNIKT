@@ -11,19 +11,17 @@
   program = {
     browser = {
       chromium.enable = true;
-      zen.enable = true;
+      firefox.enable = true;
     };
     dbeaver.enable = true;
     gimp.enable = true;
     intellij.enable = true;
     keepass.enable = true;
-    remmina.enable = true;
     libreoffice.enable = true;
     slack.enable = true;
     spotify.enable = true;
     vscode = {
       enable = true;
-      theme = "stardew";
     };
   };
 }
