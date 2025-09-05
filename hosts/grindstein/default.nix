@@ -4,7 +4,7 @@
 }:
 {
   networking.hostName = "grindstein";
-  users.users.dev.initialHashedPassword = "$7$CU..../....LHBYw6TQguCtttLZrDM.J1$C9d/wSXL4C9kE1NOvMl2Z90rO1a9V368sFI3lUTljW6";
+  users.users.dev.initialHashedPassword = "$7$CU..../....87RQd./xXvTs9PuD3lrZZ/$QgXAA42.i1XsVed2ifjaQunvDo7vdpBmfgg7FDBSp11";
   services.xserver = {
     videoDrivers = [ "modesetting" ]; # Optional use displayLink for USB-C docking station
     displayManager = {
