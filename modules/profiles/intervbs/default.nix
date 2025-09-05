@@ -49,6 +49,7 @@ in
     keepass.enable = true;
     remmina.enable = true;
     slack.enable = true;
+    ssh.githubKeyFile = "~/.ssh/id_ed25519";
     spotify.enable = false;
     vscode.enable = true;
     wmware-horizon.enable = true;
