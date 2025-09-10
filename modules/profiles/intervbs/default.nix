@@ -16,7 +16,7 @@ in
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".binding =
       "<Control><Alt>t";
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".command = "tilix";
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".name = "Tilix Terminal";
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".name = "Tilix";
 
     "org/gnome/desktop/interface".show-battery-percentage = true;
 
@@ -51,7 +51,9 @@ in
     slack.enable = true;
     ssh.githubKeyFile = "~/.ssh/id_ed25519";
     spotify.enable = false;
-    vscode.enable = true;
+    vscode = {
+      enable = true;
+    };
     wmware-horizon.enable = true;
     libreoffice.enable = true;
     tilix.enable = true;

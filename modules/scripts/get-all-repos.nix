@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 pkgs.writeShellScriptBin "get-all-repos" ''
-  set -e
 
   WORKSPACE_DIR="/home/dev/Projects/workspace"
   if [ ! -d "$WORKSPACE_DIR" ]; then
@@ -17,14 +16,16 @@ pkgs.writeShellScriptBin "get-all-repos" ''
 
     if [ -d "$dir" ]; then
       echo "✓ $dir already exists, skipping clone"
+      return 0
+    fi
+
+    echo "→ Cloning $dir..."
+    if git clone "$repo" "$dir"; then
+      echo "✓ Successfully cloned $dir"
+      return 0
     else
-      echo "→ Cloning $dir..."
-      if git clone "$repo" "$dir"; then
-        echo "✓ Successfully cloned $dir"
-      else
-        echo "✗ Failed to clone $dir"
-        return 1
-      fi
+      echo "✗ Failed to clone $dir"
+      return 1
     fi
   }
 
