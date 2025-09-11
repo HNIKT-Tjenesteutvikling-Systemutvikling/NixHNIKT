@@ -17,7 +17,6 @@
 
   # Modules loaded
   service = {
-    dropbox.enable = true;
     mysql.enable = true;
     onedrive.enable = true;
     printing.enable = true;
