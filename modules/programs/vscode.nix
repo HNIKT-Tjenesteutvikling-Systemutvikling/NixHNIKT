@@ -43,9 +43,10 @@ let
     mimeo
     docker-compose
 
-    # Git
+    # Git and SSH tools
     git
     openssh
+    git-credential-manager
   ];
 
   # Create a PATH string for these tools
@@ -233,10 +234,26 @@ in
           "terminal.integrated.fontFamily" = "RobotoMono Nerd Font, 'RobotoMono Nerd Font Mono', monospace";
           "terminal.integrated.fontSize" = 14;
 
-          # Fish shell configuration for VS Code
+          # Terminal environment configuration
           "terminal.integrated.env.linux" = {
             "TERM_PROGRAM" = "vscode";
+            # Preserve SSH agent socket
+            "SSH_AUTH_SOCK" = "\${SSH_AUTH_SOCK}";
+            # Preserve git configuration
+            "GIT_ASKPASS" = "\${GIT_ASKPASS}";
+            "GIT_SSH" = "${pkgs.openssh}/bin/ssh";
           };
+
+          # Use external terminal for better compatibility
+          "terminal.integrated.defaultProfile.linux" = "fish";
+          "terminal.integrated.profiles.linux" = {
+            "fish" = {
+              "path" = "${pkgs.fish}/bin/fish";
+              "args" = [ "--login" ];
+            };
+          };
+
+          "terminal.integrated.inheritEnv" = true;
           "terminal.integrated.shellIntegration.enabled" = true;
           "terminal.integrated.shellIntegration.showWelcome" = false;
 
@@ -414,9 +431,22 @@ in
 
     home.packages = [
       (pkgs.writeShellScriptBin "code-wrapped" ''
+        # Preserve important environment variables
+        export SSH_AUTH_SOCK="''${SSH_AUTH_SOCK:-}"
+        export SSH_AGENT_PID="''${SSH_AGENT_PID:-}"
+        export GIT_ASKPASS="''${GIT_ASKPASS:-}"
+        export DISPLAY="''${DISPLAY:-}"
+        export XAUTHORITY="''${XAUTHORITY:-}"
+
+        # Preserve HOME and user directories
+        export HOME="''${HOME}"
+        export USER="''${USER}"
+
         # Add our specific tools to the front of the PATH but preserve the rest
         export PATH="${vscodeOnlyPath}:${wrappersPath}:${systemToolsPath}:${homeManagerPath}:$PATH"
-        exec ${pkgs.vscode.fhs}/bin/code "$@"
+
+        # Use regular vscode package instead of FHS version to avoid permission issues
+        exec ${pkgs.vscode}/bin/code "$@"
       '')
     ];
 
@@ -427,7 +457,17 @@ in
 
       fish.interactiveShellInit = ''
         if test "$TERM_PROGRAM" = "vscode"
+          # Preserve existing PATH and prepend our tools
           set -gx PATH "${vscodeOnlyPath}:${wrappersPath}:${systemToolsPath}:${homeManagerPath}" $PATH
+
+          # Ensure SSH agent is available
+          if test -z "$SSH_AUTH_SOCK"
+            if test -S "$XDG_RUNTIME_DIR/ssh-agent"
+              set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent"
+            end
+          end
+
+          # Source system fish config if it exists
           if test -f /etc/fish/config.fish
             source /etc/fish/config.fish
           end
