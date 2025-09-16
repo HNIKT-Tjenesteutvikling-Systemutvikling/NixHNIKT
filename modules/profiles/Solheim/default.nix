@@ -24,10 +24,21 @@ in
     libreoffice.enable = true;
     slack.enable = true;
     spotify.enable = true;
+    wmware-horizon.enable = true;
     vscode = {
       enable = true;
     };
   };
+
+  dconf.settings = {
+    "org/gnome/settings-daemon/plugins/color" = {
+      "night-light-enabled" = true;
+      "night-light-temperature" = lib.gvariant.mkUint32 3700;
+      "night-light-schedule-from" = 6.0;
+      "night-light-schedule-to" = 5.0;
+    };
+  };
+
   # Monitor settings for gnome
   home.file.".config/monitors.xml".text = lib.mkIf (desktop.windowManager == "gnome") ''
     <monitors version="2">
