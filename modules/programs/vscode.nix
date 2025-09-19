@@ -206,6 +206,11 @@ in
               "Default Light Modern";
           "workbench.preferredDarkColorTheme" = "Default Dark Modern";
           "workbench.preferredLightColorTheme" = "Default Light Modern";
+          "workbench.colorCustomizations" =
+            if cfg.theme == "stardew" then {
+              "terminal.background" = "#f2dcb9";
+              "panel.background" = "#f2dcb9";
+            } else { };
           "window.autoDetectColorScheme" = false;
 
           # Performance improvements for Scala/Metals

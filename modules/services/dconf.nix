@@ -149,6 +149,8 @@ in
           switch-to-workspace-3 = [ "<Super>3" ];
           switch-to-workspace-4 = [ "<Super>4" ];
           switch-to-workspace-5 = [ "<Super>5" ];
+          switch-to-workspace-left = [ ];
+          switch-to-workspace-right = [ ];
           toggle-fullscreen = [ "<Super>g" ];
         };
         "org/gnome/desktop/wm/preferences" = {
