@@ -178,10 +178,10 @@ in
           ]
           ++ [
             (pkgs.vscode-utils.extensionFromVscodeMarketplace {
-              name = "stardew-valley-icon-theme";
-              publisher = "NqMax";
-              version = "0.0.1";
-              sha256 = "sha256-bgdOSRqmPHlKX01uHjPWm5ak7FWvblUQ8p3H7PigdXc=";
+              name = "vscode-stardew-icon-theme";
+              publisher = "klyap";
+              version = "0.0.7";
+              sha256 = "sha256-6dOI6SM2uqsWhMxA0LvsNx+Sros0qcIbzunfgxQT0AM=";
             })
           ]
           ++ [
@@ -190,6 +190,14 @@ in
               publisher = "Botpa";
               version = "1.2.3";
               sha256 = "sha256-DEoe9smyIcsKd8hTm2b6/r1u95OtrbgoOix+6ai44pU=";
+            })
+          ]
+          ++ [
+            (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+              name = "headwind";
+              publisher = "heybourn";
+              version = "1.7.0";
+              sha256 = "sha256-yXsZoSuJQTdbHLjEERXX2zVheqNYmcPXs97/uQYa7og=";
             })
           ];
 
@@ -204,6 +212,12 @@ in
               "Stardew Valley Theme"
             else
               "Default Light Modern";
+
+          "workbench.iconTheme" =
+            if cfg.theme == "stardew" then
+              "vscode-stardew-icon-theme-autumn"
+            else
+              "vscode-icons";
           "workbench.preferredDarkColorTheme" = "Default Dark Modern";
           "workbench.preferredLightColorTheme" = "Default Light Modern";
           "workbench.colorCustomizations" =
