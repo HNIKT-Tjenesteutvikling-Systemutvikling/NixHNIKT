@@ -210,6 +210,9 @@ in
           show-notification = false;
           user-enabled = true;
         };
+        "org/gnome/shell/extensions/clipboard-indicator" = {
+          next-entry = [ ];
+        };
         "org/gnome/shell/extensions/dash-to-panel" = {
           window-preview-fixed-x = true;
           window-preview-fixed-y = true;
