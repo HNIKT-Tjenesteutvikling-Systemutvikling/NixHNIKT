@@ -28,7 +28,7 @@ in
     spotify.enable = true;
     vscode = {
       enable = true;
-      theme = "stardew";
+      theme = "onedark";
     };
     wmware-horizon.enable = false;
     libreoffice.enable = true;
