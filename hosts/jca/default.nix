@@ -4,7 +4,7 @@
 }:
 {
   networking.hostName = "jca";
-  users.users.dev.initialHashedPassword = "$7$CU..../....LHBYw6TQguCtttLZrDM.J1$C9d/wSXL4C9kE1NOvMl2Z90rO1a9V368sFI3lUTljW6";
+  users.users.dev.initialHashedPassword = "$7$CU..../....9/NzsqdoxnlEMlRaSIKMT0$ZdYt3gG0QywoziL7h6U5pbUaz4znzisu6OSV2Arnlo0";
   services.xserver = {
     videoDrivers = [ "modesetting" ]; # Optional use displayLink for USB-C docking station
     displayManager = {
