@@ -17,6 +17,7 @@
   # Modules loaded
   service = {
     mysql.enable = true;
+    onedrive.enable = true;
     printing.enable = true;
   };
 }
