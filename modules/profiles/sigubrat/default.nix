@@ -36,16 +36,52 @@ in
     <monitors version="2">
     <configuration>
     <layoutmode>physical</layoutmode>
+      <logicalmonitor>
+      <x>0</x>
+      <y>0</y>
+      <scale>1</scale>
+      <monitor>
+      <monitorspec>
+      <connector>DP-11</connector>
+      <vendor>HWP</vendor>
+      <product>HP Z27n</product>
+      <serial>CNK5440603</serial>
+      </monitorspec>
+      <mode>
+      <width>2560</width>
+      <height>1440</height>
+      <rate>59.951</rate>
+      </mode>
+      </monitor>
+      </logicalmonitor>
+        <logicalmonitor>
+      <x>0</x>
+      <y>0</y>
+      <scale>1</scale>
+      <monitor>
+      <monitorspec>
+      <connector>DP-9</connector>
+      <vendor>HWP</vendor>
+      <product>HP Z27n</product>
+      <serial>CNK5440603</serial>
+      </monitorspec>
+      <mode>
+      <width>2560</width>
+      <height>1440</height>
+      <rate>59.951</rate>
+      </mode>
+      </monitor>
+      </logicalmonitor>
     <logicalmonitor>
-    <x>0</x>
+    <x>2560</x>
     <y>0</y>
     <scale>1</scale>
     <monitor>
     <monitorspec>
-    <connector>DP-11</connector>
+    <connector>DP-8</connector>
     <vendor>HWP</vendor>
     <product>HP Z27n</product>
-    <serial>CNK5440603</serial>
+    <serial>CNK6481RQ6</serial>
     </monitorspec>
     <mode>
     <width>2560</width>
@@ -55,12 +91,31 @@ in
     </monitor>
     </logicalmonitor>
     <logicalmonitor>
+    <x>5120</x>
+    <y>360</y>
+    <scale>1</scale>
+    <primary>yes</primary>
+    <monitor>
+    <monitorspec>
+    <connector>eDP-1</connector>
+    <vendor>AUO</vendor>
+    <product>0x229e</product>
+    <serial>0x00000000</serial>
+    </monitorspec>
+    <mode>
+    <width>1920</width>
+    <height>1080</height>
+    <rate>60.049</rate>
+    </mode>
+    </monitor>
+    </logicalmonitor>
+    <logicalmonitor>
     <x>2560</x>
     <y>0</y>
     <scale>1</scale>
     <monitor>
     <monitorspec>
-    <connector>DP-8</connector>
+    <connector>DP-6</connector>
     <vendor>HWP</vendor>
     <product>HP Z27n</product>
     <serial>CNK6481RQ6</serial>
