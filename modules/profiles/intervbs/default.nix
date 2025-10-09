@@ -1,4 +1,4 @@
-{ osConfig, lib, ... }:
+{ osConfig, lib, pkgs, ... }:
 let
   inherit (osConfig.environment) desktop;
 in
@@ -10,6 +10,10 @@ in
     userEmail = "joran@lillegaard.com";
     userName = "intervbs";
   };
+
+  home.packages = with pkgs; [
+    neofetch # system info
+  ];
 
   # Gnome dconf overrides
   dconf.settings = {

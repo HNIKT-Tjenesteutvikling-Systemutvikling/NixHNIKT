@@ -6,7 +6,7 @@
 let
   gitConfig = {
     core = {
-      editor = "code";
+      editor = "code --wait";
       pager = "diff-so-fancy | less --tabs=4 -RFX";
     };
     init.defaultBranch = "main";
