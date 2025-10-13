@@ -6,7 +6,7 @@
 let
   gitConfig = {
     core = {
-      editor = "code --wait";
+      editor = "code --wait --new-window";
       pager = "diff-so-fancy | less --tabs=4 -RFX";
     };
     init.defaultBranch = "main";
@@ -18,7 +18,10 @@ let
       cmd = "nvim -f -c \"MergetoolStart\" \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"";
       prompt = false;
     };
-    pull.rebase = false;
+    pull.rebase = true;
+    rebase = {
+      updateRefs = true;
+    };
     push.autoSetupRemote = true;
     url = {
       "https://github.com/".insteadOf = "gh:";
