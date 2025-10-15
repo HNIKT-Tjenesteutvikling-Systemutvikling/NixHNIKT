@@ -18,6 +18,7 @@
     intellij.enable = true;
     keepass.enable = true;
     libreoffice.enable = true;
+    postman.enable = true;
     slack.enable = true;
     spotify.enable = true;
     vscode.enable = true;

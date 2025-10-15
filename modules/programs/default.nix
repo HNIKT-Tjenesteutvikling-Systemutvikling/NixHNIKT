@@ -60,6 +60,7 @@ in
   ./libreoffice.nix
   ./neovim.nix
   ./obsidian.nix
+  ./postman.nix
   ./remmina.nix
   ./rider.nix
   ./slack.nix
