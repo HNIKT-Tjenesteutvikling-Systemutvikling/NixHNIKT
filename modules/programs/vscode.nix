@@ -247,7 +247,7 @@ in
           "editor.formatOnPaste" = true;
           "editor.minimap.enabled" = false;
           "editor.defaultFormatter" = "esbenp.prettier-vscode";
-          "editor.lineNumbers" = "relative";
+          "editor.lineNumbers" = "on";
 
           # Terminal font configuration for nerd icons
           "terminal.integrated.fontFamily" = "RobotoMono Nerd Font, 'RobotoMono Nerd Font Mono', monospace";
