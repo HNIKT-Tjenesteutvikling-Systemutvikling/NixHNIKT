@@ -10,5 +10,10 @@ in
 
   config = lib.mkIf cfg.enable {
     services.onedrive.enable = true;
+    environment.persistence."/persist" = {
+      directories = [
+        "/home/dev/OneDrive"
+      ];
+    };
   };
 }
