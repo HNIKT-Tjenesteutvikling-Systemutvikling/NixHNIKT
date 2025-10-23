@@ -27,7 +27,7 @@ in
     spotify.enable = true;
     vscode = {
       enable = true;
-      theme = "stardew";
+      theme = "cyberpunk";
     };
     wmware-horizon.enable = true;
   };

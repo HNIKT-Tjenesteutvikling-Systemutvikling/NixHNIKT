@@ -80,7 +80,7 @@ in
         "dark"
         "light"
         "onedark"
-        "stardew"
+        "cyberpunk"
       ];
       default = "dark";
       description = "VSCode color theme";
@@ -170,26 +170,10 @@ in
           ]
           ++ [
             (pkgs.vscode-utils.extensionFromVscodeMarketplace {
-              name = "stardew-valley-theme";
-              publisher = "zimo";
-              version = "0.0.6";
-              sha256 = "sha256-xYCqEDePdH9i4/MAcZCM0kYK4WQFVlc5Bpj0FQjVdgI=";
-            })
-          ]
-          ++ [
-            (pkgs.vscode-utils.extensionFromVscodeMarketplace {
-              name = "vscode-stardew-icon-theme";
-              publisher = "klyap";
-              version = "0.0.7";
-              sha256 = "sha256-6dOI6SM2uqsWhMxA0LvsNx+Sros0qcIbzunfgxQT0AM=";
-            })
-          ]
-          ++ [
-            (pkgs.vscode-utils.extensionFromVscodeMarketplace {
-              name = "stardew-pets";
-              publisher = "Botpa";
-              version = "1.2.3";
-              sha256 = "sha256-DEoe9smyIcsKd8hTm2b6/r1u95OtrbgoOix+6ai44pU=";
+              name = "cyberpunk";
+              publisher = "max-ss";
+              version = "1.2.14";
+              sha256 = "sha256-t5UAYRenHfM6BDyyMr+SGhrrdn1LZL7TuavtPyjOgWA=";
             })
           ]
           ++ [
@@ -208,23 +192,14 @@ in
               "One Dark"
             else if cfg.theme == "dark" then
               "Default Dark Modern"
-            else if cfg.theme == "stardew" then
-              "Stardew Valley Theme"
+            else if cfg.theme == "cyberpunk" then
+              "Cyberpunk"
             else
               "Default Light Modern";
 
-          "workbench.iconTheme" =
-            if cfg.theme == "stardew" then
-              "vscode-stardew-icon-theme-autumn"
-            else
-              "vscode-icons";
+          "workbench.iconTheme" = "vscode-icons";
           "workbench.preferredDarkColorTheme" = "Default Dark Modern";
           "workbench.preferredLightColorTheme" = "Default Light Modern";
-          "workbench.colorCustomizations" =
-            if cfg.theme == "stardew" then {
-              "terminal.background" = "#f2dcb9";
-              "panel.background" = "#f2dcb9";
-            } else { };
           "window.autoDetectColorScheme" = false;
 
           # Performance improvements for Scala/Metals
