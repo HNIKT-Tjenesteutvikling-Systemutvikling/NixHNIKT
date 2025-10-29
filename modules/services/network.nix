@@ -1,5 +1,9 @@
+{ osConfig
+, lib
+, ...
+}:
 {
-  services.network-manager-applet = {
+  services.network-manager-applet = lib.mkIf osConfig.environment.desktop.enable {
     enable = true;
   };
 }

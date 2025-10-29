@@ -10,8 +10,15 @@ in
   options.program.keepass.enable = lib.mkEnableOption "keepass";
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      keepass
-    ];
+    home = {
+      packages = with pkgs; [
+        keepass
+      ];
+      persistence."/persist/${config.home.homeDirectory}" = {
+        directories = [
+          ".config/KeePass"
+        ];
+      };
+    };
   };
 }

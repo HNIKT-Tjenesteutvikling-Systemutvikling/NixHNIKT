@@ -1,11 +1,3 @@
-{ config
-, lib
-, ...
-}:
-let
-  sshConfigSourcePath = config.home.homeDirectory + "/.ssh/config_source";
-  sourceFileExists = builtins.pathExists sshConfigSourcePath;
-in
 {
   imports = [ ../../default.nix ];
 
@@ -22,20 +14,21 @@ in
   # Allow devcontainers to speak with gpg agent.
   services.gpg-agent.enableExtraSocket = true;
 
-  # Fix git not working in vscode terminal
-  # Copies the ssh config instead of symlinking it
-  home.file.".ssh/config" = lib.mkIf sourceFileExists {
-    target = ".ssh/config_source";
-    onChange = ''cat ~/.ssh/config_source > ~/.ssh/config && chmod 400 ~/.ssh/config'';
-  };
-
   # Home modules to load
   program = {
+    browser = {
+      chromium.enable = true;
+      firefox.enable = true;
+      zen.enable = true;
+    };
     gimp.enable = true;
     keepass.enable = true;
     remmina.enable = true;
     slack.enable = true;
     spotify.enable = true;
-    vscode.enable = true;
+    vscode = {
+      enable = true;
+      theme = "cyberpunk";
+    };
   };
 }

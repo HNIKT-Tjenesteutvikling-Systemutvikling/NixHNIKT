@@ -1,7 +1,7 @@
 {
   system = {
     autoUpgrade = {
-      enable = true;
+      enable = false;
       flake = "github:HNIKT-Tjenesteutvikling-Systemutvikling/NixHNIKT";
       allowReboot = true;
       persistent = true;
@@ -18,6 +18,6 @@
       ];
       randomizedDelaySec = "1min";
     };
-    stateVersion = "24.11";
+    stateVersion = "25.05";
   };
 }

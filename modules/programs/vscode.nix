@@ -1,10 +1,14 @@
-{ config
+{ osConfig
+, config
 , lib
 , pkgs
 , ...
 }:
 let
+  inherit (osConfig.environment) desktop;
   cfg = config.program.vscode;
+
+  sharedAliases = import ../../system/programs/fish/fish-aliases.nix { inherit pkgs lib; };
 
   # VS Code only tools
   vscodeOnlyTools = with pkgs; [
@@ -25,8 +29,24 @@ let
     typescript-language-server
     vue-language-server
 
+    # Fonts for proper icon rendering
+    nerd-fonts.roboto-mono
+
     # Utilities
     jq
+
+    # Tools needed for aliases
+    bat
+    eza
+    ncdu
+    prettyping
+    mimeo
+    docker-compose
+
+    # Git and SSH tools
+    git
+    openssh
+    git-credential-manager
   ];
 
   # Create a PATH string for these tools
@@ -59,13 +79,15 @@ in
       type = lib.types.enum [
         "dark"
         "light"
+        "onedark"
+        "cyberpunk"
       ];
       default = "dark";
       description = "VSCode color theme";
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && desktop.enable && desktop.develop) {
 
     programs.vscode = {
       enable = true;
@@ -127,6 +149,8 @@ in
             scalameta.metals
             scala-lang.scala
 
+            # Theme
+
             # Yaml/Markdown
             bierner.github-markdown-preview
             bierner.markdown-checkbox
@@ -135,12 +159,45 @@ in
             bierner.markdown-mermaid
             bierner.markdown-preview-github-styles
           ]
-          ++ lib.optionals cfg.godMode [ vscodevim.vim ];
+          ++ lib.optionals cfg.godMode [ vscodevim.vim ]
+          ++ [
+            (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+              name = "one-dark-theme";
+              publisher = "mskelton";
+              version = "1.14.2";
+              sha256 = "sha256-6nIfEPbau5Dy1DGJ0oQ5L2EGn2NDhpd8jSdYujtOU68=";
+            })
+          ]
+          ++ [
+            (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+              name = "cyberpunk";
+              publisher = "max-ss";
+              version = "1.2.14";
+              sha256 = "sha256-t5UAYRenHfM6BDyyMr+SGhrrdn1LZL7TuavtPyjOgWA=";
+            })
+          ]
+          ++ [
+            (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+              name = "headwind";
+              publisher = "heybourn";
+              version = "1.7.0";
+              sha256 = "sha256-yXsZoSuJQTdbHLjEERXX2zVheqNYmcPXs97/uQYa7og=";
+            })
+          ];
 
         userSettings = {
           # Theme settings
           "workbench.colorTheme" =
-            if cfg.theme == "dark" then "Default Dark Modern" else "Default Light Modern";
+            if cfg.theme == "onedark" then
+              "One Dark"
+            else if cfg.theme == "dark" then
+              "Default Dark Modern"
+            else if cfg.theme == "cyberpunk" then
+              "Cyberpunk"
+            else
+              "Default Light Modern";
+
+          "workbench.iconTheme" = "vscode-icons";
           "workbench.preferredDarkColorTheme" = "Default Dark Modern";
           "workbench.preferredLightColorTheme" = "Default Light Modern";
           "window.autoDetectColorScheme" = false;
@@ -156,6 +213,7 @@ in
           "git.autofetch" = true;
           "git.confirmSync" = false;
           "git.enableSmartCommit" = true;
+          "git.path" = "${pkgs.git}/bin/git";
 
           # Editor improvements
           "workbench.tree.indent" = 20;
@@ -164,7 +222,34 @@ in
           "editor.formatOnPaste" = true;
           "editor.minimap.enabled" = false;
           "editor.defaultFormatter" = "esbenp.prettier-vscode";
-          "editor.lineNumbers" = "relative";
+          "editor.lineNumbers" = "on";
+
+          # Terminal font configuration for nerd icons
+          "terminal.integrated.fontFamily" = "RobotoMono Nerd Font, 'RobotoMono Nerd Font Mono', monospace";
+          "terminal.integrated.fontSize" = 14;
+
+          # Terminal environment configuration
+          "terminal.integrated.env.linux" = {
+            "TERM_PROGRAM" = "vscode";
+            # Preserve SSH agent socket
+            "SSH_AUTH_SOCK" = "\${SSH_AUTH_SOCK}";
+            # Preserve git configuration
+            "GIT_ASKPASS" = "\${GIT_ASKPASS}";
+            "GIT_SSH" = "${pkgs.openssh}/bin/ssh";
+          };
+
+          # Use external terminal for better compatibility
+          "terminal.integrated.defaultProfile.linux" = "fish";
+          "terminal.integrated.profiles.linux" = {
+            "fish" = {
+              "path" = "${pkgs.fish}/bin/fish";
+              "args" = [ "--login" ];
+            };
+          };
+
+          "terminal.integrated.inheritEnv" = true;
+          "terminal.integrated.shellIntegration.enabled" = true;
+          "terminal.integrated.shellIntegration.showWelcome" = false;
 
           # Code lens for better navigation
           "java.referencesCodeLens.enabled" = true;
@@ -233,7 +318,7 @@ in
           };
 
           # Formatters
-          "prettier.prettierPath" = "${pkgs.nodePackages.prettier}/bin/prettier";
+          # "prettier.prettierPath" = "${pkgs.nodePackages.prettier}/bin/prettier";
           "nix.formatterPath" = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
 
           # Java extension configuration to use environment variables
@@ -340,14 +425,48 @@ in
 
     home.packages = [
       (pkgs.writeShellScriptBin "code-wrapped" ''
+        # Preserve important environment variables
+        export SSH_AUTH_SOCK="''${SSH_AUTH_SOCK:-}"
+        export SSH_AGENT_PID="''${SSH_AGENT_PID:-}"
+        export GIT_ASKPASS="''${GIT_ASKPASS:-}"
+        export DISPLAY="''${DISPLAY:-}"
+        export XAUTHORITY="''${XAUTHORITY:-}"
+
+        # Preserve HOME and user directories
+        export HOME="''${HOME}"
+        export USER="''${USER}"
+
         # Add our specific tools to the front of the PATH but preserve the rest
         export PATH="${vscodeOnlyPath}:${wrappersPath}:${systemToolsPath}:${homeManagerPath}:$PATH"
-        exec ${pkgs.vscode.fhs}/bin/code "$@"
+
+        # Use regular vscode package instead of FHS version to avoid permission issues
+        exec ${pkgs.vscode}/bin/code "$@"
       '')
     ];
 
-    programs.fish.shellAliases = {
-      code = "code-wrapped";
+    programs = {
+      fish.shellAliases = sharedAliases.fishAliases // {
+        code = "code-wrapped";
+      };
+
+      fish.interactiveShellInit = ''
+        if test "$TERM_PROGRAM" = "vscode"
+          # Preserve existing PATH and prepend our tools
+          set -gx PATH "${vscodeOnlyPath}:${wrappersPath}:${systemToolsPath}:${homeManagerPath}" $PATH
+
+          # Ensure SSH agent is available
+          if test -z "$SSH_AUTH_SOCK"
+            if test -S "$XDG_RUNTIME_DIR/ssh-agent"
+              set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent"
+            end
+          end
+
+          # Source system fish config if it exists
+          if test -f /etc/fish/config.fish
+            source /etc/fish/config.fish
+          end
+        end
+      '';
     };
 
     xdg.desktopEntries."code" = {
@@ -373,6 +492,14 @@ in
           name = "New Empty Window";
         };
       };
+    };
+
+    home.persistence."/persist/${config.home.homeDirectory}" = {
+      directories = [
+        ".config/Code"
+        ".config/copilot-chat"
+        ".config/github-copilot"
+      ];
     };
   };
 }

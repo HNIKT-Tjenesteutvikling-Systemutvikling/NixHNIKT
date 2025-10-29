@@ -8,9 +8,9 @@ install_nixos() {
     echo "=================================="
     echo "Please select a machine to install:"
     echo "1) grindstein"
-    echo "2) ievensen"
-    echo "3) intervbs"
-    echo "4) jca"
+    echo "2) intervbs"
+    echo "3) jca"
+    echo "4) ketil"
     echo "5) neethan"
     echo "6) sigubrat"
     echo "7) Solheim"
@@ -23,13 +23,13 @@ install_nixos() {
             machine="grindstein"
             ;;
         2)
-            machine="ievensen"
-            ;;
-        3)
             machine="intervbs"
             ;;
-        4)
+        3)
             machine="jca"
+            ;;
+        4)
+            machine="ketil"
             ;;
         5)
             machine="neethan"
@@ -56,8 +56,8 @@ install_nixos() {
         exit 0
     fi
 
-    disko_path="./system/hardware/disko.nix"
     flake_target=".#$machine"
+    disko_path="./hosts/$machine/disks.nix"
 
     if [ ! -f "$disko_path" ]; then
         echo "Error: Disk configuration file not found at $disko_path"

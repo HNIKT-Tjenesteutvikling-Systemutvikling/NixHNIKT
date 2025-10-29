@@ -1,23 +1,28 @@
-{ inputs
-, pkgs
+{ pkgs
 , lib
 , ...
 }:
-with lib; {
+with lib;
+{
   # Core pakages for system
   environment.systemPackages = with pkgs; [
     wget
     git
 
-    nodejs_20 # Github Copilot requires
-    inputs.neovim-flake.defaultPackage.${pkgs.system}
+    # inputs.neovim-flake.defaultPackage.${pkgs.system}
   ];
 
   imports = [
     ./cachix
-    ./desktop.nix
+    ./fish
     ./docker.nix
-    ./fish.nix
     ./fonts.nix
   ];
+
+  programs = {
+    # Allow non-root users to specify the allow_other or allow_root mount options
+    fuse.userAllowOther = true;
+    # Nano is enabled by default, but not anymore...
+    nano.enable = false;
+  };
 }

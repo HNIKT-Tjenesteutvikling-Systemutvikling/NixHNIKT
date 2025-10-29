@@ -1,10 +1,28 @@
+{ config, lib, ... }:
 let
+  cfg = config.program.browser.chromium;
   ext = import ./extensions.nix;
 in
 {
-  programs.chromium = {
-    enable = true;
-    extensions = builtins.attrValues ext;
-    commandLineArgs = [ "--ozone-platform-hint=auto" ];
+  options.program.browser.chromium = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enable Chromium browser";
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
+    programs.chromium = {
+      enable = true;
+      extensions = builtins.attrValues ext;
+      commandLineArgs = [ "--ozone-platform-hint=auto" ];
+    };
+
+    home.persistence."/persist/${config.home.homeDirectory}" = {
+      directories = [
+        ".config/chromium"
+      ];
+    };
   };
 }

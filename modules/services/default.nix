@@ -9,5 +9,6 @@ in
   ./dconf.nix
   ./gpg.nix
   ./network.nix
+  ./persist.nix
   more
 ]

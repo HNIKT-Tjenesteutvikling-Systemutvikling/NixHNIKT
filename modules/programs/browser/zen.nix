@@ -1,8 +1,13 @@
-{ inputs
+{ osConfig
+, config
+, inputs
 , pkgs
+, lib
 , ...
 }:
 let
+  cfg = config.program.browser.zen;
+
   # Create a wrapper script for zen-browser with Wayland enabled
   zenWithWayland = pkgs.symlinkJoin {
     name = "zen-browser-wayland";
@@ -15,5 +20,23 @@ let
   };
 in
 {
-  home.packages = [ zenWithWayland ];
+
+  options.program.browser.zen = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enable Browser Zen";
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
+    home = lib.mkIf osConfig.environment.desktop.enable {
+      packages = [ zenWithWayland ];
+      persistence."/persist/${config.home.homeDirectory}" = {
+        directories = [
+          ".zen"
+        ];
+      };
+    };
+  };
 }

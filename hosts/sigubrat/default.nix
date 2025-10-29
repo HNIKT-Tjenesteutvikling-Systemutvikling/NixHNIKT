@@ -1,8 +1,10 @@
 { pkgs
 , lib
 , ...
-}: {
+}:
+{
   networking.hostName = "sigubrat";
+  users.users.dev.initialHashedPassword = "$7$CU..../....xCwA2EkHz5ukX5QDlZHqH1$0mtiQIaAoZhsAzzqoVnGXl96.U9h8G/RQplqbUB.RxD";
   services.xserver = {
     videoDrivers = [ "modesetting" ]; # Optional use displayLink for USB-C docking station
     displayManager = {
