@@ -30,7 +30,7 @@ in
       enable = true;
       theme = "onedark";
     };
-    wmware-horizon.enable = false;
+    wmware-horizon.enable = true;
     libreoffice.enable = true;
     tilix.enable = true;
   };
