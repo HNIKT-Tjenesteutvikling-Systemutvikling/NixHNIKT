@@ -1,10 +1,11 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
     libnfc
     ccid
     #acsccid
     pcsclite
-    pcsctools
+    pcsc-tools
   ];
 
   services.pcscd.enable = true;

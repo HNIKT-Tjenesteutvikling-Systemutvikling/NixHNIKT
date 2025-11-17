@@ -1,4 +1,8 @@
-{ osConfig, lib, pkgs, ... }:
+{ osConfig
+, lib
+, pkgs
+, ...
+}:
 let
   inherit (osConfig.environment) desktop;
 in
@@ -7,8 +11,12 @@ in
 
   programs.git = {
     enable = true;
-    userEmail = "joran@lillegaard.com";
-    userName = "intervbs";
+    settings = {
+      user = {
+        Email = "joran@lillegaard.com";
+        Name = "intervbs";
+      };
+    };
   };
 
   home.packages = with pkgs; [

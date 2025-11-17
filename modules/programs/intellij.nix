@@ -10,7 +10,7 @@ let
 
   devSDKs = with pkgs; {
     java21 = jdk21;
-    scala = dotty;
+    scala = scala_3;
     inherit metals;
   };
 

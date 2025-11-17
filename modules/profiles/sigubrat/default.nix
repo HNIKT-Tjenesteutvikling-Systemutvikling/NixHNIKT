@@ -8,8 +8,10 @@ in
 
   programs.git = {
     enable = true;
-    userEmail = "sigurdjbratt@hotmail.no";
-    userName = "sigubrat";
+    settings.user = {
+      Email = "sigurdjbratt@hotmail.no";
+      Name = "sigubrat";
+    };
   };
 
   # Home modules to load

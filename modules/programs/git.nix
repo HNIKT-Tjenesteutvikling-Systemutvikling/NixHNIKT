@@ -34,7 +34,7 @@ let
 in
 {
   home = {
-    packages = with pkgs.gitAndTools; [
+    packages = with pkgs; [
       diff-so-fancy # git diff with colors
       git-crypt # git files encryption
       hub # github command-line client
@@ -52,22 +52,23 @@ in
 
   programs.git = {
     enable = true;
-    aliases = {
-      amend = "commit -a --amend";
-      fix = "commit -a --fixup HEAD";
-      base = "rebase -i --autosquash";
-      br = "branch";
-      co = "checkout";
-      s = "status";
-      cm = "commit -m";
-      ca = "commit -am";
-      dc = "diff --cached";
-      p = "pull";
-      pp = "push";
-      f = "fetch";
-      ppf = "push --force-with-lease";
+    settings = gitConfig // {
+      aliases = {
+        amend = "commit -a --amend";
+        fix = "commit -a --fixup HEAD";
+        base = "rebase -i --autosquash";
+        br = "branch";
+        co = "checkout";
+        s = "status";
+        cm = "commit -m";
+        ca = "commit -am";
+        dc = "diff --cached";
+        p = "pull";
+        pp = "push";
+        f = "fetch";
+        ppf = "push --force-with-lease";
+      };
     };
-    extraConfig = gitConfig;
     ignores = [
       "*.bloop"
       "*.bsp"

@@ -7,10 +7,9 @@ in
 
   programs.git = {
     enable = true;
-    userEmail = "jan-magnus.solheim@hnikt.no";
-    userName = "5olheim";
-    extraConfig = {
-      pull.rebase = lib.mkForce false;
+    settings.user = {
+      Email = "jan-magnus.solheim@hnikt.no";
+      Name = "5olheim";
     };
   };
 

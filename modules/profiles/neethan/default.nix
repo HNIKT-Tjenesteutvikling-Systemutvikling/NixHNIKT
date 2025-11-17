@@ -3,11 +3,13 @@
 
   programs.git = {
     enable = true;
-    userEmail = "neethan.puvanendran@hnikt.no";
-    userName = "neethan";
-    signing = {
-      key = "6080BAC662730473";
-      signByDefault = true;
+    settings.user = {
+      Email = "neethan.puvanendran@hnikt.no";
+      Name = "neethan";
+      signing = {
+        key = "6080BAC662730473";
+        signByDefault = true;
+      };
     };
   };
 

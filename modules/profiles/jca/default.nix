@@ -3,8 +3,10 @@
 
   programs.git = {
     enable = true;
-    userEmail = "jan.olov.gustav.carlsson@hnikt.no";
-    userName = "jca002";
+    settings.user = {
+      Email = "jan.olov.gustav.carlsson@hnikt.no";
+      Name = "jca002";
+    };
   };
 
   # Home modules to load

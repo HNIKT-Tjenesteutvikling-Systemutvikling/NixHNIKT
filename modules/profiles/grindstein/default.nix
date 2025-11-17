@@ -7,8 +7,12 @@ in
 
   programs.git = {
     enable = true;
-    userEmail = "torkil.grindstein@hnikt.no";
-    userName = "grindstein";
+    settings = {
+      user = {
+        Email = "torkil.grindstein@hnikt.no";
+        Name = "grindstein";
+      };
+    };
   };
 
   # Home modules to load
