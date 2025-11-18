@@ -28,6 +28,7 @@ in
     gm = "git commit -m";
     gp = "git push";
     gc = "git checkout";
+    gpm = "git fetch origin master:master";
 
     # Maven alias
     mvncp = "mvn clean package";
