@@ -497,6 +497,7 @@ in
     home.persistence."/persist/${config.home.homeDirectory}" = {
       directories = [
         ".config/Code"
+        ".config/bleep"
         ".config/copilot-chat"
         ".config/github-copilot"
       ];
