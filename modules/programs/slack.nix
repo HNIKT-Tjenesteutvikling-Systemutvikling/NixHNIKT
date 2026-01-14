@@ -14,7 +14,7 @@ in
       packages = with pkgs; [
         slack
       ];
-      persistence."/persist/${config.home.homeDirectory}" = {
+      persistence."/persist/" = {
         directories = [
           ".config/Slack"
         ];

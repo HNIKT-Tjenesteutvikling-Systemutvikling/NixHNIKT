@@ -19,7 +19,7 @@ in
       commandLineArgs = [ "--ozone-platform-hint=auto" ];
     };
 
-    home.persistence."/persist/${config.home.homeDirectory}" = {
+    home.persistence."/persist/" = {
       directories = [
         ".config/chromium"
       ];

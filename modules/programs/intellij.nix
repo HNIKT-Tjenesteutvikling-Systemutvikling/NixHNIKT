@@ -9,7 +9,7 @@ let
   cfg = config.program.intellij;
 
   devSDKs = with pkgs; {
-    java21 = jdk21;
+    java25 = jdk25;
     scala = scala_3;
     inherit metals;
   };
@@ -27,9 +27,9 @@ in
 
   config = lib.mkIf (cfg.enable && desktop.enable && desktop.develop) {
     home = {
-      packages = [ pkgs.jetbrains.idea-ultimate ];
+      packages = [ pkgs.jetbrains.idea ];
       file.".local/dev".source = devSymlink;
-      persistence."/persist/${config.home.homeDirectory}" = {
+      persistence."/persist/" = {
         directories = [
           ".cache/JetBrains"
           ".config/JetBrains"

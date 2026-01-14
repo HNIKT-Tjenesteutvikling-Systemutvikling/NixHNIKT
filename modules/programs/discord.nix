@@ -14,7 +14,7 @@ in
       packages = [
         pkgs.discord
       ];
-      persistence."/persist/${config.home.homeDirectory}" = {
+      persistence."/persist/" = {
         directories = [
           ".config/discord"
         ];

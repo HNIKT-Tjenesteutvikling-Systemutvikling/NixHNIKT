@@ -494,7 +494,7 @@ in
       };
     };
 
-    home.persistence."/persist/${config.home.homeDirectory}" = {
+    home.persistence."/persist/" = {
       directories = [
         ".config/Code"
         ".config/bleep"

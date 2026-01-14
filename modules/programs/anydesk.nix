@@ -15,7 +15,7 @@ in
         anydesk
       ];
 
-      persistence."/persist/${config.home.homeDirectory}" = {
+      persistence."/persist/" = {
         directories = [
           ".anydesk"
         ];

@@ -3,7 +3,8 @@ let
   inherit (inputs) nixpkgs home-manager;
   lib = nixpkgs.lib // home-manager.lib;
 
-  mkNixosSystem = { hostName, profilePath }:
+  mkNixosSystem =
+    { hostName, profilePath }:
     inputs.nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
@@ -20,19 +21,21 @@ let
             useUserPackages = true;
             extraSpecialArgs = { inherit inputs self; };
             backupFileExtension = ".hm-backup";
-            users.dev = { ... }: {
-              imports = [
-                inputs.nix-colors.homeManagerModules.default
-                inputs.impermanence.homeManagerModules.impermanence
-                profilePath
-              ];
-            };
+            users.dev =
+              { ... }:
+              {
+                imports = [
+                  inputs.nix-colors.homeManagerModules.default
+                  profilePath
+                ];
+              };
           };
         }
       ];
     };
 
-  discoverHosts = path:
+  discoverHosts =
+    path:
     let
       hostEntries = builtins.readDir path;
       hostDirs = lib.filterAttrs (_: type: type == "directory") hostEntries;
