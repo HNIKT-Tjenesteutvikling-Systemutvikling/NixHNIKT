@@ -14,7 +14,7 @@ in
       packages = with pkgs; [
         dropbox
       ];
-      persistence."/persist/${config.home.homeDirectory}" = {
+      persistence."/persist/" = {
         directories = [
           ".dropbox"
         ];

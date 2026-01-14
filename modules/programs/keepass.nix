@@ -14,7 +14,7 @@ in
       packages = with pkgs; [
         keepass
       ];
-      persistence."/persist/${config.home.homeDirectory}" = {
+      persistence."/persist/" = {
         directories = [
           ".config/KeePass"
         ];

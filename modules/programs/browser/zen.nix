@@ -11,7 +11,7 @@ let
   # Create a wrapper script for zen-browser with Wayland enabled
   zenWithWayland = pkgs.symlinkJoin {
     name = "zen-browser-wayland";
-    paths = [ inputs.zen-browser.packages."${pkgs.system}".default ];
+    paths = [ inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default ];
     buildInputs = [ pkgs.makeWrapper ];
     postBuild = ''
       wrapProgram $out/bin/zen \
@@ -32,7 +32,7 @@ in
   config = lib.mkIf cfg.enable {
     home = lib.mkIf osConfig.environment.desktop.enable {
       packages = [ zenWithWayland ];
-      persistence."/persist/${config.home.homeDirectory}" = {
+      persistence."/persist/" = {
         directories = [
           ".zen"
         ];

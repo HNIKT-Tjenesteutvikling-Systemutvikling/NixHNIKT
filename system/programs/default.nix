@@ -9,7 +9,7 @@ with lib;
     wget
     git
 
-    # inputs.neovim-flake.defaultPackage.${pkgs.system}
+    # inputs.neovim-flake.defaultPackage.${pkgs.stdenv.hostPlatform.system}
   ];
 
   imports = [

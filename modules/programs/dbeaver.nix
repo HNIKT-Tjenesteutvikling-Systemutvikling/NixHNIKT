@@ -39,7 +39,7 @@ in
     home = {
       # packages = [ dbeaverWrapped ];
       packages = [ pkgs.dbeaver-bin ];
-      persistence."/persist/${config.home.homeDirectory}" = {
+      persistence."/persist/" = {
         directories = [
           ".local/share/DBeaverData"
         ];

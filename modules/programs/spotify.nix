@@ -15,7 +15,7 @@ in
         spotify
       ];
 
-      persistence."/persist/${config.home.homeDirectory}" = {
+      persistence."/persist/" = {
         directories = [
           ".cache/spotify-player"
         ];

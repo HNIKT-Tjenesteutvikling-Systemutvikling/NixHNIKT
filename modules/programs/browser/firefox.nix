@@ -27,7 +27,7 @@ in
     };
     home = {
       packages = [ mailClient ];
-      persistence."/persist/${config.home.homeDirectory}" = {
+      persistence."/persist/" = {
         directories = [
           ".config/mozilla"
           ".mozilla"
