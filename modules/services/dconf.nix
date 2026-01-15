@@ -27,7 +27,7 @@ in
     };
     pictureUri = lib.mkOption {
       type = lib.types.str;
-      default = "file:///home/dev/Sources/nixhnikt/images/wallpaper.png";
+      default = "file:///home/dev/Sources/nixhnikt/images/wallpaper.jpg";
       description = "URI of the GNOME desktop background image.";
     };
     pictureOptions = lib.mkOption {
@@ -37,7 +37,7 @@ in
     };
     pictureUriDark = lib.mkOption {
       type = lib.types.str;
-      default = "file:///home/dev/Sources/nixhnikt/images/wallpaper.png";
+      default = "file:///home/dev/Sources/nixhnikt/images/wallpaper.jpg";
       description = "URI of the GNOME desktop background image (dark mode).";
     };
     primaryColor = lib.mkOption {
@@ -60,7 +60,7 @@ in
     };
     screensaverPictureUri = lib.mkOption {
       type = lib.types.str;
-      default = "file:///home/dev/Sources/nixhnikt/images/wallpaper.png";
+      default = "file:///home/dev/Sources/nixhnikt/images/wallpaper.jpg";
       description = "URI of the GNOME screensaver background.";
     };
     screensaverPrimaryColor = lib.mkOption {
