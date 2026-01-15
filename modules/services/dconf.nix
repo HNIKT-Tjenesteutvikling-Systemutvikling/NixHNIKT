@@ -27,17 +27,17 @@ in
     };
     pictureUri = lib.mkOption {
       type = lib.types.str;
-      default = "file:///run/current-system/sw/share/backgrounds/gnome/symbolic-soup-l.jxl";
+      default = "file:///home/dev/Sources/nixhnikt/images/wallpaper.png";
       description = "URI of the GNOME desktop background image.";
     };
     pictureOptions = lib.mkOption {
       type = lib.types.str;
-      default = "zoom";
+      default = "fill";
       description = "Option of the GNOME desktop background image.";
     };
     pictureUriDark = lib.mkOption {
       type = lib.types.str;
-      default = "file:///run/current-system/sw/share/backgrounds/gnome/symbolic-soup-d.jxl";
+      default = "file:///home/dev/Sources/nixhnikt/images/wallpaper.png";
       description = "URI of the GNOME desktop background image (dark mode).";
     };
     primaryColor = lib.mkOption {
@@ -60,7 +60,7 @@ in
     };
     screensaverPictureUri = lib.mkOption {
       type = lib.types.str;
-      default = "file:///run/current-system/sw/share/backgrounds/gnome/symbolic-soup-l.jxl";
+      default = "file:///home/dev/Sources/nixhnikt/images/wallpaper.png";
       description = "URI of the GNOME screensaver background.";
     };
     screensaverPrimaryColor = lib.mkOption {
