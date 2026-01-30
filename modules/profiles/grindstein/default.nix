@@ -97,6 +97,64 @@ in
           </monitor>
         </logicalmonitor>
       </configuration>
+      <configuration>
+        <layoutmode>physical</layoutmode>
+        <logicalmonitor>
+          <x>1920</x>
+          <y>0</y>
+          <scale>1</scale>
+          <primary>yes</primary>
+          <monitor>
+            <monitorspec>
+              <connector>DP-9</connector>
+              <vendor>HWP</vendor>
+              <product>HP Z27n</product>
+              <serial>CNK5210VT9</serial>
+            </monitorspec>
+            <mode>
+              <width>2560</width>
+              <height>1440</height>
+              <rate>59.951</rate>
+            </mode>
+          </monitor>
+        </logicalmonitor>
+        <logicalmonitor>
+          <x>0</x>
+          <y>962</y>
+          <scale>1</scale>
+          <monitor>
+            <monitorspec>
+              <connector>eDP-1</connector>
+              <vendor>AUO</vendor>
+              <product>0x559c</product>
+              <serial>0x00000000</serial>
+            </monitorspec>
+            <mode>
+              <width>1920</width>
+              <height>1080</height>
+              <rate>60.049</rate>
+            </mode>
+          </monitor>
+        </logicalmonitor>
+        <logicalmonitor>
+          <x>4480</x>
+          <y>0</y>
+          <scale>1</scale>
+          <monitor>
+            <monitorspec>
+              <connector>DP-7</connector>
+              <vendor>HWP</vendor>
+              <product>HP Z27n</product>
+              <serial>CNK6481RPF</serial>
+            </monitorspec>
+            <mode>
+              <width>2560</width>
+              <height>1440</height>
+              <rate>59.951</rate>
+            </mode>
+          </monitor>
+        </logicalmonitor>
+      </configuration>
     </monitors>
   '';
 }

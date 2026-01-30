@@ -168,6 +168,9 @@ in
           num-workspaces = 5;
           workspaces-only-on-primary = true;
         };
+        "org/gnome/desktop/peripherals/keyboard" = {
+          numlock-state = true;
+        };
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
           binding = lib.mkDefault "<Super>Return";
           command = lib.mkDefault "kgx";
