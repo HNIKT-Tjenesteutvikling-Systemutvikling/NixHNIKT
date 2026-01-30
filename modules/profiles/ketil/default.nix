@@ -17,7 +17,7 @@ in
   program = {
     browser = {
       chromium.enable = true;
-      zen.enable = true;
+      firefox.enable = true;
     };
     dbeaver.enable = true;
     gimp.enable = true;
