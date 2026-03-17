@@ -33,11 +33,11 @@ in
         virt-viewer
         virtio-win
         win-spice
-        virtio-win
       ];
       persistence."/persist" = {
         directories = [
-          "/var/lib/libvirt/images"
+          "/var/lib/libvirt"
+          "/var/cache/libvirt"
         ];
       };
     };
