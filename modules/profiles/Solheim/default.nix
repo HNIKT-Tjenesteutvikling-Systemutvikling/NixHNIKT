@@ -7,27 +7,27 @@ in
 
   programs.git = {
     enable = true;
-    settings.user = {
-      Email = "jan-magnus.solheim@hnikt.no";
-      Name = "5olheim";
-    };
-    extraConfig = {
+    settings = {
+      user = {
+        Email = "jan-magnus.solheim@hnikt.no";
+        Name = "5olheim";
+      };
       pull.rebase = lib.mkForce false;
-    };
-    aliases = {
-      amend = "commit -a --amend";
-      fix = "commit -a --fixup HEAD";
-      base = "rebase -i --autosquash";
-      br = "branch";
-      co = "checkout";
-      s = "status";
-      cm = "commit -m";
-      ca = "commit -am";
-      dc = "diff --cached";
-      p = "pull";
-      pp = "push";
-      f = "fetch";
-      ppf = "push --force-with-lease";
+      aliases = {
+        amend = "commit -a --amend";
+        fix = "commit -a --fixup HEAD";
+        base = "rebase -i --autosquash";
+        br = "branch";
+        co = "checkout";
+        s = "status";
+        cm = "commit -m";
+        ca = "commit -am";
+        dc = "diff --cached";
+        p = "pull";
+        pp = "push";
+        f = "fetch";
+        ppf = "push --force-with-lease";
+      };
     };
   };
 

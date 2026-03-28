@@ -9,7 +9,7 @@ let
         cacert # ca certificates
         dconf2nix # dconf (gnome) files to nix converter
         drawio # diagram design
-        gh-copilot # github copilot cli
+        github-copilot-cli # github copilot cli
         glow # terminal markdown viewer
         headsetcontrol # logitech headset control
         hyperfine # command-line benchmarking tool

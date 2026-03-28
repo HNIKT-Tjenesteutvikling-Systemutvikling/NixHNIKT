@@ -7,6 +7,7 @@ let
 in
 [
   ./dconf.nix
+  ./easyeffect.nix
   ./gpg.nix
   ./network.nix
   ./persist.nix

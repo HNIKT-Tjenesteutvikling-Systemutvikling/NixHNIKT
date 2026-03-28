@@ -20,7 +20,7 @@ in
   };
 
   home.packages = with pkgs; [
-    neofetch # system info
+    nitch # system info
   ];
 
   # Gnome dconf overrides
