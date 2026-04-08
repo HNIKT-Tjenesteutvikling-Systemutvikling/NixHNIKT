@@ -9,7 +9,7 @@ let
   cfg = config.program.intellij;
 
   devSDKs = with pkgs; {
-    java25 = jdk25;
+    java21 = jdk21;
     scala = scala_3;
     inherit metals;
   };
