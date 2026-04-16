@@ -1,7 +1,8 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 let
   gitConfig = {
@@ -53,7 +54,7 @@ in
   programs.git = {
     enable = true;
     settings = gitConfig // {
-      aliases = {
+      alias = {
         amend = "commit -a --amend";
         fix = "commit -a --fixup HEAD";
         base = "rebase -i --autosquash";

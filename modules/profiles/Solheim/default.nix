@@ -13,7 +13,7 @@ in
         Name = "5olheim";
       };
       pull.rebase = lib.mkForce false;
-      aliases = {
+      alias = {
         amend = "commit -a --amend";
         fix = "commit -a --fixup HEAD";
         base = "rebase -i --autosquash";
