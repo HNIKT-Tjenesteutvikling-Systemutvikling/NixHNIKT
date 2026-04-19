@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
   cfg = config.service.mysql;
@@ -11,7 +12,7 @@ in
   config = lib.mkIf cfg.enable {
     services.mysql = {
       enable = true;
-      package = pkgs.mysql80;
+      package = pkgs.mysql84;
     };
     networking.firewall.allowedTCPPorts = [ 3306 ];
 

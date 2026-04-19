@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   systemd.services.garbageCollector = {
     description = "Check disk usage and perform garbage collection if necessary";
     serviceConfig = {

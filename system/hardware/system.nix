@@ -18,6 +18,6 @@
       ];
       randomizedDelaySec = "1min";
     };
-    stateVersion = "25.05";
+    stateVersion = "26.05";
   };
 }

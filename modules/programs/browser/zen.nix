@@ -1,9 +1,10 @@
-{ osConfig
-, config
-, inputs
-, pkgs
-, lib
-, ...
+{
+  osConfig,
+  config,
+  inputs,
+  pkgs,
+  lib,
+  ...
 }:
 let
   cfg = config.program.browser.zen;

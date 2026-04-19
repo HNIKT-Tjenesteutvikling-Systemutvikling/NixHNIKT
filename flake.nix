@@ -22,7 +22,8 @@
             name = "HNIKT-dev-shell";
             inputsFrom = [ ];
             nativeBuildInputs = with pkgs; [
-              nixpkgs-fmt
+              nixfmt
+              nixfmt-tree
             ];
           };
 
@@ -34,7 +35,7 @@
                 statix.enable = true;
                 deadnix.enable = true;
                 nil.enable = true;
-                nixpkgs-fmt.enable = true;
+                nixfmt.enable = true;
                 shellcheck.enable = true;
                 beautysh.enable = true;
               };

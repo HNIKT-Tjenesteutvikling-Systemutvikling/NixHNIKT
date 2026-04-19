@@ -1,8 +1,9 @@
-{ osConfig
-, config
-, pkgs
-, lib
-, ...
+{
+  osConfig,
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   inherit (osConfig.environment) desktop;
@@ -296,20 +297,18 @@ in
 
       home = {
         file = builtins.listToAttrs (
-          map
-            (pkg: {
-              name = ".config/autostart/" + pkg.pname + ".desktop";
-              value =
-                if pkg ? desktopItem then
-                  {
-                    inherit (pkg.desktopItem) text;
-                  }
-                else
-                  {
-                    source = pkg + "/share/applications/" + pkg.pname + ".desktop";
-                  };
-            })
-            autostartPrograms
+          map (pkg: {
+            name = ".config/autostart/" + pkg.pname + ".desktop";
+            value =
+              if pkg ? desktopItem then
+                {
+                  inherit (pkg.desktopItem) text;
+                }
+              else
+                {
+                  source = pkg + "/share/applications/" + pkg.pname + ".desktop";
+                };
+          }) autostartPrograms
         );
 
         packages = with pkgs; [

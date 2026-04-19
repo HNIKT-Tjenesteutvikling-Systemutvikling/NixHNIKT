@@ -1,8 +1,9 @@
-{ osConfig
-, config
-, lib
-, pkgs
-, ...
+{
+  osConfig,
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
   inherit (osConfig.environment) desktop;
@@ -16,7 +17,7 @@ let
     nil
     metals
     nixpkgs-fmt
-    nodePackages.prettier
+    prettier
     google-java-format
     black
     rustfmt
@@ -25,7 +26,7 @@ let
 
     # JavaScript/TypeScript ecosystem
     nodejs_20
-    nodePackages.typescript
+    typescript
     typescript-language-server
     vue-language-server
 

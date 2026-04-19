@@ -1,10 +1,12 @@
-{ pkgs
-, lib
-, config
-, ...
+{
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.program.tmux;
   bg = "default";
   fg = "default";

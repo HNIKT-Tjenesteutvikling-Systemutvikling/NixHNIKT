@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 {
   imports = [
@@ -36,11 +37,9 @@
   services = {
     hardware.bolt.enable = false; # Thunderbolt, a userspace daemon to enable security levels for Thunderbolt 3 on GNU/Linux.
     thermald.enable = false;
-    power-profiles-daemon.enable = lib.mkIf
-      (
-        config.environment.desktop.windowManager == "gnome"
-      )
-      false; # Disable GNOMEs power management
+    power-profiles-daemon.enable = lib.mkIf (
+      config.environment.desktop.windowManager == "gnome"
+    ) false; # Disable GNOMEs power management
     system76-scheduler.settings.cfsProfiles.enable = false; # Better scheduling for CPU cycles - thanks System76!!!
     tlp = {
       enable = true; # Enable TLP (better than gnomes internal power manager)

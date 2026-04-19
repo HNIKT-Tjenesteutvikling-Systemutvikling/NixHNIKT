@@ -1,6 +1,7 @@
-{ config
-, lib
-, ...
+{
+  config,
+  lib,
+  ...
 }:
 let
   developSpecificDirs = [
@@ -52,7 +53,8 @@ in
           directory = ".local/share/keyrings";
           mode = "0700";
         }
-      ] ++ (lib.optionals config.environment.desktop.develop developSpecificDirs);
+      ]
+      ++ (lib.optionals config.environment.desktop.develop developSpecificDirs);
     };
   };
 }

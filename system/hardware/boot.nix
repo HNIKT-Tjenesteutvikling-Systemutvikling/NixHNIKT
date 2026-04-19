@@ -1,5 +1,6 @@
-{ modulesPath
-, ...
+{
+  modulesPath,
+  ...
 }:
 let
   cleanup = ''

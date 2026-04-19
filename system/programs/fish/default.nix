@@ -1,6 +1,7 @@
-{ pkgs
-, lib
-, ...
+{
+  pkgs,
+  lib,
+  ...
 }:
 let
   fzfConfig = ''
@@ -16,12 +17,11 @@ let
     set -g theme_color_scheme solarized
   '';
 
-  fishConfig =
-    ''
-      set fish_greeting
-    ''
-    + fzfConfig
-    + themeConfig;
+  fishConfig = ''
+    set fish_greeting
+  ''
+  + fzfConfig
+  + themeConfig;
 
   sharedAliases = import ./fish-aliases.nix { inherit pkgs lib; };
 in
