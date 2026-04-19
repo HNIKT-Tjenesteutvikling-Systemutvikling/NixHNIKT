@@ -29,6 +29,7 @@ in
     intellij.enable = true;
     keepass.enable = true;
     libreoffice.enable = true;
+    paf.enable = true;
     remmina.enable = true;
     slack.enable = true;
     spotify.enable = true;
