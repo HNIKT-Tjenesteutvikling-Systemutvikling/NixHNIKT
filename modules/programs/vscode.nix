@@ -1,9 +1,8 @@
-{
-  osConfig,
-  config,
-  lib,
-  pkgs,
-  ...
+{ osConfig
+, config
+, lib
+, pkgs
+, ...
 }:
 let
   inherit (osConfig.environment) desktop;
@@ -43,6 +42,9 @@ let
     prettyping
     mimeo
     docker-compose
+
+    # JDK for terminal and build tools
+    jdk21
 
     # Git and SSH tools
     git
@@ -332,7 +334,13 @@ in
 
           # Java extension configuration to use environment variables
           "java.configuration.detectJdksAtStart" = true;
-          "java.configuration.runtimes" = [ ];
+          "java.configuration.runtimes" = [
+            {
+              "name" = "JavaSE-21";
+              "path" = "${pkgs.jdk21}/lib/openjdk";
+              "default" = true;
+            }
+          ];
           "java.import.gradle.java.home" = null;
           "java.import.maven.java.home" = null;
           "java.format.settings.url" =

@@ -1,4 +1,4 @@
-{ osConfig, lib, ... }:
+{ osConfig, lib, pkgs, ... }:
 let
   inherit (osConfig.environment) desktop;
 in
@@ -36,6 +36,7 @@ in
     libreoffice.enable = true;
     tilix.enable = true;
   };
+
   # Monitor settings for gnome
   home.file.".config/monitors.xml".text = lib.mkIf (desktop.windowManager == "gnome") ''
     <monitors version="2">
