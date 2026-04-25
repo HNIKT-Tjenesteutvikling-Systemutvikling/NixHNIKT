@@ -12,9 +12,12 @@ in
   config = lib.mkIf cfg.enable {
     services.onedrive.enable = true;
     environment.persistence."/persist" = {
-      directories = [
-        "/home/dev/OneDrive"
-      ];
+      users.dev = {
+        directories = [
+          "OneDrive" # the actual synced files
+          ".config/onedrive" # auth refresh token + items.sqlite3 sync database
+        ];
+      };
     };
   };
 }

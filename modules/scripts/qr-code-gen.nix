@@ -1,9 +1,11 @@
 { pkgs, ... }:
 let
-  python = pkgs.python3.withPackages (ps: with ps; [
-    qrcode
-    pillow
-  ]);
+  python = pkgs.python3.withPackages (
+    ps: with ps; [
+      qrcode
+      pillow
+    ]
+  );
   assets = ./reg;
 in
 pkgs.writeScriptBin "qr-code-gen" ''

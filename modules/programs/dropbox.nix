@@ -17,7 +17,8 @@ in
       ];
       persistence."/persist/" = {
         directories = [
-          ".dropbox"
+          ".dropbox" # auth token + local sync index
+          "Dropbox" # the actual synced files
         ];
       };
     };

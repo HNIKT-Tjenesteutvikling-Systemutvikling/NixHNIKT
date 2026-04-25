@@ -1,7 +1,6 @@
 {
   imports = [
     ./blueman.nix
-    ./dropbox.nix
     ./garbage.nix
     ./gnome.nix
     ./impermanence.nix

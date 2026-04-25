@@ -35,19 +35,26 @@ stdenv.mkDerivation rec {
     cat > $out/bin/paf << EOF
     #!/usr/bin/env bash
     export WINEPREFIX="\$HOME/.wine-paf"
-    export WINEARCH=win32
+    # NOTE: wineWow64Packages does not support WINEARCH=win32.
+    # It is pure 64-bit Wine that runs 32-bit Windows apps via wow64
+    # inside a 64-bit prefix, so we must NOT set WINEARCH=win32 here.
     export PATH="${wine}/bin:\$PATH"
 
-    PAF_EXE="\$WINEPREFIX/drive_c/Program Files/PAF5/PAF.exe"
+    PAF_EXE="\$WINEPREFIX/drive_c/Program Files (x86)/PAF5/PAF.exe"
+    PAF_EXE_ALT="\$WINEPREFIX/drive_c/Program Files/PAF5/PAF.exe"
 
-    if [ ! -f "\$PAF_EXE" ]; then
+    if [ ! -f "\$PAF_EXE" ] && [ ! -f "\$PAF_EXE_ALT" ]; then
       echo "First run: installing Personal Ancestral File into \$WINEPREFIX ..."
       wineboot --init
       wine "$out/opt/${pname}/PAF5EnglishSetup.exe"
       echo "Installation complete. Launching PAF..."
     fi
 
-    exec wine "\$PAF_EXE"
+    if [ -f "\$PAF_EXE" ]; then
+      exec wine "\$PAF_EXE"
+    else
+      exec wine "\$PAF_EXE_ALT"
+    fi
     EOF
 
     chmod +x $out/bin/paf
