@@ -13,6 +13,13 @@ in
     services.mysql = {
       enable = true;
       package = pkgs.mysql84;
+      settings = {
+        mysqld = {
+          # MySQL 8.4 deprecates non-unique/partial keys as foreign keys.
+          # Disable the restriction so legacy schemas keep working.
+          restrict_fk_on_non_standard_key = "OFF";
+        };
+      };
     };
     networking.firewall.allowedTCPPorts = [ 3306 ];
 
