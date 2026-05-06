@@ -39,13 +39,6 @@ in
     dcd = "${dc} down --remove-orphans";
     drm = "docker images -a -q | xargs docker rmi -f";
 
-    # Nix
-    nixgc = "nix-collect-garbage";
-    nixgcd = "sudo nix-collect-garbage -d";
-    update = "nix flake update";
-    supdate = "sudo nix flake update";
-    upgrade = "sudo nixos-rebuild switch --flake";
-
     # Locations
     dot = "cd ~/Sources/nixhnikt";
     doc = "cd ~/Documents";
