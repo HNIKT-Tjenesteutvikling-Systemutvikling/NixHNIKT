@@ -1,8 +1,7 @@
-{
-  osConfig,
-  lib,
-  pkgs,
-  ...
+{ osConfig
+, lib
+, pkgs
+, ...
 }:
 let
   inherit (osConfig.environment) desktop;
@@ -37,7 +36,6 @@ in
       "org.gnome.Nautilus.desktop"
       "com.gexperts.Tilix.desktop"
       "thunderbird.desktop"
-      "zen.desktop"
       "firefox-devedition.desktop"
       "chromium-browser.desktop"
       "discord.desktop"

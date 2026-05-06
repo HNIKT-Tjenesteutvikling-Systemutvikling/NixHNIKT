@@ -1,9 +1,8 @@
-{
-  osConfig,
-  config,
-  lib,
-  pkgs,
-  ...
+{ osConfig
+, config
+, lib
+, pkgs
+, ...
 }:
 let
   inherit (osConfig.environment) desktop;
@@ -183,14 +182,6 @@ in
               publisher = "heybourn";
               version = "1.7.0";
               sha256 = "sha256-yXsZoSuJQTdbHLjEERXX2zVheqNYmcPXs97/uQYa7og=";
-            })
-          ]
-          ++ [
-            (pkgs.vscode-utils.extensionFromVscodeMarketplace {
-              name = "ridiculous-coding";
-              publisher = "Merenut";
-              version = "0.0.3";
-              sha256 = "sha256-DEdeG17oy0LX0Mn8Vbb524ep9tXH3yQHVLAtg6DfzSA=";
             })
           ];
 
