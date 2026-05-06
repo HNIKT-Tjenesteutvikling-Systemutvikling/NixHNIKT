@@ -6,7 +6,7 @@
       enable = true;
       extraArgs = "--keep-since 4d --keep 3";
     };
-    flake = "/home/dev/Sources/dotfiles";
+    flake = "/home/dev/Sources/nixhnikt";
   };
 
   environment.systemPackages = with pkgs; [
