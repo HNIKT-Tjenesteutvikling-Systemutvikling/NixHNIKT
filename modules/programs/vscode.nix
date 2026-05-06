@@ -16,7 +16,7 @@ let
     # Language servers and formatters
     nil
     metals
-    nixpkgs-fmt
+    nixfmt
     prettier
     google-java-format
     black
@@ -317,18 +317,18 @@ in
           # Nix Language Server
           "nix.enableLanguageServer" = true;
           "nix.serverPath" = "${pkgs.nil}/bin/nil";
-          "nil.formatting.command" = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
+          "nil.formatting.command" = [ "${pkgs.nixfmt}/bin/nixfmt" ];
           "nix.serverSettings" = {
             "nil" = {
               "formatting" = {
-                "command" = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
+                "command" = [ "${pkgs.nixfmt}/bin/nixfmt" ];
               };
             };
           };
 
           # Formatters
           # "prettier.prettierPath" = "${pkgs.nodePackages.prettier}/bin/prettier";
-          "nix.formatterPath" = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
+          "nix.formatterPath" = "${pkgs.nixfmt}/bin/nixfmt";
 
           # Java extension configuration to use environment variables
           "java.configuration.detectJdksAtStart" = true;
