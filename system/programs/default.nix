@@ -18,6 +18,7 @@ with lib;
     ./fish
     ./docker.nix
     ./fonts.nix
+    ./nh.nix
   ];
 
   programs = {

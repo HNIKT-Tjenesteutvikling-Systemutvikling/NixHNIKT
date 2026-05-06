@@ -12,18 +12,5 @@
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
     };
-    # Weekly garbage collection
-    gc = {
-      automatic = true;
-      persistent = true;
-      dates = "weekly";
-      options = "--delete-older-than 10d";
-    };
-
-    # Enable optimisation
-    optimise = {
-      automatic = true;
-      dates = [ "weekly" ];
-    };
   };
 }
