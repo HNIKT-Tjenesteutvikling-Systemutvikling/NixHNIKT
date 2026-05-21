@@ -27,7 +27,7 @@
             ];
           };
 
-          formatter = pkgs.nixpkgs-fmt;
+          formatter = pkgs.nixfmt;
           checks = {
             pre-commit-check = pre-commit-lib.run {
               src = ./.;

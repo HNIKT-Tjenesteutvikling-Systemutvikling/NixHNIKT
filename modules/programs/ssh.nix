@@ -25,30 +25,31 @@ in
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks."*" = {
-        forwardAgent = false;
-        addKeysToAgent = "yes";
-        compression = true;
-        serverAliveInterval = 0;
-        serverAliveCountMax = 3;
-        hashKnownHosts = false;
-        userKnownHostsFile = "~/.ssh/known_hosts";
-        controlMaster = "no";
-        controlPath = "~/.ssh/master-%r@%n:%p";
-        controlPersist = "no";
-      };
 
-      matchBlocks = {
+      settings = {
+        "*" = {
+          ForwardAgent = false;
+          AddKeysToAgent = "yes";
+          Compression = true;
+          ServerAliveInterval = 0;
+          ServerAliveCountMax = 3;
+          HashKnownHosts = false;
+          UserKnownHostsFile = "~/.ssh/known_hosts";
+          ControlMaster = "no";
+          ControlPath = "~/.ssh/master-%r@%n:%p";
+          ControlPersist = "no";
+        };
+
         "github.com" = {
-          hostname = "ssh.github.com";
-          port = 443;
-          user = "git";
-          identitiesOnly = true;
-          identityFile = cfg.githubKeyFile;
+          HostName = "ssh.github.com";
+          Port = 443;
+          User = "git";
+          IdentitiesOnly = true;
+          IdentityFile = cfg.githubKeyFile;
         };
 
         "10.0.0.*" = {
-          forwardAgent = true;
+          ForwardAgent = true;
         };
       };
     };
