@@ -25,7 +25,7 @@ let
     kotlin-language-server
 
     # JavaScript/TypeScript ecosystem
-    nodejs_20
+    nodejs_22
     typescript
     typescript-language-server
     vue-language-server
