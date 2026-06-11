@@ -20,6 +20,7 @@
           evolution-data-server.enable = true;
           glib-networking.enable = true;
           gnome-keyring.enable = true;
+          gcr-ssh-agent.enable = true;
           gnome-online-accounts.enable = true;
         };
       };

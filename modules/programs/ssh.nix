@@ -35,9 +35,6 @@ in
           ServerAliveCountMax = 3;
           HashKnownHosts = false;
           UserKnownHostsFile = "~/.ssh/known_hosts";
-          ControlMaster = "no";
-          ControlPath = "~/.ssh/master-%r@%n:%p";
-          ControlPersist = "no";
         };
 
         "github.com" = {
@@ -46,6 +43,9 @@ in
           User = "git";
           IdentitiesOnly = true;
           IdentityFile = cfg.githubKeyFile;
+          ControlMaster = "auto";
+          ControlPath = "~/.ssh/master-%r@%n:%p";
+          ControlPersist = "10m";
         };
 
         "10.0.0.*" = {
