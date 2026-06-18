@@ -14,6 +14,7 @@
     ./network.nix
     ./nix.nix
     ./system.nix
+    ./touch.nix
   ];
   hardware = {
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

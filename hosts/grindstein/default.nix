@@ -23,4 +23,5 @@
     printing.enable = true;
     virt-manager.enable = true;
   };
+  system.touch.enable = true;
 }
