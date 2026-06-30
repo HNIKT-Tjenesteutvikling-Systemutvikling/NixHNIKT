@@ -28,6 +28,8 @@
       permittedInsecurePackages = [
         # "python-2.7.18.6"
         # "libxml2-2.13.8"
+        # build-time-only dep of vue-language-server (code-wrapped PATH)
+        "pnpm-10.34.0"
       ];
     };
     hostPlatform = lib.mkDefault "x86_64-linux";
