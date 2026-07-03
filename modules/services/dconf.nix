@@ -180,6 +180,7 @@ in
         "org/gnome/shell" = {
           disable-user-extensions = false;
           enabled-extensions = with pkgs.gnomeExtensions; [
+            appindicator.extensionUuid
             caffeine.extensionUuid
             clipboard-indicator.extensionUuid
             dash-to-panel.extensionUuid
@@ -312,6 +313,7 @@ in
         );
 
         packages = with pkgs; [
+          gnomeExtensions.appindicator
           gnomeExtensions.caffeine
           gnomeExtensions.clipboard-indicator
           gnomeExtensions.dash-to-panel

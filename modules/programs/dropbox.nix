@@ -14,6 +14,11 @@ in
     home = {
       packages = with pkgs; [
         dropbox
+        # Dropbox checks for AppIndicator support at startup and refuses to
+        # show a tray icon without it. libappindicator-gtk3 provides the
+        # shared library Dropbox dlopen's to register itself as an app indicator.
+        libappindicator-gtk3
+        gnomeExtensions.appindicator
       ];
       persistence."/persist/" = {
         directories = [

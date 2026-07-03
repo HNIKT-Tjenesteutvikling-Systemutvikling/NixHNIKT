@@ -3,11 +3,12 @@
   stdenv,
   fetchurl,
   makeWrapper,
-  wineWow64Packages,
+  winePackages,
+  winetricks,
 }:
 
 let
-  wine = wineWow64Packages.wayland;
+  wine = winePackages.full;
 in
 stdenv.mkDerivation rec {
   pname = "paf";
@@ -19,7 +20,10 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [ makeWrapper ];
-  buildInputs = [ wine ];
+  buildInputs = [
+    wine
+    winetricks
+  ];
 
   dontUnpack = true;
   dontBuild = true;
@@ -35,10 +39,11 @@ stdenv.mkDerivation rec {
     cat > $out/bin/paf << EOF
     #!/usr/bin/env bash
     export WINEPREFIX="\$HOME/.wine-paf"
-    # NOTE: wineWow64Packages does not support WINEARCH=win32.
-    # It is pure 64-bit Wine that runs 32-bit Windows apps via wow64
-    # inside a 64-bit prefix, so we must NOT set WINEARCH=win32 here.
-    export PATH="${wine}/bin:\$PATH"
+    # PAF 5.2 uses an old InstallShield bootstrapper that spawns a 16-bit
+    # kernel.exe stub. wine64/wow64-only builds drop the 16-bit subsystem,
+    # so we need a 32-bit prefix with winePackages.full.
+    export WINEARCH=win32
+    export PATH="${wine}/bin:${winetricks}/bin:\$PATH"
 
     PAF_EXE="\$WINEPREFIX/drive_c/Program Files (x86)/PAF5/PAF.exe"
     PAF_EXE_ALT="\$WINEPREFIX/drive_c/Program Files/PAF5/PAF.exe"
