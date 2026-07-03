@@ -21,7 +21,10 @@
     mysql.enable = true;
     onedrive.enable = true;
     printing.enable = true;
-    virt-manager.enable = true;
+    virt-manager = {
+      enable = true;
+      win11.enable = true;
+    };
   };
   system.touch.enable = true;
 }
