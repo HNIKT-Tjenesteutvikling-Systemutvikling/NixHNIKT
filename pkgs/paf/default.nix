@@ -46,9 +46,10 @@ stdenv.mkDerivation rec {
     export PATH="${wine}/bin:${winetricks}/bin:\$PATH"
 
     if [ -f "\$WINEPREFIX/system.reg" ] && grep -q '^#arch=win64' "\$WINEPREFIX/system.reg"; then
-      echo "Error: \$WINEPREFIX is a 64-bit prefix, but PAF needs win32." >&2
-      echo "Remove it (rm -rf \$WINEPREFIX) and run paf again to reinstall." >&2
-      exit 1
+      echo "Stale 64-bit Wine prefix found; recreating it as win32 ..."
+      # Delete contents only: the prefix dir is an impermanence bind
+      # mount, so the directory itself cannot be removed.
+      find "\$WINEPREFIX" -mindepth 1 -delete
     fi
 
     PAF_EXE="\$WINEPREFIX/drive_c/Program Files (x86)/PAF5/PAF.exe"

@@ -23,8 +23,14 @@ let
     text = ''
       export LIBVIRT_DEFAULT_URI=qemu:///system
       vm=win11
+      pool_dir=/var/lib/libvirt/images
 
-      if ! virsh dominfo "$vm" &>/dev/null; then
+      # Unredirected connectivity check: lets libvirt/polkit errors and
+      # prompts reach the terminal instead of hanging silently.
+      echo "Connecting to $LIBVIRT_DEFAULT_URI ..."
+      virsh uri >/dev/null
+
+      if ! virsh list --all --name | grep -qxF "$vm"; then
         iso="''${1:-}"
         if [ ! -f "$iso" ]; then
           echo "VM does not exist yet. Pass the Windows 11 installer ISO:" >&2
@@ -32,12 +38,30 @@ let
           echo "Download it from https://www.microsoft.com/software-download/windows11" >&2
           exit 1
         fi
+        shift
 
         vcpus=$(( $(nproc) / 2 ))
         [ "$vcpus" -lt 4 ] && vcpus=4
 
-        virsh net-start default &>/dev/null || true
-        virsh net-autostart default &>/dev/null || true
+        if ! virsh pool-info default >/dev/null 2>&1; then
+          echo "Defining default storage pool at $pool_dir ..."
+          virsh pool-define-as default dir --target "$pool_dir" >/dev/null
+          virsh pool-build default >/dev/null 2>&1 || true
+          virsh pool-start default >/dev/null
+          virsh pool-autostart default >/dev/null
+        fi
+
+        # qemu runs as its own user and cannot read files under \$HOME
+        # (mode 700), so import the installer ISO into the pool.
+        if ! virsh vol-info --pool default win11-installer.iso >/dev/null 2>&1; then
+          echo "Importing installer ISO into the libvirt pool (may take a minute) ..."
+          virsh vol-create-as default win11-installer.iso "$(stat -c %s "$iso")" --format raw >/dev/null
+          virsh vol-upload --pool default win11-installer.iso "$iso"
+        fi
+        iso="$pool_dir/win11-installer.iso"
+
+        virsh net-start default >/dev/null 2>&1 || true
+        virsh net-autostart default >/dev/null 2>&1 || true
 
         echo "Creating VM '$vm' ($vcpus vCPUs, 16 GiB RAM, 120 GiB disk) ..."
         echo
@@ -47,7 +71,7 @@ let
         echo "CD to get dynamic/full-screen resolution and clipboard sharing."
         echo
 
-        exec virt-install \
+        virt-install \
           --name "$vm" \
           --memory 16384 \
           --vcpus "$vcpus" \
@@ -64,11 +88,12 @@ let
           --channel spicevmc \
           --sound ich9 \
           --controller usb,model=qemu-xhci \
-          --redirdev usb,type=spicevmc
+          --redirdev usb,type=spicevmc \
+          --noautoconsole
       fi
 
       if [ "$(virsh domstate "$vm")" != "running" ]; then
-        virsh start "$vm"
+        virsh start "$vm" >/dev/null
       fi
       exec virt-viewer --attach "$vm" "$@"
     '';
@@ -110,6 +135,8 @@ in
         ++ lib.optional cfg.win11.enable win11;
       persistence."/persist" = {
         directories = [
+          # Domain/network/pool definitions and autostart flags
+          "/etc/libvirt"
           "/var/lib/libvirt"
           "/var/cache/libvirt"
         ];
