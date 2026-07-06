@@ -119,6 +119,7 @@ in
       };
       spiceUSBRedirection.enable = true;
     };
+    systemd.services.libvirtd.serviceConfig.LoadCredentialEncrypted = "";
     environment = {
       systemPackages =
         with pkgs;
