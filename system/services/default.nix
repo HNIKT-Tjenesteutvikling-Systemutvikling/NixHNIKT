@@ -6,7 +6,7 @@
     ./impermanence.nix
     ./k3s.nix
     ./kde.nix
-    # ./mugge.nix
+    ./mugge.nix
     ./mysql.nix
     ./nfc.nix
     ./onedrive.nix
