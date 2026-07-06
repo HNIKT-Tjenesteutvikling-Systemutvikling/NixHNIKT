@@ -7,95 +7,95 @@
 let
   cfg = config.service.virt-manager;
 
-  # pkgs.virtio-win ships the drivers unpacked; the Windows installer
-  # needs them on a CD, so repack them into an ISO.
-  virtioIso = pkgs.runCommand "virtio-win.iso" { nativeBuildInputs = [ pkgs.xorriso ]; } ''
-    xorriso -as mkisofs -o $out -r -J -joliet-long -V virtio-win ${pkgs.virtio-win}
-  '';
+  ovmf = pkgs.OVMFFull.fd;
 
   win11 = pkgs.writeShellApplication {
     name = "win11";
     runtimeInputs = with pkgs; [
-      libvirt
-      virt-manager
-      virt-viewer
+      coreutils
+      gawk
+      qemu_kvm
+      swtpm
     ];
     text = ''
-      export LIBVIRT_DEFAULT_URI=qemu:///system
-      vm=win11
-      pool_dir=/var/lib/libvirt/images
-
-      # Unredirected connectivity check: lets libvirt/polkit errors and
-      # prompts reach the terminal instead of hanging silently.
-      echo "Connecting to $LIBVIRT_DEFAULT_URI ..."
-      virsh uri >/dev/null
-
-      if ! virsh list --all --name | grep -qxF "$vm"; then
-        iso="''${1:-}"
-        if [ ! -f "$iso" ]; then
-          echo "VM does not exist yet. Pass the Windows 11 installer ISO:" >&2
-          echo "  win11 ~/Downloads/Win11_x64.iso" >&2
-          echo "Download it from https://www.microsoft.com/software-download/windows11" >&2
-          exit 1
-        fi
-        shift
-
-        vcpus=$(( $(nproc) / 2 ))
-        [ "$vcpus" -lt 4 ] && vcpus=4
-
-        if ! virsh pool-info default >/dev/null 2>&1; then
-          echo "Defining default storage pool at $pool_dir ..."
-          virsh pool-define-as default dir --target "$pool_dir" >/dev/null
-          virsh pool-build default >/dev/null 2>&1 || true
-          virsh pool-start default >/dev/null
-          virsh pool-autostart default >/dev/null
-        fi
-
-        # qemu runs as its own user and cannot read files under \$HOME
-        # (mode 700), so import the installer ISO into the pool.
-        if ! virsh vol-info --pool default win11-installer.iso >/dev/null 2>&1; then
-          echo "Importing installer ISO into the libvirt pool (may take a minute) ..."
-          virsh vol-create-as default win11-installer.iso "$(stat -c %s "$iso")" --format raw >/dev/null
-          virsh vol-upload --pool default win11-installer.iso "$iso"
-        fi
-        iso="$pool_dir/win11-installer.iso"
-
-        virsh net-start default >/dev/null 2>&1 || true
-        virsh net-autostart default >/dev/null 2>&1 || true
-
-        echo "Creating VM '$vm' ($vcpus vCPUs, 16 GiB RAM, 120 GiB disk) ..."
+      usage() {
+        echo "Usage: win11 [/path/to/win11.iso]"
         echo
-        echo "NOTE: when the installer asks where to install Windows, click"
-        printf '%s\n' "'Load driver' and browse to viostor\w11\amd64 on the virtio-win CD."
-        echo "After installation, run virtio-win-guest-tools.exe from the same"
-        echo "CD to get dynamic/full-screen resolution and clipboard sharing."
+        echo "  First run: pass the Windows 11 installer ISO to create the VM."
+        echo "  Download it from https://www.microsoft.com/software-download/windows11"
+        echo "  Later runs: no argument needed, boots the installed disk."
+        echo "  win11 --reset deletes the VM state to start over."
         echo
+        echo "  State: ~/.local/share/vm/win11 (disk, firmware vars, TPM)."
+        exit 1
+      }
 
-        virt-install \
-          --name "$vm" \
-          --memory 16384 \
-          --vcpus "$vcpus" \
-          --cpu host-passthrough \
-          --os-variant win11 \
-          --boot uefi,firmware.feature0.name=secure-boot,firmware.feature0.enabled=yes,firmware.feature1.name=enrolled-keys,firmware.feature1.enabled=yes \
-          --tpm model=tpm-crb,backend.type=emulator,backend.version=2.0 \
-          --disk size=120,bus=virtio,format=qcow2,discard=unmap \
-          --disk ${virtioIso},device=cdrom \
-          --cdrom "$iso" \
-          --network network=default,model=virtio \
-          --graphics spice \
-          --video virtio \
-          --channel spicevmc \
-          --sound ich9 \
-          --controller usb,model=qemu-xhci \
-          --redirdev usb,type=spicevmc \
-          --noautoconsole
+      dir="''${XDG_DATA_HOME:-$HOME/.local/share}/vm/win11"
+      disk="$dir/win11.qcow2"
+      vars="$dir/OVMF_VARS.fd"
+      iso=""
+
+      case "''${1:-}" in
+        -h|--help) usage ;;
+        --reset)
+          read -r -p "Delete $dir and start over? [y/N] " ans
+          [ "$ans" = "y" ] && rm -rf "$dir" && echo "Removed. Re-run with the ISO to reinstall."
+          exit 0
+          ;;
+        *) iso="''${1:-}" ;;
+      esac
+
+      mkdir -p "$dir/tpm"
+
+      if [ ! -f "$disk" ]; then
+        if [ -z "$iso" ]; then
+          echo "No VM yet - the first run needs the Windows 11 installer ISO." >&2
+          usage
+        fi
+        [ -f "$iso" ] || { echo "No such file: $iso" >&2; exit 1; }
+        echo ">> Creating 128G disk and firmware vars ..."
+        qemu-img create -f qcow2 "$disk" 128G
+        install -m644 ${ovmf}/FV/OVMF_VARS.fd "$vars"
       fi
 
-      if [ "$(virsh domstate "$vm")" != "running" ]; then
-        virsh start "$vm" >/dev/null
+      mem=$(( $(awk '/MemTotal/ {print $2}' /proc/meminfo) / 2048 ))
+      cpus=$(( $(nproc) / 2 ))
+
+      # Windows 11 requires TPM 2.0; qemu talks to this emulator socket.
+      # --terminate makes swtpm exit when qemu disconnects.
+      swtpm socket --tpm2 --daemon --terminate \
+        --tpmstate dir="$dir/tpm" \
+        --ctrl type=unixio,path="$dir/tpm/swtpm.sock"
+
+      extra=()
+      if [ -n "$iso" ]; then
+        # shellcheck disable=SC2054 # commas belong to the qemu arguments
+        extra+=( -drive if=none,id=wincd,media=cdrom,file="$iso"
+                 -device ide-cd,drive=wincd,bus=ahci.1,bootindex=0 )
+        echo ">> Booting installer. The disk shows up as NVMe - no drivers needed."
+        echo ">> After install, run virtio-win-gt-x64.msi from the attached CD for guest tools."
       fi
-      exec virt-viewer --attach "$vm" "$@"
+
+      exec qemu-system-x86_64 \
+        -enable-kvm -machine q35,smm=on -cpu host -m "$mem" -smp "$cpus" \
+        -global driver=cfi.pflash01,property=secure,value=on \
+        -drive if=pflash,format=raw,unit=0,readonly=on,file=${ovmf}/FV/OVMF_CODE.fd \
+        -drive if=pflash,format=raw,unit=1,file="$vars" \
+        -chardev socket,id=chrtpm,path="$dir/tpm/swtpm.sock" \
+        -tpmdev emulator,id=tpm0,chardev=chrtpm \
+        -device tpm-tis,tpmdev=tpm0 \
+        -drive if=none,id=os,format=qcow2,file="$disk",discard=unmap \
+        -device nvme,drive=os,serial=win11os \
+        -device ahci,id=ahci \
+        -drive if=none,id=drivers,media=cdrom,file=${pkgs.virtio-win.src} \
+        -device ide-cd,drive=drivers,bus=ahci.0 \
+        -nic user,model=e1000e \
+        -audiodev pipewire,id=snd0 \
+        -device intel-hda -device hda-duplex,audiodev=snd0 \
+        -device qemu-xhci -device usb-tablet \
+        -device virtio-vga,xres=2560,yres=1440 \
+        -display gtk,full-screen=on \
+        "''${extra[@]}"
     '';
   };
 in
@@ -141,6 +141,8 @@ in
           "/var/lib/libvirt"
           "/var/cache/libvirt"
         ];
+        # Disk, firmware vars and TPM state for the win11 script.
+        users.dev.directories = lib.optional cfg.win11.enable ".local/share/vm";
       };
     };
     services.spice-vdagentd.enable = true;
