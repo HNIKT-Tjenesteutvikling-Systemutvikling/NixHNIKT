@@ -12,6 +12,6 @@ in
   ];
 
   programs.fish.shellAliases = {
-    mugge = "azure-mugge";
+    mugge = "mugge-azure";
   };
 }
