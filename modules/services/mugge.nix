@@ -1,17 +1,18 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }:
 let
   muggePkgs = inputs.mugge.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
-  environment.systemPackages = [
+
+  imports = [ inputs.mugge.homeManagerModules.default ];
+
+  services.mugge-chat.enable = true;
+  home.packages = [
     muggePkgs.mugge-azure
   ];
-
-  programs.fish.shellAliases = {
-    mugge = "mugge-azure";
-  };
 }

@@ -10,6 +10,7 @@ in
   ./easyeffect.nix
   ./gpg.nix
   ./network.nix
+  ./mugge.nix
   ./persist.nix
   more
 ]
