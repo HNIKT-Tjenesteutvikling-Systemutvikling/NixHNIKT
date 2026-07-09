@@ -11,7 +11,4 @@ in
   imports = [ inputs.mugge.homeManagerModules.default ];
 
   services.mugge-chat.enable = true;
-  home.packages = [
-    muggePkgs.mugge-azure
-  ];
 }
