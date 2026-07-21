@@ -240,6 +240,21 @@
         "type": "github"
       }
     },
+    "import-tree": {
+      "locked": {
+        "lastModified": 1784254960,
+        "narHash": "sha256-iI88R3wHz8wTKQb5orvpc51L/Xr64AJyxid/0MKa/b8=",
+        "owner": "vic",
+        "repo": "import-tree",
+        "rev": "4ebb10ae17d5f1ad366e7aef5b92cb8eecf24f69",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vic",
+        "repo": "import-tree",
+        "type": "github"
+      }
+    },
     "kvalreg-authorization-server": {
       "inputs": {
         "flake-parts": "flake-parts_3",
@@ -572,6 +587,7 @@
         "hardware": "hardware",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
+        "import-tree": "import-tree",
         "mugge": "mugge",
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs_7",

@@ -1,8 +1,10 @@
-{
-  programs = {
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
+_: {
+  flake.homeModules.programs-direnv = {
+    programs = {
+      direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+      };
     };
   };
 }

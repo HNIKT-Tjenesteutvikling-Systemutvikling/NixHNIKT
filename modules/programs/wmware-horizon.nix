@@ -1,18 +1,21 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-let
-  cfg = config.program.wmware-horizon;
-in
-{
-  options.program.wmware-horizon.enable = lib.mkEnableOption "wmware-horizon-client";
+_: {
+  flake.homeModules.programs-wmware-horizon =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    let
+      cfg = config.program.wmware-horizon;
+    in
+    {
+      options.program.wmware-horizon.enable = lib.mkEnableOption "wmware-horizon-client";
 
-  config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      omnissa-horizon-client
-    ];
-  };
+      config = lib.mkIf cfg.enable {
+        home.packages = with pkgs; [
+          omnissa-horizon-client
+        ];
+      };
+    };
 }

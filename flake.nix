@@ -2,51 +2,19 @@
   description = "HNIKT Flake";
 
   outputs =
-    inputs@{ flake-parts, ... }:
+    inputs@{ flake-parts, import-tree, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "x86_64-linux"
         "aarch64-linux"
       ];
-      imports = [
-        ./hosts
-        ./pkgs
-      ];
-      perSystem =
-        { pkgs, system, ... }:
-        let
-          pre-commit-lib = inputs.pre-commit-hooks-nix.lib.${system};
-        in
-        {
-          devShells.default = pkgs.mkShell {
-            name = "HNIKT-dev-shell";
-            inputsFrom = [ ];
-            nativeBuildInputs = with pkgs; [
-              nixfmt
-              nixfmt-tree
-            ];
-          };
-
-          formatter = pkgs.nixfmt;
-          checks = {
-            pre-commit-check = pre-commit-lib.run {
-              src = ./.;
-              hooks = {
-                statix.enable = true;
-                deadnix.enable = true;
-                nil.enable = true;
-                nixfmt.enable = true;
-                shellcheck.enable = true;
-                beautysh.enable = true;
-              };
-            };
-          };
-        };
+      imports = [ (import-tree ./modules) ];
     };
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";

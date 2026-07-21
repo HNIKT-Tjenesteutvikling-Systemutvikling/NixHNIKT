@@ -1,25 +1,28 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-let
-  cfg = config.program.slack;
-in
-{
-  options.program.slack.enable = lib.mkEnableOption "slack";
+_: {
+  flake.homeModules.programs-slack =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    let
+      cfg = config.program.slack;
+    in
+    {
+      options.program.slack.enable = lib.mkEnableOption "slack";
 
-  config = lib.mkIf cfg.enable {
-    home = {
-      packages = with pkgs; [
-        slack
-      ];
-      persistence."/persist/" = {
-        directories = [
-          ".config/Slack"
-        ];
+      config = lib.mkIf cfg.enable {
+        home = {
+          packages = with pkgs; [
+            slack
+          ];
+          persistence."/persist/" = {
+            directories = [
+              ".config/Slack"
+            ];
+          };
+        };
       };
     };
-  };
 }

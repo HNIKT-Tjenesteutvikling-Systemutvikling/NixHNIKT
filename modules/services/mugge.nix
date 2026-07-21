@@ -1,10 +1,13 @@
-{
-  inputs,
-  ...
-}:
-{
+_: {
+  flake.homeModules.services-mugge =
+    {
+      inputs,
+      ...
+    }:
+    {
 
-  imports = [ inputs.mugge.homeManagerModules.default ];
+      imports = [ inputs.mugge.homeManagerModules.default ];
 
-  services.mugge-chat.enable = true;
+      services.mugge-chat.enable = true;
+    };
 }

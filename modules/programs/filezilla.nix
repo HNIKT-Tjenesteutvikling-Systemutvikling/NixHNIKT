@@ -1,18 +1,21 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-let
-  cfg = config.program.filezilla;
-in
-{
-  options.program.filezilla.enable = lib.mkEnableOption "filezilla";
+_: {
+  flake.homeModules.programs-filezilla =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    let
+      cfg = config.program.filezilla;
+    in
+    {
+      options.program.filezilla.enable = lib.mkEnableOption "filezilla";
 
-  config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      filezilla
-    ];
-  };
+      config = lib.mkIf cfg.enable {
+        home.packages = with pkgs; [
+          filezilla
+        ];
+      };
+    };
 }

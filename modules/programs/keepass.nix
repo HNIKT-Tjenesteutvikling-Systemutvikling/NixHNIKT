@@ -1,25 +1,28 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-let
-  cfg = config.program.keepass;
-in
-{
-  options.program.keepass.enable = lib.mkEnableOption "keepass";
+_: {
+  flake.homeModules.programs-keepass =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    let
+      cfg = config.program.keepass;
+    in
+    {
+      options.program.keepass.enable = lib.mkEnableOption "keepass";
 
-  config = lib.mkIf cfg.enable {
-    home = {
-      packages = with pkgs; [
-        keepass
-      ];
-      persistence."/persist/" = {
-        directories = [
-          ".config/KeePass"
-        ];
+      config = lib.mkIf cfg.enable {
+        home = {
+          packages = with pkgs; [
+            keepass
+          ];
+          persistence."/persist/" = {
+            directories = [
+              ".config/KeePass"
+            ];
+          };
+        };
       };
     };
-  };
 }

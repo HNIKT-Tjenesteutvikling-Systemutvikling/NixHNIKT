@@ -1,26 +1,29 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-let
-  cfg = config.program.libreoffice;
-in
-{
-  options.program.libreoffice.enable = lib.mkEnableOption "libreoffice";
+_: {
+  flake.homeModules.programs-libreoffice =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    let
+      cfg = config.program.libreoffice;
+    in
+    {
+      options.program.libreoffice.enable = lib.mkEnableOption "libreoffice";
 
-  config = lib.mkIf cfg.enable {
-    home = {
-      packages = with pkgs; [
-        libreoffice
-      ];
+      config = lib.mkIf cfg.enable {
+        home = {
+          packages = with pkgs; [
+            libreoffice
+          ];
 
-      persistence."/persist/" = {
-        directories = [
-          ".config/libreoffice"
-        ];
+          persistence."/persist/" = {
+            directories = [
+              ".config/libreoffice"
+            ];
+          };
+        };
       };
     };
-  };
 }

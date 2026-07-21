@@ -21,10 +21,37 @@ This flake-based NixOS configuration provides a consistent, reproducible develop
 
 ## Structure
 
-- `flake.nix`: Main configuration file defining inputs and outputs
-- `hosts/`: System configurations for each machine
-- `modules/`: Shared NixOS and home-manager modules
-- `system/`: Core system configurations (hardware, programs, services)
+The repository follows the [dendritic pattern](https://github.com/mightyiam/dendritic):
+every `.nix` file under `modules/` is a [flake-parts](https://flake.parts) module,
+auto-imported by [`import-tree`](https://github.com/vic/import-tree). Modules are
+organised by **feature**, not by layer — a single feature file declares whatever it
+needs, exposing `flake.nixosModules.<name>` and/or `flake.homeModules.<name>`. Whether
+a feature is applied through NixOS or home-manager is decided inside the expression, not
+by its location. Each host aggregates all of them with `lib.attrValues`.
+
+- `flake.nix`: Thin entrypoint — declares inputs and `import-tree ./modules`.
+- `modules/`: Everything lives here.
+  - `modules/programs/`: One file per program (e.g. `git.nix`, `fish.nix`, `vscode.nix`,
+    `browser/`), regardless of whether it configures NixOS, home-manager, or both.
+  - `modules/services/`: One file per service (NixOS and home-manager alike, e.g.
+    `mysql.nix`, `openssh.nix`, `gpg.nix`, `mugge.nix`).
+  - `modules/hardware/`: Hardware/boot NixOS modules (`boot.nix`, `disko.nix`,
+    `graphics.nix`, …).
+  - `modules/config/`: Cross-cutting NixOS config — the `environment.desktop` options
+    (`desktop.nix`) and the shared `dev` user (`users.nix`).
+  - `modules/scripts/`: Home-manager packaged scripts.
+  - `modules/perSystem/`: `perSystem` outputs — formatter, devshell, checks, packages.
+  - `modules/home.nix`, `modules/lib.nix`, `modules/options.nix`: home-manager base,
+    `flake.lib`, and the `flake.homeModules` option declaration.
+  - `modules/hosts/<host>/`: Per-host wiring.
+    - `default.nix`: builds `flake.nixosConfigurations.<host>`, composing all
+      `flake.nixosModules` and `flake.homeModules`.
+    - `_machine.nix`: host-specific NixOS config (hostname, feature toggles).
+    - `_home.nix`: host-specific home-manager profile.
+    - `_disks.nix`: disko layout used by the installer.
+
+Files prefixed with `_` are intentionally not auto-imported; they are referenced
+explicitly (host includes, package derivations, helper data).
 
 ## Getting Started
 
@@ -36,10 +63,12 @@ This flake-based NixOS configuration provides a consistent, reproducible develop
 
 ### Setting Up User Configuration
 
-Before installation, you need to set up your user profile:
+Before installation, you need to set up a host:
 
-1. Create a user configuration in `modules/profiles/yourusername/default.nix`
-2. Follow the examples in existing user configurations (like `modules/profiles/neethan/default.nix`)
+1. Create a host directory under `modules/hosts/<hostname>/` containing a
+   `default.nix` (wiring), `_machine.nix` (NixOS config), `_home.nix`
+   (home-manager profile) and, for installable machines, a `_disks.nix`.
+2. Follow the examples in existing hosts (like `modules/hosts/neethan/`).
 
 ### Installation Methods
 
