@@ -187,6 +187,7 @@ _: {
                 clipboard-indicator.extensionUuid
                 dash-to-panel.extensionUuid
                 just-perfection.extensionUuid
+                quick-settings-audio-panel.extensionUuid
                 space-bar.extensionUuid
                 tray-icons-reloaded.extensionUuid
                 user-themes.extensionUuid
@@ -320,8 +321,8 @@ _: {
               gnomeExtensions.clipboard-indicator
               gnomeExtensions.dash-to-panel
               gnomeExtensions.just-perfection
+              gnomeExtensions.quick-settings-audio-panel
               gnomeExtensions.space-bar
-              gnomeExtensions.sound-output-device-chooser
               gnomeExtensions.tray-icons-reloaded
               gnomeExtensions.user-themes
               palenight-theme
