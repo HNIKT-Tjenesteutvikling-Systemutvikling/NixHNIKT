@@ -2,12 +2,22 @@ _: {
   flake.nixosModules.services-autoupgrade =
     {
       config,
+      inputs,
       lib,
       pkgs,
       ...
     }:
     let
       cfg = config.service.autoUpgrade;
+
+      remoteHead = pkgs.writeShellScript "check-config-update" ''
+        set -eu
+        remote=$(${lib.getExe pkgs.gitMinimal} ls-remote \
+          https://github.com/${cfg.repository}.git refs/heads/${cfg.branch} \
+          | ${pkgs.coreutils}/bin/cut -f1)
+        deployed=$(/run/current-system/sw/bin/nixos-version --configuration-revision 2>/dev/null || true)
+        [ "$remote" != "$deployed" ]
+      '';
 
       syncLocalClone = pkgs.writeShellScript "sync-config-clone" ''
         set -eu
@@ -29,7 +39,7 @@ _: {
         enable = lib.mkOption {
           type = lib.types.bool;
           default = true;
-          description = "Rebuild the system weekly from the remote flake, discarding local state.";
+          description = "Rebuild from the remote flake whenever it moves, discarding local state.";
         };
 
         repository = lib.mkOption {
@@ -56,22 +66,31 @@ _: {
 
         dates = lib.mkOption {
           type = lib.types.str;
-          default = "Mon *-*-* 10:00:00";
-          description = "When the upgrade runs, in {manpage}`systemd.time(7)` format.";
+          default = "Mon,Thu *-*-* 10:00:00";
+          description = ''
+            When to check for a new revision, in {manpage}`systemd.time(7)` format.
+            The rebuild is skipped unless {option}`branch` moved since the last deploy.
+          '';
         };
       };
 
       config = lib.mkIf cfg.enable {
-        system.autoUpgrade = {
-          enable = true;
-          flake = "github:${cfg.repository}/${cfg.branch}";
-          inherit (cfg) dates;
-          upgrade = false;
-          persistent = true;
-          randomizedDelaySec = "45min";
+        system = {
+          configurationRevision = inputs.self.rev or "dirty";
+          autoUpgrade = {
+            enable = true;
+            flake = "github:${cfg.repository}/${cfg.branch}";
+            inherit (cfg) dates;
+            upgrade = false;
+            persistent = true;
+            randomizedDelaySec = "45min";
+          };
         };
 
-        systemd.services.nixos-upgrade.preStart = lib.mkIf (cfg.localClone != null) "${syncLocalClone}";
+        systemd.services.nixos-upgrade = {
+          serviceConfig.ExecCondition = "${remoteHead}";
+          preStart = lib.mkIf (cfg.localClone != null) "${syncLocalClone}";
+        };
       };
     };
 }
