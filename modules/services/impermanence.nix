@@ -39,6 +39,7 @@ _: {
             "Pictures"
             "Projects"
             "Sources"
+            "Videos"
             {
               directory = ".gnupg";
               mode = "0700";
