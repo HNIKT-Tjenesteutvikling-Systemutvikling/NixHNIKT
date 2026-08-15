@@ -1,0 +1,140 @@
+Window.SetBackgroundTopColor(0.102, 0.102, 0.102);
+Window.SetBackgroundBottomColor(0.102, 0.102, 0.102);
+
+theme.background = Image("gako.png");
+
+# panel.png and bullet.png are authored at 3x the 1080p reference size and
+# scaled down, so the dialog keeps its proportions on a 1440p screen instead of
+# rendering at half the relative size.
+theme.panel = Image("panel.png");
+theme.bullet = Image("bullet.png");
+theme.asset_scale = 3;
+theme.ref_height = 1080;
+
+# gako.png is 16:9, so filling the display crops nothing on these monitors and
+# keeps it full-bleed on any other panel.
+fun cover(image, width, height)
+  {
+    fit = width / image.GetWidth();
+    if (image.GetHeight() * fit < height)
+        fit = height / image.GetHeight();
+    return image.Scale(Math.Int(image.GetWidth() * fit + 1),
+                       Math.Int(image.GetHeight() * fit + 1));
+  }
+
+fun rescale(image, factor)
+  {
+    return image.Scale(Math.Int(image.GetWidth() * factor),
+                       Math.Int(image.GetHeight() * factor));
+  }
+
+# Plymouth centres every display inside a single max-width x max-height canvas
+# and draws every sprite on every display. So build one centred layout: a
+# per-display one bleeds onto the other monitor when they differ in size.
+canvas.x = Window.GetX();
+canvas.y = Window.GetY();
+canvas.width = Window.GetWidth();
+canvas.height = Window.GetHeight();
+
+ui_scale = canvas.height / theme.ref_height;
+
+bg = cover(theme.background, canvas.width, canvas.height);
+background = Sprite(bg);
+background.SetPosition(
+    canvas.x + Math.Int((canvas.width - bg.GetWidth()) / 2),
+    canvas.y + Math.Int((canvas.height - bg.GetHeight()) / 2),
+    -100);
+
+panel_image = rescale(theme.panel, ui_scale / theme.asset_scale);
+bullet_image = rescale(theme.bullet, ui_scale / theme.asset_scale);
+bullet_spacing = bullet_image.GetWidth() * 1.7;
+font = "DejaVu Sans " + Math.Int(13 * ui_scale);
+
+panel_x = canvas.x + Math.Int((canvas.width - panel_image.GetWidth()) / 2);
+panel_y = canvas.y + Math.Int(canvas.height * @promptY@);
+
+center_x = panel_x + panel_image.GetWidth() / 2;
+prompt_y = panel_y + Math.Int(34 * ui_scale);
+entry_y = panel_y + Math.Int(92 * ui_scale);
+message_y = panel_y + panel_image.GetHeight() + Math.Int(20 * ui_scale);
+
+panel = Sprite(panel_image);
+panel.SetPosition(panel_x, panel_y, 100);
+panel.SetOpacity(0);
+
+prompt = Sprite();
+prompt.SetOpacity(0);
+
+message = Sprite();
+message.SetOpacity(0);
+
+# global.bullet[] is written explicitly: a bare assignment inside a function
+# creates a local unless the name already resolves globally, which would
+# silently discard the sprites.
+fun dialog_hide()
+  {
+    panel.SetOpacity(0);
+    prompt.SetOpacity(0);
+    for (i = 0; global.bullet[i]; i++)
+        global.bullet[i].SetOpacity(0);
+  }
+
+fun display_normal_callback()
+  {
+    dialog_hide();
+  }
+
+fun display_password_callback(text, bullets)
+  {
+    prompt_image = Image.Text(text, 0.796, 0.796, 0.796, 1, font);
+
+    panel.SetOpacity(1);
+
+    prompt.SetImage(prompt_image);
+    prompt.SetPosition(center_x - prompt_image.GetWidth() / 2, prompt_y, 101);
+    prompt.SetOpacity(1);
+
+    start_x = center_x - (bullets * bullet_spacing) / 2;
+
+    for (i = 0; global.bullet[i] || i < bullets; i++)
+      {
+        if (!global.bullet[i])
+            global.bullet[i] = Sprite(bullet_image);
+
+        global.bullet[i].SetPosition(start_x + i * bullet_spacing, entry_y, 101);
+
+        if (i < bullets)
+            global.bullet[i].SetOpacity(1);
+        else
+            global.bullet[i].SetOpacity(0);
+      }
+  }
+
+fun display_message_callback(text)
+  {
+    if (!text)
+        return;
+
+    message_image = Image.Text(text, 0.749, 0.380, 0.416, 1, font);
+
+    message.SetImage(message_image);
+    message.SetPosition(center_x - message_image.GetWidth() / 2, message_y, 200);
+    message.SetOpacity(1);
+  }
+
+fun hide_message_callback()
+  {
+    message.SetOpacity(0);
+  }
+
+fun quit_callback()
+  {
+    dialog_hide();
+    hide_message_callback();
+  }
+
+Plymouth.SetDisplayNormalFunction(display_normal_callback);
+Plymouth.SetDisplayPasswordFunction(display_password_callback);
+Plymouth.SetDisplayMessageFunction(display_message_callback);
+Plymouth.SetHideMessageFunction(hide_message_callback);
+Plymouth.SetQuitFunction(quit_callback);

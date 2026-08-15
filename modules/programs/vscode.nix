@@ -2,6 +2,7 @@ _: {
   flake.homeModules.programs-vscode =
     {
       osConfig,
+      inputs,
       config,
       lib,
       pkgs,
@@ -194,6 +195,9 @@ _: {
                   version = "0.0.3";
                   sha256 = "sha256-DEdeG17oy0LX0Mn8Vbb524ep9tXH3yQHVLAtg6DfzSA=";
                 })
+              ]
+              ++ [
+                inputs.vsmugge.packages.${pkgs.stdenv.hostPlatform.system}.default
               ];
 
             userSettings = {
@@ -343,6 +347,8 @@ _: {
 
               # Docker
               "docker.dockerPath" = "${pkgs.docker}/bin/docker";
+
+              "mugge.dtachProgram" = "${pkgs.dtach}/bin/dtach";
 
               # Remote SSH
               "remote.SSH.path" = "${pkgs.openssh}/bin/ssh";

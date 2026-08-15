@@ -2,6 +2,7 @@ _: {
   flake.nixosModules.hardware-boot =
     {
       modulesPath,
+      pkgs,
       ...
     }:
     let
@@ -88,6 +89,8 @@ _: {
         };
         plymouth = {
           enable = true;
+          theme = "gako";
+          themePackages = [ (pkgs.callPackage ../../pkgs/plymouth-gako { }) ];
         };
         kernelModules = [
           "kvm-intel"

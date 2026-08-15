@@ -28,6 +28,10 @@
     nix-colors.url = "github:misterio77/nix-colors";
     nur.url = "github:nix-community/NUR";
     mugge.url = "github:HNIKT-Tjenesteutvikling-Systemutvikling/mugge";
+    vsmugge = {
+      url = "github:gako358/vsmugge";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     pre-commit-hooks-nix = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
