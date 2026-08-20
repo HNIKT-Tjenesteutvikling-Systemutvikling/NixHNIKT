@@ -60,9 +60,49 @@ in
 
   # Monitor settings for gnome
   home.file.".config/monitors.xml".text = lib.mkIf (desktop.windowManager == "gnome") ''
-        <monitors version="2">
-        <!-- Kraemer -->
-        <configuration>
+    <monitors version="2">
+      <!-- Kraemer -->
+      <configuration>
+        <layoutmode>logical</layoutmode>
+        <logicalmonitor>
+          <x>0</x>
+          <y>360</y>
+          <scale>1</scale>
+          <monitor>
+            <monitorspec>
+              <connector>eDP-1</connector>
+              <vendor>AUO</vendor>
+              <product>0x229e</product>
+              <serial>0x00000000</serial>
+            </monitorspec>
+            <mode>
+              <width>1920</width>
+              <height>1080</height>
+              <rate>60.049</rate>
+            </mode>
+          </monitor>
+        </logicalmonitor>
+        <logicalmonitor>
+          <x>1920</x>
+          <y>0</y>
+          <scale>1</scale>
+          <primary>yes</primary>
+          <monitor>
+            <monitorspec>
+              <connector>DP-2</connector>
+              <vendor>SAM</vendor>
+              <product>LS49A950U</product>
+              <serial>H4ZT100025</serial>
+            </monitorspec>
+            <mode>
+              <width>5120</width>
+              <height>1440</height>
+              <rate>59.977</rate>
+            </mode>
+          </monitor>
+        </logicalmonitor>
+      </configuration>
+      <configuration>
         <layoutmode>physical</layoutmode>
         <logicalmonitor>
           <x>1920</x>
@@ -103,6 +143,64 @@ in
         </logicalmonitor>
       </configuration>
       <!-- hjemmekontor -->
+      <configuration>
+        <layoutmode>logical</layoutmode>
+        <logicalmonitor>
+          <x>0</x>
+          <y>0</y>
+          <scale>1</scale>
+          <monitor>
+            <monitorspec>
+              <connector>HDMI-1</connector>
+              <vendor>AUS</vendor>
+              <product>VG27B</product>
+              <serial>L5LMQS149668</serial>
+            </monitorspec>
+            <mode>
+              <width>2560</width>
+              <height>1440</height>
+              <rate>59.951</rate>
+            </mode>
+          </monitor>
+        </logicalmonitor>
+        <logicalmonitor>
+          <x>5120</x>
+          <y>360</y>
+          <scale>1</scale>
+          <monitor>
+            <monitorspec>
+              <connector>eDP-1</connector>
+              <vendor>AUO</vendor>
+              <product>0x229e</product>
+              <serial>0x00000000</serial>
+            </monitorspec>
+            <mode>
+              <width>1920</width>
+              <height>1080</height>
+              <rate>60.049</rate>
+            </mode>
+          </monitor>
+        </logicalmonitor>
+        <logicalmonitor>
+          <x>2560</x>
+          <y>0</y>
+          <scale>1</scale>
+          <primary>yes</primary>
+          <monitor>
+            <monitorspec>
+              <connector>DP-6</connector>
+              <vendor>AUS</vendor>
+              <product>VG27B</product>
+              <serial>L5LMQS149667</serial>
+            </monitorspec>
+            <mode>
+              <width>2560</width>
+              <height>1440</height>
+              <rate>59.951</rate>
+            </mode>
+          </monitor>
+        </logicalmonitor>
+      </configuration>
       <configuration>
         <layoutmode>physical</layoutmode>
         <logicalmonitor>
