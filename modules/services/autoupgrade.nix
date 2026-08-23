@@ -15,7 +15,7 @@ _: {
         remote=$(${lib.getExe pkgs.gitMinimal} ls-remote \
           https://github.com/${cfg.repository}.git refs/heads/${cfg.branch} \
           | ${pkgs.coreutils}/bin/cut -f1)
-        deployed=$(/run/current-system/sw/bin/nixos-version --configuration-revision 2>/dev/null || true)
+        deployed=$(/nix/var/nix/profiles/system/sw/bin/nixos-version --configuration-revision 2>/dev/null || true)
         [ "$remote" != "$deployed" ]
       '';
 
@@ -40,7 +40,7 @@ _: {
           success)
             urgency=normal
             title="System update completed"
-            body="This machine now runs the latest configuration. Reboot when convenient."
+            body="The latest configuration is staged as the default boot entry. It takes effect on the next reboot."
             ;;
           *)
             urgency=critical
@@ -65,7 +65,11 @@ _: {
         enable = lib.mkOption {
           type = lib.types.bool;
           default = true;
-          description = "Rebuild from the remote flake whenever it moves, discarding local state.";
+          description = ''
+            Build from the remote flake whenever it moves, discarding local state.
+            The result becomes the default boot entry; it is activated on the next
+            reboot rather than switched into the running system.
+          '';
         };
 
         repository = lib.mkOption {
@@ -104,7 +108,7 @@ _: {
           default = "Mon,Thu *-*-* 10:00:00";
           description = ''
             When to check for a new revision, in {manpage}`systemd.time(7)` format.
-            The rebuild is skipped unless {option}`branch` moved since the last deploy.
+            The rebuild is skipped unless {option}`branch` moved since the last build.
           '';
         };
       };
@@ -116,6 +120,9 @@ _: {
             enable = true;
             flake = "github:${cfg.repository}/${cfg.branch}";
             inherit (cfg) dates;
+            # Never activate on the running system: switching restarts the display
+            # manager, which kills logged-in sessions and any unsaved work.
+            operation = "boot";
             upgrade = false;
             persistent = true;
             randomizedDelaySec = "45min";
