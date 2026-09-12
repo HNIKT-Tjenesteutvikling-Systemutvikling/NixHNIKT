@@ -11,16 +11,19 @@ _: {
     let
       cfg = config.program.browser.zen;
 
-      # Create a wrapper script for zen-browser with Wayland enabled
-      zenWithWayland = pkgs.symlinkJoin {
-        name = "zen-browser-wayland";
-        paths = [ inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default ];
-        buildInputs = [ pkgs.makeWrapper ];
-        postBuild = ''
-          wrapProgram $out/bin/zen \
-            --set MOZ_ENABLE_WAYLAND 1
-        '';
-      };
+      # Upstream still sets the pre-rename passthru flags, so wrapFirefox drops
+      # ffmpeg from the library path and media playback fails.
+      # Drop once https://github.com/youwen5/zen-browser-flake/pull/20 lands.
+      zen-unwrapped =
+        inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".zen-browser-unwrapped.overrideAttrs
+          (prev: {
+            passthru = prev.passthru // {
+              withGSSAPI = true;
+              withFFmpeg = true;
+            };
+          });
+
+      zen = pkgs.wrapFirefox zen-unwrapped { pname = "zen-browser"; };
     in
     {
 
@@ -34,7 +37,7 @@ _: {
 
       config = lib.mkIf cfg.enable {
         home = lib.mkIf osConfig.environment.desktop.enable {
-          packages = [ zenWithWayland ];
+          packages = [ zen ];
           persistence."/persist/" = {
             directories = [
               ".zen"
