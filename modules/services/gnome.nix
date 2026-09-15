@@ -15,7 +15,6 @@ _: {
               implementation = "broker";
               packages = [
                 pkgs.gnome-keyring
-                pkgs.gcr
               ];
             };
             gnome = {
