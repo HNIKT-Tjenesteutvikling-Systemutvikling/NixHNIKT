@@ -29,7 +29,7 @@ in
     spotify.enable = true;
     vscode = {
       enable = true;
-      theme = "onedark";
+      theme = "catppuccinMedium";
     };
     wmware-horizon.enable = true;
     libreoffice.enable = true;
