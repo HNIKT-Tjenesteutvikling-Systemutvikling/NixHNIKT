@@ -84,6 +84,8 @@ _: {
             "dark"
             "light"
             "onedark"
+            "catppuccinDark"
+            "catppuccinMedium"
             "cyberpunk"
           ];
           default = "dark";
@@ -174,6 +176,14 @@ _: {
               ]
               ++ [
                 (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+                  name = "catppuccin-vsc";
+                  publisher = "Catppuccin";
+                  version = "3.19.0";
+                  sha256 = "sha256-6/NHZkg37b6RyZIP89FMltSii+7sC5UTfHYFgyYyl4A=";
+                })
+              ]
+              ++ [
+                (pkgs.vscode-utils.extensionFromVscodeMarketplace {
                   name = "cyberpunk";
                   publisher = "max-ss";
                   version = "1.2.14";
@@ -209,6 +219,10 @@ _: {
                   "Default Dark Modern"
                 else if cfg.theme == "cyberpunk" then
                   "Cyberpunk"
+                else if cfg.theme == "catppuccinDark" then
+                  "Catppuccin Mocha"
+                else if cfg.theme == "catppuccinMedium" then
+                  "Catppuccin Macchiato"
                 else
                   "Default Light Modern";
 
